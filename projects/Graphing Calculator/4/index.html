@@ -1,0 +1,193 @@
+<html>
+
+<head>
+  <style>
+    * {
+      padding: 0;
+    }
+
+    #equations {
+      border-style: inset;
+      border-color: red;
+      border-width: .3em;
+      border-right: none;
+      padding: .5em;
+
+    }
+    button{
+      width:100%;
+      height:2em;
+      margin-top:1em;
+      background-color:red;
+      text-align:center;
+      color:white;
+    }
+
+    canvas {
+      border-color: silver;
+      border-style: inset;
+      border-width: .3em
+    }
+
+    #table1 {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    #variable{
+      border-color:gray;
+      text-align: center;
+    }
+    input{
+        width:100%;
+              margin-top: .5em;
+    }
+    .inputBox {
+      height: 2em;
+      border-color:lightgray;
+      border-style:groove;
+    }
+    #computedEquationDiv{
+
+    }
+    #computedEquationId{
+      width:100%;
+      height:5em;
+      font-size:.8em;
+    }
+
+    #resizeSeparatorID{
+      width:.3em;
+      height:500px;
+      cursor:ew-resize;
+    }
+
+#optionsBox{
+  position:fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+display:none;
+outline-color:red;
+outline-style:groove;
+outline-width: .5em;
+
+width:fit-content;
+padding:1em;
+height: fit-content;
+z-index: 50;
+background-color: white;
+}
+
+  </style>
+
+</head>
+
+<body>
+  <center>
+
+      <div id="optionsBox">
+      <button onclick="this.parentElement.style.display = 'none'" style="position:absolute; width:2em; top:5px; right: 5px; margin:0;">X</button>
+
+      <h1>
+      Options
+      </h1>
+      <table>
+        <tr>
+          <td>
+            Line Color:
+          </td>
+          <td style="display:inline-block">
+            <input type="color" name="favcolor" value="#ff0000" id="colorPickerId" style="width:5em">
+       <!---  <input type="text"></input>--->
+          </td>
+
+
+
+        </tr>
+        <tr>
+          <td>
+            Line Width:
+          </td>
+          <td>
+      <input id="lineWidthId" type="number" value="3" min="0" max="10"></input>
+          </td>
+        </tr>
+      </table>
+
+      </div>
+
+
+  </center>
+  <table id="table1">
+    <tr>
+
+  <td id="equations">
+
+<div id="computedEquationDiv">
+        JS Equation:
+        <textarea id="computedEquationId" readonly></textarea>
+      </div>
+
+    <table>
+      <tr>
+        <td>
+          Variable:
+        </td>
+        <td>
+         <input type="text" id="variable" value="x" />
+        </td>
+      </tr>
+      <tr>
+
+
+
+      </tr>
+    </table>
+
+
+    <button id="buttonId" onclick="optionsBtnClick()">Options</button>
+
+<div id="equationInputs">
+  <input type="text" id="equ1" class="inputBox"/>
+
+  <input type="text" id="equ2" class="inputBox"/>
+
+  <input type="text" id="equ3" class="inputBox"/>
+
+  <input type="text" id="equ4" class="inputBox"/>
+
+  <input type="text" id="equ5" class="inputBox"/>
+
+  <input type="text" id="equ6" class="inputBox"/>
+
+  <input type="text" id="equ7" class="inputBox"/>
+
+  <input type="text" id="equ8" class="inputBox"/>
+
+  <input type="text" id="equ9" class="inputBox"/>
+
+  <input type="text" id="equ10" class="inputBox"/>
+</div>
+
+
+    <button onclick="clearAll()">Clear</button>
+  </td>
+
+  <td id="resizeSeparatorID">
+
+  </td>
+
+</td>
+      <td id="canvContainer">
+
+        <canvas id="canvas"></canvas>
+      </td>
+    </tr>
+  </table>
+
+  <script src='script.js'></script>
+</body>
+
+</html>
