@@ -306,7 +306,10 @@ font-size:1em;
   text-align: left;
 }
 .blockdiv div h2{
-  padding-left:.5em;
+  display: list-item;          /* This has to be "list-item"                                               */
+    list-style-type: disc;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
+    list-style-position: inside; 
+    padding-left:.35em;
 }
 .blockdiv div p:first-child {
   text-align: center;
@@ -314,17 +317,18 @@ font-size:1em;
 
 .blockdiv div p{
   font-weight: 200;
-  padding: .3em;
-  padding-left:1.5em;
+  padding: .20em;
+  padding-left:.5em;
+
 }
 
 .blockdiv div i{
 
-  padding-left:1.5em;
+  padding-left:1em;
 }
 .blockdiv div b{
 
-  padding-left:1.5em;
+  padding-left:.5em;
 }
 
 
@@ -336,6 +340,9 @@ font-size:1em;
   margin: auto;
   margin-top: .2em;
   padding: .6em;
+  display: list-item;          /* This has to be "list-item"                                               */
+  list-style-type: disc;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
+  list-style-position: inside; 
 }
 
 .blockdiv div a a {
@@ -377,7 +384,7 @@ font-size:1em;
 #logo {
   position: absolute;
   margin: auto;
-  width: 20em;
+  width: 30vh;
   height: auto;
 
   top: 0;
@@ -450,7 +457,7 @@ font-size:1em;
   font-family: 'Turret Road', cursive;
   color: rgba(1, 95, 151,1);
   text-align: center;
-  font-size: 6em;
+  font-size: 8vh;
 
  
 }
@@ -463,7 +470,7 @@ font-style: italic;
   right: 0;
   margin: auto;
   text-align: center;
-  font-size: 3em;
+  font-size: 4vh;
   bottom: 4.5vh;
 
 }
