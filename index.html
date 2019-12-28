@@ -1,94 +1,128 @@
 <html>
+  <head>
+    <title>Andrei Cozma | Home</title>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
 
-<head>
-  <title>Andrei Cozma | Home</title>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta name="author" content="Andrei Cozma" />
+    <meta
+      name="description"
+      content="My online portfolio and resume showcasing my past and current projects, as well as social media and professional networking links. This website is a work-in-progress."
+    />
+    <meta
+      name="keywords"
+      content="Andrei Cozma, Computer Science, UTK, Tennessee, Romania, HTML,CSS,C++, JavaScript, C, C#, Java, Assembly"
+    />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
 
-  <meta name="author" content="Andrei Cozma">
-  <meta name="description"
-    content="My online portfolio and resume showcasing my past and current projects, as well as social media and professional networking links. This website is a work-in-progress.">
-  <meta name="keywords"
-    content="Andrei Cozma, Computer Science, UTK, Tennessee, Romania, HTML,CSS,C++, JavaScript, C, C#, Java, Assembly">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/manifest.json" />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="/images/icons/icon-192x192-white.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <link rel='manifest' href='/manifest.json'>
-  <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192x192-white.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Turret+Road:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="styles.css?v3" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-83856517-4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Turret+Road:400,700&display=swap"
-  rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="styles.css?v3">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-83856517-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+      gtag("config", "UA-83856517-4");
+    </script>
+  </head>
 
-  gtag('config', 'UA-83856517-4');
-</script>
-</head>
+  <body class="noSelect">
+    <script src="jquery.js"></script>
+    <script src="script.js"></script>
 
+    <div class="top">
+      <a href="menu.html" id="menuFallBackLink"
+        ><img class="menuStyle fadein0" src="res/menu.png" onclick="openNav()"
+      /></a>
+      <a target="_blank" href="https://www.linkedin.com/in/andreicozma1/">
+        <img class="headerLogo fadein0" src="res/linked.png"
+      /></a>
+    </div>
 
-<body class='noSelect'>
-  <script src="jquery.js"></script>
-  <script src="script.js"></script>
+    <div id="mySidenav" class="sidenav">
+      <center>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          >&times;</a
+        >
+        <a href="/">HOME</a>
+        <a href="/about">RESUME</a>
+        <a href="/projects/">PROJECTS</a>
+        <a href="/gallery/">PHOTOGRAPHY</a>
+        <a href="/social/">SOCIAL MEDIA</a>
+        <a href="/contact">CONTACT</a>
+        <div class="scMediaBar">
+          <a href="https://www.linkedin.com/in/andreicozma1/"
+            ><img src="res/linked.png"
+          /></a>
+          <a href="https://www.instagram.com/andreig992/"
+            ><img src="res/insta.png"
+          /></a>
+          <a href="https://www.twitter.com/andreig992"
+            ><img src="res/twitter.png"
+          /></a>
+          <a href="https://www.facebook.com/andreig992"
+            ><img src="res/facebook.png"
+          /></a>
+        </div>
+      </center>
+    </div>
 
-  
+    <div class="content overFlowHidden fadein0">
+      <noscript>
+        <h2 id="noscript">
+          JavaScript disabled! Please enable JavaScript in your browser for a
+          better browsing experience.
+        </h2>
+      </noscript>
 
-  <div class="top">
-    <a href="menu.html" id="menuFallBackLink"><img class="menuStyle fadein0" src="res/menu.png" onclick="openNav()"></a>
-    <a target="_blank" href="https://www.linkedin.com/in/andreicozma1/"> <img class="headerLogo fadein0"
-        src="res/linked.png"></a>
-  </div>
+      <h1 id="title" class="fadein2">ANDREI COZMA</h1>
 
-  
+      <a target="_blank" href="/about"
+        ><img
+          id="logo"
+          class="fadein3"
+          src="res/profile.png"
+          oncontextmenu="return false;"
+      /></a>
 
-  <div id="mySidenav" class="sidenav">
-    <center>
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="/">HOME</a>
-      <a href="/about">RESUME</a>
-      <a href="/projects/">PROJECTS</a>
-      <a href="/gallery/">PHOTOGRAPHY</a>
-      <a href="/social/">SOCIAL MEDIA</a>
-      <a href="/contact">CONTACT</a>
-      <div class="scMediaBar">
-        <a href="https://www.linkedin.com/in/andreicozma1/"><img src="res/linked.png"></a>
-        <a href="https://www.instagram.com/andreig992/"><img src="res/insta.png"></a>
-        <a href="https://www.twitter.com/andreig992"><img src="res/twitter.png"></a>
-        <a href="https://www.facebook.com/andreig992"><img src="res/facebook.png"></a>
+      <h1 id="subTitle" class="fadein4">&lt;/Computer Scientist&gt;</h1>
+    </div>
 
-      </div>
-    </center>
-  </div>
-
-
-
-  <div class="content overFlowHidden fadein0">
-   
-    
-      <h2 id="noscript">JavaScript disabled! Please enable JavaScript in your browser for a better browsing experience.</h2>
-
-
-    <h1 id="title" class="fadein2">ANDREI COZMA</h1>
-    
-    <a target="_blank" href="/about"><img id="logo" class="fadein3" src="res/profile.png"
-        oncontextmenu="return false;" /></a>
-        
-    <h1 id="subTitle" class="fadein4">&lt;/Computer Scientist&gt;</h1>
-  </div>
-
-  <video id="vid" autoplay loop muted playsinline class="fadeinvid">
-    <source src="/res/vid.mp4" type="video/mp4">
-  </video>
-  <!---
+    <video id="vid" autoplay loop muted playsinline class="fadeinvid">
+      <source src="/res/vid.mp4" type="video/mp4" />
+    </video>
+    <!---
   <button id="mainSignIn" onclick="location.href='/portal/'" type="button">PORTAL</button>
 --->
-</body>
-
+  </body>
 </html>
