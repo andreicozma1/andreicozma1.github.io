@@ -1,3 +1,10 @@
+#noscript{
+  text-align: center;
+  color:red;
+  padding-top:10vmax;
+  z-index: 5;
+}
+
 body,
 head {
   -webkit-tap-highlight-color: transparent;

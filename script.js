@@ -1,3 +1,4 @@
+var isOpen;
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   isOpen = false;
