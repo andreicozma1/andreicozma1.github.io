@@ -1,7 +1,7 @@
-#noscript{
+#noscript {
   text-align: center;
-  color:red;
-  padding-top:10vmax;
+  color: red;
+  padding-top: 10vmax;
   z-index: 5;
 }
 
@@ -84,9 +84,9 @@ iframe::-webkit-scrollbar {
   height: 600px;
 }
 
-#shirtsFrame{
-  width:100%;
-  height:99%;
+#shirtsFrame {
+  width: 100%;
+  height: 99%;
 }
 
 .menuStyle {
@@ -177,28 +177,28 @@ iframe::-webkit-scrollbar {
   margin-top: 2vh;
 }
 
-#loading{
-  background-color:rgba(0,0,0,.8);
-  display:none;
-  position:fixed;
+#loading {
+  background-color: rgba(0, 0, 0, .8);
+  display: none;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index:1;
+  z-index: 1;
 }
 
-#loading img{
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
+#loading img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
   margin: auto;
   height: 4em;
   width: auto;
-  z-index:5;
+  z-index: 5;
 }
 
 
@@ -243,6 +243,7 @@ iframe::-webkit-scrollbar {
   margin-top: .5em;
 
 }
+
 .blockdiv * {
   margin: 0;
 
@@ -254,7 +255,7 @@ iframe::-webkit-scrollbar {
   display: none;
   position: absolute;
   height: 3.8em;
-width: auto;
+  width: auto;
 
   right: 0;
   top: 0;
@@ -275,20 +276,19 @@ width: auto;
 .blockdiv a {
   margin-top: .1em;
 }
-.blockdiv p{
 
+.blockdiv p {}
+
+#chapterHint {
+  font-size: .8em;
 }
 
-#chapterHint{
-  font-size:.8em;
+#info {
+  font-size: 1em;
 }
 
-#info{
-font-size:1em;
-}
-
-#table{
-  text-align:left;
+#table {
+  text-align: left;
 }
 
 .blockdiv img {
@@ -312,30 +312,35 @@ font-size:1em;
   border-width: .1em;
   text-align: left;
 }
-.blockdiv div h2{
-  display: list-item;          /* This has to be "list-item"                                               */
-    list-style-type: disc;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
-    list-style-position: inside; 
-    padding-left:.35em;
+
+.blockdiv div h2 {
+  display: list-item;
+  /* This has to be "list-item"                                               */
+  list-style-type: disc;
+  /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
+  list-style-position: inside;
+  padding-left: .35em;
 }
+
 .blockdiv div p:first-child {
   text-align: center;
 }
 
-.blockdiv div p{
+.blockdiv div p {
   font-weight: 200;
   padding: .20em;
-  padding-left:.5em;
+  padding-left: .5em;
 
 }
 
-.blockdiv div i{
+.blockdiv div i {
 
-  padding-left:1em;
+  padding-left: 1em;
 }
-.blockdiv div b{
 
-  padding-left:.5em;
+.blockdiv div b {
+
+  padding-left: .5em;
 }
 
 
@@ -347,9 +352,11 @@ font-size:1em;
   margin: auto;
   margin-top: .2em;
   padding: .6em;
-  display: list-item;          /* This has to be "list-item"                                               */
-  list-style-type: disc;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
-  list-style-position: inside; 
+  display: list-item;
+  /* This has to be "list-item"                                               */
+  list-style-type: disc;
+  /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
+  list-style-position: inside;
 }
 
 .blockdiv div a a {
@@ -375,9 +382,11 @@ font-size:1em;
 .blockdiv div div div h1 {
   font-size: 1em;
 }
+
 .blockdiv div div div h2 {
   font-size: 1.2em;
 }
+
 .blockdiv div div div p {
   font-size: .8em;
 }
@@ -398,25 +407,25 @@ font-size:1em;
   bottom: 0;
   left: 0;
   right: 0;
- 
- /* filter: drop-shadow(0 0 15px,rgba(1, 95, 151,1));*/
+
+  /* filter: drop-shadow(0 0 15px,rgba(1, 95, 151,1));*/
 
   border-radius: 50%;
   border-style: solid;
 
   border-width: .3em;
-  border-color: rgba(255, 255, 255,1);
+  border-color: rgba(255, 255, 255, 1);
 }
 
-#contact{
-  float:right;
-  height:20vh;
-  width:auto;
-  
+#contact {
+  float: right;
+  height: 20vh;
+  width: auto;
+
 }
 
 @media (min-aspect-ratio:5/7) {
- 
+
 
   .blockdiv div a {
     width: 75%;
@@ -437,7 +446,7 @@ font-size:1em;
 }
 
 @media (min-aspect-ratio:1/1) {
- 
+
   .blockdiv div a {
     width: 50%;
   }
@@ -452,30 +461,27 @@ font-size:1em;
 
 }
 
-@media (min-aspect-ratio:12/8) {
-
-
-}
+@media (min-aspect-ratio:12/8) {}
 
 #title {
-  position:absolute;
-  left:0;
-  right:0;
-  top:-20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -20px;
   font-family: 'Turret Road', cursive;
   /*color: rgba(1, 95, 151,1);*/
-  color: rgba(255, 255, 255,1);
+  color: rgba(255, 255, 255, 1);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   text-align: center;
   font-size: 8vh;
 
- 
+
 }
 
 #subTitle {
-font-style: italic;
+  font-style: italic;
   /* color: rgba(1, 95, 151,1); */
-  color: rgba(255, 255, 255,1);
+  color: rgba(255, 255, 255, 1);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   position: absolute;
   left: 0;
@@ -502,13 +508,13 @@ font-style: italic;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgba(1, 95, 151,1);
+  background-color: rgba(1, 95, 151, 1);
   overflow-x: hidden;
   overflow-y: hidden;
   padding-top: 8vh;
   transition: .5s;
   text-align: center;
-  background: linear-gradient(rgba(1, 95, 151,1), #FFF);
+  background: linear-gradient(rgba(1, 95, 151, 1), #FFF);
 }
 
 
