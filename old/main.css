@@ -45,13 +45,13 @@ img {
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 }
 
-#menu input{
-    display:none;
-    position:fixed;
-    left:0;
+#menu input {
+    display: none;
+    position: fixed;
+    left: 0;
     padding: 1vh;
-    width:10vh;
-    z-index:2;
+    width: 10vh;
+    z-index: 2;
 }
 
 
@@ -69,53 +69,55 @@ img {
     animation: fadein 2s;
     white-space: nowrap;
     width: 100%;
-    padding-top:20px;
-    padding-bottom:20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 
 
 
 #header a {
-display:inline-block;
-    width:140px;
+    display: inline-block;
+    width: 140px;
     text-decoration: none;
-    font-size:2vh;
+    font-size: 2vh;
     color: white;
     background-color: rgba(150, 150, 150, .1);
-    padding:20px 0 20px 0;
+    padding: 20px 0 20px 0;
     border-radius: 5%;
-    right:0;
-    
+    right: 0;
+
 }
 
 #header a:hover {
     background-color: rgba(150, 150, 150, .2);
 }
 
-@media screen and (max-aspect-ratio: 7/8){
-    #menu{
-        display:block;
+@media screen and (max-aspect-ratio: 7/8) {
+    #menu {
+        display: block;
     }
-    #header{
-        display:none;
+
+    #header {
+        display: none;
         flex-direction: column;
-        position:fixed;
-        left:0;
-        right:0;
-        top:0;
-        bottom:0;
-    padding:0;
-    z-index:1;
-    background-color:black;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 0;
+        z-index: 1;
+        background-color: black;
     }
-    #header a{
-        width:100%;
-        display:block;
-        margin:10px;
-        font-size:3vh;
+
+    #header a {
+        width: 100%;
+        display: block;
+        margin: 10px;
+        font-size: 3vh;
     }
-    
+
 }
 
 
@@ -160,11 +162,13 @@ display:inline-block;
     border-top: .3em double;
     margin-bottom: 2vmin;
 }
-.section a{
+
+.section a {
     color: white;
 
 }
-.section a:hover{
+
+.section a:hover {
     color: gray;
 }
 
@@ -182,7 +186,7 @@ display:inline-block;
     right: 0;
     height: 6vh;
     padding: 5px;
-    z-index:2;
+    z-index: 2;
 }
 
 #soc img {
@@ -255,6 +259,7 @@ p {
         opacity: 1;
     }
 }
+
 @keyframes fadeout {
     from {
         opacity: 1;
@@ -285,6 +290,7 @@ p {
 ::-webkit-scrollbar-thumb:hover {
     background: #222;
 }
-noscript{
-    color:red;
+
+noscript {
+    color: red;
 }
