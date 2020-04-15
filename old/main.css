@@ -55,7 +55,6 @@ img {
 }
 
 
-
 .banner {
     display: flex;
     flex-direction: column;
@@ -72,8 +71,6 @@ img {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
-
 
 
 #header a {
@@ -119,7 +116,6 @@ img {
     }
 
 }
-
 
 
 .title {
@@ -200,8 +196,6 @@ img:hover {
 }
 
 
-
-
 #profile {
     animation: fadein 2s linear .33s 1 both;
     height: 28vh;
@@ -238,7 +232,6 @@ p {
     margin: 0;
     padding: .6em;
 }
-
 
 
 .delimiter {

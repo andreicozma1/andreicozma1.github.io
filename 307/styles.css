@@ -1,63 +1,68 @@
 
-#frontSection{
+#frontSection {
     position: absolute;
     text-align: center;
-    left:0;
-    right:0;
+    left: 0;
+    right: 0;
     bottom: 10%;
 }
-#frontSection h1{
-    font-size:14vmin;
+
+#frontSection h1 {
+    font-size: 14vmin;
 }
-#frontSection h2{
+
+#frontSection h2 {
     font-size: 6vmin;
 }
-#frontSection h3{
+
+#frontSection h3 {
     font-size: 1.8vmin;
     margin-bottom: 10%;
 }
-#frontSection *{
+
+#frontSection * {
     padding: 5px;
-    margin:0;
+    margin: 0;
 }
-#downloadBtn{
+
+#downloadBtn {
     font-size: 6vmin;
 }
 
-#downloadTitle{
+#downloadTitle {
     font-size: 10vmin;
 }
 
-a{
+a {
     color: lightgreen;
     font-size: 6vh;
     cursor: pointer;
 }
 
-#downloadSection{
+#downloadSection {
     position: absolute;
     left: 0;
-    right:0;
-    bottom:10%;
+    right: 0;
+    bottom: 10%;
 }
 
-#downloadSection a{
+#downloadSection a {
     display: block;
-    background-color:lightgreen;
+    background-color: lightgreen;
     color: black;
     padding: 2em;
     font-size: 70%;
-    margin:auto;
-    margin-top:1em;
-    width:20em;
+    margin: auto;
+    margin-top: 1em;
+    width: 20em;
 }
 
-#homeBtn{
+#homeBtn {
     width: 1em;
     text-decoration: none;
 }
 
-html,body{
+html, body {
     background-image: url("img.png");
     background-size: cover;
     background-attachment: fixed;
