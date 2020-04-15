@@ -21,11 +21,11 @@
     margin:0;
 }
 #downloadBtn{
-    font-size: 1.5em;
+    font-size: 6vmin;
 }
 
 #downloadTitle{
-    font-size: 8vmin;
+    font-size: 10vmin;
 }
 
 a{
@@ -45,7 +45,7 @@ a{
     display: block;
     background-color:lightgreen;
     color: black;
-    padding: 1.5em;
+    padding: 2em;
     font-size: 70%;
     margin:auto;
     margin-top:1em;
