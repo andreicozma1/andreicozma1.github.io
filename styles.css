@@ -299,9 +299,11 @@ iframe::-webkit-scrollbar {
     background-color: rgba(0, 85, 150, .6);
     margin: 0;
     padding: .5em;
+    padding-top:0;
     position: relative;
     border-bottom-left-radius: .5em;
     border-bottom-right-radius: .5em;
+    border-top-style: solid;
 }
 
 .blockdiv div h1 {
@@ -313,6 +315,8 @@ iframe::-webkit-scrollbar {
     border-width: .1em;
     text-align: left;
     border-radius: .2em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .blockdiv div h2 {
@@ -320,6 +324,7 @@ iframe::-webkit-scrollbar {
     text-decoration: underline;
     /* This has to be "list-item"                                               */
     padding-left: .3em;
+    padding:.3em;
 }
 
 .blockdiv div p:first-child {
@@ -536,7 +541,7 @@ a:hover {
 
 div a img:hover,
 h1:hover {
-    transform: scale(1.08, 1.08);
+    transform: scale(1.03, 1.03);
     transition: all .5s ease-in-out
 }
 
