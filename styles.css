@@ -108,12 +108,13 @@ iframe::-webkit-scrollbar {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #005596;
+    background-color: rgba(1, 95, 151, 1);
     overflow-x: hidden;
     overflow-y: hidden;
     padding-top: 8vh;
     transition: .5s;
-    text-align: center
+    text-align: center;
+    background: linear-gradient(rgba(1, 95, 151, 1), #FFF);
 }
 
 .sidenavFallback {
@@ -122,6 +123,11 @@ iframe::-webkit-scrollbar {
 
 .sidenav center {
     height: inherit;
+}
+
+.sidenav div a img:hover {
+    transform: scale(1.3, 1.3);
+    transition: all .5s ease-in-out
 }
 
 #c {
@@ -275,8 +281,7 @@ iframe::-webkit-scrollbar {
     margin-top: .1em;
 }
 
-.blockdiv p {
-}
+.blockdiv p {}
 
 #chapterHint {
     font-size: .8em;
@@ -299,7 +304,7 @@ iframe::-webkit-scrollbar {
     background-color: rgba(0, 85, 150, .6);
     margin: 0;
     padding: .5em;
-    padding-top:0;
+    padding-top: 0;
     position: relative;
     border-bottom-left-radius: .5em;
     border-bottom-right-radius: .5em;
@@ -324,7 +329,7 @@ iframe::-webkit-scrollbar {
     text-decoration: underline;
     /* This has to be "list-item"                                               */
     padding-left: .3em;
-    padding:.3em;
+    padding: .3em;
 }
 
 .blockdiv div p:first-child {
@@ -465,8 +470,7 @@ iframe::-webkit-scrollbar {
 
 }
 
-@media (min-aspect-ratio: 12/8) {
-}
+@media (min-aspect-ratio: 12/8) {}
 
 #title {
     position: absolute;
@@ -501,21 +505,7 @@ iframe::-webkit-scrollbar {
     top: 0;
 }
 
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgba(1, 95, 151, 1);
-    overflow-x: hidden;
-    overflow-y: hidden;
-    padding-top: 8vh;
-    transition: .5s;
-    text-align: center;
-    background: linear-gradient(rgba(1, 95, 151, 1), #FFF);
-}
+
 
 
 img {
@@ -534,10 +524,7 @@ a:hover {
     opacity: .7;
 }
 
-.sidenav div a img:hover {
-    transform: scale(1.3, 1.3);
-    transition: all .5s ease-in-out
-}
+
 
 div a img:hover,
 h1:hover {
