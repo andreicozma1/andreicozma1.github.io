@@ -343,14 +343,9 @@ iframe::-webkit-scrollbar {
     font-size: 1.1em;
 }
 
-.blockdiv div i {
+.blockdiv div i, b {
 
     padding-left: 1em;
-}
-
-.blockdiv div b {
-
-    padding-left: .5em;
 }
 
 
