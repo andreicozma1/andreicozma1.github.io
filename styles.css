@@ -38,34 +38,6 @@ head {
     float: right;
 }
 
-#vid {
-    filter: blur(30px);
-    opacity: .4;
-    position: fixed;
-    top: 13vmin;
-    left: -5%;
-    min-width: 110%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    margin: auto;
-    z-index: -1;
-}
-
-.video {
-    height: 50vmin;
-}
-
-.red {
-    color: red;
-}
-
-.iframe-cont {
-    width: 100%;
-    padding: 0 !important;
-    margin: 0 !important
-}
-
 iframe {
     overflow: auto !important;
     -webkit-overflow-scrolling: touch !important;
@@ -79,15 +51,6 @@ iframe::-webkit-scrollbar {
     display: none
 }
 
-
-.website {
-    height: 600px;
-}
-
-#shirtsFrame {
-    width: 100%;
-    height: 99%;
-}
 
 .menuStyle {
     -webkit-user-select: none;
@@ -108,13 +71,12 @@ iframe::-webkit-scrollbar {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgba(1, 95, 151, 1);
     overflow-x: hidden;
     overflow-y: hidden;
     padding-top: 8vh;
     transition: .5s;
     text-align: center;
-    background: linear-gradient(rgba(1, 95, 151, 1), #FFF);
+    background: rgba(1, 95, 151, 1) linear-gradient(rgba(1, 95, 151, 1), #FFF);
 }
 
 .sidenavFallback {
@@ -128,15 +90,6 @@ iframe::-webkit-scrollbar {
 .sidenav div a img:hover {
     transform: scale(1.3, 1.3);
     transition: all .5s ease-in-out
-}
-
-#c {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto
 }
 
 .sidenav a {
@@ -175,25 +128,6 @@ iframe::-webkit-scrollbar {
     height: 1.7em;
 }
 
-.scMediaBarFallbackMargin {
-    margin-top: 5vh;
-}
-
-.scMediaBarSmallMargin {
-    margin-top: 2vh;
-}
-
-#loading {
-    background-color: rgba(0, 0, 0, .8);
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-}
-
 #loading img {
     position: absolute;
     top: 0;
@@ -205,17 +139,6 @@ iframe::-webkit-scrollbar {
     height: 4em;
     width: auto;
     z-index: 5;
-}
-
-
-#editButton {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: auto;
-    margin: .4em;
-    width: auto;
 }
 
 
@@ -239,32 +162,11 @@ iframe::-webkit-scrollbar {
     display: block;
 }
 
-.blockdiv,
-.infoDiv {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 100vmin;
-    margin-top: .5em;
-
-}
-
 .blockdiv * {
     margin: 0;
 
     color: #fff;
     padding-top: .2em;
-}
-
-#profile_pic {
-    display: none;
-    position: absolute;
-    height: 3.8em;
-    width: auto;
-
-    right: 0;
-    top: 0;
 }
 
 .blockdiv h1 {
@@ -284,14 +186,6 @@ iframe::-webkit-scrollbar {
 .blockdiv p {
 }
 
-#chapterHint {
-    font-size: .8em;
-}
-
-#info {
-    font-size: 1em;
-}
-
 #table {
     text-align: left;
 }
@@ -304,8 +198,7 @@ iframe::-webkit-scrollbar {
 .blockdiv div {
     background-color: rgba(0, 85, 150, .6);
     margin: 0;
-    padding: .5em;
-    padding-top: 0;
+    padding: 0 .5em .5em;
     position: relative;
     border-bottom-left-radius: .5em;
     border-bottom-right-radius: .5em;
@@ -320,15 +213,12 @@ iframe::-webkit-scrollbar {
     border-bottom: dashed;
     border-width: .1em;
     text-align: left;
-    border-radius: .2em;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: 0 0 .2em .2em;
 }
 
 .blockdiv div h2 {
     display: list-item;
     /* This has to be "list-item"                                               */
-    padding-left: .3em;
     padding: .3em;
 }
 
@@ -338,8 +228,7 @@ iframe::-webkit-scrollbar {
 
 .blockdiv div p {
     font-weight: 200;
-    padding: .20em;
-    padding-left: 1em;
+    padding: .20em .20em .20em 1em;
     font-size: 1.1em;
 }
 
@@ -359,8 +248,7 @@ iframe::-webkit-scrollbar {
     background-color: rgba(0, 85, 150, .7);
     border-radius: .2em;
     font-weight: bolder;
-    margin: auto;
-    margin-top: .2em;
+    margin: .2em auto auto;
     padding: .6em;
     display: list-item;
     /* This has to be "list-item"                                               */
@@ -374,7 +262,7 @@ iframe::-webkit-scrollbar {
 }
 
 .blockdiv div div h2 {
-    padding: 0em;
+    padding: 0;
     margin: 0;
     text-decoration: underline;
 }
@@ -384,8 +272,7 @@ iframe::-webkit-scrollbar {
     font-size: 1.2em;
     background-color: rgba(255, 255, 255, .3);
     font-weight: bolder;
-    margin: auto;
-    margin-top: .2em;
+    margin: .2em auto auto;
 }
 
 .blockdiv div div div h1 {
@@ -499,13 +386,6 @@ iframe::-webkit-scrollbar {
 
 }
 
-#pic {
-    position: absolute;
-    width: 7.8vh;
-    right: 0;
-    top: 0;
-}
-
 
 img {
     -webkit-user-select: none;
@@ -564,55 +444,6 @@ h1:hover {
     animation: fadein 2s;
     animation-delay: 1.4s;
     animation-fill-mode: forwards
-}
-
-.fadein5 {
-    opacity: 0;
-    animation: fadein 2s;
-    animation-delay: 1.8s;
-    animation-fill-mode: forwards
-}
-
-.fadein6 {
-    opacity: 0;
-    animation: fadein 2s;
-    animation-delay: 2.2s;
-    animation-fill-mode: forwards
-}
-
-.fadein7 {
-    opacity: 0;
-    animation: fadein 2s;
-    animation-delay: 2.6s;
-    animation-fill-mode: forwards
-}
-
-.fadein8 {
-    opacity: 0;
-    animation: fadein 2s;
-    animation-delay: 3s;
-    animation-fill-mode: forwards
-}
-
-.fadein9 {
-    opacity: 0;
-    animation: fadein 2s;
-    animation-delay: 3.4s;
-    animation-fill-mode: forwards
-}
-
-.fadein10 {
-    opacity: 0;
-    animation: fadein 2s;
-    animation-delay: 3.8s;
-    animation-fill-mode: forwards
-}
-
-.fadeinvid {
-    opacity: 0;
-    animation: vid 2s;
-    animation-delay: .2s;
-    animation-fill-mode: forwards;
 }
 
 @keyframes vid {
