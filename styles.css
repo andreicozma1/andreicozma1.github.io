@@ -281,7 +281,8 @@ iframe::-webkit-scrollbar {
     margin-top: .1em;
 }
 
-.blockdiv p {}
+.blockdiv p {
+}
 
 #chapterHint {
     font-size: .8em;
@@ -470,7 +471,8 @@ iframe::-webkit-scrollbar {
 
 }
 
-@media (min-aspect-ratio: 12/8) {}
+@media (min-aspect-ratio: 12/8) {
+}
 
 #title {
     position: absolute;
@@ -506,8 +508,6 @@ iframe::-webkit-scrollbar {
 }
 
 
-
-
 img {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -523,7 +523,6 @@ a {
 a:hover {
     opacity: .7;
 }
-
 
 
 div a img:hover,
