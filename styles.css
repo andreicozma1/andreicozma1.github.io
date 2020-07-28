@@ -327,7 +327,6 @@ iframe::-webkit-scrollbar {
 
 .blockdiv div h2 {
     display: list-item;
-    text-decoration: underline;
     /* This has to be "list-item"                                               */
     padding-left: .3em;
     padding: .3em;
