@@ -281,8 +281,7 @@ iframe::-webkit-scrollbar {
     margin-top: .1em;
 }
 
-.blockdiv p {
-}
+.blockdiv p {}
 
 #chapterHint {
     font-size: .8em;
@@ -317,7 +316,7 @@ iframe::-webkit-scrollbar {
     padding: .2em;
     background-color: rgba(231, 166, 0, 1);
     font-weight: bolder;
-    border-bottom: dashed;
+    border-bottom: solid;
     border-width: .1em;
     text-align: left;
     border-radius: .2em;
@@ -343,7 +342,8 @@ iframe::-webkit-scrollbar {
     font-size: 1.1em;
 }
 
-.blockdiv div i, b {
+.blockdiv div i,
+b {
 
     padding-left: 1em;
 }
@@ -465,8 +465,7 @@ iframe::-webkit-scrollbar {
 
 }
 
-@media (min-aspect-ratio: 12/8) {
-}
+@media (min-aspect-ratio: 12/8) {}
 
 #title {
     position: absolute;
