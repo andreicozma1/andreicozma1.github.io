@@ -1,23 +1,25 @@
-#noscript {
+noscript {
+    position: absolute;
+    font-size: 1.2vh;
     text-align: center;
     color: red;
-    padding-top: 10vmax;
     z-index: 5;
+    left:0;
+    right:0;
+    bottom: 15vh;
 }
 
 body,
 head {
     -webkit-tap-highlight-color: transparent;
     font-family: 'Open Sans', sans-serif;
-
-    margin: 1vh;
     overflow-x: hidden;
     background-image: url("res/19366.jpg");
     background-position: bottom;
 }
 
 .overFlowHidden {
-    overflow: hidden
+    overflow: hidden;
 }
 
 .noSelect {
@@ -125,11 +127,6 @@ iframe::-webkit-scrollbar {
     height: inherit;
 }
 
-.sidenav div a img:hover {
-    transform: scale(1.3, 1.3);
-    transition: all .5s ease-in-out
-}
-
 #c {
     position: fixed;
     left: 0;
@@ -235,10 +232,6 @@ iframe::-webkit-scrollbar {
     color: #000
 }
 
-.content * {
-    display: block;
-}
-
 .blockdiv,
 .infoDiv {
     position: absolute;
@@ -247,7 +240,6 @@ iframe::-webkit-scrollbar {
     margin: auto;
     width: 100vmin;
     margin-top: .5em;
-
 }
 
 .blockdiv * {
@@ -273,15 +265,15 @@ iframe::-webkit-scrollbar {
     color: #fff;
     margin: 0;
     font-size: 2.5em;
-    padding: .2em;
-    font-weight: 700;
+    padding: .25em;
+    font-weight: bolder;
+    border-radius: .2em;
 }
 
-.blockdiv a {
-    margin-top: .1em;
+.blockdiv i, .blockdiv p, .blockdiv a {
+    display: block;
 }
 
-.blockdiv p {}
 
 #chapterHint {
     font-size: .8em;
@@ -302,24 +294,18 @@ iframe::-webkit-scrollbar {
 
 .blockdiv div {
     background-color: rgba(0, 85, 150, .6);
-    margin: 0;
-    padding: .5em;
+    margin: 5px;
+    padding: .75em;
     padding-top: 0;
     position: relative;
-    border-bottom-left-radius: .5em;
-    border-bottom-right-radius: .5em;
-    border-top-style: solid;
+    border-radius: .3em;
 }
 
 .blockdiv div h1 {
     font-size: 1.8em;
-    padding: .2em;
     background-color: rgba(231, 166, 0, 1);
     font-weight: bolder;
-    border-bottom: solid;
-    border-width: .1em;
     text-align: left;
-    border-radius: .2em;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
@@ -327,19 +313,11 @@ iframe::-webkit-scrollbar {
 .blockdiv div h2 {
     display: list-item;
     /* This has to be "list-item"                                               */
-    padding-left: .3em;
     padding: .3em;
 }
 
-.blockdiv div p:first-child {
-    text-align: center;
-}
-
 .blockdiv div p {
-    font-weight: 200;
-    padding: .20em;
-    padding-left: 1em;
-    font-size: 1.1em;
+    padding: .20em 1em;
 }
 
 .blockdiv div i,
@@ -352,16 +330,11 @@ b {
 .blockdiv div a {
     font-size: 1.2em;
     background-color: rgba(0, 85, 150, .7);
-    border-radius: .2em;
+    border-radius: .3em;
     font-weight: bolder;
-    margin: auto;
-    margin-top: .2em;
+    margin: .2em auto;
     padding: .6em;
-    display: list-item;
-    /* This has to be "list-item"                                               */
-    list-style-type: disc;
-    /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
-    list-style-position: inside;
+    text-align: center;
 }
 
 .blockdiv div a a {
@@ -432,7 +405,7 @@ b {
 
 
     .blockdiv div a {
-        width: 75%;
+        width: 35%;
     }
 
     .blockdiv div div div {
@@ -452,7 +425,7 @@ b {
 @media (min-aspect-ratio: 1/1) {
 
     .blockdiv div a {
-        width: 50%;
+        width: 35%;
     }
 
     .blockdiv div div div {
@@ -518,10 +491,10 @@ a:hover {
 }
 
 
-div a img:hover,
+div a:hover, img:hover,
 h1:hover {
-    transform: scale(1.03, 1.03);
-    transition: all .5s ease-in-out
+    transform: scale(1.05, 1.05);
+    transition: all .5s ease-in-out;
 }
 
 
@@ -638,7 +611,7 @@ h1:hover {
 }
 
 ::-webkit-scrollbar {
-    width: 7px
+    width: 7px;
 }
 
 ::-webkit-scrollbar-track {
