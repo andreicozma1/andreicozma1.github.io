@@ -35,22 +35,25 @@
     </script>
 </head>
 
+
 <body class="noSelect">
+<script src="/particles.min.js"></script>
+<script src="/script.js"></script>
 
-<script src="script.js"></script>
+<div id="particles-js"></div>
 
-<div class="top fadein0">
+<div class="top nobackground fadein0">
     <a href="/menu.html" id="menuFallBackLink">
-        <img alt="Menu" onclick="openNav()" src="/res/menu.png" class="zoomAnim">
-    </a>                        
-    <a href="https://www.linkedin.com/in/andreicozma1/" target="_blank" class="right">
+        <img alt="Menu" class="zoomAnim" onclick="openNav()" src="/res/menu.png">
+    </a>
+    <a class="right" href="https://www.linkedin.com/in/andreicozma1/" target="_blank">
         <img alt="LinkedIn" src="/res/linked.png">
     </a>
 </div>
 
 <div class="sidenav" id="mySidenav">
     <a class="closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</a>
-    <a href="/">HOME</a>
+    <a href="#" onclick="closeNav()">HOME</a>
     <a href="/about">MY RESUME</a>
     <a href="/projects/">MY PROJECTS</a>
     <a href="/academic/">ACADEMIC GOALS</a>
@@ -66,7 +69,7 @@
     </div>
 </div>
 
-<div class="homepage overflowHidden fadein0" oncontextmenu="return false;" onclick="openNav()">
+<div class="homepage overflowHidden fadein0" onclick="openNav()" oncontextmenu="return false;">
 
     <h1 class="fadein1">Andrei Cozma</h1>
 

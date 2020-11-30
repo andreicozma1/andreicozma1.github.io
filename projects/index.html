@@ -32,15 +32,17 @@
 
 <body>
 
+<script src="/particles.min.js"></script>
 <script src="/script.js"></script>
 
+<div id="particles-js"></div>
 
 <div class="top fadein0">
     <a href="/menu.html" id="menuFallBackLink">
         <img alt="Menu" onclick="openNav()" src="/res/menu.png">
     </a>
-    <h1 class="fadein2">PROJECTS</h1>                         
-    <a href="https://www.linkedin.com/in/andreicozma1/" target="_blank" class="right">
+    <h1 class="fadein2">PROJECTS</h1>
+    <a class="right" href="https://www.linkedin.com/in/andreicozma1/" target="_blank">
         <img alt="LinkedIn" src="/res/linked.png">
     </a>
 </div>
@@ -50,7 +52,7 @@
     <a class="closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</a>
     <a href="/">HOME</a>
     <a href="/about">MY RESUME</a>
-    <a href="/projects/">MY PROJECTS</a>
+    <a href="#" onclick="closeNav()">MY PROJECTS</a>
     <a href="/academic/">ACADEMIC GOALS</a>
     <a href="/seminars/">HONORS SEMINARS</a>
     <a href="/gallery/">PHOTOGRAPHY</a>

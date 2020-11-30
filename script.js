@@ -31,3 +31,7 @@ function openNavAction() {
         document.getElementById("mySidenav").style.width = "30%";
     }
 }
+
+particlesJS.load('particles-js', '/particles.json', function () {
+    console.log('callback - particles.js config loaded');
+});
