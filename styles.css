@@ -4,8 +4,8 @@ noscript {
     text-align: center;
     color: red;
     z-index: 5;
-    left:0;
-    right:0;
+    left: 0;
+    right: 0;
     bottom: 15vh;
 }
 
@@ -15,7 +15,22 @@ head {
     font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
     background-image: url("res/19366.jpg");
-    background-position: bottom;
+    background-size: 140%;
+    background-repeat: repeat;
+    margin:0;
+}
+
+iframe {
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+}
+
+iframe::-webkit-scrollbar {
+    display: none
 }
 
 .overFlowHidden {
@@ -26,83 +41,62 @@ head {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
 }
 
-.top {
-    position: relative;
-    height: 3.5em;
-    width: 100%
-}
-
-.headerLogo {
-    height: 100%;
+.right {
     float: right;
 }
 
-#vid {
-    filter: blur(30px);
-    opacity: .4;
+/* TOP BAR */
+
+.top {
+    background-color: rgba(255,255,255,.5);
     position: fixed;
-    top: 13vmin;
-    left: -5%;
-    min-width: 110%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    margin: auto;
-    z-index: -1;
-}
-
-.video {
-    height: 50vmin;
-}
-
-.red {
-    color: red;
-}
-
-.iframe-cont {
-    width: 100%;
-    padding: 0 !important;
-    margin: 0 !important
-}
-
-iframe {
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    width: 100%;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: 0 !important
-}
-
-iframe::-webkit-scrollbar {
-    display: none
-}
-
-
-.website {
-    height: 600px;
-}
-
-#shirtsFrame {
-    width: 100%;
-    height: 99%;
-}
-
-.menuStyle {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    height: 3em;
     user-select: none;
-    position: relative;
-    height: 100%;
-    width: auto;
-    opacity: 0;
-    padding: 0
+    z-index: 1;
+    left:0;
+    right:0;
+    padding: .75em;
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    outline: solid;
+    outline-color: white;
 }
 
+.top img {
+    height: 100%;
+    transition: all .2s ease-in-out;
+}
+
+.top img:hover{
+    transform: scale(1.15, 1.15);
+}
+
+.top h1 {
+    position: absolute;
+    display: inline;
+    text-align: center;
+    color: rgba(1, 95, 151, 1);
+    left:2.2em;
+    right:2.2em;
+    top:0;
+    bottom:0;
+    line-height: 1em;
+    font-size: 2em;
+    font-weight: bolder;
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* TOP BAR */
+
+
+/* SIDENAV */
 .sidenav {
     height: 100%;
     width: 0;
@@ -110,199 +104,106 @@ iframe::-webkit-scrollbar {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgba(1, 95, 151, 1);
     overflow-x: hidden;
     overflow-y: hidden;
     padding-top: 8vh;
     transition: .5s;
     text-align: center;
-    background: linear-gradient(rgba(1, 95, 151, 1), #FFF);
+    /* -webkit-backdrop-filter: blur(15px);
+    -moz-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px); */
+    background: linear-gradient(rgba(1, 95, 151, 1) 15%, white);
 }
+
+/* @supports ((-webkit-backdrop-filter: blur(15px)) or (-moz-backdrop-filter: blur(15px)) or (backdrop-filter: blur(15px))) {
+    .sidenav {
+        background: linear-gradient(rgba(1, 95, 151, 1) 15%, transparent, white);
+        -webkit-backdrop-filter: blur(15px);
+        -moz-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+    }
+} */
 
 .sidenavFallback {
     width: 100%
 }
 
-.sidenav center {
-    height: inherit;
-}
-
-#c {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto
-}
-
 .sidenav a {
     padding: .8vh;
     text-decoration: none;
-    font-size: 2.2em;
-    color: #fff;
+    font-size: 1.8em;
+    color: white;
     display: block;
-    transition: .3s
-}
-
-.offcanvas a:focus,
-.sidenav a:hover {
-    color: #fff
+    white-space: nowrap;
+    transition: all .1s ease-in-out;
 }
 
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 30px;
+    right: .25em;
     font-size: 3.2em;
     margin-left: 50px
 }
 
+.sidenav a:hover{
+    transform: scale(1.08, 1.08);
+}
+/* SIDENAV */
+
+
+/* SOCIAL MEDIA BAR */
 .scMediaBar {
     position: absolute;
     display: flex;
     justify-content: center;
-    align-content: center;
     left: 0;
     right: 0;
-    bottom: 10vh
+    bottom: 10vh;
 }
 
 .scMediaBar a img {
-    height: 1.7em;
+    height: 2em;
 }
-
-.scMediaBarFallbackMargin {
-    margin-top: 5vh;
-}
-
-.scMediaBarSmallMargin {
-    margin-top: 2vh;
-}
-
-#loading {
-    background-color: rgba(0, 0, 0, .8);
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-}
-
-#loading img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    margin: auto;
-    height: 4em;
-    width: auto;
-    z-index: 5;
-}
-
-
-#editButton {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: auto;
-    margin: .4em;
-    width: auto;
-}
+/* SOCIAL MEDIA BAR */
 
 
 .content {
-    max-width: 100%;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-
     position: absolute;
-    top: 4.5em;
-    left: 0;
-    right: 0;
-    bottom: 1px;
-    border-color: #005596;
-    border-top-style: dashed;
-    border-width: .2em;
-    color: #000
-}
-
-.blockdiv,
-.infoDiv {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 100vmin;
-    margin-top: .5em;
-}
-
-.blockdiv * {
-    margin: 0;
-
-    color: #fff;
-    padding-top: .2em;
-}
-
-#profile_pic {
-    display: none;
-    position: absolute;
-    height: 3.8em;
-    width: auto;
-
-    right: 0;
-    top: 0;
-}
-
-.blockdiv h1 {
-    background-color: #005596;
-    text-align: center;
-    color: #fff;
-    margin: 0;
-    font-size: 2.5em;
+    left:0;
+    right:0;
+    top: 4em;
+    margin: .2em auto;
     padding: .25em;
-    font-weight: bolder;
-    border-radius: .2em;
+    max-width: 100vmin;
 }
 
-.blockdiv i, .blockdiv p, .blockdiv a {
-    display: block;
+.content * {
+    margin: 0;
+    color: white;
+    transition: all .2s ease-in-out;
 }
 
-
-#chapterHint {
-    font-size: .8em;
-}
-
-#info {
-    font-size: 1em;
-}
-
-#table {
-    text-align: left;
-}
-
-.blockdiv img {
-    width: 100%;
-    padding: 0;
-}
-
-.blockdiv div {
-    background-color: rgba(0, 85, 150, .6);
-    margin: 5px;
-    padding: .75em;
+.content div {
+    background-color: rgba(0, 85, 150, .7);
+    margin-top: .25em;
+    padding: .5em;
     padding-top: 0;
-    position: relative;
-    border-radius: .3em;
+    border-radius: .5em;
+    -webkit-backdrop-filter: blur(5px);
+    -moz-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 }
 
-.blockdiv div h1 {
-    font-size: 1.8em;
+.content div:hover{
+    transform: scale(1.01, 1.01);
+}
+
+.content h1 {
+    padding: .4em;
+    border-radius: .3em;
+
+    font-size: 1.5em;
     background-color: rgba(231, 166, 0, 1);
     font-weight: bolder;
     text-align: left;
@@ -310,193 +211,114 @@ iframe::-webkit-scrollbar {
     border-top-right-radius: 0;
 }
 
-.blockdiv div h2 {
-    display: list-item;
-    /* This has to be "list-item"                                               */
+.content h1:hover{
+    transform: scale(1.015, 1.015);
+    border-radius: .3em;
+}
+
+.content h2 {
     padding: .3em;
+    font-size: 1.5em;
 }
 
-.blockdiv div p {
-    padding: .20em 1em;
+.content i, .content p, .content a {
+    display: block;
+    padding: .3em .5em;
 }
 
-.blockdiv div i,
-b {
-
-    padding-left: 1em;
+.content ul {
+    padding-left: 2.2em;
+    padding-right: .5em;
 }
 
-
-.blockdiv div a {
+.content a {
     font-size: 1.2em;
     background-color: rgba(0, 85, 150, .7);
-    border-radius: .3em;
+    border-radius: .5em;
     font-weight: bolder;
-    margin: .2em auto;
-    padding: .6em;
+    margin: .25em auto;
+    padding: .65em;
     text-align: center;
+    text-decoration: none;
+
 }
 
-.blockdiv div a a {
-    font-size: 1em;
+.content a:hover{
+    transform: scale(1.03, 1.03);
 }
 
-.blockdiv div div h2 {
-    padding: 0em;
-    margin: 0;
-    text-decoration: underline;
+.content img {
+    width: 100%;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-
-.blockdiv div div div {
-    font-size: 1.2em;
-    background-color: rgba(255, 255, 255, .3);
-    font-weight: bolder;
-    margin: auto;
-    margin-top: .2em;
-}
-
-.blockdiv div div div h1 {
-    font-size: 1em;
-}
-
-.blockdiv div div div h2 {
-    font-size: 1.2em;
-}
-
-.blockdiv div div div p {
-    font-size: .8em;
-}
-
-.blockdiv div div div a {
-    font-size: 1em;
-    background-color: rgba(255, 255, 255, .2);
-}
-
-
-#logo {
+.homepage{
     position: absolute;
-    margin: auto;
-    width: 25vh;
-    height: auto;
-
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    /* filter: drop-shadow(0 0 15px,rgba(1, 95, 151,1));*/
-
-    border-radius: 50%;
-    border-style: solid;
-
-    border-width: .4em;
-    border-color: #005596;
+    left:0;
+    right:0;
+    top: 4em;
+    bottom:0;
 }
 
-#contact {
-    float: right;
-    height: 20vh;
-    width: auto;
-
+.homepage *{
+    transition: all .2s ease-in-out;
 }
 
-@media (min-aspect-ratio: 5/7) {
-
-
-    .blockdiv div a {
-        width: 35%;
-    }
-
-    .blockdiv div div div {
-        width: 75%;
-    }
-
-    .blockdiv div div div a {
-        width: 80%;
-    }
-
-    .blockdiv div {
-        margin-left: .5em;
-        margin-right: .5em;
-    }
-}
-
-@media (min-aspect-ratio: 1/1) {
-
-    .blockdiv div a {
-        width: 35%;
-    }
-
-    .blockdiv div div div {
-        width: 50%;
-    }
-
-    .blockdiv div div div a {
-        width: 65%;
-    }
-
-}
-
-@media (min-aspect-ratio: 12/8) {}
-
-#title {
+.homepage h1 {
     position: absolute;
     left: 0;
     right: 0;
-    top: -20px;
-    color: #005596;
+    color: rgba(0, 85, 150, 1);
     text-align: center;
     font-size: 8vh;
     font-family: 'Audiowide', cursive;
     line-height: .9em;
 }
 
-#subTitle {
+.homepage h2 {
     font-style: italic;
-    color: #005596;
+    color: rgba(0, 85, 150, 1);
     position: absolute;
     left: 0;
     right: 0;
     margin: auto;
     text-align: center;
-    font-size: 4vh;
+    font-size: 3.5vh;
     bottom: 8vh;
     font-family: 'Audiowide', cursive;
-
 }
 
-#pic {
+.homepage img {
     position: absolute;
-    width: 7.8vh;
+    margin: auto;
+
+    height: 25vh;
+    width: auto;
+
+    top: 25%;
+    bottom: 25%;
+    left: 0;
     right: 0;
-    top: 0;
+
+    border-radius: 50%;
+    border-style: solid;
+
+    border-width: .5vh;
+    border-color: rgba(0, 85, 150, 1);
 }
 
-
-img {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none
+.homepage h1:hover, .homepage h2:hover, .homepage img:hover {
+    transform: scale(1.08, 1.08);
 }
 
-a {
-    color: inherit;
-    text-decoration: none
+@media (min-aspect-ratio: 5/7) {
+    .content a {
+        width: 35%;
+    }
 }
-
-a:hover {
-    opacity: .7;
-}
-
-
-div a:hover, img:hover,
-h1:hover {
-    transform: scale(1.05, 1.05);
-    transition: all .5s ease-in-out;
-}
-
 
 .fadein0 {
     opacity: 0;
@@ -575,10 +397,8 @@ h1:hover {
     animation-fill-mode: forwards
 }
 
-.fadeinvid {
-    opacity: 0;
-    animation: vid 2s;
-    animation-delay: .2s;
+.zoomAnim {
+    animation: zoomEffect 1.5s infinite;
     animation-fill-mode: forwards;
 }
 
@@ -602,12 +422,28 @@ h1:hover {
     }
 }
 
+@keyframes zoomEffect {
+    0% {
+        transform: scale(1, 1);
+        filter: none;
+    }
+    50% {
+        transform: scale(1.2, 1.2);
+        filter: drop-shadow(0px 0px 15px rgba(231, 166, 0, 1));
+    }
+    100% {
+        transform: scale(1, 1);
+        filter: none;
+    }
+
+}
+
 ::selection {
-    background: #005596
+    background: rgba(0, 85, 150, 1)
 }
 
 ::-moz-selection {
-    background: #005596
+    background: rgba(0, 85, 150, 1)
 }
 
 ::-webkit-scrollbar {
@@ -619,7 +455,7 @@ h1:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #005596
+    background: rgba(0, 85, 150, 1)
 }
 
 ::-webkit-scrollbar-thumb:hover {

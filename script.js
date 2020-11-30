@@ -1,4 +1,4 @@
-var isOpen;
+let isOpen;
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
@@ -6,14 +6,15 @@ function closeNav() {
     console.log("Closed Nav");
 }
 
-window.addEventListener("resize", function (event) {
+window.addEventListener("resize", function () {
     if (isOpen === true) {
         openNavAction();
     }
 });
 
 function openNav() {
-    $("#menuFallBackLink").attr("href", "#");
+    let fallback = document.getElementById("menuFallBackLink");
+    fallback.href = "#";
     openNavAction();
     isOpen = true;
     console.log("Opened nav");
