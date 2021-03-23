@@ -17,6 +17,7 @@ function openNav() {
     openNavAction();
     isOpen = true;
     console.log("Opened nav");
+    console.log(location.origin)
 }
 
 function openNavAction() {
