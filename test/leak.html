@@ -1,49 +1,33 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
-<head>
+  <head>
     <title>Artificial Memory Leak</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Artificial Memory Leak</h1>
 
-    <h2>Keys in dict: <span id="counter">?</span></h2>    
+    <h2>Keys in dict: <span id="counter">?</span></h2>
 
-    <input type="button" value="Click me to leak memory" onclick="startLeak()">
-
+    <input
+      type="button"
+      value="Click me to leak memory"
+      onclick="startLeak()"
+    />
 
     <script type="text/javascript">
-    
-    /*
-    This is an example of a memory leak. A new property is added to the cache
-    object 10 times/second. The value of performance.memory.usedJSHeapSize
-    steadily increases.
+      var cache = {};
+      var ctr = document.getElementById("counter");
 
-    Since the value of cache[key] is easy to recalculate, we might want to free
-    that memory if it becomes low. However, there is no way to do that...
+      var i = 0;
 
-    Another method to manually clear the cache could be added, but manually
-    adding memory checks adds a lot of extra code and overhead. It would be
-    nice if we could clear the cache automatically only when memory became low.
-
-    Thus the solution presented at Google I/O!
-    */
-    var cache = {}
-    var ctr = document.getElementById("counter")
-
-    var i = 0
-
-    function startLeak(){    
-        setInterval(function() {
-            cache[i++] = JSON.parse(JSON.stringify(cache));
-            ctr.innerHTML = i
-        }, 500)
-    }
-
-
+      function startLeak() {
+        setInterval(function () {
+          cache[i++] = JSON.parse(JSON.stringify(cache));
+          ctr.innerHTML = i;
+        }, 500);
+      }
     </script>
-</body>
-
+  </body>
 </html>
