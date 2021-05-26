@@ -37,7 +37,7 @@
 
     function startLeak(){    
         setInterval(function() {
-            cache[i++] = new Float64Array(Math.pow(2, 27))
+            cache[i++] = JSON.parse(JSON.stringify(cache));
             ctr.innerHTML = i
         }, 500)
     }
