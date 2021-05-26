@@ -8,7 +8,17 @@
   <body>
     <h1>Cause Android ANR</h1>
 
-    <h2>Keys in dict: <span id="counter">?</span></h2>
+    <h2>Counter: <span id="counter">?</span></h2>
+
+    <input
+      type="button"
+      value="Click me to add 1"
+      width="500"
+      height="200"
+      onclick="increase()"
+    />
+    <br />
+    <br />
 
     <input type="button" value="Click me to ANR" onclick="startANR()" />
 
@@ -30,6 +40,12 @@
 
       function startANR() {
         while (true) {}
+      }
+
+      var i = 0;
+      var ctr = document.getElementById("counter");
+      function increase() {
+        ctr.innerHTML = i++;
       }
     </script>
   </body>
