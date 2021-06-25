@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>CSV to QR</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <p>First row must be header with column names. Please upload file below:</p>
+    <input type="file" id="dealCsv" />
+    <table id="table">
+      <tr>
+        <th>#</th>
+        <th>QR Content</th>
+        <th>Download</th>
+      </tr>
+    </table>
+
+    <script type="text/javascript">
+      var tbl = document.getElementById("table");
+
+      function addRows(row_array) {
+        header = row_array[0];
+        for (let i = 1; i < row_array.length; i++) {
+          row = row_array[i];
+          var data = "";
+          for (let j = 0; j < header.length; j++) {
+            data += header[j].trim() + ": " + row[j].trim() + "\n";
+          }
+          var tr = tbl.insertRow();
+
+          var td = tr.insertCell();
+          td.appendChild(document.createTextNode(i));
+
+          var td1 = tr.insertCell();
+          var p = document.createElement("p");
+          p.innerHTML = data.replaceAll("\n", "<br>");
+          td1.appendChild(p);
+
+          var qrCodeBaseUri = "https://api.qrserver.com/v1/create-qr-code/?",
+            params = {
+              data: data,
+              size: "200x200",
+              margin: 0,
+              // more configuration parameters ...
+              download: 1,
+            };
+
+          var td2 = tr.insertCell();
+          var btn = document.createElement("button"); // Create a <button> element
+          btn.innerHTML = "DOWNLOAD"; // Insert text
+          btn.onclick = function () {
+            window.open(qrCodeBaseUri + $.param(params));
+          };
+          td2.appendChild(btn);
+        }
+      }
+      function uploadDealcsv() {}
+
+      /*------ Method for read uploded csv file ------*/
+      uploadDealcsv.prototype.getCsv = function (e) {
+        let input = document.getElementById("dealCsv");
+        input.addEventListener("change", function () {
+          if (this.files && this.files[0]) {
+            var myFile = this.files[0];
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function (e) {
+              let csvdata = e.target.result;
+              parseCsv.getParsecsvdata(csvdata); // calling function for parse csv data
+            });
+
+            reader.readAsBinaryString(myFile);
+          }
+        });
+      };
+
+      /*------- Method for parse csv data and display --------------*/
+      uploadDealcsv.prototype.getParsecsvdata = function (data) {
+        let parsedata = [];
+
+        let newLinebrk = data.split("\n");
+        for (let i = 0; i < newLinebrk.length; i++) {
+          parsedata.push(newLinebrk[i].split(","));
+        }
+
+        console.table(parsedata);
+        addRows(parsedata);
+      };
+
+      var parseCsv = new uploadDealcsv();
+      parseCsv.getCsv();
+    </script>
+  </body>
+</html>
