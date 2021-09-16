@@ -1,0 +1,6 @@
+[submodule "projects/CSVtoQR"]
+	path = projects/CSVtoQR
+	url = git@github.com:andreicozma1/CSVtoQR.git
+[submodule "projects/venmoQR"]
+	path = projects/venmoQR
+	url = git@github.com:andreicozma1/venmoQR.git
