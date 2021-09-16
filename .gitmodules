@@ -1,0 +1,3 @@
+[submodule "projects/CSVtoQR"]
+	path = projects/CSVtoQR
+	url = git@github.com:andreicozma1/CSVtoQR.git
