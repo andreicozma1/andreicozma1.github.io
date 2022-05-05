@@ -248,6 +248,11 @@ iframe::-webkit-scrollbar {
     padding: .3em;
     font-size: 1.5em;
 }
+.content h3 {
+    font-size: 1.1em;
+    padding-left: 1em;
+    font-style: italic;
+}
 
 .content i, .content p, .content a {
     display: block;
