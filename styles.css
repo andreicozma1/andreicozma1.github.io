@@ -235,6 +235,10 @@ iframe::-webkit-scrollbar {
 
 }
 
+.content div ul {
+    margin-top: 0.5em;
+}
+
 .content h1:hover {
     transform: scale(1.015, 1.015);
     border-radius: .3em;
