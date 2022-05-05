@@ -112,4 +112,4 @@ fabric.properties
 
 **.jar
 .DS_Store
-
+.idea
