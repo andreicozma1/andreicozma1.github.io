@@ -1,7 +1,7 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import * as React from "react";
 
-const DataAbout = [
+const DataAbout: ({ avatar: JSX.Element; title: string; content: string })[] = [
     {
         "title": "Section 1",
         "avatar": <AccessAlarmIcon/>,

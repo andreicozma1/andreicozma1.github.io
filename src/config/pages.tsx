@@ -3,6 +3,7 @@ import {BookRounded, CodeRounded, HomeRounded, SchoolRounded, SummarizeRounded} 
 import React from 'react';
 import DataAbout from "../data/DataAbout";
 import CardList from "../components/CardList";
+import Completed from "../data/classes/Completed";
 
 export interface Page {
     href: string,
@@ -37,7 +38,7 @@ export const pages : {[key: string]: Page} = {
         href: "/academics",
         icon: <SchoolRounded/>,
         content: [
-            <CardList data={DataAbout}/>
+            <CardList data={Completed}/>
         ]
     },
     "Blog": {
