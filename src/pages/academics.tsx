@@ -4,7 +4,7 @@ import CardList from "../components/CardList";
 import DataAbout from "../data/DataAbout";
 import {usePage} from "../config/pages";
 
-function Academics() {
+const Academics = () => {
     const page = usePage("Academics")
 
     return (

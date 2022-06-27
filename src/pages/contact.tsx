@@ -4,7 +4,7 @@ import CardList from "../components/CardList";
 import DataAbout from "../data/DataAbout";
 import {usePage} from "../config/pages";
 
-function Contact() {
+const Contact = () => {
     const page = usePage("Contact")
 
     return (
