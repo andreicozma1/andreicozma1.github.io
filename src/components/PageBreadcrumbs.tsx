@@ -31,6 +31,7 @@ export function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
 }
 
 const PageBreadcrumbs = ({page}: {page: string}) => {
+    const icon = pages[page].icon;
     return (
         <Breadcrumbs aria-label="breadcrumb"
                      separator={<NavigateNextIcon fontSize="small" />}
@@ -42,7 +43,7 @@ const PageBreadcrumbs = ({page}: {page: string}) => {
                 component="a"
                 label={page}
                 href="#"
-                icon={pages[page].icon}
+                icon={icon}
             />
             <StyledBreadcrumb
                 label="Contents"

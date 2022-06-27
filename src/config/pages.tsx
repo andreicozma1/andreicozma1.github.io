@@ -2,27 +2,32 @@ import { HomeRounded, SummarizeRounded, CodeRounded, SchoolRounded, BookRounded 
 
 import React from 'react';
 
-const pages = {
-    Home: {
+interface Page {
+    href: string,
+    icon: React.ReactElement,
+}
+
+const pages : {[key: string]: Page} = {
+    "Home": {
         href: "/",
         icon: <HomeRounded/>
     },
-    Resume: {
+    "Resume": {
         href: "/resume",
         icon: <SummarizeRounded/>
     },
-    Projects: {
+    "Projects": {
         href: "/projects",
         icon: <CodeRounded/>
     },
-    Academics: {
+    "Academics": {
         href: "/academics",
         icon: <SchoolRounded/>
     },
-    Blog: {
+    "Blog": {
         href: "/blog",
         icon: <BookRounded/>
-    },
-};
+    }
+}
 
 export default pages;
