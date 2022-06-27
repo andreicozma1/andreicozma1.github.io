@@ -7,14 +7,13 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "./Logo";
-import pages from "../config/pages";
+import {Page, pages} from "../config/pages";
 
 
-const ResponsiveAppBar = ({page}: { page: string }) => {
+const ResponsiveAppBar = ({page}: { page: Page }) => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
@@ -64,9 +63,10 @@ const ResponsiveAppBar = ({page}: { page: string }) => {
                         >
                             {Object.entries(pages).map(([title, info]) => (
                                 <MenuItem key={title} onClick={handleCloseNavMenu} href={info.href}>
-                                    <Typography textAlign="center"
-                                                // underlined if current page
-                                        sx={{ textDecoration: page === title ? "underline" : "none" }}
+                                    <Typography
+                                        textAlign="center"
+                                        // underlined if current page
+                                        sx={{textDecoration: page.href === info.href ? "underline" : "none"}}
                                     >{title}</Typography>
                                 </MenuItem>
                             ))}
@@ -74,7 +74,9 @@ const ResponsiveAppBar = ({page}: { page: string }) => {
                     </Box>
                     <Logo variant='xs'/>
 
-                    <Box sx={{flexGrow: 1, display: {xs: "none", md: "flex",
+                    <Box sx={{
+                        flexGrow: 1, display: {
+                            xs: "none", md: "flex",
                             // align right
                             justifyContent: "flex-end"
                         }
@@ -89,7 +91,7 @@ const ResponsiveAppBar = ({page}: { page: string }) => {
                                 sx={{
                                     color: "white",
                                     // underlined if current page
-                                    ...(page === title ? {textDecoration: "underline"} : {})
+                                    ...(page.href === info.href ? {textDecoration: "underline"} : {})
                                 }}
                             >
                                 {title}

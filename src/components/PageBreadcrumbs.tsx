@@ -1,10 +1,10 @@
-import {Breadcrumbs, Chip, emphasize, styled, useTheme} from "@mui/material";
+import {Breadcrumbs, Chip, emphasize, styled} from "@mui/material";
 import * as React from "react";
-import HomeIcon from "@mui/icons-material/Home";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import theme from "../config/theme";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import pages from "../config/pages";
+import {Page} from "../config/pages";
+
 export const StyledBreadcrumb = styled(Chip)(({theme}) => {
     const backgroundColor =
         theme.palette.mode === 'light'
@@ -30,8 +30,7 @@ export function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
     console.info('You clicked a breadcrumb.');
 }
 
-const PageBreadcrumbs = ({page}: {page: string}) => {
-    const icon = pages[page].icon;
+const PageBreadcrumbs = ({page}: {page: Page}) => {
     return (
         <Breadcrumbs aria-label="breadcrumb"
                      separator={<NavigateNextIcon fontSize="small" />}
@@ -41,9 +40,9 @@ const PageBreadcrumbs = ({page}: {page: string}) => {
                      }}>
             <StyledBreadcrumb
                 component="a"
-                label={page}
+                label={page.href}
                 href="#"
-                icon={icon}
+                icon={page.icon}
             />
             <StyledBreadcrumb
                 label="Contents"

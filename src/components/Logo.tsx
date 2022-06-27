@@ -1,5 +1,4 @@
 import * as React from "react";
-import AdbIcon from "@mui/icons-material/Adb";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 

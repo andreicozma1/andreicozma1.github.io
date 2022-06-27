@@ -1,5 +1,4 @@
 import {ReactNode} from "react";
-import SectionCard from "./SectionCard";
 
 interface SectionCardProps {
     title: string,

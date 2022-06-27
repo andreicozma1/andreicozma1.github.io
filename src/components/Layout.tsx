@@ -1,10 +1,11 @@
-import {Box, Container, ThemeProvider, Typography} from "@mui/material";
+import {Box, Container, ThemeProvider} from "@mui/material";
 import ResponsiveTopBar from "./ResponsiveTopBar";
 import * as React from "react";
 import PageBreadcrumbs from "./PageBreadcrumbs";
 import theme from "../config/theme";
+import {Page} from "../config/pages";
 
-const Layout = ({page, children}: {page: string, children: JSX.Element}) => {
+const Layout = ({page, children}: {page: Page, children: JSX.Element}) => {
     return (
         <ThemeProvider theme={theme}>
             <Box>

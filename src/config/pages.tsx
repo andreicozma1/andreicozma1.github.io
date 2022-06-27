@@ -1,13 +1,13 @@
-import { HomeRounded, SummarizeRounded, CodeRounded, SchoolRounded, BookRounded } from "@mui/icons-material";
+import {BookRounded, CodeRounded, HomeRounded, SchoolRounded, SummarizeRounded} from "@mui/icons-material";
 
 import React from 'react';
 
-interface Page {
+export interface Page {
     href: string,
     icon: React.ReactElement,
 }
 
-const pages : {[key: string]: Page} = {
+export const pages : {[key: string]: Page} = {
     "Home": {
         href: "/",
         icon: <HomeRounded/>
@@ -30,4 +30,10 @@ const pages : {[key: string]: Page} = {
     }
 }
 
-export default pages;
+export const usePage = (title: string) => {
+    const info = pages[title];
+    if (!info) {
+        throw new Error(`Page ${title} not found`);
+    }
+    return info;
+}

@@ -1,9 +1,9 @@
 import * as React from "react";
-import {Stack, Typography} from "@mui/material";
+import {Stack} from "@mui/material";
 import SectionCard from "./SectionCard";
 import SectionCardProps from "./SectionCardProps";
 
-const CardList = ({title, data}: { title: string, data: Array<object>}) => {
+const CardList = ({data}: { data: Array<object>}) => {
 
     return (
         <Stack spacing={2}>

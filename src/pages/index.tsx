@@ -2,13 +2,14 @@ import * as React from "react";
 import Layout from "../components/Layout";
 import CardList from "../components/CardList";
 import DataAbout from "../data/DataAbout";
+import {usePage} from "../config/pages";
 
 const Home = () => {
-    const title = "Home"
+    const page = usePage("Home")
 
     return (
-        <Layout page={title}>
-            <CardList title={title} data={DataAbout}></CardList>
+        <Layout page={page}>
+            <CardList data={DataAbout}></CardList>
         </Layout>
     );
 }
