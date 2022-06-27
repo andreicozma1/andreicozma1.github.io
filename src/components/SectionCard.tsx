@@ -1,11 +1,8 @@
 import {Card, CardContent, CardHeader, Typography} from "@mui/material";
 import * as React from "react";
+import SectionCardProps from "./SectionCardProps";
 
-const SectionCard = ({data} : {data: object}) => {
-    const title = data.header_title
-    const avatar = data.header_avatar
-    const content = data.content
-
+const SectionCard = ({title, avatar, content}: SectionCardProps) => {
     return (
         <Card raised={true}>
             <CardHeader title={title} avatar={avatar}/>

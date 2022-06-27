@@ -1,6 +1,7 @@
 import * as React from "react";
 import AdbIcon from "@mui/icons-material/Adb";
 import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 
 const Logo = ({variant}: { variant: string }) => {
 
@@ -12,9 +13,9 @@ const Logo = ({variant}: { variant: string }) => {
     }
 
     return <>
-        <AdbIcon sx={{display: display, mr: 1}}/>
+        <Avatar alt="Andrei Cozma" src="icon-512x512.png" sx={{display: display, mr: 3}}/>
         <Typography
-            variant="h5"
+            variant="h6"
             noWrap
             component="a"
             href="/"
@@ -24,7 +25,7 @@ const Logo = ({variant}: { variant: string }) => {
                 fontFamily: "monospace",
                 flexGrow: variant === 'xs' ? 1 : 0,
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: ".25rem",
                 color: "inherit",
                 textDecoration: "none",
             }}

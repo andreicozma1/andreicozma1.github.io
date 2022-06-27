@@ -1,10 +1,14 @@
 import * as React from "react";
+import Button from "@mui/material/Button";
+import {Box, Container, Stack} from "@mui/material";
+import ResponsiveTopBar from "../components/ResponsiveTopBar";
 import Layout from "../components/Layout";
 import CardList from "../components/CardList";
 import DataAbout from "../data/DataAbout";
+import SectionCard from "../components/SectionCard";
 
-const Home = () => {
-    const title = "Home"
+function Blog() {
+    const title = "Blog"
 
     return (
         <Layout page={title}>
@@ -13,4 +17,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default Blog;

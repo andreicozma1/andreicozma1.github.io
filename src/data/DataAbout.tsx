@@ -3,28 +3,28 @@ import * as React from "react";
 
 const DataAbout = [
     {
-        "header_title": "Section 1",
-        "header_avatar": <AccessAlarmIcon/>,
-        "content": "Content 1"
+        "title": "Section 1",
+        "avatar": <AccessAlarmIcon/>,
+        "content": "Content 1",
     },
     {
-        "header_title": "Section 2",
-        "header_avatar": <AccessAlarmIcon/>,
+        "title": "Section 2",
+        "avatar": <AccessAlarmIcon/>,
         "content": "Content 2"
     },
     {
-        "header_title": "Section 3",
-        "header_avatar": <AccessAlarmIcon/>,
+        "title": "Section 3",
+        "avatar": <AccessAlarmIcon/>,
         "content": "Content 3"
     },
     {
-        "header_title": "Section 4",
-        "header_avatar": <AccessAlarmIcon/>,
+        "title": "Section 4",
+        "avatar": <AccessAlarmIcon/>,
         "content": "Content 4"
     },
     {
-        "header_title": "Section 5",
-        "header_avatar": <AccessAlarmIcon/>,
+        "title": "Section 5",
+        "avatar": <AccessAlarmIcon/>,
         "content": "Content 5"
     }
 ]

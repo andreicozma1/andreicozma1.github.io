@@ -11,86 +11,93 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "./Logo";
+import pages from "../config/pages";
 
-const pages = ["Resume", "Projects", "Coursework", "Seminars"];
 
-const ResponsiveAppBar = () => {
-	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-		null
-	);
+const ResponsiveAppBar = ({page}: { page: string }) => {
+    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+        null
+    );
 
-	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorElNav(event.currentTarget);
-	};
+    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElNav(event.currentTarget);
+    };
 
-	const handleCloseNavMenu = () => {
-		setAnchorElNav(null);
-	};
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
 
-	return (
-		<AppBar position="static">
-			<Container maxWidth="xl">
-				<Toolbar disableGutters>
-					<Logo variant="md"/>
+    return (
+        <AppBar position="static">
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                    <Logo variant="md"/>
 
-					<Box sx={{flexGrow: 1, display: {xs: "flex", md: "none"}}}>
-						<IconButton
-							size="large"
-							aria-label="account of current user"
-							aria-controls="menu-appbar"
-							aria-haspopup="true"
-							onClick={handleOpenNavMenu}
-							color="inherit"
-						>
-							<MenuIcon/>
-						</IconButton>
-						<Menu
-							id="menu-appbar"
-							anchorEl={anchorElNav}
-							anchorOrigin={{
-								vertical: "bottom",
-								horizontal: "left",
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: "top",
-								horizontal: "left",
-							}}
-							open={Boolean(anchorElNav)}
-							onClose={handleCloseNavMenu}
-							sx={{
-								display: {xs: "block", md: "none"},
-							}}
-						>
-							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">{page}</Typography>
-								</MenuItem>
-							))}
-						</Menu>
-					</Box>
-					<Logo variant='xs'/>
+                    <Box sx={{flexGrow: 1, display: {xs: "flex", md: "none"}}}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            <MenuIcon/>
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "left",
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: "top",
+                                horizontal: "left",
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: {xs: "block", md: "none"},
+                            }}
+                        >
+                            {Object.entries(pages).map(([title, info]) => (
+                                <MenuItem key={title} onClick={handleCloseNavMenu} href={info.href}>
+                                    <Typography textAlign="center"
+                                                // underlined if current page
+                                        sx={{ textDecoration: page === title ? "underline" : "none" }}
+                                    >{title}</Typography>
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </Box>
+                    <Logo variant='xs'/>
 
-					<Box sx={{flexGrow: 1, display: {xs: "none", md: "flex"}}}>
-						{pages.map((page) => (
-							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
-								sx={{my: 2, color: "white", display: "block"}}
-							>
-								{page}
-							</Button>
-						))}
-					</Box>
+                    <Box sx={{flexGrow: 1, display: {xs: "none", md: "flex",
+                            // align right
+                            justifyContent: "flex-end"
+                        }
+                    }}>
+                        {Object.entries(pages).map(([title, info]) => (
+                            <Button
+                                key={title}
+                                onClick={handleCloseNavMenu}
+                                href={info.href}
+                                sx={{
+                                    my: 2, mx: 1, color: "white", display: "block",
+                                    // underlined if current page
+                                    ...(page === title ? {textDecoration: "underline"} : {})
+                                }}
+                            >
+                                {title}
+                            </Button>
+                        ))}
+                    </Box>
 
-					<Box sx={{flexGrow: 0}}>
-						<IconButton sx={{p: 0}}>
-							<Avatar alt="Andrei Cozma" src="icon-512x512.png"/>
-						</IconButton>
-					</Box>
-				</Toolbar>
-			</Container>
-		</AppBar>
-	);
+                </Toolbar>
+            </Container>
+        </AppBar>
+    );
 };
 export default ResponsiveAppBar;
