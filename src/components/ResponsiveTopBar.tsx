@@ -84,8 +84,10 @@ const ResponsiveAppBar = ({page}: { page: string }) => {
                                 key={title}
                                 onClick={handleCloseNavMenu}
                                 href={info.href}
+                                startIcon={info.icon}
+                                variant="outlined"
                                 sx={{
-                                    my: 2, mx: 1, color: "white", display: "block",
+                                    color: "white",
                                     // underlined if current page
                                     ...(page === title ? {textDecoration: "underline"} : {})
                                 }}
