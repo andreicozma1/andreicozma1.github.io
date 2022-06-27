@@ -1,8 +1,14 @@
 import {Card, CardContent, CardHeader, Typography} from "@mui/material";
 import * as React from "react";
-import SectionCardProps from "./SectionCardProps";
+import {ReactNode} from "react";
 
-const SectionCard = ({title, avatar, content}: SectionCardProps) => {
+export interface InfoCardData {
+    title: string,
+    avatar: ReactNode,
+    content: string,
+}
+
+const InfoCard = ({title, avatar, content}: InfoCardData) => {
     return (
         <Card raised={true}>
             <CardHeader title={title} avatar={avatar}/>
@@ -15,4 +21,4 @@ const SectionCard = ({title, avatar, content}: SectionCardProps) => {
     )
 }
 
-export default SectionCard
+export default InfoCard

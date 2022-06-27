@@ -1,21 +1,18 @@
-import {Box, Container, ThemeProvider} from "@mui/material";
+import {Box, Container, Stack, ThemeProvider} from "@mui/material";
 import ResponsiveTopBar from "./ResponsiveTopBar";
 import * as React from "react";
 import PageBreadcrumbs from "./PageBreadcrumbs";
 import theme from "../config/theme";
 import {Page} from "../config/pages";
+import {ReactNode} from "react";
 
-const Layout = ({page, children}: {page: Page, children: JSX.Element}) => {
+const Layout = ({page, children}: { page: Page, children: ReactNode }) => {
     return (
         <ThemeProvider theme={theme}>
             <Box>
                 <ResponsiveTopBar page={page}/>
-                <Container>
+                <Container component={Stack} spacing={2}>
                     <PageBreadcrumbs page={page}/>
-                    {/*<Typography variant="h4" sx={{*/}
-                    {/*    marginTop: theme.spacing(2),*/}
-                    {/*    marginBottom: theme.spacing(2)*/}
-                    {/*}}>{page}</Typography>*/}
                     {children}
                 </Container>
             </Box>

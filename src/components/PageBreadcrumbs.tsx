@@ -45,7 +45,7 @@ const PageBreadcrumbs = ({page}: {page: Page}) => {
                 icon={page.icon}
             />
             <StyledBreadcrumb
-                label="Contents"
+                label="#"
                 deleteIcon={<ExpandMoreIcon/>}
                 onDelete={handleClick}
             />
