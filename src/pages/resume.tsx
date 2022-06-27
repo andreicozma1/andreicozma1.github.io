@@ -1,15 +1,15 @@
-import * as React from "react";
-import Layout from "../components/Layout";
-import {usePage} from "../config/pages";
+import * as React from "react"
+import Layout from "../components/Layout"
+import { usePage } from "../config/pages"
 
 const Resume = () => {
-    const page = usePage("Resume");
+	const page = usePage("Resume")
 
-    return (
-        <Layout page={page}>
-            {page.content}
-        </Layout>
-    );
+	return (
+		<Layout page={page}>
+			{page.content}
+		</Layout>
+	)
 }
 
-export default Resume;
+export default Resume
