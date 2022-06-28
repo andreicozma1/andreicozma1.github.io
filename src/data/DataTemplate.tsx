@@ -1,11 +1,12 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import { CardListParams } from "../../components/SectionCardList"
-import InfoCardAlt from "../../components/InfoCardAccordion"
+import SectionCardList, { CardListParams } from "../components/SectionCardList"
+import InfoCardAccordion from "../components/InfoCardAccordion"
 
-const DataAbout: CardListParams = {
-	title: "About",
-	component: InfoCardAlt,
+const DataTemplate: CardListParams = {
+	title: "Data Template",
+	layout: SectionCardList,
+	component: InfoCardAccordion,
 	items: [
 		{
 			"title": "Section 1",
@@ -35,5 +36,5 @@ const DataAbout: CardListParams = {
 	],
 }
 
-export default DataAbout
+export default DataTemplate
 

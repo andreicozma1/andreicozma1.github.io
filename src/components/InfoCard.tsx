@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, Stack, Typography } from "@mui/material"
+import { Card, CardContent, CardHeader, Icon, Stack, Typography } from "@mui/material"
 import * as React from "react"
 import { ReactNode } from "react"
 
@@ -9,10 +9,16 @@ export interface InfoCardData {
 }
 
 const InfoCard = ({ title, avatar, content }: InfoCardData) => {
+	const cardElevation = 4
+	const fontWeight = "medium"
+	const spacing = 1
+
 	return (
-		<Card elevation={4}>
-			<CardHeader title={title} avatar={avatar} titleTypographyProps={{ fontWeight: "medium" }} />
-			{content && <CardContent component={Stack} spacing={1}>
+		<Card elevation={cardElevation}>
+			<CardHeader title={title}
+						avatar={<Icon color="primary">{avatar}</Icon>}
+						titleTypographyProps={{ fontWeight: fontWeight}} />
+			{content && <CardContent component={Stack} spacing={spacing}>
 				{
 					typeof content === "string" ?
 						<Typography>{content}</Typography> :

@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Icon, Typography } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, Icon, Stack, Typography } from "@mui/material"
 import * as React from "react"
 import { ReactNode } from "react"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -10,21 +10,27 @@ export interface InfoCardData {
 }
 
 const InfoCardAccordion = ({ title, avatar, content }: InfoCardData) => {
+	const cardElevation = 4
+	const fontWeight = "medium"
+	const spacing = 1
+
 	return (
-		<Accordion>
+		<Accordion elevation={cardElevation} >
 			{/*title={title} avatar={avatar}*/}
 			<AccordionSummary
 				expandIcon={<ExpandMoreIcon/>}
 			>
 				<Icon style={{ marginRight: "1rem" }} color="primary">{avatar}</Icon>
-				<Typography sx={{fontWeight: "medium"}}>{title}</Typography>
+				<Typography sx={{fontWeight: fontWeight, fontSize: "0.875rem"}}>{title}</Typography>
 			</AccordionSummary>
-			{content && <AccordionDetails >
-				{
-					typeof content === "string" ?
-						<Typography>{content}</Typography> :
-						content.map((c, i) => <Typography key={i}>{c}</Typography>)
-				}
+			{content && <AccordionDetails>
+				<Stack spacing={spacing}>
+					{
+						typeof content === "string" ?
+							<Typography>{content}</Typography> :
+							content.map((c, i) => <Typography key={i}>{c}</Typography>)
+					}
+				</Stack>
             </AccordionDetails>
 			}
 		</Accordion>

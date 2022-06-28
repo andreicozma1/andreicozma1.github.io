@@ -7,7 +7,6 @@ const Academics = () => {
 
 	return (
 		<Layout page={page}>
-			{page.content}
 		</Layout>
 	)
 }

@@ -7,7 +7,6 @@ const Blog = () => {
 
 	return (
 		<Layout page={page}>
-			{page.content}
 		</Layout>
 	)
 }

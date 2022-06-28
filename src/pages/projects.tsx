@@ -7,7 +7,6 @@ const Projects = () => {
 
 	return (
 		<Layout page={page}>
-			{page.content}
 		</Layout>
 	)
 }

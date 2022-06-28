@@ -1,18 +1,26 @@
 import * as React from "react"
 import { Stack, Typography } from "@mui/material"
-import InfoCard, { InfoCardData } from "./InfoCard"
+import { InfoCardData } from "./InfoCard"
 
 export interface CardListParams {
 	title: string,
-    component: React.ComponentType<any>,
+	layout: React.ComponentType<any>,
+	component: React.ComponentType<any>,
 	items: object[],
 	spacing?: number
 }
 
 const SectionCardList = ({ section }: { section: CardListParams }) => {
+	const defaultSpacing = 1.5
+	const headerVariant = "h5"
+	const headerFontWeight = "medium"
 	return (
-		<Stack spacing={section.spacing === undefined ? 1.5 : section.spacing}>
-			<Typography variant="h5" fontWeight="medium">{section.title}</Typography>
+		<Stack spacing={section.spacing === undefined ? defaultSpacing : section.spacing}>
+			<Typography variant={headerVariant}
+						fontWeight={headerFontWeight}
+						sx={{ mb: defaultSpacing }}>
+				{section.title}
+			</Typography>
 			{section.items.map((item: object, index: number) => {
 				return <section.component key={index} {...item as InfoCardData}></section.component>
 			})}

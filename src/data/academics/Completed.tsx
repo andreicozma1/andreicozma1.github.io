@@ -1,12 +1,13 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import { CardListParams } from "../../components/SectionCardList"
-import InfoCard from "../../components/InfoCard"
+import SectionCardList, { CardListParams } from "../../components/SectionCardList"
+import InfoCardAccordion from "../../components/InfoCardAccordion"
 
 // Use the types of the InfoCardData interface
 const Completed: CardListParams = {
 	title: "Completed Classes",
-	component: InfoCard,
+	layout: SectionCardList,
+	component: InfoCardAccordion,
 	items: [
 		{
 			"title": "COSC 522 - Machine Learning",

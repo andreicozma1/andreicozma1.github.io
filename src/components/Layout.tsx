@@ -6,7 +6,7 @@ import PageBreadcrumbs from "./PageBreadcrumbs"
 import theme from "../config/theme"
 import { Page } from "../config/pages"
 
-const Layout = ({ page, children }: { page: Page, children: ReactNode }) => {
+const Layout = ({ page, children }: { page: Page, children?: ReactNode }) => {
 	return (
 		<ThemeProvider theme={theme}>
 			<Box>
@@ -15,6 +15,11 @@ const Layout = ({ page, children }: { page: Page, children: ReactNode }) => {
 					marginBottom: theme.spacing(4)
 				}}>
 					<PageBreadcrumbs page={page}/>
+
+					{page.content.map((section, i) => (
+						<section.layout section={section}></section.layout>
+					))}
+
 					{children}
 				</Container>
 			</Box>

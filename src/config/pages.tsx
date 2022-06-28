@@ -1,54 +1,44 @@
 import { BookRounded, CodeRounded, HomeRounded, SchoolRounded, SummarizeRounded } from "@mui/icons-material"
 
 import React from "react"
-import DataAbout from "../data/resume/DataAbout"
-import SectionCardList from "../components/SectionCardList"
-import Completed from "../data/classes/Completed"
-import Current from "../data/classes/Current"
+import { CardListParams } from "../components/SectionCardList"
+import DataAcademics from "../data/academics"
+import DataBlog from "../data/blog"
+import DataHome from "../data/home"
+import DataResume from "../data/resume"
+import DataProjects from "../data/projects"
 
 export interface Page {
 	href: string,
 	icon: React.ReactElement,
-	content: Array<React.ReactNode>
+	content: Array<CardListParams>
 }
 
 export const pages: { [key: string]: Page } = {
 	"Home": {
 		href: "/",
 		icon: <HomeRounded/>,
-		content: [
-			<SectionCardList section={DataAbout}/>,
-			<SectionCardList section={DataAbout}/>
-		]
+		content: [ ...DataHome ]
 	},
 	"Resume": {
 		href: "/resume",
 		icon: <SummarizeRounded/>,
-		content: [
-			<SectionCardList section={DataAbout}/>
-		]
+		content: [ ...DataResume ]
 	},
 	"Projects": {
 		href: "/projects",
 		icon: <CodeRounded/>,
-		content: [
-			<SectionCardList section={DataAbout}/>
-		]
+		content: [ ...DataProjects ]
 	},
 	"Academics": {
 		href: "/academics",
 		icon: <SchoolRounded/>,
-		content: [
-			<SectionCardList section={Current}/>,
-			<SectionCardList section={Completed}/>
-		]
+		content: [ ...DataAcademics ]
 	},
 	"Blog": {
 		href: "/blog",
 		icon: <BookRounded/>,
-		content: [
-			<SectionCardList section={DataAbout}/>
-		]
+		content: [ ...DataBlog ]
 	}
 }
 

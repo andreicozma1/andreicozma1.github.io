@@ -7,7 +7,6 @@ const Home = () => {
 
 	return (
 		<Layout page={page}>
-			{page.content}
 		</Layout>
 	)
 }
