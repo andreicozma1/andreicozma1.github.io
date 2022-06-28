@@ -7,6 +7,7 @@ import DataBlog from "../data/blog"
 import DataHome from "../data/home"
 import DataResume from "../data/resume"
 import DataProjects from "../data/projects"
+import DataSeminars from "../data/seminars"
 
 export interface Page {
 	href: string,
@@ -34,6 +35,11 @@ export const pages: { [key: string]: Page } = {
 		href: "/academics",
 		icon: <SchoolRounded/>,
 		content: [ ...DataAcademics ]
+	},
+	"Seminars": {
+		href: "/seminars",
+		icon: <SchoolRounded/>,
+		content: [ ...DataSeminars ]
 	},
 	"Blog": {
 		href: "/blog",
