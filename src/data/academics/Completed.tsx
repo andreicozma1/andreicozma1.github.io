@@ -7,7 +7,7 @@ import InfoCardAccordion from "../../components/InfoCardAccordion"
 const Completed: CardListParams = {
 	title: "Completed Classes",
 	layout: SectionCardList,
-	component: InfoCardAccordion,
+	itemComponent: InfoCardAccordion,
 	items: [
 		{
 			"title": "COSC 522 - Machine Learning",

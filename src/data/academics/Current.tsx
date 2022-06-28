@@ -7,7 +7,7 @@ import InfoCard from "../../components/InfoCard"
 const Current: CardListParams = {
 	title: "Currently Enrolled",
 	layout: SectionCardList,
-	component: InfoCard,
+	itemComponent: InfoCard,
 	items: [
 		{
 			"title": "COSC 525 - Deep Learning",
