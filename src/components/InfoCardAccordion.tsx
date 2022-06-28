@@ -1,36 +1,30 @@
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Icon, Stack, Typography } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Icon, Stack, Typography } from "@mui/material"
 import * as React from "react"
-import { ReactNode } from "react"
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import { InfoCardProps } from "./InfoCardProps"
 
-export interface InfoCardData {
-	title: string,
-	avatar: ReactNode,
-	content: string | string[] | null
-}
-
-const InfoCardAccordion = ({ title, avatar, content }: InfoCardData) => {
+const InfoCardAccordion = ({ title, avatar, content }: InfoCardProps) => {
 	const cardElevation = 4
 	const fontWeight = "medium"
 	const spacing = 1
 
 	return (
-		<Accordion elevation={cardElevation} >
+		<Accordion elevation={cardElevation}>
 			{/*title={title} avatar={avatar}*/}
 			<AccordionSummary
 				expandIcon={<ExpandMoreIcon/>}
 			>
 				<Icon style={{ marginRight: "1rem" }} color="primary">{avatar}</Icon>
-				<Typography sx={{fontWeight: fontWeight, fontSize: "0.875rem"}}>{title}</Typography>
+				<Typography sx={{ fontWeight: fontWeight, fontSize: "0.875rem" }}>{title}</Typography>
 			</AccordionSummary>
 			{content && <AccordionDetails>
-				<Stack spacing={spacing}>
+                <Stack spacing={spacing}>
 					{
 						typeof content === "string" ?
 							<Typography>{content}</Typography> :
 							content.map((c, i) => <Typography key={i}>{c}</Typography>)
 					}
-				</Stack>
+                </Stack>
             </AccordionDetails>
 			}
 		</Accordion>
