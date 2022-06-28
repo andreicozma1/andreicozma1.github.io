@@ -6,18 +6,35 @@ import InfoCard from "../../components/InfoCard"
 const Education: CardListParams = {
 	title: "Education",
 	layout: SectionCardList,
-	component: InfoCard,
+	itemComponent: InfoCard,
+	md: 12,
 	items: [
 		{
-			"title": "University of Tennessee, Knoxville",
+			"title": "MS in Computer Science",
+			"subtitle": "University of Tennessee, Knoxville",
 			"avatar": <AccessAlarmIcon/>,
+			"chips": [
+				"GPA: 3.9",
+				"08/2022 - Present"
+			],
 			"content": [
-				"Graduated: (Fall 2018 - Spring 2022)",
-				`Major: Computer Science`,
-				`Minors: Cybersecurity & Business Administration`,
-				`Activities & Societies: Chancellor's Honors Program, VolHacks Hackathon, Pi Kappa Phi Fraternity`
+				"Concentration: Intelligent Systems & Machine Learning"
 			]
 		},
+		{
+			"title": "BS in Computer Science",
+			"subtitle": "University of Tennessee, Knoxville",
+			"avatar": <AccessAlarmIcon/>,
+			"chips": [
+				"GPA: 3.87",
+				"08/2018 - 05/2022"
+			],
+			"content": [
+				"Honors: Summa Cum Laude",
+				"Concentration: Computer Science 5-Yr BS/MS",
+				"Minors: Cybersecurity & Business Administration",
+			]
+		}
 	]
 }
 

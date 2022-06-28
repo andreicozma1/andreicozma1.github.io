@@ -3,19 +3,18 @@ import * as React from "react"
 import SectionCardList, { CardListParams } from "../../components/SectionCardList"
 import InfoCard from "../../components/InfoCard"
 
-const PersonalStatement: CardListParams = {
-	title: "Personal Statement",
+const About: CardListParams = {
+	title: "About",
+	note: "I am a Software Developer with a strong passion for learning, improving, and creating.",
 	layout: SectionCardList,
-	component: InfoCard,
+	itemComponent: InfoCard,
 	items: [
 		{
-			"title": "About",
+			"title": "Personal Statement",
 			"avatar": <AccessAlarmIcon/>,
 			"content": [
-				"I am a Software Developer with a strong passion for learning, improving, and creating.",
 				`In my personal and work life I am an enthusiastic and dedicated team player with a positive attitude,
-            driven to adapt to any situation.
-            I always strive to attain the highest possible standards of quality and excellence.`,
+            driven to adapt to any situation. I always strive to attain the highest possible standards of quality and excellence.`,
 				`My fascination with technology from an early age has sparked a strong passion for learning, improving,
             problem-solving, and self-reflecting.
             I am constantly seeking to learn new skills, gain experiences and the knowledge needed to be able to
@@ -33,5 +32,5 @@ const PersonalStatement: CardListParams = {
 	]
 }
 
-export default PersonalStatement
+export default About
 
