@@ -30,7 +30,7 @@ const Education: CardListParams = {
 				"08/2018 - 05/2022"
 			],
 			"content": [
-				"Honors: Summa Cum Laude",
+				"Honors: Summa Cum Laude + Chancellor's Honors Program",
 				"Concentration: Computer Science 5-Yr BS/MS",
 				"Minors: Cybersecurity & Business Administration",
 			]
