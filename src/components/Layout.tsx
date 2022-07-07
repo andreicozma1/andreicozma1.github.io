@@ -5,25 +5,38 @@ import { ReactNode } from "react"
 import PageBreadcrumbs from "./PageBreadcrumbs"
 import theme from "../config/theme"
 import { Page } from "../config/pages"
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import particlesOptions from "../config/particles.json";
 
 const Layout = ({ page, children }: { page: Page, children?: ReactNode }) => {
+
+	const particlesInit = async (engine) => {
+		await loadFull(engine);
+	};
+
 	return (
-		<ThemeProvider theme={theme}>
-			<Box>
-				<ResponsiveTopBar page={page}/>
-				<Container component={Stack} spacing={2} sx={{
-					marginBottom: theme.spacing(4)
-				}}>
-					<PageBreadcrumbs page={page}/>
+		<div>
+			<ThemeProvider theme={theme}>
+				<Particles init={particlesInit} options={particlesOptions} />
 
-					{page.content.map((section, i) => (
-						<section.layout section={section}></section.layout>
-					))}
+				<Box>
+					<ResponsiveTopBar page={page}/>
+					<Container component={Stack} spacing={2} sx={{
+						marginBottom: theme.spacing(4)
+					}}>
+						<PageBreadcrumbs page={page}/>
 
-					{children}
-				</Container>
-			</Box>
-		</ThemeProvider>
+						{page.content.map((section, i) => (
+							<section.layout section={section}></section.layout>
+						))}
+
+						{children}
+					</Container>
+				</Box>
+			</ThemeProvider>
+		</div>
+
 	)
 }
 
