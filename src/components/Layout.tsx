@@ -1,4 +1,4 @@
-import { Box, Container, Stack, ThemeProvider } from "@mui/material"
+import { Alert, Box, Container, Stack, ThemeProvider } from "@mui/material"
 import ResponsiveTopBar from "./ResponsiveTopBar"
 import * as React from "react"
 import { ReactNode } from "react"
@@ -31,6 +31,9 @@ const Layout = ({ page, children }: { page: Page, children?: ReactNode }) => {
 						opacity: 0.99
 					}}>
 						{page.content && <PageBreadcrumbs page={page}/>}
+						{page.notes && page.notes.map((note, i) => {
+							return <Alert key={i} severity={note.severity}>{note.text}</Alert>
+						})}
 						{page.content && page.content.map((section, i) => (
 							<section.layout section={section}></section.layout>
 						))}

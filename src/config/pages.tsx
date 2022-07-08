@@ -1,6 +1,5 @@
 import { BookRounded, CodeRounded, HomeRounded, SchoolRounded, SummarizeRounded } from "@mui/icons-material"
-import CampaignIcon from '@mui/icons-material/Campaign';
-import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
+import CampaignRoundedIcon from "@mui/icons-material/CampaignRounded"
 
 import React from "react"
 import { CardListParams } from "../components/SectionCardList"
@@ -9,19 +8,24 @@ import DataBlog from "../data/blog"
 import DataResume from "../data/resume"
 import DataProjects from "../data/projects"
 import DataSeminars from "../data/seminars"
+import { AlertColor } from "@mui/material"
+
+export interface Note {
+	text: string,
+	severity?: AlertColor
+}
 
 export interface Page {
 	href: string,
 	icon: React.ReactElement,
 	content?: Array<CardListParams>,
-	note?: string,
-	noteSeverity?: "info" | "success" | "warning" | "error"
+	notes?: Array<Note>,
 }
 
 export const pages: { [key: string]: Page } = {
 	"Home": {
 		href: "/",
-		icon: <HomeRounded/>,
+		icon: <HomeRounded/>
 	},
 	"Resume": {
 		href: "/resume",
@@ -41,8 +45,13 @@ export const pages: { [key: string]: Page } = {
 	"Seminars": {
 		href: "/seminars",
 		icon: <CampaignRoundedIcon/>,
-		note: "I am a Software Developer with a strong passion for learning, improving, and creating.",
-		noteSeverity: "info",
+		notes: [
+			{ text: "The UT Honors and Scholars Programs offer a variety of engagement opportunities to be involved and engaged, both inside and outside the classroom." },
+			{
+				text: "These seminars inspire scholars to explore their academic interests through engaging and rewarding co-curricular experiences.",
+				severity: "info"
+			}
+		],
 		content: [ ...DataSeminars ]
 	},
 	"Blog": {

@@ -1,12 +1,12 @@
 import * as React from "react"
-import { Alert, Box, Grid, Stack, Typography } from "@mui/material"
+import { Alert, AlertColor, Box, Grid, Stack, Typography } from "@mui/material"
 import theme from "../config/theme"
 import { InfoCardProps } from "./InfoCardProps"
 
 export interface CardListParams {
 	title: string,
 	note?: string,
-	noteSeverity?: "info" | "success" | "warning" | "error",
+	noteSeverity?: AlertColor,
 	layout: React.ComponentType<any>,
 	itemComponent: React.ComponentType<any>,
 	items: object[],
