@@ -1,3 +1,3 @@
-# andreicozma1.github.io
+# Personal Portfolio - Andrei Cozma
 
-A personal portfolio written entirely in HTML, CSS, and JavaScript.
+A personal portfolio written with GatsbyJS, React.JS, and MUI.
