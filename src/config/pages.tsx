@@ -57,7 +57,6 @@ export const pages: { [key: string]: Page } = {
 	"Blog"     : {
 		href   : "/blog",
 		icon   : <BookRounded/>,
-		content: [ ...DataBlog ]
 	}
 }
 

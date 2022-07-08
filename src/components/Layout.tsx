@@ -12,7 +12,7 @@ import particlesOptions from "../config/particles.json"
 const Layout = ({
 					page,
 					children
-				}: { page: Page, children?: ReactNode }) => {
+				}: { page?: Page, children?: ReactNode }) => {
 
 	// @ts-ignore
 	const particlesInit = async (engine) => {
