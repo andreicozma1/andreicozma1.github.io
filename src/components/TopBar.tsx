@@ -26,6 +26,10 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 		setAnchorElNav(null)
 	}
 
+	const filterPages = () => {
+		return Object.entries(pages).filter(([ title, info ]) => isDev || !info.hidden)
+	}
+
 	return (<AppBar position="static" sx={{ opacity: 0.99 }}>
 		<Container maxWidth="xl">
 			<Toolbar disableGutters>
@@ -69,13 +73,15 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							}
 						}}
 					>
-						{Object.entries(pages).map(([ title, info ]) => {
+						{filterPages().map(([ title, info ]) => {
 							return <MenuItem key={title} onClick={handleCloseNavMenu} href={info.href}>
 								<Typography
 									textAlign="center"
 									// underlined if current page
 									sx={{
-										...(page.href === info.href
+										opacity: info.hidden
+											? 0.5
+											: 1, ...(page.href === info.href
 											? { fontWeight: "medium" }
 											: {})
 									}}
@@ -95,7 +101,7 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 					}
 				}}>
 					{/*// if dev mode show hidden pages in menu*/}
-					{Object.entries(pages).filter(([ title, info ]) => isDev || !info.hidden).map(([ title, info ]) => {
+					{filterPages().map(([ title, info ]) => {
 						return <Button
 							key={title}
 							onClick={handleCloseNavMenu}
@@ -103,8 +109,10 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							startIcon={info.icon}
 							variant="outlined"
 							sx={{
-								color: "white", // underlined if current page
-								...(page.href === info.href
+								color  : "white", // underlined if current page
+								opacity: info.hidden
+									? 0.5
+									: 1, ...(page.href === info.href
 									? {
 										textDecoration: "underline",
 										fontWeight    : "bold"

@@ -21,7 +21,8 @@ export const pages: { [key: string]: PageProps } = {
 	"Projects" : {
 		href   : "/projects",
 		icon   : <CodeRounded/>,
-		sections: [ ...DataProjects ]
+		sections: [ ...DataProjects ],
+		hidden : true
 	},
 	"Academics": {
 		href   : "/academics",
