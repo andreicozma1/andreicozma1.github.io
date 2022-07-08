@@ -5,7 +5,7 @@ import { usePage } from "../config/pages"
 const Academics = () => {
 	const pageData = usePage("Academics")
 
-	return <Layout data={page}>
+	return <Layout data={pageData}>
 	</Layout>
 }
 
