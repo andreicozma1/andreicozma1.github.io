@@ -11,7 +11,7 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 	left: "50%",
 	top: "50%",
 	transform: "translate(-50%, -50%)",
-	border: `8px solid ${theme.palette.primary.main}`,
+	border: `5px solid ${theme.palette.primary.main}`,
 }))
 
 const Home = () => {

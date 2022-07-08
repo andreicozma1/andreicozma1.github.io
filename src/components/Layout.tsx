@@ -20,8 +20,8 @@ const Layout = ({ page, children }: { page: Page, children?: ReactNode }) => {
 		<div>
 			<ThemeProvider theme={theme}>
 				{/*// @ts-ignore*/}
-				<Particles init={particlesInit} options={particlesOptions}/>
-
+				<Particles init={particlesInit} options={particlesOptions}
+						   style={{ filter: "blur(15px)" }}/>
 				<Box>
 					<ResponsiveTopBar page={page}/>
 					<Container component={Stack} spacing={2} sx={{
