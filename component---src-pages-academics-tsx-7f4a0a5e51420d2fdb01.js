@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpersonal_portfolio=self.webpackChunkpersonal_portfolio||[]).push([[834],{6733:function(e,a,r){r.r(a);var t=r(7294),n=r(363),o=r(6154);a.default=function(){var e=(0,o.q)("Academics");return t.createElement(n.Z,{data:e})}}}]);
+//# sourceMappingURL=component---src-pages-academics-tsx-7f4a0a5e51420d2fdb01.js.map
