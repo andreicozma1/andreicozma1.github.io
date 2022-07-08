@@ -3,11 +3,12 @@ import * as React from "react"
 import PageSection from "../../components/page/PageSection"
 import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
+import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
 const Fall2020: PageSectionProps = {
 	title        : "Fall 2020",
 	layout       : PageSection,
-	itemComponent: InfoCard,
+	itemComponent: InfoCardAccordion,
 	md           : 12,
 	items        : [
 		{
