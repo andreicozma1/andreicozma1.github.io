@@ -26,9 +26,9 @@ const PageSection = ({ props }: { props: PageSectionProps }) => {
 			<Grid container spacing={2}
 				  justifyContent="space-evenly"
 				  alignItems="stretch">
-				{props.items.map((itemProps: object, index: number) => {
-					return <Grid item xs={12} md={md}>
-						<props.itemComponent key={index} props={itemProps}></props.itemComponent>
+				{props.items.map((itemProps, index) => {
+					return <Grid item xs={12} md={md} key={index}>
+						<props.itemComponent props={itemProps}></props.itemComponent>
 					</Grid>
 				})}
 			</Grid>

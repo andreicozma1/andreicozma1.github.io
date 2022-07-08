@@ -5,7 +5,7 @@ import { PageSectionProps } from "./PageSectionProps"
 export interface PageProps {
 	href: string,
 	icon: React.ReactElement,
-	content?: Array<PageSectionProps>,
+	sections?: Array<PageSectionProps>,
 	notes?: Array<NoteProps>,
 	hidden?: boolean
 }

@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardHeader, Chip, Icon, Stack, Typography } from "@mui/material"
+import { Box, Card, CardContent, CardHeader, Icon, Stack, Typography } from "@mui/material"
 import * as React from "react"
 import theme from "../../config/theme"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
@@ -18,14 +18,15 @@ const InfoCard = ({ props }: { props: InfoCardProps }) => {
 						titleTypographyProps={{ fontWeight: fontWeight }}
 						sx={{ display: "inline-flex" }}
 			/>
-			{props.chips && <Chips text={props.chips} />}
+			{props.chips && <Chips text={props.chips}/>}
 		</Box>
 
 		{props.content && <CardContent component={Stack} spacing={spacing}>
 			{typeof props.content === "string"
 				? <Typography>{props.content}</Typography>
-				: props.content.map((c, i) => <Typography
-					key={i}>{c}</Typography>)}
+				: props.content.map((text, index) => {
+					return <Typography key={index}>{text}</Typography>
+				})}
         </CardContent>}
 	</Card>)
 }

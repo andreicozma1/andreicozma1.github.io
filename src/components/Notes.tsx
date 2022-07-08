@@ -8,8 +8,8 @@ const Notes = ({ notesArray }: { notesArray: Array<NoteProps> }) => {
 	const spacing = theme.spacing(1)
 
 	return (<Stack spacing={spacing}>
-		{notesArray.map((note, i) => {
-			return <Alert key={i} severity={note.severity}>{note.text}</Alert>
+		{notesArray.map((note, index) => {
+			return <Alert key={index} severity={note.severity}>{note.text}</Alert>
 		})}
 	</Stack>)
 

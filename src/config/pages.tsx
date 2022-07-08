@@ -16,17 +16,17 @@ export const pages: { [key: string]: PageProps } = {
 	"Resume"   : {
 		href   : "/resume",
 		icon   : <SummarizeRounded/>,
-		content: [ ...DataResume ]
+		sections: [ ...DataResume ]
 	},
 	"Projects" : {
 		href   : "/projects",
 		icon   : <CodeRounded/>,
-		content: [ ...DataProjects ]
+		sections: [ ...DataProjects ]
 	},
 	"Academics": {
 		href   : "/academics",
 		icon   : <SchoolRounded/>,
-		content: [ ...DataAcademics ]
+		sections: [ ...DataAcademics ]
 	},
 	"Seminars" : {
 		href   : "/seminars",
@@ -38,7 +38,7 @@ export const pages: { [key: string]: PageProps } = {
 				severity: "info"
 			}
 		],
-		content: [ ...DataSeminars ]
+		sections: [ ...DataSeminars ]
 	},
 	"Blog"     : {
 		href  : "/blog",

@@ -8,15 +8,17 @@ const Chips = ({ text }: { text: string | string[] }) => {
 	const chipStackStyle = {
 		ml: "auto",
 		my: "auto",
-		py : theme.spacing(1),
-		px : theme.spacing(2)
+		py: theme.spacing(1),
+		px: theme.spacing(2)
 	}
 
 	return <Stack direction="row"
 				  spacing={spacing} sx={chipStackStyle}>
 		{typeof text === "string"
 			? <Chip label={text} variant="outlined"></Chip>
-			: text.map((chipText, i) => <Chip key={i} label={chipText} variant={chipVariant}/>)}
+			: text.map((chipText, index) => {
+				return <Chip key={index} label={chipText} variant={chipVariant}/>
+			})}
 	</Stack>
 }
 

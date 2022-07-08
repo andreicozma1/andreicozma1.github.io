@@ -32,10 +32,10 @@ const Page = ({
 				paddingBottom: theme.spacing(4),
 				opacity      : 0.99
 			}}>
-				{data.content && <PageBreadcrumbs page={data}/>}
+				{data.sections && <PageBreadcrumbs page={data}/>}
 				{data.notes && <Notes notesArray={data.notes}/>}
-				{data.content && data.content.map((sectionProps, i) => (
-					<sectionProps.layout props={sectionProps}></sectionProps.layout>))}
+				{data.sections && data.sections.map((section, index) => (
+					<section.layout key={index} props={section}></section.layout>))}
 				{children}
 			</Container>
 		</Box>

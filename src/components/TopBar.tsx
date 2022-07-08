@@ -7,14 +7,16 @@ import Typography from "@mui/material/Typography"
 import Menu from "@mui/material/Menu"
 import MenuIcon from "@mui/icons-material/Menu"
 import Container from "@mui/material/Container"
-import Button from "@mui/material/Button"
 import MenuItem from "@mui/material/MenuItem"
 import Logo from "./Logo"
 import { pages } from "../config/pages"
 import { PageProps } from "./interfaces/PageProps"
+import { Button } from "gatsby-theme-material-ui"
 
 const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 	const [ anchorElNav, setAnchorElNav ] = React.useState<null | HTMLElement>(null)
+
+	const isDev = process.env.NODE_ENV === "development"
 
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorElNav(event.currentTarget)
@@ -67,8 +69,8 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							}
 						}}
 					>
-						{Object.entries(pages).map(([ title, info ]) => (
-							<MenuItem key={title} onClick={handleCloseNavMenu} href={info.href}>
+						{Object.entries(pages).map(([ title, info ]) => {
+							return <MenuItem key={title} onClick={handleCloseNavMenu} href={info.href}>
 								<Typography
 									textAlign="center"
 									// underlined if current page
@@ -78,7 +80,8 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 											: {})
 									}}
 								>{title}</Typography>
-							</MenuItem>))}
+							</MenuItem>
+						})}
 					</Menu>
 				</Box>
 				<Logo variant="xs"/>
@@ -91,24 +94,27 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 						justifyContent: "flex-end"
 					}
 				}}>
-					{Object.entries(pages).map(([ title, info ]) => (<Button
-						key={title}
-						onClick={handleCloseNavMenu}
-						href={info.href}
-						startIcon={info.icon}
-						variant="outlined"
-						sx={{
-							color: "white", // underlined if current page
-							...(page.href === info.href
-								? {
-									textDecoration: "underline",
-									fontWeight    : "bold"
-								}
-								: {})
-						}}
-					>
-						{title}
-					</Button>))}
+					{/*// if dev mode show hidden pages in menu*/}
+					{Object.entries(pages).filter(([ title, info ]) => isDev || !info.hidden).map(([ title, info ]) => {
+						return <Button
+							key={title}
+							onClick={handleCloseNavMenu}
+							href={info.href}
+							startIcon={info.icon}
+							variant="outlined"
+							sx={{
+								color: "white", // underlined if current page
+								...(page.href === info.href
+									? {
+										textDecoration: "underline",
+										fontWeight    : "bold"
+									}
+									: {})
+							}}
+						>
+							{title}
+						</Button>
+					})}
 				</Box>
 
 			</Toolbar>
