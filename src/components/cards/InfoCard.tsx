@@ -2,30 +2,23 @@ import { Box, Card, CardContent, CardHeader, Chip, Icon, Stack, Typography } fro
 import * as React from "react"
 import theme from "../../config/theme"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
+import Chips from "../Chips"
 
 const InfoCard = ({ props }: { props: InfoCardProps }) => {
 	const cardElevation = 4
 	const fontWeight = "medium"
+	const iconColor = "primary"
 	const spacing = theme.spacing(1)
-	const chipStackStyle = {
-		ml: "auto",
-		my: "auto",
-		p : theme.spacing(2)
-	}
+
 	return (<Card elevation={cardElevation}>
 		<Box sx={{ display: "flex" }}>
 			<CardHeader title={props.title}
 						subheader={props.subtitle}
-						avatar={<Icon color="primary">{props.avatar}</Icon>}
+						avatar={<Icon color={iconColor}>{props.avatar}</Icon>}
 						titleTypographyProps={{ fontWeight: fontWeight }}
-						sx={{ display: "inline-flex" }}>
-			</CardHeader>
-			{props.chips && <Stack direction="row"
-                                   spacing={spacing} sx={chipStackStyle}>
-				{typeof props.chips === "string"
-					? <Chip label={props.chips} variant="outlined"></Chip>
-					: props.chips.map((chip, i) => <Chip key={i} label={chip} variant="outlined"/>)}
-            </Stack>}
+						sx={{ display: "inline-flex" }}
+			/>
+			{props.chips && <Chips text={props.chips} />}
 		</Box>
 
 		{props.content && <CardContent component={Stack} spacing={spacing}>

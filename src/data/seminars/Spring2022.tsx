@@ -3,11 +3,12 @@ import * as React from "react"
 import PageSection from "../../components/page/PageSection"
 import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
+import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
 const Spring2022: PageSectionProps = {
 	title        : "Spring 2022",
 	layout       : PageSection,
-	itemComponent: InfoCard,
+	itemComponent: InfoCardAccordion,
 	md           : 12,
 	items        : [
 		{
