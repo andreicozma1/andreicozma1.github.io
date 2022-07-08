@@ -4,7 +4,7 @@ A personal portfolio written with the Gatsby, React.JS, and MaterialUI (MUI) com
 
 Note: The `main` branch contains solely the built version of the portfolio for deployment.
 
-Source branch: `source`
+Source branch: [source](https://github.com/andreicozma1/andreicozma1.github.io/tree/source)
 
 ## Development
 
