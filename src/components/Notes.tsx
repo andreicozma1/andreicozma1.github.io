@@ -1,14 +1,17 @@
-import { Alert, Box } from "@mui/material"
+import { Alert, Stack } from "@mui/material"
 import * as React from "react"
 import { NoteProps } from "./interfaces/NoteProps"
+import theme from "../config/theme"
 
 const Notes = ({ notesArray }: { notesArray: Array<NoteProps> }) => {
 
-	return (<Box>
+	const spacing = theme.spacing(1)
+
+	return (<Stack spacing={spacing}>
 		{notesArray.map((note, i) => {
 			return <Alert key={i} severity={note.severity}>{note.text}</Alert>
 		})}
-	</Box>)
+	</Stack>)
 
 }
 
