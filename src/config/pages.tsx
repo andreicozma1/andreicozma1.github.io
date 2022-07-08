@@ -23,24 +23,41 @@ export interface Page {
 }
 
 export const pages: { [key: string]: Page } = {
-	"Home": {
-		href: "/", icon: <HomeRounded/>
-	}, "Resume": {
-		href: "/resume", icon: <SummarizeRounded/>, content: [ ...DataResume ]
-	}, "Projects": {
-		href: "/projects", icon: <CodeRounded/>, content: [ ...DataProjects ]
-	}, "Academics": {
-		href: "/academics", icon: <SchoolRounded/>, content: [ ...DataAcademics ]
-	}, "Seminars": {
-		href: "/seminars", icon: <CampaignRoundedIcon/>, notes: [
+	"Home"     : {
+		href: "/",
+		icon: <HomeRounded/>
+	},
+	"Resume"   : {
+		href   : "/resume",
+		icon   : <SummarizeRounded/>,
+		content: [ ...DataResume ]
+	},
+	"Projects" : {
+		href   : "/projects",
+		icon   : <CodeRounded/>,
+		content: [ ...DataProjects ]
+	},
+	"Academics": {
+		href   : "/academics",
+		icon   : <SchoolRounded/>,
+		content: [ ...DataAcademics ]
+	},
+	"Seminars" : {
+		href   : "/seminars",
+		icon   : <CampaignRoundedIcon/>,
+		notes  : [
 			{ text: "The UT Honors and Scholars Programs offer a variety of engagement opportunities to be involved and engaged, both inside and outside the classroom." },
 			{
-				text: "These seminars inspire scholars to explore their academic interests through engaging and rewarding co-curricular experiences.",
+				text    : "These seminars inspire scholars to explore their academic interests through engaging and rewarding co-curricular experiences.",
 				severity: "info"
 			}
-		], content: [ ...DataSeminars ]
-	}, "Blog": {
-		href: "/blog", icon: <BookRounded/>, content: [ ...DataBlog ]
+		],
+		content: [ ...DataSeminars ]
+	},
+	"Blog"     : {
+		href   : "/blog",
+		icon   : <BookRounded/>,
+		content: [ ...DataBlog ]
 	}
 }
 

@@ -28,7 +28,13 @@ const ResponsiveAppBar = ({ page }: { page: Page }) => {
 			<Toolbar disableGutters>
 				<Logo variant="md"/>
 
-				<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+				<Box sx={{
+					flexGrow: 1,
+					display : {
+						xs: "flex",
+						md: "none"
+					}
+				}}>
 					<IconButton
 						size="large"
 						aria-label="account of current user"
@@ -43,16 +49,21 @@ const ResponsiveAppBar = ({ page }: { page: Page }) => {
 						id="menu-appbar"
 						anchorEl={anchorElNav}
 						anchorOrigin={{
-							vertical: "bottom", horizontal: "left"
+							vertical  : "bottom",
+							horizontal: "left"
 						}}
 						keepMounted
 						transformOrigin={{
-							vertical: "top", horizontal: "left"
+							vertical  : "top",
+							horizontal: "left"
 						}}
 						open={Boolean(anchorElNav)}
 						onClose={handleCloseNavMenu}
 						sx={{
-							display: { xs: "block", md: "none" }
+							display: {
+								xs: "block",
+								md: "none"
+							}
 						}}
 					>
 						{Object.entries(pages).map(([ title, info ]) => (
@@ -68,8 +79,10 @@ const ResponsiveAppBar = ({ page }: { page: Page }) => {
 				<Logo variant="xs"/>
 
 				<Box sx={{
-					flexGrow: 1, display: {
-						xs: "none", md: "flex", // align right
+					flexGrow: 1,
+					display : {
+						xs            : "none",
+						md            : "flex", // align right
 						justifyContent: "flex-end"
 					}
 				}}>
@@ -82,7 +95,8 @@ const ResponsiveAppBar = ({ page }: { page: Page }) => {
 						sx={{
 							color: "white", // underlined if current page
 							...(page.href === info.href ? {
-								textDecoration: "underline", fontWeight: "bold"
+								textDecoration: "underline",
+								fontWeight    : "bold"
 							} : {})
 						}}
 					>

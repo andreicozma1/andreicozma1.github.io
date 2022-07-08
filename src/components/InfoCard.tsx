@@ -3,11 +3,21 @@ import * as React from "react"
 import theme from "../config/theme"
 import { InfoCardProps } from "./InfoCardProps"
 
-const InfoCard = ({ title, subtitle, chips, avatar, content }: InfoCardProps) => {
+const InfoCard = ({
+					  title,
+					  subtitle,
+					  chips,
+					  avatar,
+					  content
+				  }: InfoCardProps) => {
 	const cardElevation = 4
 	const fontWeight = "medium"
 	const spacing = theme.spacing(1)
-	const chipStackStyle = { ml: "auto", my: "auto", p: theme.spacing(2) }
+	const chipStackStyle = {
+		ml: "auto",
+		my: "auto",
+		p : theme.spacing(2)
+	}
 	return (<Card elevation={cardElevation}>
 		<Box sx={{ display: "flex" }}>
 			<CardHeader title={title}

@@ -3,7 +3,11 @@ import * as React from "react"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { InfoCardProps } from "./InfoCardProps"
 
-const InfoCardAccordion = ({ title, avatar, content }: InfoCardProps) => {
+const InfoCardAccordion = ({
+							   title,
+							   avatar,
+							   content
+						   }: InfoCardProps) => {
 	const cardElevation = 4
 	const fontWeight = "medium"
 	const spacing = 1
@@ -14,7 +18,10 @@ const InfoCardAccordion = ({ title, avatar, content }: InfoCardProps) => {
 			expandIcon={<ExpandMoreIcon/>}
 		>
 			<Icon style={{ marginRight: "1rem" }} color="primary">{avatar}</Icon>
-			<Typography sx={{ fontWeight: fontWeight, fontSize: "0.875rem" }}>{title}</Typography>
+			<Typography sx={{
+				fontWeight: fontWeight,
+				fontSize  : "0.875rem"
+			}}>{title}</Typography>
 		</AccordionSummary>
 		{content && <AccordionDetails>
             <Stack spacing={spacing}>

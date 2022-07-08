@@ -24,7 +24,8 @@ const SectionCardList = ({ section }: { section: CardListParams }) => {
 		<Typography variant={headerVariant}
 					fontWeight={headerFontWeight}
 					sx={{
-						my: defaultSpacing, textDecoration: "underline"
+						my            : defaultSpacing,
+						textDecoration: "underline"
 					}}>
 			{section.title}
 		</Typography>

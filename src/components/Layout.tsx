@@ -9,7 +9,10 @@ import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles"
 import particlesOptions from "../config/particles.json"
 
-const Layout = ({ page, children }: { page: Page, children?: ReactNode }) => {
+const Layout = ({
+					page,
+					children
+				}: { page: Page, children?: ReactNode }) => {
 
 	// @ts-ignore
 	const particlesInit = async (engine) => {
@@ -26,7 +29,8 @@ const Layout = ({ page, children }: { page: Page, children?: ReactNode }) => {
 				<Box>
 					<ResponsiveTopBar page={page}/>
 					<Container component={Stack} spacing={2} sx={{
-						paddingBottom: theme.spacing(4), opacity: 0.99
+						paddingBottom: theme.spacing(4),
+						opacity      : 0.99
 					}}>
 						{page.content && <PageBreadcrumbs page={page}/>}
 						{page.notes && page.notes.map((note, i) => {
