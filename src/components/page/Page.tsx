@@ -1,4 +1,4 @@
-import { Alert, Box, Container, Stack, ThemeProvider } from "@mui/material"
+import { Box, Container, Stack, ThemeProvider } from "@mui/material"
 import ResponsiveTopBar from "../TopBar"
 import * as React from "react"
 import { ReactNode } from "react"
@@ -8,6 +8,7 @@ import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles"
 import particlesOptions from "../../config/particles.json"
 import { PageProps } from "../interfaces/PageProps"
+import Notes from "../Notes"
 
 const Page = ({
 				  data,
@@ -32,12 +33,9 @@ const Page = ({
 				opacity      : 0.99
 			}}>
 				{data.content && <PageBreadcrumbs page={data}/>}
-				{data.notes && data.notes.map((note, i) => {
-					return <Alert key={i} severity={note.severity}>{note.text}</Alert>
-				})}
-				{data.content && data.content.map((section, i) => (
-					<section.layout section={section}></section.layout>))}
-
+				{data.notes && <Notes notesArray={data.notes}/>}
+				{data.content && data.content.map((sectionProps, i) => (
+					<sectionProps.layout props={sectionProps}></sectionProps.layout>))}
 				{children}
 			</Container>
 		</Box>

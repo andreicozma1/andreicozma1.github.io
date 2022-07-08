@@ -1,34 +1,34 @@
 import * as React from "react"
-import { Alert, Box, Grid, Stack, Typography } from "@mui/material"
+import { Box, Grid, Stack, Typography } from "@mui/material"
 import theme from "../../config/theme"
-import { InfoCardProps } from "../interfaces/InfoCardProps"
 import { PageSectionProps } from "../interfaces/PageSectionProps"
+import Notes from "../Notes"
 
-const PageSection = ({ section }: { section: PageSectionProps }) => {
+const PageSection = ({ props }: { props: PageSectionProps }) => {
 	const defaultSpacing = theme.spacing(1)
 	const headerVariant = "h5"
 	const headerFontWeight = "medium"
-	const md = section.md || 6
+	const md = props.md || 6
 
-	return <Stack spacing={section.spacing === undefined
+	return <Stack spacing={props.spacing === undefined
 		? defaultSpacing
-		: section.spacing}>
+		: props.spacing}>
 		<Typography variant={headerVariant}
 					fontWeight={headerFontWeight}
 					sx={{
 						my            : defaultSpacing,
 						textDecoration: "underline"
 					}}>
-			{section.title}
+			{props.title}
 		</Typography>
-		{section.note && <Alert severity={section.noteSeverity}>{section.note}</Alert>}
+		{props.notes && <Notes notesArray={props.notes}/>}
 		<Box sx={{ flexGrow: 1 }}>
 			<Grid container spacing={2}
 				  justifyContent="space-evenly"
 				  alignItems="stretch">
-				{section.items.map((item: object, index: number) => {
+				{props.items.map((itemProps: object, index: number) => {
 					return <Grid item xs={12} md={md}>
-						<section.itemComponent key={index} {...item as InfoCardProps}></section.itemComponent>
+						<props.itemComponent key={index} props={itemProps}></props.itemComponent>
 					</Grid>
 				})}
 			</Grid>

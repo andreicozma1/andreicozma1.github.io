@@ -3,13 +3,7 @@ import * as React from "react"
 import theme from "../../config/theme"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
 
-const InfoCard = ({
-					  title,
-					  subtitle,
-					  chips,
-					  avatar,
-					  content
-				  }: InfoCardProps) => {
+const InfoCard = ({ props }: { props: InfoCardProps }) => {
 	const cardElevation = 4
 	const fontWeight = "medium"
 	const spacing = theme.spacing(1)
@@ -20,24 +14,24 @@ const InfoCard = ({
 	}
 	return (<Card elevation={cardElevation}>
 		<Box sx={{ display: "flex" }}>
-			<CardHeader title={title}
-						subheader={subtitle}
-						avatar={<Icon color="primary">{avatar}</Icon>}
+			<CardHeader title={props.title}
+						subheader={props.subtitle}
+						avatar={<Icon color="primary">{props.avatar}</Icon>}
 						titleTypographyProps={{ fontWeight: fontWeight }}
 						sx={{ display: "inline-flex" }}>
 			</CardHeader>
-			{chips && <Stack direction="row"
-                             spacing={spacing} sx={chipStackStyle}>
-				{typeof chips === "string"
-					? <Chip label={chips} variant="outlined"></Chip>
-					: chips.map((chip, i) => <Chip key={i} label={chip} variant="outlined"/>)}
+			{props.chips && <Stack direction="row"
+                                   spacing={spacing} sx={chipStackStyle}>
+				{typeof props.chips === "string"
+					? <Chip label={props.chips} variant="outlined"></Chip>
+					: props.chips.map((chip, i) => <Chip key={i} label={chip} variant="outlined"/>)}
             </Stack>}
 		</Box>
 
-		{content && <CardContent component={Stack} spacing={spacing}>
-			{typeof content === "string"
-				? <Typography>{content}</Typography>
-				: content.map((c, i) => <Typography
+		{props.content && <CardContent component={Stack} spacing={spacing}>
+			{typeof props.content === "string"
+				? <Typography>{props.content}</Typography>
+				: props.content.map((c, i) => <Typography
 					key={i}>{c}</Typography>)}
         </CardContent>}
 	</Card>)

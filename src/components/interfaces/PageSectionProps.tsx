@@ -1,13 +1,12 @@
-import { AlertColor } from "@mui/material"
 import * as React from "react"
+import { NoteProps } from "./NoteProps"
 
 export interface PageSectionProps {
 	title: string,
-	note?: string,
-	noteSeverity?: AlertColor,
+	notes?: Array<NoteProps>,
 	layout: React.ComponentType<any>,
 	itemComponent: React.ComponentType<any>,
 	items: object[],
-	spacing?: number
+	spacing?: number,
 	md?: number
 }
