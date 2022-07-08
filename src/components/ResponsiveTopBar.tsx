@@ -26,7 +26,7 @@ const ResponsiveAppBar = ({ page }: { page: Page }) => {
 	}
 
 	return (
-		<AppBar position="static">
+		<AppBar position="static" sx={{opacity: 0.99}}>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Logo variant="md"/>

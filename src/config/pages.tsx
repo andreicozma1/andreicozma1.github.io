@@ -12,14 +12,13 @@ import DataSeminars from "../data/seminars"
 export interface Page {
 	href: string,
 	icon: React.ReactElement,
-	content: Array<CardListParams>
+	content?: Array<CardListParams>
 }
 
 export const pages: { [key: string]: Page } = {
 	"Home": {
 		href: "/",
 		icon: <HomeRounded/>,
-		content: [ ...DataHome ]
 	},
 	"Resume": {
 		href: "/resume",
