@@ -9,7 +9,26 @@ const Current: CardListParams = {
 	layout: SectionCardList,
 	itemComponent: InfoCard,
 	items: [
-
+		{
+			"title": "COSC 524 - Natural Language Processing",
+			"avatar": <AccessAlarmIcon/>,
+			"content": null
+		},
+		{
+			"title": "COSC 517 - Reinforcement Learning",
+			"avatar": <AccessAlarmIcon/>,
+			"content": null
+		},
+		{
+			"title": "COSC 562 - Operating Systems: Design & Implementation",
+			"avatar": <AccessAlarmIcon/>,
+			"content": null
+		},
+		{
+			"title": "COSC 530 - Computer Systems Organization",
+			"avatar": <AccessAlarmIcon/>,
+			"content": null
+		},
 	]
 }
 
