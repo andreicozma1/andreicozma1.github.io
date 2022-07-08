@@ -1,7 +1,7 @@
 import DataTemplate from "../DataTemplate"
 
 const DataBlog = [
-	DataTemplate,
+	DataTemplate
 ]
 
 export default DataBlog

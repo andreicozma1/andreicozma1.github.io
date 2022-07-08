@@ -1,7 +1,7 @@
 import DataTemplate from "../DataTemplate"
 
 const DataProjects = [
-	DataTemplate,
+	DataTemplate
 ]
 
 export default DataProjects

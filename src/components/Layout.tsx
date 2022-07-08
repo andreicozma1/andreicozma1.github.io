@@ -16,8 +16,7 @@ const Layout = ({ page, children }: { page: Page, children?: ReactNode }) => {
 		await loadFull(engine)
 	}
 
-	return (
-		<div>
+	return (<div>
 			<ThemeProvider theme={theme}>
 				{/*// @ts-ignore*/}
 				<Particles init={particlesInit} options={particlesOptions}
@@ -27,16 +26,14 @@ const Layout = ({ page, children }: { page: Page, children?: ReactNode }) => {
 				<Box>
 					<ResponsiveTopBar page={page}/>
 					<Container component={Stack} spacing={2} sx={{
-						paddingBottom: theme.spacing(4),
-						opacity: 0.99
+						paddingBottom: theme.spacing(4), opacity: 0.99
 					}}>
 						{page.content && <PageBreadcrumbs page={page}/>}
 						{page.notes && page.notes.map((note, i) => {
 							return <Alert key={i} severity={note.severity}>{note.text}</Alert>
 						})}
 						{page.content && page.content.map((section, i) => (
-							<section.layout section={section}></section.layout>
-						))}
+							<section.layout section={section}></section.layout>))}
 
 						{children}
 					</Container>

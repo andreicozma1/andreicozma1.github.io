@@ -5,11 +5,7 @@ import AchievementsLicensesCertifications from "./AchievementsLicensesCertificat
 import ActivitiesSocieties from "./ActivitiesSocieties"
 
 const DataResume = [
-	About,
-	Education,
-	WorkExperience,
-	AchievementsLicensesCertifications,
-	ActivitiesSocieties
+	About, Education, WorkExperience, AchievementsLicensesCertifications, ActivitiesSocieties
 ]
 
 export default DataResume

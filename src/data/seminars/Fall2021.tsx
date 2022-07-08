@@ -4,11 +4,7 @@ import SectionCardList, { CardListParams } from "../../components/SectionCardLis
 import InfoCard from "../../components/InfoCard"
 
 const Fall2021: CardListParams = {
-	title: "Fall 2021",
-	layout: SectionCardList,
-	itemComponent: InfoCard,
-	md: 12,
-	items: [
+	title: "Fall 2021", layout: SectionCardList, itemComponent: InfoCard, md: 12, items: [
 		{
 			"title": "Cultivating a Growth Mindset",
 			"subtitle": "Presenter: Gemma Leigh Roberts",
@@ -19,8 +15,7 @@ const Fall2021: CardListParams = {
 			"content": [
 				"In this LinkedIn Learning Workshop, Gemma Roberts demonstrates how to cultivate a growth mindset, distinguish between a fixed and growth mindset, and challenge yourself in your daily life to achieve your goals. People who have a growth mindset believe that their talent and abilities can improve. This mindset is the polar opposite of a fixed mindset, in which people believe that talent and ability are inborn and unchangeable. The growth mindset is a helpful way of thinking about your own life and achieving your objectives. Failure is viewed as a learning opportunity rather than a setback. You'll be more likely to take on challenges, try new things, and work hard to achieve your goals if you have a growth mindset. You must remind yourself that you can change and grow, even though it will take some time. You can commit to developing a growth mindset and then take small steps forward, considering what you are good at, what you are not good at, and what you can improve on. If you can then concentrate on these things and try to improve them, you will discover that you have more potential to grow. The more you push yourself, the more you'll realize your full potential, and the more you allow yourself to improve, the more you'll believe you can. This will not happen overnight, and it is unavoidable that you will experience failure or a setback at some point. It's possible that you won't succeed at something you're trying to do or believe you're good at. For one, acknowledge that everyone fails at some point and just give it another shot. It is important to view failure as another step towards a better self and achieving success and future improvement. Overall, if you want to develop a growth mindset and become more successful, you must keep trying, work hard, and push yourself to do better, even if your first attempts fails."
 			]
-		},
-		{
+		}, {
 			"title": "Probability and Stochastic Processes Seminar",
 			"subtitle": "Presenter: Dr. Federico Sau (IST Austria)",
 			"avatar": <AccessAlarmIcon/>,
@@ -30,8 +25,7 @@ const Fall2021: CardListParams = {
 			"content": [
 				"David Aldous introduced the Averaging process as a Markovian mass redistribution model on a graph in a series of lectures and articles published around 2011-2012. The Averaging process is roughly described such that for each vertex is initially assigned a real-valued mass, and at exponential times pairs of neighboring vertices split their mass equally among them. The purpose of this session is to give some recent results on the mixing of a generalization of the Averaging process. Specifically, the process occurs on an increasing sequence of graphs that are supposed to be \"finite-dimensional,\" in the sense that a random walk on those geometries is consistent with the existence and equality of a family of Nash inequalities. In the field of mathematical probabilities known as interacting particle systems (IPS), models such as the voter model, contact process, exclusion process, and Glauber dynamics for the Ising model, all on an infinite d-dimensional lattice, are frequently exemplified, all under the continuing influence of Liggett. A significant motivation for the original development of the field was an as rigorous study of phase transitions in the discipline of statistical physics, which was a significant motivation for the original development of the field. Since the beginning of mathematics, models with similar mathematical structures have been employed as toy models in a variety of domains, most notably in social dynamics, where they have been used to mimic the propagation of attitudes, actions, or information between individuals in a community. For connections between individuals, the closest neighbor lattice model, which is commonly used, is not conceivable in this situation. In situations when there are a limited number of individuals, the finite-time behavior is frequently more relevant than the time-asymptotics behavior. As a result, the context is akin to the study of mixing times for finite Markov chains in a loose sense. The authors' study yields a comprehensive picture of the total variation mixing in a discrete particle dual of the Averaging process, which exhibits, in particular, a cutoff phenomenon in the low-density regime, as a result of their work. They took advantage of the duality of the two processes in order to demonstrate that the dual satisfies a variant of Aldous' spectral gap identity, which was previously unknown. Regardless of the amount of particles in the process, the time required for relaxation is constant."
 			]
-		},
-		{
+		}, {
 			"title": "Energy & Environment Forum with Dr. Megan Donahue, Ecologist from Hawaii",
 			"subtitle": "Presenter: Dr. Megan Donahue (Hawaii Institute of Marine Biology)",
 			"avatar": <AccessAlarmIcon/>,

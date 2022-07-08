@@ -5,10 +5,8 @@ import { usePage } from "../config/pages"
 const Contact = () => {
 	const page = usePage("Contact")
 
-	return (
-		<Layout page={page}>
-		</Layout>
-	)
+	return (<Layout page={page}>
+	</Layout>)
 }
 
 export default Contact

@@ -1,7 +1,7 @@
 import DataTemplate from "../DataTemplate"
 
 const DataHome = [
-	DataTemplate,
+	DataTemplate
 ]
 
 export default DataHome

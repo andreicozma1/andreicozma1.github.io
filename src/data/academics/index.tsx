@@ -4,10 +4,7 @@ import IntelligentSystems from "./IntelligentSystems"
 import Cybersecurity from "./Cybersecurity"
 
 const DataAcademics = [
-	Current,
-	IntelligentSystems,
-	Cybersecurity,
-	Completed,
+	Current, IntelligentSystems, Cybersecurity, Completed
 ]
 
 export default DataAcademics

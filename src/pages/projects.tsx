@@ -5,10 +5,8 @@ import { usePage } from "../config/pages"
 const Projects = () => {
 	const page = usePage("Projects")
 
-	return (
-		<Layout page={page}>
-		</Layout>
-	)
+	return (<Layout page={page}>
+	</Layout>)
 }
 
 export default Projects

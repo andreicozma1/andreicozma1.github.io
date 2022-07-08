@@ -6,10 +6,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext"
 import { Page } from "../config/pages"
 
 export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-	const backgroundColor =
-		theme.palette.mode === "light"
-			? theme.palette.grey[100]
-			: theme.palette.grey[800]
+	const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800]
 	return {
 		backgroundColor,
 		height: theme.spacing(4),
@@ -19,8 +16,7 @@ export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 			backgroundColor: emphasize(backgroundColor, 0.06)
 		},
 		"&:active": {
-			boxShadow: theme.shadows[1],
-			backgroundColor: emphasize(backgroundColor, 0.12)
+			boxShadow: theme.shadows[1], backgroundColor: emphasize(backgroundColor, 0.12)
 		}
 	}
 }) as typeof Chip // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
@@ -31,25 +27,23 @@ export function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
 }
 
 const PageBreadcrumbs = ({ page }: { page: Page }) => {
-	return (
-		<Breadcrumbs aria-label="breadcrumb"
-					 separator={<NavigateNextIcon fontSize="small"/>}
-					 sx={{
-						 paddingTop: theme.spacing(2),
-					 }}>
-			<StyledBreadcrumb
-				component="a"
-				label={page.href}
-				href="#"
-				icon={page.icon}
-			/>
-			<StyledBreadcrumb
-				label="#"
-				deleteIcon={<ExpandMoreIcon/>}
-				onDelete={handleClick}
-			/>
-		</Breadcrumbs>
-	)
+	return (<Breadcrumbs aria-label="breadcrumb"
+						 separator={<NavigateNextIcon fontSize="small"/>}
+						 sx={{
+							 paddingTop: theme.spacing(2)
+						 }}>
+		<StyledBreadcrumb
+			component="a"
+			label={page.href}
+			href="#"
+			icon={page.icon}
+		/>
+		<StyledBreadcrumb
+			label="#"
+			deleteIcon={<ExpandMoreIcon/>}
+			onDelete={handleClick}
+		/>
+	</Breadcrumbs>)
 }
 
 export default PageBreadcrumbs
