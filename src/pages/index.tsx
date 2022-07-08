@@ -17,11 +17,11 @@ const Home = () => {
 	const pageData = usePage("Home")
 
 	return <Page data={pageData}>
-			<StyledAvatar
-				alt="Andrei Cozma"
-				src="profile.jpg"
-			/>
-		</Page>
+		<StyledAvatar
+			alt="Andrei Cozma"
+			src="profile.jpg"
+		/>
+	</Page>
 }
 
 export default Home

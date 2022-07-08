@@ -41,9 +41,9 @@ export const pages: { [key: string]: PageProps } = {
 		content: [ ...DataSeminars ]
 	},
 	"Blog"     : {
-		href   : "/blog",
-		icon   : <BookRounded/>,
-		hidden : true
+		href  : "/blog",
+		icon  : <BookRounded/>,
+		hidden: true
 	}
 }
 
