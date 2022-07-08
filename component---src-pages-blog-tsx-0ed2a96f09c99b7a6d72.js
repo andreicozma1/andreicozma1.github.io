@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpersonal_portfolio=self.webpackChunkpersonal_portfolio||[]).push([[410],{1972:function(e,t,o){o.r(t);var l=o(7294),r=o(2170),a=o(2432);t.default=function(){var e=(0,a.q)("Blog");return l.createElement("div",null,l.createElement("iframe",{src:"https://blog.andreicozma.com/",style:{position:"absolute",width:"100%",height:"100%"}}),l.createElement(r.Z,{page:e}))}}}]);
+//# sourceMappingURL=component---src-pages-blog-tsx-0ed2a96f09c99b7a6d72.js.map
