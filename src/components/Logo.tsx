@@ -18,7 +18,7 @@ const Logo = ({ variant }: { variant: string }) => {
 	}
 
 	return <>
-		<Avatar alt="Andrei Cozma" src="icon-512x512.png" sx={{
+		<Avatar alt="Andrei Cozma" src="/avatar.jpg" sx={{
 			display: display,
 			mr     : 3
 		}}/>

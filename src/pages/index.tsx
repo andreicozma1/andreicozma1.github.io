@@ -19,7 +19,7 @@ const Home = () => {
 	return <Page data={pageData}>
 		<StyledAvatar
 			alt="Andrei Cozma"
-			src="profile.jpg"
+			src="avatar_alt.jpg"
 		/>
 	</Page>
 }
