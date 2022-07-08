@@ -33,7 +33,8 @@ const SectionCardList = ({ section }: { section: CardListParams }) => {
 			{section.note && <Alert severity={section.noteSeverity}>{section.note}</Alert>}
 			<Box sx={{ flexGrow: 1 }}>
 				<Grid container spacing={2}
-					  justifyContent="space-evenly">
+					  justifyContent="space-evenly"
+					  alignItems="stretch">
 					{section.items.map((item: object, index: number) => {
 						return <Grid item xs={12} md={md}>
 							<section.itemComponent key={index} {...item as InfoCardProps}></section.itemComponent>
