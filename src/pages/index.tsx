@@ -14,9 +14,9 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 }))
 
 const Home = () => {
-	const page = usePage("Home")
+	const pageData = usePage("Home")
 
-	return <Layout page={page}>
+	return <Layout data={page}>
 			<StyledAvatar
 				alt="Andrei Cozma"
 				src="profile.jpg"

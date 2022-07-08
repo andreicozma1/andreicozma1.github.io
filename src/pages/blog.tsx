@@ -1,12 +1,12 @@
 import * as React from "react"
-import Layout from "../components/Layout"
+import Page from "../components/Layout"
 import { usePage } from "../config/pages"
 
 const Projects = () => {
-	const page = usePage("Blog")
+	const pageData = usePage("Blog")
 
-	return <Layout page={page}>
-	</Layout>
+	return <Page data={page}>
+	</Page>
 }
 
 export default Projects

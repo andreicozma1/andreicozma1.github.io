@@ -3,9 +3,9 @@ import Layout from "../components/Layout"
 import { usePage } from "../config/pages"
 
 const Seminars = () => {
-	const page = usePage("Seminars")
+	const pageData = usePage("Seminars")
 
-	return <Layout page={page}>
+	return <Layout data={page}>
 	</Layout>
 }
 
