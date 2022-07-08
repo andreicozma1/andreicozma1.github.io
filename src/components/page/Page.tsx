@@ -1,18 +1,18 @@
 import { Alert, Box, Container, Stack, ThemeProvider } from "@mui/material"
-import ResponsiveTopBar from "./ResponsiveTopBar"
+import ResponsiveTopBar from "../TopBar"
 import * as React from "react"
 import { ReactNode } from "react"
 import PageBreadcrumbs from "./PageBreadcrumbs"
-import theme from "../config/theme"
-import { Page } from "../config/pages"
+import theme from "../../config/theme"
 import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles"
-import particlesOptions from "../config/particles.json"
+import particlesOptions from "../../config/particles.json"
+import { PageProps } from "../interfaces/PageProps"
 
-const Layout = ({
+const Page = ({
 					data,
 					children
-				}: { data: Page, children?: ReactNode }) => {
+				}: { data: PageProps, children?: ReactNode }) => {
 
 	// @ts-ignore
 	const particlesInit = async (engine) => {
@@ -36,7 +36,7 @@ const Layout = ({
 						return <Alert key={i} severity={note.severity}>{note.text}</Alert>
 					})}
 					{data.content && data.content.map((section, i) => (
-						<section.Layout section={section}></section.Layout>))}
+						<section.layout section={section}></section.layout>))}
 
 					{children}
 				</Container>
@@ -44,4 +44,4 @@ const Layout = ({
 		</ThemeProvider>)
 }
 
-export default Layout
+export default Page

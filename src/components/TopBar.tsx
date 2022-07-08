@@ -10,9 +10,10 @@ import Container from "@mui/material/Container"
 import Button from "@mui/material/Button"
 import MenuItem from "@mui/material/MenuItem"
 import Logo from "./Logo"
-import { Page, pages } from "../config/pages"
+import { pages } from "../config/pages"
+import { PageProps } from "./interfaces/PageProps"
 
-const ResponsiveAppBar = ({ page }: { page: Page }) => {
+const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 	const [ anchorElNav, setAnchorElNav ] = React.useState<null | HTMLElement>(null)
 
 	const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {

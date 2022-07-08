@@ -2,27 +2,13 @@ import { BookRounded, CodeRounded, HomeRounded, SchoolRounded, SummarizeRounded 
 import CampaignRoundedIcon from "@mui/icons-material/CampaignRounded"
 
 import React from "react"
-import { CardListParams } from "../components/SectionCardList"
 import DataAcademics from "../data/academics"
 import DataResume from "../data/resume"
 import DataProjects from "../data/projects"
 import DataSeminars from "../data/seminars"
-import { AlertColor } from "@mui/material"
+import { PageProps } from "../components/interfaces/PageProps"
 
-export interface Note {
-	text: string,
-	severity?: AlertColor
-}
-
-export interface Page {
-	href: string,
-	icon: React.ReactElement,
-	content?: Array<CardListParams>,
-	notes?: Array<Note>,
-	hidden?: boolean
-}
-
-export const pages: { [key: string]: Page } = {
+export const pages: { [key: string]: PageProps } = {
 	"Home"     : {
 		href: "/",
 		icon: <HomeRounded/>

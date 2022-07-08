@@ -1,20 +1,10 @@
 import * as React from "react"
-import { Alert, AlertColor, Box, Grid, Stack, Typography } from "@mui/material"
-import theme from "../config/theme"
-import { InfoCardProps } from "./InfoCardProps"
+import { Alert, Box, Grid, Stack, Typography } from "@mui/material"
+import theme from "../../config/theme"
+import { InfoCardProps } from "../interfaces/InfoCardProps"
+import { PageSectionProps } from "../interfaces/PageSectionProps"
 
-export interface CardListParams {
-	title: string,
-	note?: string,
-	noteSeverity?: AlertColor,
-	Layout: React.ComponentType<any>,
-	itemComponent: React.ComponentType<any>,
-	items: object[],
-	spacing?: number
-	md?: number
-}
-
-const SectionCardList = ({ section }: { section: CardListParams }) => {
+const PageSection = ({ section }: { section: PageSectionProps }) => {
 	const defaultSpacing = theme.spacing(1)
 	const headerVariant = "h5"
 	const headerFontWeight = "medium"
@@ -46,4 +36,4 @@ const SectionCardList = ({ section }: { section: CardListParams }) => {
 	</Stack>
 }
 
-export default SectionCardList
+export default PageSection

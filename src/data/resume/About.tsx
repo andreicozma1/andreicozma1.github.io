@@ -1,12 +1,13 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import SectionCardList, { CardListParams } from "../../components/SectionCardList"
-import InfoCard from "../../components/InfoCard"
+import PageSection from "../../components/page/PageSection"
+import InfoCard from "../../components/cards/InfoCard"
+import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
-const About: CardListParams = {
+const About: PageSectionProps = {
 	title: "About", // note: "I am a Software Developer with a strong passion for learning, improving, and creating.",
 	// noteSeverity: "info",
-	Layout       : SectionCardList,
+	layout       : PageSection,
 	itemComponent: InfoCard,
 	items        : [
 		{

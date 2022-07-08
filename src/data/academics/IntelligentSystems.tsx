@@ -1,12 +1,13 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import SectionCardList, { CardListParams } from "../../components/SectionCardList"
-import InfoCardAccordion from "../../components/InfoCardAccordion"
+import PageSection from "../../components/page/PageSection"
+import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
+import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
 // Use the types of the InfoCardData interface
-const Completed: CardListParams = {
+const Completed: PageSectionProps = {
 	title        : "Intelligent Systems",
-	Layout       : SectionCardList,
+	layout       : PageSection,
 	itemComponent: InfoCardAccordion,
 	items        : [
 		{

@@ -1,5 +1,5 @@
 import * as React from "react"
-import Layout from "../components/Layout"
+import Page from "../components/page/Page"
 import { usePage } from "../config/pages"
 import { Avatar, styled } from "@mui/material"
 
@@ -16,12 +16,12 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 const Home = () => {
 	const pageData = usePage("Home")
 
-	return <Layout data={pageData}>
+	return <Page data={pageData}>
 			<StyledAvatar
 				alt="Andrei Cozma"
 				src="profile.jpg"
 			/>
-		</Layout>
+		</Page>
 }
 
 export default Home

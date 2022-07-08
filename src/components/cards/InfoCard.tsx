@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, CardHeader, Chip, Icon, Stack, Typography } from "@mui/material"
 import * as React from "react"
-import theme from "../config/theme"
-import { InfoCardProps } from "./InfoCardProps"
+import theme from "../../config/theme"
+import { InfoCardProps } from "../interfaces/InfoCardProps"
 
 const InfoCard = ({
 					  title,

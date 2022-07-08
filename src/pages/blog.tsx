@@ -1,5 +1,5 @@
 import * as React from "react"
-import Page from "../components/Layout"
+import Page from "../components/page/Page"
 import { usePage } from "../config/pages"
 
 const Projects = () => {

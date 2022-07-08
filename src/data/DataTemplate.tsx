@@ -1,11 +1,12 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import SectionCardList, { CardListParams } from "../components/SectionCardList"
-import InfoCardAccordion from "../components/InfoCardAccordion"
+import PageSection from "../components/page/PageSection"
+import InfoCardAccordion from "../components/cards/InfoCardAccordion"
+import { PageSectionProps } from "../components/interfaces/PageSectionProps"
 
-const DataTemplate: CardListParams = {
+const DataTemplate: PageSectionProps = {
 	title        : "Data Template",
-	Layout       : SectionCardList,
+	layout       : PageSection,
 	itemComponent: InfoCardAccordion,
 	items        : [
 		{
