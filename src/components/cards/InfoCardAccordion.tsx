@@ -22,7 +22,6 @@ const InfoCardAccordion = ({ props }: { props: InfoCardProps }) => {
 							subheader={props.subtitle}
 							avatar={<Icon color={iconColor}>{props.avatar}</Icon>}
 							titleTypographyProps={{ fontWeight: fontWeight }}
-							expandIcon={<ExpandMoreIcon/>}
 							sx={{
 								py: "0px",
 								px: "0px"
