@@ -5,8 +5,8 @@ import InfoCard from "../../components/InfoCard"
 
 const About: CardListParams = {
 	title: "About",
-	note: "I am a Software Developer with a strong passion for learning, improving, and creating.",
-	noteSeverity: "info",
+	// note: "I am a Software Developer with a strong passion for learning, improving, and creating.",
+	// noteSeverity: "info",
 	layout: SectionCardList,
 	itemComponent: InfoCard,
 	items: [
