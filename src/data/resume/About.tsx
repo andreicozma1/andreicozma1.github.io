@@ -24,8 +24,8 @@ const About: CardListParams = {
 			"title"  : "Research Interests",
 			"avatar" : <AccessAlarmIcon/>,
 			"content": [
-				`Main research interests include using Deep Learning, Machine Learning, and Artificial Intelligence techniques with a focus in Natural Language Processing and Computer Vision.`,
-				`Other areas of interest include Cybersecurity, Biologically-Inspired Computation, Scientific Computing, Mobile & Embedded Systems, among others.`
+				`My main career and research interests include making use of Deep Learning, Machine Learning, and Artificial Intelligence techniques with a focus on Natural Language Processing and Computer Vision.`,
+				`I am also really passionate about fields such as Cyber-security, Data Analytics, Mobile & Embedded Systems, and others.`
 			]
 		}
 	]
