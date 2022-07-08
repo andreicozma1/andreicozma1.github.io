@@ -6,7 +6,7 @@ import InfoCardAccordion from "../../components/InfoCardAccordion"
 // Use the types of the InfoCardData interface
 const Completed: CardListParams = {
 	title        : "Intelligent Systems",
-	layout       : SectionCardList,
+	Layout       : SectionCardList,
 	itemComponent: InfoCardAccordion,
 	items        : [
 		{

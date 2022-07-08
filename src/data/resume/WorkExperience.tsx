@@ -5,7 +5,7 @@ import InfoCard from "../../components/InfoCard"
 
 const WorkExperience: CardListParams = {
 	title        : "Work Experience",
-	layout       : SectionCardList,
+	Layout       : SectionCardList,
 	itemComponent: InfoCard,
 	md           : 12,
 	items        : [

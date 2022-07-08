@@ -16,21 +16,12 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 const Home = () => {
 	const page = usePage("Home")
 
-	return (<div>
-		{/*<iframe id="gallery" src="https://andreig992.myportfolio.com"*/}
-		{/*		style={{*/}
-		{/*			width: "100%",*/}
-		{/*			height: "100%",*/}
-		{/*			position: "absolute"*/}
-		{/*		}}/>*/}
-
-		<Layout page={page}>
+	return <Layout page={page}>
 			<StyledAvatar
 				alt="Andrei Cozma"
 				src="profile.jpg"
 			/>
 		</Layout>
-	</div>)
 }
 
 export default Home

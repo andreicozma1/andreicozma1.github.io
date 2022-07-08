@@ -5,7 +5,7 @@ import InfoCardAccordion from "../components/InfoCardAccordion"
 
 const DataTemplate: CardListParams = {
 	title        : "Data Template",
-	layout       : SectionCardList,
+	Layout       : SectionCardList,
 	itemComponent: InfoCardAccordion,
 	items        : [
 		{

@@ -5,7 +5,7 @@ import InfoCard from "../../components/InfoCard"
 
 const AchievementsLicensesCertifications: CardListParams = {
 	title        : "Achievements, Licenses, & Certifications",
-	layout       : SectionCardList,
+	Layout       : SectionCardList,
 	itemComponent: InfoCard,
 	items        : [
 		{

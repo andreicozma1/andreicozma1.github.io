@@ -5,7 +5,7 @@ import InfoCard from "../../components/InfoCard"
 
 const ActivitiesSocieties: CardListParams = {
 	title        : "Activities & Societies",
-	layout       : SectionCardList,
+	Layout       : SectionCardList,
 	itemComponent: InfoCard,
 	items        : [
 		{

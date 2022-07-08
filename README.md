@@ -2,6 +2,12 @@
 
 A personal portfolio written with the Gatsby, React.JS, and MaterialUI (MUI) component library.
 
+## Dependencies
+
+```
+npm install --legacy-peer-deps
+```
+
 ## Development
 
 Runs on: `http://localhost:8000`

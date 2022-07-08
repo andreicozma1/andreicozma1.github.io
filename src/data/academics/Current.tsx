@@ -6,7 +6,7 @@ import InfoCard from "../../components/InfoCard"
 // Use the types of the InfoCardData interface
 const Current: CardListParams = {
 	title        : "Fall 2022",
-	layout       : SectionCardList,
+	Layout       : SectionCardList,
 	itemComponent: InfoCard,
 	items        : [
 		{

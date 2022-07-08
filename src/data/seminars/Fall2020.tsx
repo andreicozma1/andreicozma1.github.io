@@ -5,7 +5,7 @@ import InfoCard from "../../components/InfoCard"
 
 const Fall2020: CardListParams = {
 	title        : "Fall 2020",
-	layout       : SectionCardList,
+	Layout       : SectionCardList,
 	itemComponent: InfoCard,
 	md           : 12,
 	items        : [

@@ -7,7 +7,7 @@ export interface CardListParams {
 	title: string,
 	note?: string,
 	noteSeverity?: AlertColor,
-	layout: React.ComponentType<any>,
+	Layout: React.ComponentType<any>,
 	itemComponent: React.ComponentType<any>,
 	items: object[],
 	spacing?: number
@@ -20,7 +20,7 @@ const SectionCardList = ({ section }: { section: CardListParams }) => {
 	const headerFontWeight = "medium"
 	const md = section.md || 6
 
-	return (<Stack spacing={section.spacing === undefined
+	return <Stack spacing={section.spacing === undefined
 		? defaultSpacing
 		: section.spacing}>
 		<Typography variant={headerVariant}
@@ -43,7 +43,7 @@ const SectionCardList = ({ section }: { section: CardListParams }) => {
 				})}
 			</Grid>
 		</Box>
-	</Stack>)
+	</Stack>
 }
 
 export default SectionCardList

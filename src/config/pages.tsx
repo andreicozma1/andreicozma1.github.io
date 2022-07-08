@@ -19,6 +19,7 @@ export interface Page {
 	icon: React.ReactElement,
 	content?: Array<CardListParams>,
 	notes?: Array<Note>,
+	hidden?: boolean
 }
 
 export const pages: { [key: string]: Page } = {
@@ -56,6 +57,7 @@ export const pages: { [key: string]: Page } = {
 	"Blog"     : {
 		href   : "/blog",
 		icon   : <BookRounded/>,
+		hidden : true
 	}
 }
 

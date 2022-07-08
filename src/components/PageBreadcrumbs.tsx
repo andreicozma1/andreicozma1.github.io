@@ -30,11 +30,11 @@ export function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
 }
 
 const PageBreadcrumbs = ({ page }: { page: Page }) => {
-	return (<Breadcrumbs aria-label="breadcrumb"
-						 separator={<NavigateNextIcon fontSize="small"/>}
-						 sx={{
-							 paddingTop: theme.spacing(2)
-						 }}>
+	return <Breadcrumbs aria-label="breadcrumb"
+						separator={<NavigateNextIcon fontSize="small"/>}
+						sx={{
+							paddingTop: theme.spacing(2)
+						}}>
 		<StyledBreadcrumb
 			component="a"
 			label={page.href}
@@ -46,7 +46,7 @@ const PageBreadcrumbs = ({ page }: { page: Page }) => {
 			deleteIcon={<ExpandMoreIcon/>}
 			onDelete={handleClick}
 		/>
-	</Breadcrumbs>)
+	</Breadcrumbs>
 }
 
 export default PageBreadcrumbs

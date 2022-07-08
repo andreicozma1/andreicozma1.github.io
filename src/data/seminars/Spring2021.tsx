@@ -5,7 +5,7 @@ import InfoCard from "../../components/InfoCard"
 
 const Spring2021: CardListParams = {
 	title        : "Spring 2021",
-	layout       : SectionCardList,
+	Layout       : SectionCardList,
 	itemComponent: InfoCard,
 	md           : 12,
 	items        : [
