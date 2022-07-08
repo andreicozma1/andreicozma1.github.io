@@ -21,11 +21,13 @@ const Layout = ({ page, children }: { page: Page, children?: ReactNode }) => {
 			<ThemeProvider theme={theme}>
 				{/*// @ts-ignore*/}
 				<Particles init={particlesInit} options={particlesOptions}
-						   style={{ filter: "blur(15px)" }}/>
+						   style={{
+							   filter: "blur(15px)"
+						   }}/>
 				<Box>
 					<ResponsiveTopBar page={page}/>
 					<Container component={Stack} spacing={2} sx={{
-						marginBottom: theme.spacing(4),
+						paddingBottom: theme.spacing(4),
 						opacity: 0.99
 					}}>
 						{page.content && <PageBreadcrumbs page={page}/>}

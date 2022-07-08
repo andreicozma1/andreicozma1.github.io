@@ -35,8 +35,7 @@ const PageBreadcrumbs = ({ page }: { page: Page }) => {
 		<Breadcrumbs aria-label="breadcrumb"
 					 separator={<NavigateNextIcon fontSize="small"/>}
 					 sx={{
-						 marginTop: theme.spacing(2),
-						 marginBottom: theme.spacing(2)
+						 paddingTop: theme.spacing(2),
 					 }}>
 			<StyledBreadcrumb
 				component="a"
