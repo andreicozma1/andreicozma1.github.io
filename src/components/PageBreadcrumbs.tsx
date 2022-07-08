@@ -6,7 +6,9 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext"
 import { Page } from "../config/pages"
 
 export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-	const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800]
+	const backgroundColor = theme.palette.mode === "light"
+		? theme.palette.grey[100]
+		: theme.palette.grey[800]
 	return {
 		backgroundColor,
 		height            : theme.spacing(4),

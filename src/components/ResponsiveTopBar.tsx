@@ -71,7 +71,11 @@ const ResponsiveAppBar = ({ page }: { page: Page }) => {
 								<Typography
 									textAlign="center"
 									// underlined if current page
-									sx={{ ...(page.href === info.href ? { fontWeight: "medium" } : {}) }}
+									sx={{
+										...(page.href === info.href
+											? { fontWeight: "medium" }
+											: {})
+									}}
 								>{title}</Typography>
 							</MenuItem>))}
 					</Menu>
@@ -94,10 +98,12 @@ const ResponsiveAppBar = ({ page }: { page: Page }) => {
 						variant="outlined"
 						sx={{
 							color: "white", // underlined if current page
-							...(page.href === info.href ? {
-								textDecoration: "underline",
-								fontWeight    : "bold"
-							} : {})
+							...(page.href === info.href
+								? {
+									textDecoration: "underline",
+									fontWeight    : "bold"
+								}
+								: {})
 						}}
 					>
 						{title}

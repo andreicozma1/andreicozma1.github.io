@@ -25,8 +25,11 @@ const InfoCardAccordion = ({
 		</AccordionSummary>
 		{content && <AccordionDetails>
             <Stack spacing={spacing}>
-				{typeof content === "string" ? <Typography>{content}</Typography> : content.map((c, i) => <Typography
-					key={i}>{c}</Typography>)}
+				{typeof content === "string"
+					? <Typography>{content}</Typography>
+					: content.map((c, i) => {
+						return <Typography key={i}>{c}</Typography>
+					})}
             </Stack>
         </AccordionDetails>}
 	</Accordion>)

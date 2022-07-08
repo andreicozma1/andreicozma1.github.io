@@ -20,7 +20,9 @@ const SectionCardList = ({ section }: { section: CardListParams }) => {
 	const headerFontWeight = "medium"
 	const md = section.md || 6
 
-	return (<Stack spacing={section.spacing === undefined ? defaultSpacing : section.spacing}>
+	return (<Stack spacing={section.spacing === undefined
+		? defaultSpacing
+		: section.spacing}>
 		<Typography variant={headerVariant}
 					fontWeight={headerFontWeight}
 					sx={{

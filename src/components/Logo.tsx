@@ -31,7 +31,9 @@ const Logo = ({ variant }: { variant: string }) => {
 				mr            : 2,
 				display       : display,
 				fontFamily    : "monospace",
-				flexGrow      : variant === "xs" ? 1 : 0,
+				flexGrow      : variant === "xs"
+					? 1
+					: 0,
 				fontWeight    : 700,
 				letterSpacing : ".25rem",
 				color         : "inherit",

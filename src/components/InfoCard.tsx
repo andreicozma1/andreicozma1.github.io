@@ -28,14 +28,17 @@ const InfoCard = ({
 			</CardHeader>
 			{chips && <Stack direction="row"
                              spacing={spacing} sx={chipStackStyle}>
-				{typeof chips === "string" ? <Chip label={chips} variant="outlined"></Chip> : chips.map((chip, i) =>
-					<Chip key={i} label={chip} variant="outlined"/>)}
+				{typeof chips === "string"
+					? <Chip label={chips} variant="outlined"></Chip>
+					: chips.map((chip, i) => <Chip key={i} label={chip} variant="outlined"/>)}
             </Stack>}
 		</Box>
 
 		{content && <CardContent component={Stack} spacing={spacing}>
-			{typeof content === "string" ? <Typography>{content}</Typography> : content.map((c, i) => <Typography
-				key={i}>{c}</Typography>)}
+			{typeof content === "string"
+				? <Typography>{content}</Typography>
+				: content.map((c, i) => <Typography
+					key={i}>{c}</Typography>)}
         </CardContent>}
 	</Card>)
 }
