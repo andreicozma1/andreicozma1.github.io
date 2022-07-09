@@ -109,7 +109,7 @@ const theme = createTheme({
 	},
 	avatar            : {
 		borderSize: "8px",
-		size      : "20rem"
+		size      : "25vh"
 	},
 	topbar            : {
 		opacity           : 0.99,
