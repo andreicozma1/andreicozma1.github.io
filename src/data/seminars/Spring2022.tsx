@@ -1,7 +1,6 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
 import PageSection from "../../components/page/PageSection"
-import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
@@ -16,7 +15,7 @@ const Spring2022: PageSectionProps = {
 			"subtitle": "Presenter: Gemma Leigh Roberts",
 			"avatar"  : <AccessAlarmIcon/>,
 			"chips"   : [
-				"Tue, April 19 2022"
+				"04/19/2022"
 			],
 			"content" : [
 				"Dr. Ben Babu is an experienced hospital medicine physician who has taken courses and has done" + " executive work in AI System Design for Healthcare, Machine Learning, Natural Language Processing, and Computer Vision. He states that emerging technologies such as Artificial Intelligence help by improving time costs and repurposing clinical skills in the healthcare environment. A significant amount of manual data entry and repetitive work can be automated, reducing the time spent away from direct patient care, clinical personnel burnout, etc.\n",
@@ -29,7 +28,7 @@ const Spring2022: PageSectionProps = {
 			"subtitle": "Presenter: Dr. Ragini Acharya",
 			"avatar"  : <AccessAlarmIcon/>,
 			"chips"   : [
-				"Fri, April 22 2022"
+				"04/22/2022"
 			],
 			"content" : [
 				"Hypersonic weapons are the most advanced warfare flying vehicles of our times, an emerging technology attracting a high level of interest from many countries due to their impressive strategic capabilities. These weapons travel at hypersonic speeds, can fly very long distances at low altitudes, being almost undetectable by radars, and also capable to maneuver and change trajectory during flight. For this reason, hypersonic weapons are difficult to be tracked and destroyed before hitting the target. The hypersonic weapons can be carriers for mass destruction missiles, including nuclear warheads, making them a frightening offensive tool and a symbol of power. Consequently, they became a subject for competition between the world’s military superpowers and a desired asset for several smaller countries with escalating ambitions.\n",
@@ -40,6 +39,9 @@ const Spring2022: PageSectionProps = {
 			"title"   : "History of Philosophy – DuBois’ on the Philosophy of Science",
 			"subtitle": "Presenter: Liam Kofi Bright (https://historyofphilosophy.net/du-bois-bright)",
 			"avatar"  : <AccessAlarmIcon/>,
+			"chips"   : [
+				"Asynchronous"
+			],
 			"content" : [
 				"In this episode of the podcast History of Philosophy, the guest Liam Kofi Bright, assistant professor at the London School of Economics and Political Science, discusses W.E.B. DuBois’ Philosophy of Science. DuBois was one of the pioneers of US sociology, but also covered scientific work in criminology, history, and economics. His career goal was to pursue the truth, convinced that science has to play a social role in democracy, and needs to gain people’s trust. He considered that the best way in science is to explore different options, theories, methodologies, and hypotheses because the value of pluralism in scientific work leads to better sciences.\n",
 				"DuBois’ book “The Philadelphia Negro”, is a work of urban sociology where he combines quantitative and qualitative methods, trying to offer an accurate image of the social, economic, religious, family life, and crime of African-Americans in Philadelphia. He saw this population as a “nation within a nation” because of the peculiar condition of slavery and how they had to adapt to a new reality after the Civil War, the abolition of slavery, and industrialization. DuBois concluded that the situation of African-Americans was such a moral calamity and urgency that the society has to accept the scientific conclusions and act before the ideal scientific process would determine to have enough evidence to do something. He thought that scientists working on race issues in America should suspend their custom scientific behavior, ignore the “value for ideal” and act on the basis of less evidence than normally required.\n",

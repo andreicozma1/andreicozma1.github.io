@@ -16,7 +16,7 @@ const Fall2020: PageSectionProps = {
 			"subtitle": "Presenter: Bob Muenchen (Office of Information Technology (OIT))",
 			"avatar"  : <AccessAlarmIcon/>,
 			"chips"   : [
-				"Fri, November 6 2020"
+				"11/06/2020"
 			],
 			"content" : [
 				"Mr. Muenchen is the author of \"BlueSky Statistics User's Guide\" as well as the \"R for SAS and SPSS Users\". In this workshop, he goes over the basics of BlueSky, a free and open source data science package with extensive features for data management, visualization, statistical analysis, and machine learning. His user guides, work, and tutorials are freely avaliable online, which is a great contribution to the open-source community.\n",
@@ -27,6 +27,9 @@ const Fall2020: PageSectionProps = {
 			"title"   : "Data Management Best Practices",
 			"subtitle": "Presenter: Chris Eaker",
 			"avatar"  : <AccessAlarmIcon/>,
+			"chips"   : [
+				"Asynchronous"
+			],
 			"content" : [
 				"The speaker talks about a variety of topics and examples regarding the importance of using well-designed data management practices and techniques relating to data entry, manipulation, quality control, data storage, as well as backups.\n",
 				"Properly using data management practices ensures you are able to stay well organized. Data itself must not only be well-organized, but also must be well documented, preserved, accessible, accurate, and valid. The result of using these practices is high-quality data that is easy to share and re-use in science. It allows for the citation and credibility of the research, overall cost-saving to furthering science research. This not only helps you, the researcher, but also the public by allowing the community to build upon the work of others, performing meta-analyses, and sharing resources and perspectives.\n",
@@ -40,7 +43,7 @@ const Fall2020: PageSectionProps = {
 			"subtitle": "Presenters: Karen D. Boyd and Megan King (Educational Leadership and Policy Studies)",
 			"avatar"  : <AccessAlarmIcon/>,
 			"chips"   : [
-				"Tue, November 3 2020"
+				"11/03/2020"
 			],
 			"content" : [
 				"This seminar is an interactive discussion and learning opportunity that tackles on a topic called the Impostor Syndrome. The impostor syndrome is the self-conscious idea that success is highly driven due to luck, rather than talend and qualifications. The idea was first identified in 1978 by psychologists Pauline Rose Clance and Suzanne Imes. Research on the topic has shown that the effect is experienced by both men and women because of an inability to internalize on their own successes.\n",
