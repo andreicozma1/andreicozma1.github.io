@@ -104,7 +104,8 @@ const PageSection = ({ props }: { props: PageSectionProps }) => {
 
 	const matches = useMediaQuery(theme.breakpoints.up("md"))
 
-	return <Stack spacing={theme.section.itemSpacing}
+	return <Stack id={props.title && props.title || ""}
+				  spacing={theme.section.itemSpacing}
 				  sx={{
 					  my: theme.section.verticalMargin
 				  }}>
