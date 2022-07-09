@@ -1,6 +1,5 @@
-import { ReactNode } from "react"
 import * as React from "react"
-import { SvgIcon, SvgIconTypeMap } from "@mui/material"
+import { SvgIconTypeMap } from "@mui/material"
 
 export interface InfoCardProps {
 	title: string,

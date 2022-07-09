@@ -1,9 +1,9 @@
-import { Accordion, AccordionDetails, AccordionSummary, CardHeader, Icon, Stack, Typography } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, CardHeader, Stack, Typography } from "@mui/material"
 import * as React from "react"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
 import theme from "../../config/theme"
-import Chips from "../Chips"
+import Chips from "../chips/Chips"
 
 const InfoCardAccordion = ({
 							   title,
@@ -32,7 +32,9 @@ const InfoCardAccordion = ({
 							px: "0px"
 						}}>
 			</CardHeader>
-			{headerChips && <Chips text={headerChips}/>}
+			{headerChips && <Chips text={headerChips} containerSx={{
+				px: 1
+			}}/>}
 		</AccordionSummary>
 
 

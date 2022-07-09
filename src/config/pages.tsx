@@ -14,25 +14,25 @@ export const pages: { [key: string]: PageProps } = {
 		icon: <HomeRounded/>
 	},
 	"Resume"   : {
-		href   : "/resume",
-		icon   : <SummarizeRounded/>,
+		href    : "/resume",
+		icon    : <SummarizeRounded/>,
 		sections: [ ...DataResume ]
 	},
 	"Projects" : {
-		href   : "/projects",
-		icon   : <CodeRounded/>,
+		href    : "/projects",
+		icon    : <CodeRounded/>,
 		sections: [ ...DataProjects ],
-		hidden : true
+		hidden  : true
 	},
 	"Academics": {
-		href   : "/academics",
-		icon   : <SchoolRounded/>,
+		href    : "/academics",
+		icon    : <SchoolRounded/>,
 		sections: [ ...DataAcademics ]
 	},
 	"Seminars" : {
-		href   : "/seminars",
-		icon   : <CampaignRoundedIcon/>,
-		notes  : [
+		href    : "/seminars",
+		icon    : <CampaignRoundedIcon/>,
+		notes   : [
 			{ text: "The UT Honors and Scholars Programs offer a variety of engagement opportunities to be involved and engaged, both inside and outside the classroom." },
 			{
 				text    : "These seminars inspire scholars to explore their academic interests through engaging and rewarding co-curricular experiences.",

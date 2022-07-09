@@ -1,6 +1,5 @@
 import { createTheme, IconProps } from "@mui/material"
 import { Variant } from "@mui/material/styles/createTypography"
-import { IconTypeMap } from "@mui/material/Icon/Icon"
 
 // https://www.schemecolor.com/gold-blue-color-combination.php
 declare module "@mui/material/styles" {
@@ -113,10 +112,10 @@ const theme = createTheme({
 		size      : "20rem"
 	},
 	topbar            : {
-		opacity: 0.99,
+		opacity           : 0.99,
 		selectedFontWeight: "bold",
-		hiddenOpacity: 0.5,
-		spacing: 2
+		hiddenOpacity     : 0.5,
+		spacing           : 2
 	},
 	particles         : {
 		filter: "blur(15px)"
@@ -128,13 +127,13 @@ const theme = createTheme({
 		verticalMargin : 3
 	},
 	card              : {
-		elevation : 4,
-		fontWeight: "medium",
-		iconColor : "primary",
-		spacing   : 1,
-		headerOpacity: 0.7,
-		contentOpacity: 0.8,
-		titleFontSize: 16,
+		elevation        : 4,
+		fontWeight       : "medium",
+		iconColor        : "primary",
+		spacing          : 1,
+		headerOpacity    : 0.7,
+		contentOpacity   : 0.8,
+		titleFontSize    : 16,
 		subheaderFontSize: 15
 	}
 })

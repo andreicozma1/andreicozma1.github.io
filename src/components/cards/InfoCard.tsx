@@ -2,7 +2,8 @@ import { Box, Card, CardContent, CardHeader, Stack, Typography } from "@mui/mate
 import * as React from "react"
 import theme from "../../config/theme"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
-import Chips from "../Chips"
+import CardHeaderChips from "../chips/CardHeaderChips"
+import CardContentChips from "../chips/CardContentChips"
 
 const InfoCard = ({
 					  title,
@@ -21,8 +22,7 @@ const InfoCard = ({
 				 }}>
 		<Box sx={{
 
-			background: `rgba(255, 255, 255, ${theme.card.headerOpacity})`, // if headerChips exists then display flex
-			...(headerChips && {
+			background: `rgba(255, 255, 255, ${theme.card.headerOpacity})`, ...(headerChips && {
 				display: "flex"
 			} || {})
 		}}>
@@ -35,7 +35,7 @@ const InfoCard = ({
 						subheaderTypographyProps={{ fontSize: theme.card.subheaderFontSize }}
 						sx={{ display: "inline-flex" }}
 						avatar={avatar}/>
-			{headerChips && <Chips text={headerChips}/>}
+			{headerChips && <CardHeaderChips chips={headerChips}/>}
 		</Box>
 
 		{(content || contentChips) && <CardContent component={Stack} spacing={theme.card.spacing}>
@@ -45,7 +45,7 @@ const InfoCard = ({
 				return <Typography key={index}>{text}</Typography>
 			})}
 
-			{contentChips && <Chips text={contentChips} defaultVariant="filled"/>}
+			{contentChips && <CardContentChips chips={contentChips}/>}
         </CardContent>}
 	</Card>
 }

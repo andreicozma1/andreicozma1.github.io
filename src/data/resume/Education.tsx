@@ -11,24 +11,26 @@ const Education: PageSectionProps = {
 	md           : 12,
 	items        : [
 		{
-			"title"   : "MS in Computer Science",
-			"subtitle": "University of Tennessee, Knoxville",
-			"avatar"  : <AccessAlarmIcon/>,
-			"headerChips"   : [
-				"GPA: 3.9", "08/2022 - Present"
+			"title"      : "Computer Science M.S.",
+			"subtitle"   : "University of Tennessee, Knoxville",
+			"avatar"     : <AccessAlarmIcon/>,
+			"headerChips": [
+				"Starting 08/2022"
 			],
-			"content" : [
+			"content"    : [
 				"Concentration: Intelligent Systems & Machine Learning"
 			]
 		}, {
-			"title"   : "BS in Computer Science",
-			"subtitle": "University of Tennessee, Knoxville",
-			"avatar"  : <AccessAlarmIcon/>,
-			"headerChips"   : [
-				"GPA: 3.87", "08/2018 - 05/2022"
+			"title"       : "Computer Science 5-Yr BS/MS",
+			"subtitle"    : "University of Tennessee, Knoxville",
+			"avatar"      : <AccessAlarmIcon/>,
+			"headerChips" : [
+				"Summa Cum Laude", "GPA: 3.87", "08/2018 - 05/2022"
 			],
-			"content" : [
-				"Honors: Summa Cum Laude + Chancellor's Honors Program", "Concentration: Computer Science 5-Yr BS/MS",
+			"contentChips": [
+				"VolHacks President", "Pi Kappa Phi Secretary", "Chancellor's Honors Program"
+			],
+			"content"     : [
 				"Minors: Cybersecurity & Business Administration"
 			]
 		}

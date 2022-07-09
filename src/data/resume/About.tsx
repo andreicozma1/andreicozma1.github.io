@@ -12,7 +12,7 @@ const About: PageSectionProps = {
 	items        : [
 		{
 			"title"  : "Personal Statement",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar" : <AccessAlarmIcon/>,
 			"content": [
 				`In my personal and work life I am an enthusiastic and dedicated team player with a positive attitude,
             driven to adapt to any situation. I always strive to attain the highest possible standards of quality and excellence.`,
@@ -22,17 +22,11 @@ const About: PageSectionProps = {
             help find solutions to world problems.`
 			]
 		}, {
-			"title"  : "Skills & Interests",
-			"avatar"  : <AccessAlarmIcon/>,
+			"title"       : "Topics of Interest",
+			"avatar"      : <AccessAlarmIcon/>,
 			"contentChips": [
-				"Deep Learning",
-				"Machine Learning",
-				"Artificial Intelligence",
-				"Natural Language Processing",
-				"Computer Vision",
-				"Cyber-security",
-				"Data Analytics",
-				"Mobile & Embedded Systems"
+				"Intelligent Systems", "Cybersecurity", "Deep Learning", "Machine Learning", "Artificial Intelligence",
+				"Natural Language Processing", "Computer Vision", "Data Analytics", "Mobile & Embedded Systems"
 			]
 		}
 	]

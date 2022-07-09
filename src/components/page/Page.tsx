@@ -36,7 +36,7 @@ const Page = ({
 		<ResponsiveTopBar page={data}/>
 		<Container component={Stack} spacing={2} sx={{
 			paddingBottom: theme.spacing(4),
-			opacity: 0.99
+			opacity      : 0.99
 		}}>
 			{data.sections && <PageBreadcrumbs page={data}/>}
 			{data.notes && <SlideNotes notesArray={data.notes}/>}

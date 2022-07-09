@@ -13,32 +13,10 @@ import {
 	TimelineOppositeContent,
 	TimelineSeparator
 } from "@mui/lab"
-import Chips from "../Chips"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
+import TimelineOppositeChipsContent from "../chips/TimelineOppositeChipsContent"
 
 const PageSection = ({ props }: { props: PageSectionProps }) => {
-
-	const getChipsSx = (index: number) => {
-		let chipsProps = {
-			my: "0px",
-			p : "0px"
-		}
-		if (index % 2 === 0) {
-			chipsProps = {
-				...chipsProps,
-				ml: "auto",
-				mr: "0px"
-			}
-		} else {
-			chipsProps = {
-				...chipsProps,
-				ml: "0px",
-				mr: "auto"
-			}
-		}
-
-		return chipsProps
-	}
 
 	const getColor = (index: number): TimelineDotProps["color"] => {
 		if (index % 2 === 0) return "secondary"
@@ -67,12 +45,7 @@ const PageSection = ({ props }: { props: PageSectionProps }) => {
 							justifyContent: "center",
 							flexDirection : "column"
 						}}>
-						{itemProps.headerChips && <Chips text={itemProps.headerChips} direction="row"
-                                                         defaultVariant="filled"
-                                                         sx={getChipsSx(index)}/>}
-						{itemProps.contentChips && <Chips text={itemProps.contentChips} direction="row"
-                                                          defaultVariant="filled"
-                                                          sx={getChipsSx(index)}/>}
+						<TimelineOppositeChipsContent itemProps={itemProps} index={index}/>
 					</TimelineOppositeContent>
 					<TimelineSeparator>
 						<TimelineDot color={getColor(index)}>

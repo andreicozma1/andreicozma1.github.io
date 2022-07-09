@@ -1,10 +1,10 @@
 import Current from "./Current"
-import Completed from "./Completed"
+import General from "./General"
 import IntelligentSystems from "./IntelligentSystems"
 import Cybersecurity from "./Cybersecurity"
 
 const DataAcademics = [
-	Current, IntelligentSystems, Cybersecurity, Completed
+	Current, IntelligentSystems, Cybersecurity, General
 ]
 
 export default DataAcademics
