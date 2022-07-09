@@ -16,6 +16,8 @@ const InfoCard = ({
 	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[],
 }) => {
 
+	if (contentChips && contentChips.length === 0) contentChips = undefined
+
 	return <Card elevation={theme.card.elevation}
 				 sx={{
 					 background: `rgba(255, 255, 255, ${theme.card.contentOpacity})`

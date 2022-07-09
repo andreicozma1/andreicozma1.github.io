@@ -68,11 +68,11 @@ const ActivitiesSocieties: PageSectionProps = {
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
 			"title"  : "American Red Cross Volunteer",
+			"subtitle": "Middle Tennessee Chapter",
 			"chips"  : {
 				"date"     : [ "08/2014 - Present" ],
 				"positions": [ "Member", "Volunteer" ]
 			},
-			"content": "Middle Tennessee Chapter",
 			"avatar" : <AccessAlarmIcon/>
 		}
 	]
