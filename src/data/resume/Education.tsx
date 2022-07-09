@@ -17,7 +17,7 @@ const Education: PageSectionProps = {
 				"Concentration: Intelligent Systems & Machine Learning"
 			]
 		}, {
-			"title"       : "Computer Science 5-Yr BS/MS",
+			"title"       : "Computer Science 5-Yr B.S./M.S.",
 			"subtitle"    : "University of Tennessee, Knoxville",
 			"avatar"      : <AccessAlarmIcon/>,
 			"headerChips" : [
