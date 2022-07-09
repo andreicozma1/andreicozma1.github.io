@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpersonal_portfolio=self.webpackChunkpersonal_portfolio||[]).push([[753],{1391:function(e,r,t){t.r(r);var a=t(7294),n=t(5379),o=t(3708);r.default=function(){var e=(0,o.q)("Resume");return a.createElement(n.Z,{data:e})}}}]);
+//# sourceMappingURL=component---src-pages-resume-tsx-0caffb5e48a4dd715d85.js.map
