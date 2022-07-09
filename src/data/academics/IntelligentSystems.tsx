@@ -13,9 +13,11 @@ const Completed: PageSectionProps = {
 			"chips"   : {
 				"contentChips": [
 					"Loss and Optimization", "Artificial Neural Network", "Convolutional Neural Network", "Autoencoder",
-					"Generative Adversarial Network", "RNN", "LSTM", "Transformer", "Python", "TensorFlow", "Numpy",
-					"Matplotlib"
-				]
+					"Generative Adversarial Network", "RNN", "LSTM", "Transformer"
+				],
+				"languages"   : [ "Python" ],
+				"libraries"   : [ "TensorFlow", "Numpy", "Matplotlib" ],
+				"tools"       : [ "GitHub" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
@@ -24,9 +26,11 @@ const Completed: PageSectionProps = {
 			"chips"   : {
 				"contentChips": [
 					"Uninformed and Informed Search", "Search Engines", "Adversarial Search", "Constraint Satisfaction",
-					"Planning", "Knowledge Representation & Reasoning", "Decision-Making", "Multi-Agent Systems",
-					"Python", "TensorFlow", "Scikit-Learn", "Numpy", "Matplotlib"
-				]
+					"Planning", "Knowledge Representation & Reasoning", "Decision-Making", "Multi-Agent Systems"
+				],
+				"languages"   : [ "Python" ],
+				"libraries"   : [ "TensorFlow", "Scikit-Learn", "Numpy", "Matplotlib" ],
+				"tools"       : [ "GitHub" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
@@ -36,8 +40,11 @@ const Completed: PageSectionProps = {
 				"contentChips": [
 					"Loss and Optimization", "Linear & Logistic Regression", "Feature Selection", "Regularization",
 					"Cross Validation", "Model Selection", "Evaluation", "Support Vector Machines", "Decision Trees",
-					"Boosting", "Neural Networks", "Python", "Numpy", "Matplotlib"
-				]
+					"Boosting", "Neural Networks"
+				],
+				"languages"   : [ "Python" ],
+				"libraries"   : [ "Numpy", "Matplotlib" ],
+				"tools"       : [ "GitHub" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
@@ -47,8 +54,10 @@ const Completed: PageSectionProps = {
 				"contentChips": [
 					"Neural Networks", "Genetic Algorithms", "Evolutionary Programming", "Ant-Swarm Optimization",
 					"Artificial Immune Systems", "Swarm Intelligence", "Cellular Automata", "Multi-Agent Systems",
-					"Cooperation", "Competition", "Python", "Numpy", "Matplotlib"
-				]
+					"Cooperation", "Competition"
+				],
+				"languages"   : [ "Python" ],
+				"libraries"   : [ "Numpy", "Matplotlib" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}

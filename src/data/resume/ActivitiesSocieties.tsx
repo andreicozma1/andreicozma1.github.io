@@ -67,13 +67,13 @@ const ActivitiesSocieties: PageSectionProps = {
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
-			"title"  : "American Red Cross Volunteer",
+			"title"   : "American Red Cross Volunteer",
 			"subtitle": "Middle Tennessee Chapter",
-			"chips"  : {
+			"chips"   : {
 				"date"     : [ "08/2014 - Present" ],
 				"positions": [ "Member", "Volunteer" ]
 			},
-			"avatar" : <AccessAlarmIcon/>
+			"avatar"  : <AccessAlarmIcon/>
 		}
 	]
 }

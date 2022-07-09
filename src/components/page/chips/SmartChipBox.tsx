@@ -3,10 +3,13 @@ import * as React from "react"
 import SmartChip from "./SmartChip"
 import { CardChipsProps } from "../../interfaces/InfoCardProps"
 
-export const combineChips = ({chips, all}: {chips?: CardChipsProps, all: boolean}) => {
-	if ( chips === undefined ) {
+export const combineChips = ({
+								 chips,
+								 all
+							 }: { chips?: CardChipsProps, all: boolean }) => {
+	if (chips === undefined) {
 		return {
-			allHeaderChips: undefined,
+			allHeaderChips : undefined,
 			allContentChips: undefined
 		}
 	}

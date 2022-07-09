@@ -10,28 +10,28 @@ const AchievementsLicensesCertifications: PageSectionProps = {
 			"title"   : "From Data to Insights with Google Cloud Platform Specialization",
 			"subtitle": "No expiration",
 			"chips"   : {
-				"headerChips": ["Awarded 08/2020"]
+				"headerChips": [ "Awarded 08/2020" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
 			"title"   : "Google Cloud Essentials Certificate",
 			"subtitle": "No expiration",
 			"chips"   : {
-				"headerChips": ["Awarded 07/2020"]
+				"headerChips": [ "Awarded 07/2020" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
 			"title"   : "Tennessee Scholar (Certificate of Excellence)",
 			"subtitle": "No expiration",
 			"chips"   : {
-				"headerChips": ["Awarded 05/2018"]
+				"headerChips": [ "Awarded 05/2018" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
 			"title"   : "NHS Medallion (Most Volunteer Hours)",
 			"subtitle": "No expiration",
 			"chips"   : {
-				"headerChips": ["Awarded 05/2018"]
+				"headerChips": [ "Awarded 05/2018" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}

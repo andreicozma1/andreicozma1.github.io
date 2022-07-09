@@ -10,13 +10,13 @@ const Cybersecurity: PageSectionProps = {
 		{
 			"title"   : "COSC 466 - Software Security",
 			"subtitle": `An in-depth introduction to software security. The focus is on identifying vulnerabilities in software, 
-						exploiting vulnerabilities in software, and software development best practices for avoiding vulnerabilities
-						 during the design, implementation, testing, and deployment of software.`,
+						exploiting vulnerabilities in software, and software development best practices for avoiding vulnerabilities 
+						during the design, implementation, testing, and deployment of software.`,
 			"chips"   : {
 				"contentChips": [
-					"Threat Modeling", "Security Architecture", "Security Testing", "Security Analysis", "X86 Assembly",
-					"C/C++", "Python", "JavaScript"
-				]
+					"Threat Modeling", "Security Architecture", "Security Testing", "Security Analysis"
+				],
+				"languages"   : [ "X86 Assembly", "C/C++", "Python", "JavaScript" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
@@ -30,8 +30,7 @@ const Cybersecurity: PageSectionProps = {
 					"Nuclear Plants"
 				]
 			},
-
-			"avatar": <AccessAlarmIcon/>
+			"avatar"  : <AccessAlarmIcon/>
 		}, {
 			"title"   : "ECE 469 - Mobile/Embedded Systems Security",
 			"subtitle": `Introduction to vulnerabilities and threat vectors associated with mobile and embedded devices, 
@@ -40,11 +39,11 @@ const Cybersecurity: PageSectionProps = {
 				"contentChips": [
 					"Mobile Operating Systems", "Mobile Location and Activity Privacy", "User/Device Authentication",
 					"IoT Wireless Security", "Side-Channel Attacks",
-					"Security and Privacy Breaches on Smart Home" + " Devices", "Python"
-				]
+					"Security and Privacy Breaches on Smart Home" + " Devices"
+				],
+				"languages"   : [ "Python" ]
 			},
-
-			"avatar": <AccessAlarmIcon/>
+			"avatar"  : <AccessAlarmIcon/>
 		}, {
 			"title"   : "COSC 366 - Introduction to Cybersecurity",
 			"subtitle": `A broad introduction to cybersecurity concepts and practices, and the current challenges in cybersecurity.`,
@@ -52,9 +51,9 @@ const Cybersecurity: PageSectionProps = {
 			"chips"   : {
 				"contentChips": [
 					"Security Goals", "Threat Modeling", "Software Security", "Operating System Security",
-					"Cryptography", "Network Security", "Human Factors", "Authentication", "Access control", "C/C++",
-					"Python", "JavaScript", "X86 Assembly"
-				]
+					"Cryptography", "Network Security", "Human Factors", "Authentication", "Access control"
+				],
+				"languages"   : [ "X86 Assembly", "C/C++", "Python", "JavaScript" ]
 			}
 
 		}

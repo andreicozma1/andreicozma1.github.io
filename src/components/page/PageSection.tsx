@@ -74,7 +74,14 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 			  alignItems="stretch">
 			{props.items.map((itemProps: InfoCardProps, index: number) => {
 
-				const date = itemProps.chips && itemProps.chips.date || undefined
+				const headerChips = itemProps.chips && [
+					...itemProps.chips.headerChips || [], ...itemProps.chips.date || []
+				]
+				const contentChips = itemProps.chips && [
+					...itemProps.chips.awards || [], ...itemProps.chips.positions || [],
+					...itemProps.chips.languages || [], ...itemProps.chips.libraries || [],
+					...itemProps.chips.tools || [], ...itemProps.chips.contentChips || []
+				]
 
 				return <Grid item xs={12} md={props.variant === "grid6"
 					? 6
@@ -84,8 +91,8 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 						subtitle={itemProps.subtitle}
 						content={itemProps.content}
 						avatar={itemProps.avatar}
-						headerChips={date}
-						contentChips={itemProps.chips && itemProps.chips.contentChips}
+						headerChips={headerChips}
+						contentChips={contentChips}
 					/>
 				</Grid>
 			})}

@@ -22,15 +22,17 @@ const SmartChip = ({
 	const mAchieve = [ "GPA", "Summa Cum Laude" ]
 	const mProg = [
 		"Assembly", "C/C++", "C#", "Java", "Kotlin", "Python", "Ruby", "Swift", "TypeScript", "HTML", "CSS",
-		"JavaScript", "PHP", "Bash", "CoffeeScript", "GoLang", "Haskell", "Lua", "Perl", "Rust", "Scala", "Shell",
+		"JavaScript", "PHP", "Bash", "CoffeeScript", "GoLang", "Haskell", "Perl", "Rust", "Scala", "Shell",
 		"Visual Basic"
 	]
 	const mLib = [
-		"React", "Angular", "Vue", "Node", "Express", "Django", "Flask", "AWS", "Matplotlib", "Pandas", "Numpy",
-		"Scikit-Learn", "TensorFlow", "Keras", "PyTorch", "JQuery"
+		"React", "Angular", "Vue", "Node", "Express", "Django", "Flask", "Matplotlib", "Pandas", "Numpy",
+		"Scikit-Learn", "TensorFlow", "Keras", "PyTorch", "JQuery", "Material-UI", "Redux"
 	]
 	const mDB = [ "SQL", "NoSQL", "MongoDB", "MySQL", "PostgreSQL", "Firebase", "SQLite" ]
-	const mTool = [ "Linux", "Windows", "macOS", "Git", "GitHub", "GitLab", "Jira", "BitBucket", "Jenkins", "Docker" ]
+	const mTool = [
+		"Linux", "Windows", "macOS", "Git", "GitHub", "GitLab", "Jira", "BitBucket", "Jenkins", "Docker", "AWS"
+	]
 	const mPosition = [ "President", "Secretary", "Manager" ]
 	const mMember = [ "Member", "Volunteer" ]
 	const mChapter = [ "Chapter", "Club" ]

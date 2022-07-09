@@ -16,16 +16,17 @@ const About: PageSectionProps = {
             I am constantly seeking to learn new skills, gain experiences and the knowledge needed to be able to
             help find solutions to world problems.`
 			],
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar" : <AccessAlarmIcon/>
 		}, {
-			"title"       : "Topics of Interest",
-			"chips": {
+			"title" : "Topics of Interest",
+			"chips" : {
 				"contentChips": [
-					"Intelligent Systems", "Cybersecurity", "Deep Learning", "Machine Learning", "Artificial Intelligence",
-					"Natural Language Processing", "Computer Vision", "Data Analytics", "Mobile & Embedded Systems"
+					"Intelligent Systems", "Cybersecurity", "Deep Learning", "Machine Learning",
+					"Artificial Intelligence", "Natural Language Processing", "Computer Vision", "Data Analytics",
+					"Mobile & Embedded Systems"
 				]
 			},
-			"avatar"      : <AccessAlarmIcon/>,
+			"avatar": <AccessAlarmIcon/>
 		}
 	]
 }
