@@ -1,20 +1,18 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import PageSection from "../../components/page/PageSection"
 
 const WorkExperience: PageSectionProps = {
-	title        : "Work Experience",
-	variant       : "timeline",
-	items        : [
+	title  : "Work Experience",
+	variant: "timeline",
+	items  : [
 		{
 			"title"       : "Summer Research Assistant",
 			"subtitle"    : "The University of Tennessee, Knoxville",
-			"headerChips" : "05/2021 - Present",
-			"contentChips": [
-				"Cybersecurity", "Data Analytics", "Linux", "Git", "Python", "Go"
+			"headerChips" : [
+				"Cybersecurity", "Phishing", "Data Analytics", "Python", "GoLang", "Linux", "Git"
 			],
+			"contentChips": "05/2021 - Present",
 			"avatar"      : <AccessAlarmIcon/>,
 			"content"     : [
 				`Assist with research and ongoing projects, including software development and analysis on a variety of cybersecurity topics, writing and documenting research and findings, performing analytics, collecting and analyzing data, and creating visualizations of results.`
@@ -22,22 +20,22 @@ const WorkExperience: PageSectionProps = {
 		}, {
 			"title"       : "Undergraduate Teaching Assistant",
 			"subtitle"    : "The University of Tennessee, Knoxville",
-			"headerChips" : "01/2022 - 05/2022",
-			"contentChips": [
-				"Cybersecurity", "Cybersecurity", "Grading", "Exam Proctoring"
+			"headerChips" : [
+				"Cybersecurity", "Security Goals", "Threat Modeling", "Software Security", "Operating System Security", "Cryptography",
+				"Network Security", "Human Factors"
 			],
+			"contentChips": "01/2022 - 05/2022",
 			"avatar"      : <AccessAlarmIcon/>,
 			"content"     : [
-				`Teaching assistant for Dr. Doowon Kim's Introduction to Cybersecurity course.`,
-				`Main responsibilities include assisting students and answering questions they may have about the course materials, providing useful feedback, grading quizzes and other assignments, etc.`
+				`Teaching assistant for Dr. Doowon Kim's Introduction to Cybersecurity course. Main responsibilities include assisting students and answering questions they may have about the course materials, providing useful feedback, grading quizzes and other assignments, etc.`
 			]
 		}, {
 			"title"       : "Undergraduate Research Assistant",
 			"subtitle"    : "The University of Tennessee, Knoxville",
-			"headerChips" : "03/2021 - 10/2021",
-			"contentChips": [
-				"Cybersecurity", "Data Analytics", "Linux", "Git", "Python", "JavaScript", "MongoDB", "SQL"
+			"headerChips" : [
+				"Cybersecurity", "Web Security", "Certificates", "Phishing", "Data Analytics", "Python", "JavaScript", "Bash Scripting", "Linux", "Git", "Docker",  "MongoDB", "SQL",
 			],
+			"contentChips": "03/2021 - 10/2021",
 			"avatar"      : <AccessAlarmIcon/>,
 			"content"     : [
 				`Assist with research and ongoing projects, including software development and analysis on a variety of cybersecurity topics, writing and documenting research and findings, performing analytics, collecting and analyzing data, and creating visualizations of results.`
@@ -45,11 +43,11 @@ const WorkExperience: PageSectionProps = {
 		}, {
 			"title"       : "Software Developer Intern (Summer)",
 			"subtitle"    : "Elo Touch Solutions",
-			"headerChips" : "05/2021 - 08/2021",
-			"contentChips": [
-				"Android System Development", "Android App Development", "Java", "Kotlin", "C/C++", "Bash", "Python",
-				"Git", "Linux", "Embedded Systems", "Jira"
+			"headerChips" : [
+				"Operating System Development", "AOSP", "Android SDK", "Embedded Systems", "Java", "Kotlin", "C/C++",
+				"Python", "Bash Scripting", "Linux", "Git", "Atlassian Jira", "Jenkins"
 			],
+			"contentChips": "05/2021 - 08/2021",
 			"avatar"      : <AccessAlarmIcon/>,
 			"content"     : [
 				`Design, implement, and test Software Frameworks, Solutions, and Demo Applications for ELO's
@@ -59,11 +57,11 @@ const WorkExperience: PageSectionProps = {
 		}, {
 			"title"       : "Software Developer Intern (All-Year)",
 			"subtitle"    : "Elo Touch Solutions",
-			"headerChips" : "01/2020 - 12/2020",
-			"contentChips": [
-				"Android System Development", "Android App Development", "Java", "Kotlin", "C/C++", "Bash", "Python",
-				"Git", "Linux", "Embedded Systems", "Jira"
+			"headerChips" : [
+				"Operating System Development", "AOSP", "Android SDK", "Embedded Systems", "Java", "Kotlin", "C/C++",
+				"Python", "Bash Scripting", "Linux", "Git", "Atlassian Jira", "Jenkins"
 			],
+			"contentChips": "01/2020 - 12/2020",
 			"avatar"      : <AccessAlarmIcon/>,
 			"content"     : [
 				`Design, implement, and test Software Frameworks, Solutions, and Demo Applications for ELO's
@@ -73,10 +71,10 @@ const WorkExperience: PageSectionProps = {
 		}, {
 			"title"       : "Asset Protection",
 			"subtitle"    : "Walmart Inc.",
-			"headerChips" : "05/2019 - 08/2019",
-			"contentChips": [
+			"headerChips" : [
 				"Asset Protection", "Theft Investigation", "Security"
 			],
+			"contentChips": "05/2019 - 08/2019",
 			"avatar"      : <AccessAlarmIcon/>,
 			"content"     : [
 				`Secure and safeguard the facility by observing and communicating suspicious activity, assisting

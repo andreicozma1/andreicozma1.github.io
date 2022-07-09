@@ -27,43 +27,50 @@ const SmartChip = ({
 	}
 
 	const getColor = (text: string): ChipProps["color"] => {
-		if (text.includes("GPA")) {
-			return "secondary"
+		const mAchieve = [ "GPA", "Summa Cum Laude"]
+		if (mAchieve.some(m => text.toLowerCase().includes(m.toLowerCase()))) {
+			return "success"
 		}
+
 		const mProg = [
-			"Assembly", "C/C++", "C#", "Java", "Python", "Ruby", "Swift", "TypeScript", "HTML", "CSS", "JavaScript",
+			"Assembly", "C/C++", "C#", "Java", "Kotlin", "Python", "Ruby", "Swift", "TypeScript", "HTML", "CSS", "JavaScript",
 			"PHP", "Bash", "CoffeeScript", "GoLang", "Haskell", "Lua", "Perl", "Rust", "Scala", "Shell", "Visual Basic",
 		]
-		if (mProg.some(m => text.includes(m))) {
+		if (mProg.some(m => text.toLowerCase().includes(m.toLowerCase()))) {
 			return "primary"
 		}
 
 		const mLib = [
-			"React", "Angular", "Vue", "Node", "Express", "Django", "Flask", "Docker", "AWS", "Matplotlib", "Pandas",
+			"React", "Angular", "Vue", "Node", "Express", "Django", "Flask", "AWS", "Matplotlib", "Pandas",
 			"Numpy", "Scikit-Learn", "TensorFlow", "Keras", "PyTorch", "JQuery"
 		]
-
-		if (mLib.some(m => text.includes(m))) {
-			return "secondary"
+		if (mLib.some(m => text.toLowerCase().includes(m.toLowerCase()))) {
+			return "primary"
 		}
 
-		const mDB = [ "SQL", "NoSQL", "MongoDB", "MySQL", "PostgreSQL", "Firebase" ]
-		if (mDB.some(m => text.includes(m))) {
-			return "success"
-		}
-
-		const mTool = [ "Git", "GitHub", "GitLab", "Jira", "BitBucket", "Jenkins" ]
-		if (mTool.some(m => text.includes(m))) {
+		const mDB = [ "SQL", "NoSQL", "MongoDB", "MySQL", "PostgreSQL", "Firebase", "SQLite"]
+		if (mDB.some(m => text.toLowerCase().includes(m.toLowerCase()))) {
 			return "info"
+		}
+
+		const mTool = [ "Linux", "Windows", "macOS", "Git", "GitHub", "GitLab", "Jira", "BitBucket", "Jenkins", "Docker"]
+		if (mTool.some(m => text.toLowerCase().includes(m.toLowerCase()))) {
+			return "secondary"
 		}
 
 		return defaultColor || "default"
 	}
 
 	const getVariant = (text: string): ChipProps["variant"] => {
-		if (text.includes("GPA")) {
+		const mAchieve = [ "GPA", "Summa Cum Laude"]
+		if (mAchieve.some(m => text.toLowerCase().includes(m.toLowerCase()))) {
 			return "filled"
 		}
+		const dateMatch = [ "/", " - " ]
+		if (dateMatch.every(m => text.includes(m))) {
+			return "outlined"
+		}
+
 		return defaultVariant || "outlined"
 	}
 
