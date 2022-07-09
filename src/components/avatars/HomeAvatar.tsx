@@ -1,12 +1,13 @@
 import { Avatar, Box, styled, Zoom } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"
+import theme from "../../config/theme"
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
-	width    : "20rem",
-	height   : "20rem",
+	width    : theme.avatar.size,
+	height   : theme.avatar.size,
 	alignSelf: "center",
-	border   : `7px solid ${theme.palette.primary.main}`
+	border   : `${theme.avatar.borderSize} solid ${theme.palette.primary.main}`
 }))
 
 const HomeAvatar = () => {
@@ -25,7 +26,7 @@ const HomeAvatar = () => {
 			transform: "translate(-50%, -50%)"
 		}}>
 			<Zoom in={checked}
-				  timeout={1000}>
+				  timeout={theme.transitionDuration.avatar}>
 				<StyledAvatar
 					alt="Andrei Cozma"
 					src="avatar_alt.jpg"

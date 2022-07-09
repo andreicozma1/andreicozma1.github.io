@@ -2,28 +2,25 @@ import * as React from "react"
 import { Box, Grid, Stack, Typography } from "@mui/material"
 import theme from "../../config/theme"
 import { PageSectionProps } from "../interfaces/PageSectionProps"
-import Notes from "../Notes"
+import SlideNotes from "../SlideNotes"
 
 const PageSection = ({ props }: { props: PageSectionProps }) => {
-	const defaultSpacing = theme.spacing(1)
-	const headerVariant = "h5"
-	const headerFontWeight = "medium"
 	const md = props.md || 6
 
-	return <Stack spacing={props.spacing === undefined
-		? defaultSpacing
-		: props.spacing}>
-		<Typography variant={headerVariant}
-					fontWeight={headerFontWeight}
+	return <Stack spacing={theme.section.itemSpacing}
+				  sx={{
+					  my: theme.section.verticalMargin
+				  }}>
+		<Typography variant={theme.section.titleVariant}
+					fontWeight={theme.section.titleFontWeight}
 					sx={{
-						my            : defaultSpacing,
 						textDecoration: "underline"
 					}}>
 			{props.title}
 		</Typography>
-		{props.notes && <Notes notesArray={props.notes}/>}
+		{props.notes && <SlideNotes notesArray={props.notes}/>}
 		<Box sx={{ flexGrow: 1 }}>
-			<Grid container spacing={2}
+			<Grid container spacing={theme.section.itemSpacing}
 				  justifyContent="space-evenly"
 				  alignItems="stretch">
 				{props.items.map((itemProps, index) => {

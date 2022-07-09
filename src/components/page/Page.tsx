@@ -1,14 +1,14 @@
-import { Container, Stack, ThemeProvider } from "@mui/material"
+import { Box, Container, Fade, Stack, ThemeProvider } from "@mui/material"
 import ResponsiveTopBar from "../TopBar"
 import * as React from "react"
-import { ReactNode } from "react"
+import { ReactNode, useEffect } from "react"
 import PageBreadcrumbs from "./PageBreadcrumbs"
 import theme from "../../config/theme"
 import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles"
 import particlesOptions from "../../config/particles.json"
 import { PageProps } from "../interfaces/PageProps"
-import Notes from "../Notes"
+import SlideNotes from "../SlideNotes"
 
 const Page = ({
 				  data,
@@ -22,23 +22,33 @@ const Page = ({
 
 	const [ checked, setChecked ] = React.useState(false)
 
+	useEffect(() => {
+		setChecked(true)
+	}, [])
+
 	return (<ThemeProvider theme={theme}>
 		{/*// @ts-ignore*/}
 		<Particles init={particlesInit} options={particlesOptions}
 				   style={{
 					   position: "fixed",
-					   filter  : "blur(15px)"
+					   filter  : theme.particles.filter
 				   }}/>
 		<ResponsiveTopBar page={data}/>
 		<Container component={Stack} spacing={2} sx={{
 			paddingBottom: theme.spacing(4),
-			opacity      : 0.99
+			opacity: 0.99
 		}}>
 			{data.sections && <PageBreadcrumbs page={data}/>}
-			{data.notes && <Notes notesArray={data.notes}/>}
-			{data.sections && data.sections.map((section, index) => (
-				<section.layout key={index} props={section}></section.layout>))}
-			{children}
+			{data.notes && <SlideNotes notesArray={data.notes}/>}
+
+			<Fade in={checked}
+				  timeout={theme.transitionDuration.page}>
+				<Box>
+					{data.sections && data.sections.map((section, index) => (
+						<section.layout key={index} props={section}></section.layout>))}
+					{children}
+				</Box>
+			</Fade>
 		</Container>
 	</ThemeProvider>)
 }

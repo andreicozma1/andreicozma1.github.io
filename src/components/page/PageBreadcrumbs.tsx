@@ -1,5 +1,6 @@
-import { Breadcrumbs, Chip, emphasize, styled } from "@mui/material"
+import { Breadcrumbs, Chip, emphasize, Slide, styled } from "@mui/material"
 import * as React from "react"
+import { useEffect } from "react"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import theme from "../../config/theme"
 import NavigateNextIcon from "@mui/icons-material/NavigateNext"
@@ -30,23 +31,34 @@ export function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
 }
 
 const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
-	return <Breadcrumbs aria-label="breadcrumb"
-						separator={<NavigateNextIcon fontSize="small"/>}
-						sx={{
-							paddingTop: theme.spacing(2)
-						}}>
-		<StyledBreadcrumb
-			component="a"
-			label={page.href}
-			href="#"
-			icon={page.icon}
-		/>
-		<StyledBreadcrumb
-			label="#"
-			deleteIcon={<ExpandMoreIcon/>}
-			onDelete={handleClick}
-		/>
-	</Breadcrumbs>
+
+	const [ checked, setChecked ] = React.useState(false)
+
+	useEffect(() => {
+		setChecked(true)
+	}, [])
+
+	return <Slide in={checked}
+				  direction="right"
+				  timeout={theme.transitionDuration.breadcrumb}>
+		<Breadcrumbs aria-label="breadcrumb"
+					 separator={<NavigateNextIcon fontSize="small"/>}
+					 sx={{
+						 paddingTop: theme.spacing(2)
+					 }}>
+			<StyledBreadcrumb
+				component="a"
+				label={page.href}
+				href="#"
+				icon={page.icon}
+			/>
+			<StyledBreadcrumb
+				label="#"
+				deleteIcon={<ExpandMoreIcon/>}
+				onDelete={handleClick}
+			/>
+		</Breadcrumbs>
+	</Slide>
 }
 
 export default PageBreadcrumbs

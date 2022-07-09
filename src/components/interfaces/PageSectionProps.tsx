@@ -7,6 +7,5 @@ export interface PageSectionProps {
 	layout: React.ComponentType<any>,
 	itemComponent: React.ComponentType<any>,
 	items: object[],
-	spacing?: number,
 	md?: number
 }

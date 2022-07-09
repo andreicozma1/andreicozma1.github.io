@@ -9,7 +9,8 @@ import HeaderAvatar from "./avatars/HeaderAvatar"
 import { pages } from "../config/pages"
 import { PageProps } from "./interfaces/PageProps"
 import { Button, IconButton } from "gatsby-theme-material-ui"
-import { AppBar, Slide, Toolbar } from "@mui/material"
+import { AppBar, Slide, Stack, Toolbar } from "@mui/material"
+import theme from "../config/theme"
 
 const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 	const [ anchorElNav, setAnchorElNav ] = React.useState<null | HTMLElement>(null)
@@ -36,12 +37,10 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 
 	return <Slide
 		in={checked}
-		timeout={2500}
-		direction="down"
-		style={{
-			transitionDelay: "500ms"
-		}}>
-		<AppBar position="static" sx={{ opacity: 0.9 }}>
+		timeout={theme.transitionDuration.topbar}
+		direction="down">
+
+		<AppBar position="static" sx={{ opacity: theme.topbar.opacity }}>
 
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
@@ -91,9 +90,9 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 										// underlined if current page
 										sx={{
 											opacity: info.hidden
-												? 0.5
+												? theme.topbar.hiddenOpacity
 												: 1, ...(page.href === info.href
-												? { fontWeight: "medium" }
+												? { fontWeight: theme.topbar.selectedFontWeight }
 												: {})
 										}}
 									>{title}</Typography>
@@ -110,7 +109,11 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							md            : "flex", // align right
 							justifyContent: "flex-end"
 						}
-					}}>
+					}}
+						 component={Stack}
+						 direction="row"
+						 spacing={theme.topbar.spacing}
+					>
 						{/*// if dev mode show hidden pages in menu*/}
 						{filterPages().map(([ title, info ]) => {
 							return <Button
@@ -118,15 +121,17 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 								onClick={handleCloseNavMenu}
 								href={info.href}
 								startIcon={info.icon}
-								variant="outlined"
+								variant={page.href === info.href
+									? "contained"
+									: "outlined"}
+								color="secondary"
 								sx={{
 									color  : "white", // underlined if current page
 									opacity: info.hidden
-										? 0.5
+										? theme.topbar.hiddenOpacity
 										: 1, ...(page.href === info.href
 										? {
-											textDecoration: "underline",
-											fontWeight    : "bold"
+											fontWeight: theme.topbar.selectedFontWeight
 										}
 										: {})
 								}}

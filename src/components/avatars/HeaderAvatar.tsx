@@ -35,7 +35,7 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 					? 1
 					: 0,
 				fontWeight    : 700,
-				letterSpacing : ".25rem",
+				letterSpacing : ".2rem",
 				color         : "inherit",
 				textDecoration: "none"
 			}}
