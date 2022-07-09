@@ -1,4 +1,4 @@
-import SmartChipBox from "./SmartChipBox"
+import SmartChipBox from "../chips/SmartChipBox"
 import * as React from "react"
 
 const CardContentChips = ({

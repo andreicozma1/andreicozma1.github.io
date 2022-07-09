@@ -1,9 +1,9 @@
-import { Box, Card, CardContent, CardHeader, Stack, Typography } from "@mui/material"
+import { Box, Card, CardContent, CardHeader, Stack, SvgIconTypeMap } from "@mui/material"
 import * as React from "react"
-import theme from "../../config/theme"
-import { InfoCardProps } from "../interfaces/InfoCardProps"
-import CardHeaderChips from "../chips/CardHeaderChips"
-import CardContentChips from "../chips/CardContentChips"
+import theme from "../../../config/theme"
+import CardHeaderChips from "./CardHeaderChips"
+import CardContentChips from "./CardContentChips"
+import CardContentText from "./CardContentText"
 
 const InfoCard = ({
 					  title,
@@ -12,16 +12,15 @@ const InfoCard = ({
 					  headerChips,
 					  contentChips,
 					  content
-				  }: InfoCardProps) => {
-
-	// TODO: Implement contentChips inside of the content
+				  }: {
+	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[],
+}) => {
 
 	return <Card elevation={theme.card.elevation}
 				 sx={{
 					 background: `rgba(255, 255, 255, ${theme.card.contentOpacity})`
 				 }}>
 		<Box sx={{
-
 			background: `rgba(255, 255, 255, ${theme.card.headerOpacity})`, ...(headerChips && {
 				display: "flex"
 			} || {})
@@ -36,15 +35,11 @@ const InfoCard = ({
 						sx={{ display: "inline-flex" }}
 						avatar={avatar}/>
 			{headerChips && <CardHeaderChips chips={headerChips}/>}
+
 		</Box>
 
 		{(content || contentChips) && <CardContent component={Stack} spacing={theme.card.spacing}>
-			{typeof content === "string"
-				? <Typography>{content}</Typography>
-				: content && content.map((text, index) => {
-				return <Typography key={index}>{text}</Typography>
-			})}
-
+			{content && <CardContentText text={content}/>}
 			{contentChips && <CardContentChips chips={contentChips}/>}
         </CardContent>}
 	</Card>

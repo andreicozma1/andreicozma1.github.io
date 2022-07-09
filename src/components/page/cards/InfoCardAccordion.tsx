@@ -1,18 +1,22 @@
 import { Accordion, AccordionDetails, AccordionSummary, CardHeader, Stack, Typography } from "@mui/material"
 import * as React from "react"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
-import { InfoCardProps } from "../interfaces/InfoCardProps"
-import theme from "../../config/theme"
-import SmartChipBox from "../chips/SmartChipBox"
+import { InfoCardProps } from "../../interfaces/InfoCardProps"
+import theme from "../../../config/theme"
+import SmartChipBox, { combineChips } from "../chips/SmartChipBox"
 
 const InfoCardAccordion = ({
 							   title,
 							   subtitle,
 							   avatar,
-							   headerChips,
-							   contentChips,
+							   chips,
 							   content
 						   }: InfoCardProps) => {
+
+	let {
+		allHeaderChips,
+		allContentChips
+	} = combineChips(chips)
 
 	return (<Accordion elevation={theme.card.elevation}
 					   sx={{
@@ -32,7 +36,7 @@ const InfoCardAccordion = ({
 							px: "0px"
 						}}>
 			</CardHeader>
-			{headerChips && <SmartChipBox text={headerChips} containerSx={{
+			{allHeaderChips && <SmartChipBox text={allHeaderChips} containerSx={{
 				px: 1
 			}}/>}
 		</AccordionSummary>

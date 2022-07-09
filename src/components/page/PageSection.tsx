@@ -14,11 +14,10 @@ import {
 	TimelineSeparator
 } from "@mui/lab"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
-import TimelineOppositeChipsContent from "../chips/TimelineOppositeChipsContent"
-import InfoCard from "../cards/InfoCard"
+import TimelineChips from "./chips/TimelineChips"
+import InfoCard from "./cards/InfoCard"
 
 const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
-
 	const getColor = (index: number): TimelineDotProps["color"] => {
 		if (index % 2 === 0) return "secondary"
 		return "primary"
@@ -26,6 +25,17 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 
 	return <Timeline position="alternate">
 		{props.items.map((itemProps: InfoCardProps, index: number) => {
+
+			const headerChips = itemProps.chips && [
+				...itemProps.chips.headerChips || [], ...itemProps.chips.date || []
+			]
+			const contentChips = itemProps.chips && [ ...itemProps.chips.awards || [] ]
+			const timelineChips1 = itemProps.chips && [
+				...itemProps.chips.positions || [], ...itemProps.chips.languages || [],
+				...itemProps.chips.libraries || [], ...itemProps.chips.tools || []
+			]
+			const timelineChips2 = itemProps.chips && itemProps.chips.contentChips || []
+
 			return <TimelineItem key={index}>
 				<TimelineOppositeContent
 					sx={{
@@ -34,7 +44,8 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 						justifyContent: "center",
 						flexDirection : "column"
 					}}>
-					<TimelineOppositeChipsContent itemProps={itemProps} index={index}/>
+					{timelineChips1 && <TimelineChips chips={timelineChips1} index={index}/>}
+					{timelineChips2 && <TimelineChips chips={timelineChips2} index={index}/>}
 				</TimelineOppositeContent>
 				<TimelineSeparator>
 					<TimelineDot color={getColor(index)}>
@@ -47,6 +58,8 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 						title={itemProps.title}
 						subtitle={itemProps.subtitle}
 						content={itemProps.content}
+						headerChips={headerChips}
+						contentChips={contentChips}
 					></InfoCard>
 				</TimelineContent>
 			</TimelineItem>
@@ -60,6 +73,9 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 			  justifyContent="space-evenly"
 			  alignItems="stretch">
 			{props.items.map((itemProps: InfoCardProps, index: number) => {
+
+				const date = itemProps.chips && itemProps.chips.date || undefined
+
 				return <Grid item xs={12} md={props.variant === "grid6"
 					? 6
 					: 12} key={index}>
@@ -68,8 +84,8 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 						subtitle={itemProps.subtitle}
 						content={itemProps.content}
 						avatar={itemProps.avatar}
-						headerChips={itemProps.headerChips}
-						contentChips={itemProps.contentChips}
+						headerChips={date}
+						contentChips={itemProps.chips && itemProps.chips.contentChips}
 					/>
 				</Grid>
 			})}
