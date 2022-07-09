@@ -1,4 +1,4 @@
-import { Box, Container, Stack, ThemeProvider } from "@mui/material"
+import { Container, Stack, ThemeProvider } from "@mui/material"
 import ResponsiveTopBar from "../TopBar"
 import * as React from "react"
 import { ReactNode } from "react"
@@ -20,25 +20,26 @@ const Page = ({
 		await loadFull(engine)
 	}
 
+	const [ checked, setChecked ] = React.useState(false)
+
 	return (<ThemeProvider theme={theme}>
 		{/*// @ts-ignore*/}
 		<Particles init={particlesInit} options={particlesOptions}
 				   style={{
-					   filter: "blur(15px)"
+					   position: "fixed",
+					   filter  : "blur(15px)"
 				   }}/>
-		<Box>
-			<ResponsiveTopBar page={data}/>
-			<Container component={Stack} spacing={2} sx={{
-				paddingBottom: theme.spacing(4),
-				opacity      : 0.99
-			}}>
-				{data.sections && <PageBreadcrumbs page={data}/>}
-				{data.notes && <Notes notesArray={data.notes}/>}
-				{data.sections && data.sections.map((section, index) => (
-					<section.layout key={index} props={section}></section.layout>))}
-				{children}
-			</Container>
-		</Box>
+		<ResponsiveTopBar page={data}/>
+		<Container component={Stack} spacing={2} sx={{
+			paddingBottom: theme.spacing(4),
+			opacity      : 0.99
+		}}>
+			{data.sections && <PageBreadcrumbs page={data}/>}
+			{data.notes && <Notes notesArray={data.notes}/>}
+			{data.sections && data.sections.map((section, index) => (
+				<section.layout key={index} props={section}></section.layout>))}
+			{children}
+		</Container>
 	</ThemeProvider>)
 }
 

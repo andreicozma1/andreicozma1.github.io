@@ -2,7 +2,7 @@ import * as React from "react"
 import Typography from "@mui/material/Typography"
 import Avatar from "@mui/material/Avatar"
 
-const Logo = ({ variant }: { variant: string }) => {
+const HeaderAvatar = ({ variant }: { variant: string }) => {
 
 	let display
 	if (variant === "xs") {
@@ -45,4 +45,4 @@ const Logo = ({ variant }: { variant: string }) => {
 	</>
 }
 
-export default Logo
+export default HeaderAvatar
