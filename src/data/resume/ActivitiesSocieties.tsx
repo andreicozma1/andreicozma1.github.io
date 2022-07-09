@@ -2,12 +2,13 @@ import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
 import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import PageSectionTimeline from "../../components/page/PageSectionTimeline"
+import PageSection from "../../components/page/PageSection"
 
 const ActivitiesSocieties: PageSectionProps = {
 	title        : "Activities & Societies",
-	layout       : PageSectionTimeline,
+	layout       : PageSection,
 	itemComponent: InfoCard,
+	variant       : "timeline",
 	items        : [
 		{
 			"title"       : "VolHacks",
@@ -37,7 +38,7 @@ const ActivitiesSocieties: PageSectionProps = {
 			"title"       : "National Honor Society & Beta Club",
 			"subtitle"    : "Highschool Honor Societies",
 			"headerChips" : [
-				"Initiated Member & Volunteer", "Awarded Medal for Most Volunteer Hours"
+				"Initiated Member & Volunteer", "Awarded Medallion for Most Volunteer Hours"
 			],
 			"contentChips": "08/2016 - 05/2018",
 			"avatar"      : <AccessAlarmIcon/>

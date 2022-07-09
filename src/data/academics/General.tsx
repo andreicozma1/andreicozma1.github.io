@@ -1,14 +1,15 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import PageSectionTimeline from "../../components/page/PageSectionTimeline"
+import PageSection from "../../components/page/PageSection"
 import InfoCard from "../../components/cards/InfoCard"
 
 // Use the types of the InfoCardData interface
 const General: PageSectionProps = {
 	title        : "General",
-	layout       : PageSectionTimeline,
+	layout       : PageSection,
 	itemComponent: InfoCard,
+	variant	  : "grid6",
 	items        : [
 		{
 			"title"  : "COSC 402 - Senior Design Practicum",

@@ -132,7 +132,7 @@ const theme = createTheme({
 		iconColor        : "primary",
 		spacing          : 1,
 		headerOpacity    : 0.7,
-		contentOpacity   : 0.8,
+		contentOpacity   : 0.7,
 		titleFontSize    : 16,
 		subheaderFontSize: 15
 	}

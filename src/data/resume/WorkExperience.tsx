@@ -2,13 +2,13 @@ import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
 import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import PageSectionTimeline from "../../components/page/PageSectionTimeline"
+import PageSection from "../../components/page/PageSection"
 
 const WorkExperience: PageSectionProps = {
 	title        : "Work Experience",
-	layout       : PageSectionTimeline,
+	layout       : PageSection,
 	itemComponent: InfoCard,
-	md           : 12,
+	variant       : "timeline",
 	items        : [
 		{
 			"title"       : "Summer Research Assistant",

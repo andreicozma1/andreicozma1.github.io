@@ -8,7 +8,6 @@ const Fall2021: PageSectionProps = {
 	title        : "Fall 2021",
 	layout       : PageSection,
 	itemComponent: InfoCardAccordion,
-	md           : 12,
 	items        : [
 		{
 			"title"      : "Cultivating a Growth Mindset",

@@ -9,6 +9,7 @@ const About: PageSectionProps = {
 	// noteSeverity: "info",
 	layout       : PageSection,
 	itemComponent: InfoCard,
+	variant      : "grid6",
 	items        : [
 		{
 			"title"  : "Personal Statement",

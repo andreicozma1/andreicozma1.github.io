@@ -8,7 +8,6 @@ const Spring2022: PageSectionProps = {
 	title        : "Spring 2022",
 	layout       : PageSection,
 	itemComponent: InfoCardAccordion,
-	md           : 12,
 	items        : [
 		{
 			"title"      : "Healthcare AI – Augmenting Clinical Workflow",

@@ -8,7 +8,6 @@ const Spring2021: PageSectionProps = {
 	title        : "Spring 2021",
 	layout       : PageSection,
 	itemComponent: InfoCardAccordion,
-	md           : 12,
 	items        : [
 		{
 			"title"      : "DNA Topology and Transcription Regulation",

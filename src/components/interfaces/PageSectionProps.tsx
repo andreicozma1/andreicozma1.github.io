@@ -7,5 +7,5 @@ export interface PageSectionProps {
 	layout: React.ComponentType<any>,
 	itemComponent: React.ComponentType<any>,
 	items: object[],
-	md?: number
+	variant?: "grid6" | "grid12" | "timeline",
 }

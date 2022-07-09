@@ -8,6 +8,7 @@ const AchievementsLicensesCertifications: PageSectionProps = {
 	title        : "Achievements, Licenses, & Certifications",
 	layout       : PageSection,
 	itemComponent: InfoCard,
+	variant      : "grid6",
 	items        : [
 		{
 			"title"      : "From Data to Insights with Google Cloud Platform Specialization",
@@ -20,12 +21,12 @@ const AchievementsLicensesCertifications: PageSectionProps = {
 			"headerChips": "Awarded 07/2020",
 			"avatar"     : <AccessAlarmIcon/>
 		}, {
-			"title"      : "Certificate of Excellence for Tennessee Scholar",
+			"title"      : "Tennessee Scholar (Certificate of Excellence)",
 			"subtitle"   : "No expiration",
 			"headerChips": "Awarded 05/2018",
 			"avatar"     : <AccessAlarmIcon/>
 		}, {
-			"title"      : "National Honor Society Medal for Most Volunteer Hours",
+			"title"      : "NHS Medallion (Most Volunteer Hours)",
 			"subtitle"   : "No expiration",
 			"headerChips": "Awarded 05/2018",
 			"avatar"     : <AccessAlarmIcon/>

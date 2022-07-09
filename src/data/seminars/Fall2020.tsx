@@ -8,7 +8,6 @@ const Fall2020: PageSectionProps = {
 	title        : "Fall 2020",
 	layout       : PageSection,
 	itemComponent: InfoCardAccordion,
-	md           : 12,
 	items        : [
 		{
 			"title"      : "BlueSky Statistics Workshop",
