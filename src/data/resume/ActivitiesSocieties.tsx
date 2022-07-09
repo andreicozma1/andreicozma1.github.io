@@ -8,7 +8,7 @@ const ActivitiesSocieties: PageSectionProps = {
 	items  : [
 		{
 			"title"   : "VolHacks",
-			"subtitle": "University of Tennessee's Yearly Hackathon Event",
+			"subtitle": "UT's Yearly Hackathon Event",
 			"chips"   : {
 				"date"     : [ "04/2019 - Present" ],
 				"positions": [
@@ -18,7 +18,7 @@ const ActivitiesSocieties: PageSectionProps = {
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
 			"title"   : "Pi Kappa Phi",
-			"subtitle": "Social Fraternity on the University of Tennessee campus",
+			"subtitle": "Social Fraternity on the UY campus",
 			"chips"   : {
 				"date"     : [ "04/2019 - Present" ],
 				"positions": [
@@ -28,7 +28,7 @@ const ActivitiesSocieties: PageSectionProps = {
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
 			"title"   : "Chancellor's Honors Program",
-			"subtitle": "University of Tennessee's principal honors program",
+			"subtitle": "UT principal honors program",
 			"chips"   : {
 				"date"     : [ "08/2018 - 05/2022" ],
 				"positions": [
@@ -48,7 +48,7 @@ const ActivitiesSocieties: PageSectionProps = {
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
 			"title"   : "Computer Science & Robotics Clubs",
-			"subtitle": "President, Organizer, and Tutor",
+			"subtitle": "Highschool Clubs",
 			"chips"   : {
 				"date"     : [ "09/2014 - 05/2018" ],
 				"positions": [

@@ -170,9 +170,9 @@ const General: PageSectionProps = {
 				"contentChips": [
 					"Object-Oriented Programming", "Sorting Algorithms", "Disjoint Sets", "Basic Graph Algorithms",
 					"Topological Sort", "Depth-First Search", "Breadth-First Search", "Shortest Path",
-					"Minimum Spanning Trees", "Network Flow / Minimum Cut", "Dynamic Programming"
+					"Minimum Spanning Trees", "Network Flow", "Dynamic Programming"
 				],
-				"languages"   : [ "C++" ],
+				"languages"   : [ "C/C++" ],
 				"tools"       : [ "Git" ]
 			}
 		}, {
@@ -203,8 +203,7 @@ const General: PageSectionProps = {
 					"Number Systems", "Binary Arithmetic", "Floating-Point Arithmetic", "Boolean Algebra",
 					"Bitwise Operators", "Combinational and Sequential Circuits", "Registers",
 					"Processor Functional Units", "Control", "Pipelining", "Memory and Caching",
-					"Stored Program Computing", "Memory Management", "Computer System Organization",
-					"Assembly Language Programming"
+					"Stored Program Computing", "Memory Management", "Computer System Organization"
 				],
 				"languages"   : [ "C/C++", "RISC-V Assembly" ]
 			}

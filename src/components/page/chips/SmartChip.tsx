@@ -21,7 +21,7 @@ const SmartChip = ({
 	const mDate = [ "/", " - " ]
 	const mAchieve = [ "GPA", "Summa Cum Laude" ]
 	const mProg = [
-		"Assembly", "C/C++", "C#", "Java", "Kotlin", "Python", "Ruby", "Swift", "TypeScript", "HTML", "CSS",
+		"Assembly", "C++", "C/C++", "C#", "Java", "Kotlin", "Python", "Ruby", "Swift", "TypeScript", "HTML", "CSS",
 		"JavaScript", "PHP", "Bash", "CoffeeScript", "GoLang", "Haskell", "Perl", "Rust", "Scala", "Shell",
 		"Visual Basic"
 	]
