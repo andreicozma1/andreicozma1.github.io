@@ -5,7 +5,14 @@ import { InfoCardProps } from "../interfaces/InfoCardProps"
 import theme from "../../config/theme"
 import Chips from "../Chips"
 
-const InfoCardAccordion = ({ props }: { props: InfoCardProps }) => {
+const InfoCardAccordion = ({
+							   title,
+							   subtitle,
+							   avatar,
+							   headerChips,
+							   contentChips,
+							   content
+						   }: InfoCardProps) => {
 
 	return (<Accordion elevation={theme.card.elevation}
 					   sx={{
@@ -16,24 +23,24 @@ const InfoCardAccordion = ({ props }: { props: InfoCardProps }) => {
 							  background: `rgba(255, 255, 255, ${theme.card.headerOpacity})`
 						  }}>
 
-			<CardHeader title={props.title}
-						subheader={props.subtitle}
-						avatar={<Icon color={theme.card.iconColor}>{props.avatar}</Icon>}
+			<CardHeader title={title}
+						subheader={subtitle}
+						avatar={avatar}
 						titleTypographyProps={{ fontWeight: theme.card.fontWeight }}
 						sx={{
 							py: "0px",
 							px: "0px"
 						}}>
 			</CardHeader>
-			{props.chips && <Chips text={props.chips}/>}
+			{headerChips && <Chips text={headerChips}/>}
 		</AccordionSummary>
 
 
-		{props.content && <AccordionDetails>
+		{content && <AccordionDetails>
             <Stack spacing={theme.card.spacing}>
-				{typeof props.content === "string"
-					? <Typography>{props.content}</Typography>
-					: props.content.map((c, i) => {
+				{typeof content === "string"
+					? <Typography>{content}</Typography>
+					: content.map((c, i) => {
 						return <Typography key={i}>{c}</Typography>
 					})}
             </Stack>

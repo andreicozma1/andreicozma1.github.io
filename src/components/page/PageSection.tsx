@@ -3,6 +3,7 @@ import { Box, Grid, Stack, Typography } from "@mui/material"
 import theme from "../../config/theme"
 import { PageSectionProps } from "../interfaces/PageSectionProps"
 import SlideNotes from "../SlideNotes"
+import { InfoCardProps } from "../interfaces/InfoCardProps"
 
 const PageSection = ({ props }: { props: PageSectionProps }) => {
 	const md = props.md || 6
@@ -23,9 +24,15 @@ const PageSection = ({ props }: { props: PageSectionProps }) => {
 			<Grid container spacing={theme.section.itemSpacing}
 				  justifyContent="space-evenly"
 				  alignItems="stretch">
-				{props.items.map((itemProps, index) => {
+				{props.items.map((itemProps: InfoCardProps, index: number) => {
 					return <Grid item xs={12} md={md} key={index}>
-						<props.itemComponent props={itemProps}></props.itemComponent>
+						<props.itemComponent
+							title={itemProps.title}
+							subtitle={itemProps.subtitle}
+							content={itemProps.content}
+							avatar={itemProps.avatar}
+							contentChips={itemProps.contentChips}
+							headerChips={itemProps.headerChips}></props.itemComponent>
 					</Grid>
 				})}
 			</Grid>

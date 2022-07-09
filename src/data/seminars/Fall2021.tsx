@@ -15,7 +15,7 @@ const Fall2021: PageSectionProps = {
 			"title"   : "Cultivating a Growth Mindset",
 			"subtitle": "Presenter: Gemma Leigh Roberts",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"12/3/2021"
 			],
 			"content" : [
@@ -25,7 +25,7 @@ const Fall2021: PageSectionProps = {
 			"title"   : "Probability and Stochastic Processes Seminar",
 			"subtitle": "Presenter: Dr. Federico Sau (IST Austria)",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"11/16/2021\n"
 			],
 			"content" : [
@@ -35,7 +35,7 @@ const Fall2021: PageSectionProps = {
 			"title"   : "Energy & Environment Forum with Dr. Megan Donahue, Ecologist from Hawaii",
 			"subtitle": "Presenter: Dr. Megan Donahue (Hawaii Institute of Marine Biology)",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"11/16/2021"
 			],
 			"content" : [

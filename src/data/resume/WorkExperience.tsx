@@ -3,17 +3,18 @@ import * as React from "react"
 import PageSection from "../../components/page/PageSection"
 import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
+import PageSectionTimeline from "../../components/page/PageSectionTimeline"
 
 const WorkExperience: PageSectionProps = {
 	title        : "Work Experience",
-	layout       : PageSection,
+	layout       : PageSectionTimeline,
 	itemComponent: InfoCard,
 	md           : 12,
 	items        : [
 		{
 			"title"   : "Summer Research Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
-			"chips"   : "05/2021 - Present",
+			"headerChips"   : "05/2021 - Present",
 			"avatar"  : <AccessAlarmIcon/>,
 			"content" : [
 				`Assist with research and ongoing projects, including software development and analysis on a variety of cybersecurity topics, writing and documenting research and findings, performing analytics, collecting and analyzing data, and creating visualizations of results.`
@@ -21,7 +22,7 @@ const WorkExperience: PageSectionProps = {
 		}, {
 			"title"   : "Undergraduate Teaching Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
-			"chips"   : "01/2022 - 05/2022",
+			"headerChips"   : "01/2022 - 05/2022",
 			"avatar"  : <AccessAlarmIcon/>,
 			"content" : [
 				`Teaching assistant for Dr. Doowon Kim's Introduction to Cybersecurity course.`,
@@ -30,7 +31,7 @@ const WorkExperience: PageSectionProps = {
 		}, {
 			"title"   : "Software Developer Intern (Summer)",
 			"subtitle": "Elo Touch Solutions",
-			"chips"   : "05/2021 - 08/2021",
+			"headerChips"   : "05/2021 - 08/2021",
 			"avatar"  : <AccessAlarmIcon/>,
 			"content" : [
 				`Design, implement, and test Software Frameworks, Solutions, and Demo Applications for ELO's
@@ -40,7 +41,7 @@ const WorkExperience: PageSectionProps = {
 		}, {
 			"title"   : "Undergraduate Research Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
-			"chips"   : "03/2021 - 10/2021",
+			"headerChips"   : "03/2021 - 10/2021",
 			"avatar"  : <AccessAlarmIcon/>,
 			"content" : [
 				`Assist with research and ongoing projects, including software development and analysis on a variety of cybersecurity topics, writing and documenting research and findings, performing analytics, collecting and analyzing data, and creating visualizations of results.`
@@ -48,7 +49,7 @@ const WorkExperience: PageSectionProps = {
 		}, {
 			"title"   : "Software Developer Intern (All-Year)",
 			"subtitle": "Elo Touch Solutions",
-			"chips"   : "01/2020 - 12/2020",
+			"headerChips"   : "01/2020 - 12/2020",
 			"avatar"  : <AccessAlarmIcon/>,
 			"content" : [
 				`Design, implement, and test Software Frameworks, Solutions, and Demo Applications for ELO's
@@ -58,7 +59,7 @@ const WorkExperience: PageSectionProps = {
 		}, {
 			"title"   : "Asset Protection",
 			"subtitle": "Walmart Inc.",
-			"chips"   : "05/2019 - 08/2019",
+			"headerChips"   : "05/2019 - 08/2019",
 			"avatar"  : <AccessAlarmIcon/>,
 			"content" : [
 				`Secure and safeguard the facility by observing and communicating suspicious activity, assisting

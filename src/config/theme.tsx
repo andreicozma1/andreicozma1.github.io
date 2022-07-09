@@ -37,8 +37,10 @@ declare module "@mui/material/styles" {
 			fontWeight: string
 			iconColor: IconProps["color"]
 			spacing: number
-			headerOpacity: number,
+			headerOpacity: number
 			contentOpacity: number
+			titleFontSize: number
+			subheaderFontSize: number
 		}
 	}
 
@@ -77,6 +79,8 @@ declare module "@mui/material/styles" {
 			spacing: number
 			headerOpacity: number
 			contentOpacity: number
+			titleFontSize: number
+			subheaderFontSize: number
 		}
 	}
 
@@ -129,7 +133,9 @@ const theme = createTheme({
 		iconColor : "primary",
 		spacing   : 1,
 		headerOpacity: 0.7,
-		contentOpacity: 0.8
+		contentOpacity: 0.8,
+		titleFontSize: 16,
+		subheaderFontSize: 15
 	}
 })
 

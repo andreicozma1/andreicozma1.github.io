@@ -12,18 +12,18 @@ const Completed: PageSectionProps = {
 	items        : [
 		{
 			"title"  : "COSC 525 - Deep Learning",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": null
 		}, {
 			"title"  : "COSC 523 - Artificial Intelligence",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`Introduction to artificial intelligence with a focus on search, constraint satisfaction, and planning.`,
 				`Topics include: uninformed and informed search, game playing, adversarial search, constraint satisfaction, planning, and knowledge representation.`
 			]
 		}, {
 			"title"  : "COSC 522 - Machine Learning",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`Introduction to the basics of machine learning with a focus on supervised learning, linear models, and optimization.`,
 				`Topics include: linear algebra review, gradient descent, linear regression, logistic regression, feature selection 
@@ -32,7 +32,7 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 420 - Biologically-Inspired Computation",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": null
 		}
 	]

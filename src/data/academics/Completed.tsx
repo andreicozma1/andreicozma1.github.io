@@ -12,11 +12,11 @@ const Completed: PageSectionProps = {
 	items        : [
 		{
 			"title"  : "COSC 402 - Senior Design Practicum",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": null
 		}, {
 			"title"  : "COSC 493 - Advanced Automata Theory",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`Working on the development of a Turing Machine to be used as an educational aid to students.`,
 				`The pre-existing version of the simulator was written in Java and various improvements, additions, and modifications were made to it in order to make it more user-friendly and efficient.`,
@@ -25,14 +25,14 @@ const Completed: PageSectionProps = {
 		}, {
 
 			"title"  : "COSC 465 - Databases and Scripting Languages",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`In-depth focus on developing a strong understanding of the basics of databases and their usage in web applications as well as an introduction to various scripting languages.`,
 				`Topics covered include: relational algebra, SQL, MongoDB, database design, data models, entity-relationship diagrams, web databases, XML, HTML, CSS, JavaScript, and PHP.`
 			]
 		}, {
 			"title"  : "COSC 370 - Introduction to Scientific Computing",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`An in-depth focus on the implementation, analysis, and design of numerical algorithms with the Python
         programming language in order to solve problems in science and engineering. Strong emphasis on program
@@ -46,7 +46,7 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 367 - Honors Systems Programming",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`An in-depth introduction to the C programming language and its use in systems programming, covering the
         methodologies of operating systems with topics regarding memory and process layout, system calls, buffering,
@@ -58,7 +58,7 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 365 - Programming Languages and Systems",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`An in-depth study of the design, implementation, and application of programming languages as well as an introduction to the basics of operating systems.`,
 				`Topics include: language paradigms, syntax and semantics, type systems, memory management, bindings, exception handling, objects, inheritance, polymorphism, and concurrency.`,
@@ -66,14 +66,14 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 361 - Operating Systems",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`In-depth study of the design, implementation, and performance of modern operating systems with a focus on Unix and a modern re-implementation of 6th edition Unix called XV6.`,
 				`Topics include process and thread management, CPU scheduling, process synchronization, deadlocks, memory management, virtual memory, file systems, I/O systems, and security.`
 			]
 		}, {
 			"title"  : "COSC 340 - Software Engineering",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`A strong focus on the application of a systematic, disciplined, quantifiable approach to the design,
         development, operation, and maintenance of software, and the study of these approaches. Applying engineering
@@ -83,7 +83,7 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 317 - Honors Discrete Structures",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`Introduction to Set Theory, Graph Theory, and Logic & Proof strategies as the principles of software
         programming and design.`, `Topics covered include sets, combinatorics, logic and proof techniques, mathematical induction, recursion,
@@ -92,7 +92,7 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 312 - Algorithm Analysis and Automata",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`This course is an introduction to the Theory of Computation, the logic of computation with respect to
         machines as well as the implications related to current computing challenges and limits.`, `Topics covered include finite automata, regular grammars & languages, pushdown automata, context-free
@@ -102,7 +102,7 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 307 - Honors Data Structures and Algorithms II",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`This course focuses on the application of fundamental data structures and associated algorithms most
         commonly used in software development and design.`, `Design and implement C++ programs that solve problems related to object-oriented programming, sorting
@@ -114,7 +114,7 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 140 - Data Structures and Algorithms I",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`Development and application of a multitude of data structures and algorithms proeminently used in software
         design together with problem-solving techniques.`, `Advanced problem solving and algorithm development, programming, data structures and applications, algorithm
@@ -122,7 +122,7 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 130 - Computer Organization & Architecture",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`Hands-on experience with applying computer organization and architecture techniques while developing
         software with C++ and RISC-V Assembly.`, `Topics discussed and applied include number systems, binary arithmetic, floating-point arithmetic, boolean
@@ -132,7 +132,7 @@ const Completed: PageSectionProps = {
 			]
 		}, {
 			"title"  : "COSC 102 - Introduction to Computer Science",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`Introduction and hands-on experience with the basics of programming languages, problem solving, and
         algorithm development. variables and assignments, branches, loops, arrays and vectors, streams and

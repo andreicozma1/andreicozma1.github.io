@@ -14,7 +14,7 @@ const Spring2022: PageSectionProps = {
 			"title"   : "Healthcare AI – Augmenting Clinical Workflow",
 			"subtitle": "Presenter: Gemma Leigh Roberts",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"04/19/2022"
 			],
 			"content" : [
@@ -27,7 +27,7 @@ const Spring2022: PageSectionProps = {
 			"title"   : "Hypersonic Technology: What it is, Why it Matters, and the State of American Defense Capabilities",
 			"subtitle": "Presenter: Dr. Ragini Acharya",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"04/22/2022"
 			],
 			"content" : [
@@ -39,7 +39,7 @@ const Spring2022: PageSectionProps = {
 			"title"   : "History of Philosophy – DuBois’ on the Philosophy of Science",
 			"subtitle": "Presenter: Liam Kofi Bright (https://historyofphilosophy.net/du-bois-bright)",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"Asynchronous"
 			],
 			"content" : [

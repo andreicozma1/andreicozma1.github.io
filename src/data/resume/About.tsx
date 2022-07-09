@@ -12,7 +12,7 @@ const About: PageSectionProps = {
 	items        : [
 		{
 			"title"  : "Personal Statement",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`In my personal and work life I am an enthusiastic and dedicated team player with a positive attitude,
             driven to adapt to any situation. I always strive to attain the highest possible standards of quality and excellence.`,
@@ -23,7 +23,7 @@ const About: PageSectionProps = {
 			]
 		}, {
 			"title"  : "Research Interests",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar"  : <AccessAlarmIcon/>,
 			"content": [
 				`My main career and research interests include making use of Deep Learning, Machine Learning, and Artificial Intelligence techniques with a focus on Natural Language Processing and Computer Vision.`,
 				`I am also really passionate about fields such as Cyber-security, Data Analytics, Mobile & Embedded Systems, and others.`

@@ -4,29 +4,45 @@ import theme from "../../config/theme"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
 import Chips from "../Chips"
 
-const InfoCard = ({ props }: { props: InfoCardProps }) => {
+const InfoCard = ({
+					  title,
+					  subtitle,
+					  avatar,
+					  headerChips,
+					  contentChips,
+					  content
+				  }: InfoCardProps) => {
+
+
+	// TODO: Implement contentChips inside of the content
 
 	return <Card elevation={theme.card.elevation}
 				 sx={{
 					 background: `rgba(255, 255, 255, ${theme.card.contentOpacity})`
 				 }}>
 		<Box sx={{
-			display   : "flex",
-			background: `rgba(255, 255, 255, ${theme.card.headerOpacity})`
+
+			background: `rgba(255, 255, 255, ${theme.card.headerOpacity})`, // if headerChips exists then display flex
+			...(headerChips && {
+				display: "flex"
+			} || {})
 		}}>
-			<CardHeader title={props.title}
-						subheader={props.subtitle}
-						avatar={<Icon color={theme.card.iconColor}>{props.avatar}</Icon>}
-						titleTypographyProps={{ fontWeight: theme.card.fontWeight }}
+			<CardHeader title={title}
+						subheader={subtitle}
+						titleTypographyProps={{
+							fontWeight: theme.card.fontWeight,
+							fontSize  : theme.card.titleFontSize
+						}}
+						subheaderTypographyProps={{ fontSize: theme.card.subheaderFontSize }}
 						sx={{ display: "inline-flex" }}
-			/>
-			{props.chips && <Chips text={props.chips}/>}
+						avatar={avatar}/>
+			{headerChips && <Chips text={headerChips}/>}
 		</Box>
 
-		{props.content && <CardContent component={Stack} spacing={theme.card.spacing}>
-			{typeof props.content === "string"
-				? <Typography>{props.content}</Typography>
-				: props.content.map((text, index) => {
+		{content && <CardContent component={Stack} spacing={theme.card.spacing}>
+			{typeof content === "string"
+				? <Typography>{content}</Typography>
+				: content.map((text, index) => {
 					return <Typography key={index}>{text}</Typography>
 				})}
         </CardContent>}

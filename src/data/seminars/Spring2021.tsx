@@ -15,7 +15,7 @@ const Spring2021: PageSectionProps = {
 			"title"   : "DNA Topology and Transcription Regulation",
 			"subtitle": "Presenter: Dr. Laura Finzi, Emory University, Physics Department",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"03/31/2021"
 			],
 			"content" : [
@@ -25,7 +25,7 @@ const Spring2021: PageSectionProps = {
 			"title"   : "In-space Manufacturing",
 			"subtitle": "Presenter: Tracie Prater of NASA",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"03/02/2021"
 			],
 			"content" : [
@@ -35,7 +35,7 @@ const Spring2021: PageSectionProps = {
 			"title"   : "CHP Overview - All Cohorts",
 			"subtitle": "Presenter: Rebekah Page",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"01/21/2021"
 			],
 			"content" : [

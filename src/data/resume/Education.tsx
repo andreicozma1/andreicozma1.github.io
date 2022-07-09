@@ -1,12 +1,12 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import PageSection from "../../components/page/PageSection"
 import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
+import PageSectionTimeline from "../../components/page/PageSectionTimeline"
 
 const Education: PageSectionProps = {
 	title        : "Education",
-	layout       : PageSection,
+	layout       : PageSectionTimeline,
 	itemComponent: InfoCard,
 	md           : 12,
 	items        : [
@@ -14,7 +14,7 @@ const Education: PageSectionProps = {
 			"title"   : "MS in Computer Science",
 			"subtitle": "University of Tennessee, Knoxville",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"GPA: 3.9", "08/2022 - Present"
 			],
 			"content" : [
@@ -24,7 +24,7 @@ const Education: PageSectionProps = {
 			"title"   : "BS in Computer Science",
 			"subtitle": "University of Tennessee, Knoxville",
 			"avatar"  : <AccessAlarmIcon/>,
-			"chips"   : [
+			"headerChips"   : [
 				"GPA: 3.87", "08/2018 - 05/2022"
 			],
 			"content" : [

@@ -3,15 +3,24 @@ import * as React from "react"
 import theme from "../config/theme"
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
-import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
-const Chips = ({ text }: { text: string | string[] }) => {
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined"
+import { ChipsProps } from "./interfaces/ChipsProps"
+
+const Chips = ({
+				   text,
+				   defaultColor,
+				   defaultVariant,
+				   direction,
+				   sx
+			   }: ChipsProps) => {
+
+	direction = direction || "row"
 	const spacing = theme.spacing(1)
-	const defaultVariant = "outlined"
 	const chipStackStyle = {
 		ml: "auto",
 		my: "auto",
 		py: theme.spacing(1),
-		px: theme.spacing(2)
+		px: theme.spacing(2), ...sx
 	}
 
 	const getIcon = (text: string) => {
@@ -32,17 +41,17 @@ const Chips = ({ text }: { text: string | string[] }) => {
 		if (text.includes("GPA")) {
 			return "secondary"
 		}
-		return "default"
+		return defaultColor || "default"
 	}
 
 	const getVariant = (text: string): ChipProps["variant"] => {
 		if (text.includes("GPA")) {
 			return "filled"
 		}
-		return "outlined"
+		return defaultVariant || "outlined"
 	}
 
-	return <Stack direction="row"
+	return <Stack direction={direction}
 				  spacing={spacing} sx={chipStackStyle}>
 		{typeof text === "string"
 			? <Chip label={text}
