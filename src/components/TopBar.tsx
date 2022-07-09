@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem"
 import HeaderAvatar from "./avatars/HeaderAvatar"
 import { pages } from "../config/pages"
 import { PageProps } from "./interfaces/PageProps"
-import { Button, IconButton } from "gatsby-theme-material-ui"
+import { Button, IconButton, Link } from "gatsby-theme-material-ui"
 import { AppBar, Slide, Stack, Toolbar } from "@mui/material"
 import theme from "../config/theme"
 
@@ -84,7 +84,7 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							}}
 						>
 							{filterPages().map(([ title, info ]) => {
-								return <MenuItem key={title} onClick={handleCloseNavMenu} href={info.href}>
+								return <MenuItem key={title} onClick={handleCloseNavMenu} component={Link} to={info.href}>
 									<Typography
 										textAlign="center"
 										// underlined if current page
