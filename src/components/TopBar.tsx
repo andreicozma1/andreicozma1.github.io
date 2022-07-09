@@ -44,9 +44,8 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
-					<HeaderAvatar variant="md"/>
 					<Box sx={{
-						flexGrow: 1,
+						flexGrow: 0,
 						display : {
 							xs: "flex",
 							md: "none"
@@ -54,7 +53,7 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 					}}>
 						<IconButton
 							size="large"
-							aria-label="account of current user"
+							aria-label="Navigation Menu"
 							aria-controls="menu-appbar"
 							aria-haspopup="true"
 							onClick={handleOpenNavMenu}
@@ -100,6 +99,7 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							})}
 						</Menu>
 					</Box>
+
 					<HeaderAvatar variant="xs"/>
 
 					<Box sx={{
@@ -107,7 +107,6 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 						display : {
 							xs            : "none",
 							md            : "flex", // align right
-							justifyContent: "flex-end"
 						}
 					}}
 						 component={Stack}
@@ -140,6 +139,7 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							</Button>
 						})}
 					</Box>
+					<HeaderAvatar variant="md"/>
 
 				</Toolbar>
 			</Container>

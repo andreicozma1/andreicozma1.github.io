@@ -8,7 +8,7 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 	if (variant === "xs") {
 		display = {
 			xs: "flex",
-			md: "none"
+			md: "none",
 		}
 	} else {
 		display = {
@@ -18,10 +18,7 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 	}
 
 	return <>
-		<Avatar alt="Andrei Cozma" src="/avatar.jpg" sx={{
-			display: display,
-			mr     : 3
-		}}/>
+
 		<Typography
 			variant="h6"
 			noWrap
@@ -42,6 +39,10 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 		>
 			Andrei Cozma
 		</Typography>
+		<Avatar alt="Andrei Cozma" src="/avatar.jpg" sx={{
+			display: display,
+			mr     : 3
+		}}/>
 	</>
 }
 
