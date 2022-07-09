@@ -8,8 +8,8 @@ const CardHeaderChips = ({
 }) => {
 	return (<SmartChipBox text={chips}
 						  containerSx={{
-					   px: 1
-				   }}/>)
+							  px: 1
+						  }}/>)
 }
 
 export default CardHeaderChips

@@ -1,13 +1,11 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import PageSection from "../../components/page/PageSection"
 
 const ActivitiesSocieties: PageSectionProps = {
-	title        : "Activities & Societies",
-	variant       : "timeline",
-	items        : [
+	title  : "Activities & Societies",
+	variant: "timeline",
+	items  : [
 		{
 			"title"       : "VolHacks",
 			"subtitle"    : "University of Tennessee's Yearly Hackathon Event",

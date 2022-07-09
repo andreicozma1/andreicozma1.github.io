@@ -3,11 +3,11 @@ import * as React from "react"
 import SmartChip from "./SmartChip"
 
 const SmartChipBox = ({
-				   text,
-				   defaultColor,
-				   defaultVariant,
-				   containerSx
-			   }: {
+						  text,
+						  defaultColor,
+						  defaultVariant,
+						  containerSx
+					  }: {
 	text: string | string[], defaultColor?: ChipProps["color"], defaultVariant?: ChipProps["variant"], containerSx?: object
 }) => {
 

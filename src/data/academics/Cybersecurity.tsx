@@ -13,8 +13,8 @@ const Cybersecurity: PageSectionProps = {
 						exploiting vulnerabilities in software, and software development best practices for avoiding vulnerabilities
 						 during the design, implementation, testing, and deployment of software.`,
 			"contentChips": [
-				"Threat Modeling", "Security Architecture", "Security Testing", "Security Analysis",
-				"X86 Assembly", "C/C++", "Python", "JavaScript"
+				"Threat Modeling", "Security Architecture", "Security Testing", "Security Analysis", "X86 Assembly",
+				"C/C++", "Python", "JavaScript"
 			],
 			"avatar"      : <AccessAlarmIcon/>
 		}, {
@@ -33,8 +33,8 @@ const Cybersecurity: PageSectionProps = {
 			such as smartphones, wearable devices, and IoT devices.`,
 			"contentChips": [
 				"Mobile Operating Systems", "Mobile Location and Activity Privacy", "User/Device Authentication",
-				"IoT Wireless Security", "Side-Channel Attacks", "Security and Privacy Breaches on Smart Home" +
-				" Devices", "Python"
+				"IoT Wireless Security", "Side-Channel Attacks",
+				"Security and Privacy Breaches on Smart Home" + " Devices", "Python"
 			],
 			"avatar"      : <AccessAlarmIcon/>
 		}, {
@@ -43,7 +43,8 @@ const Cybersecurity: PageSectionProps = {
 			"avatar"      : <AccessAlarmIcon/>,
 			"contentChips": [
 				"Security Goals", "Threat Modeling", "Software Security", "Operating System Security", "Cryptography",
-				"Network Security", "Human Factors", "Authentication", "Access control", "C/C++", "Python", "JavaScript", "X86 Assembly"
+				"Network Security", "Human Factors", "Authentication", "Access control", "C/C++", "Python",
+				"JavaScript", "X86 Assembly"
 			]
 		}
 	]

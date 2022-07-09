@@ -1,13 +1,11 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import PageSection from "../../components/page/PageSection"
-import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
 const About: PageSectionProps = {
-	title: "About",
-	variant      : "grid6",
-	items        : [
+	title  : "About",
+	variant: "grid6",
+	items  : [
 		{
 			"title"  : "Personal Statement",
 			"avatar" : <AccessAlarmIcon/>,

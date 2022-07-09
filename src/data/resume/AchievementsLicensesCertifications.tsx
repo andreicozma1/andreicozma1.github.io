@@ -1,13 +1,11 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import PageSection from "../../components/page/PageSection"
-import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
 const AchievementsLicensesCertifications: PageSectionProps = {
-	title        : "Achievements, Licenses, & Certifications",
-	variant      : "grid6",
-	items        : [
+	title  : "Achievements, Licenses, & Certifications",
+	variant: "grid6",
+	items  : [
 		{
 			"title"      : "From Data to Insights with Google Cloud Platform Specialization",
 			"subtitle"   : "No expiration",

@@ -10,7 +10,7 @@ import StorageOutlinedIcon from "@mui/icons-material/StorageOutlined"
 import SelectAllOutlinedIcon from "@mui/icons-material/SelectAllOutlined"
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded"
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined"
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
 
 const SmartChip = ({
 					   text,

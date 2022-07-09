@@ -1,13 +1,11 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import PageSection from "../../components/page/PageSection"
 
 const Education: PageSectionProps = {
-	title        : "Education",
-	variant       : "timeline",
-	items        : [
+	title  : "Education",
+	variant: "timeline",
+	items  : [
 		{
 			"title"      : "Computer Science M.S.",
 			"subtitle"   : "University of Tennessee, Knoxville",

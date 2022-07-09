@@ -21,8 +21,8 @@ const WorkExperience: PageSectionProps = {
 			"title"       : "Undergraduate Teaching Assistant",
 			"subtitle"    : "The University of Tennessee, Knoxville",
 			"headerChips" : [
-				"Cybersecurity", "Security Goals", "Threat Modeling", "Software Security", "Operating System Security", "Cryptography",
-				"Network Security", "Human Factors"
+				"Cybersecurity", "Security Goals", "Threat Modeling", "Software Security", "Operating System Security",
+				"Cryptography", "Network Security", "Human Factors"
 			],
 			"contentChips": "01/2022 - 05/2022",
 			"avatar"      : <AccessAlarmIcon/>,
@@ -33,7 +33,8 @@ const WorkExperience: PageSectionProps = {
 			"title"       : "Undergraduate Research Assistant",
 			"subtitle"    : "The University of Tennessee, Knoxville",
 			"headerChips" : [
-				"Cybersecurity", "Web Security", "Certificates", "Phishing", "Data Analytics", "Python", "JavaScript", "Bash Scripting", "Linux", "Git", "Docker",  "MongoDB", "SQL",
+				"Cybersecurity", "Web Security", "Certificates", "Phishing", "Data Analytics", "Python", "JavaScript",
+				"Bash Scripting", "Linux", "Git", "Docker", "MongoDB", "SQL"
 			],
 			"contentChips": "03/2021 - 10/2021",
 			"avatar"      : <AccessAlarmIcon/>,

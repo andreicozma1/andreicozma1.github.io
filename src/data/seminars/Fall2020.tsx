@@ -1,12 +1,10 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import PageSection from "../../components/page/PageSection"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
 const Fall2020: PageSectionProps = {
-	title        : "Fall 2020",
-	items        : [
+	title: "Fall 2020",
+	items: [
 		{
 			"title"      : "BlueSky Statistics Workshop",
 			"subtitle"   : "Presenter: Bob Muenchen (Office of Information Technology (OIT))",

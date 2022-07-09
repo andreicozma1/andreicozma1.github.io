@@ -1,12 +1,10 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import PageSection from "../../components/page/PageSection"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
 const Spring2021: PageSectionProps = {
-	title        : "Spring 2021",
-	items        : [
+	title: "Spring 2021",
+	items: [
 		{
 			"title"      : "DNA Topology and Transcription Regulation",
 			"subtitle"   : "Presenter: Dr. Laura Finzi, Emory University, Physics Department",

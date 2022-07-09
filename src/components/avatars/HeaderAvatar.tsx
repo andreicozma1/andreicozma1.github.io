@@ -3,7 +3,6 @@ import Typography from "@mui/material/Typography"
 import Avatar from "@mui/material/Avatar"
 import { Menu, MenuItem, Tooltip } from "@mui/material"
 import { IconButton } from "gatsby-theme-material-ui"
-import { MouseEventHandler } from "react"
 
 const settings = [ "LinkedIn", "GitHub", "Source Code" ]
 

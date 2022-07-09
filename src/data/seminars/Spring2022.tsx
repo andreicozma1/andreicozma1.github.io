@@ -1,12 +1,10 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import PageSection from "../../components/page/PageSection"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
 const Spring2022: PageSectionProps = {
-	title        : "Spring 2022",
-	items        : [
+	title: "Spring 2022",
+	items: [
 		{
 			"title"      : "Healthcare AI – Augmenting Clinical Workflow",
 			"subtitle"   : "Presenter: Gemma Leigh Roberts",

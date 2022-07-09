@@ -8,8 +8,8 @@ const CardContentChips = ({
 }) => {
 	return <SmartChipBox text={chips} defaultVariant="filled"
 						 containerSx={{
-					  display: "block"
-				  }}/>
+							 display: "block"
+						 }}/>
 }
 
 export default CardContentChips

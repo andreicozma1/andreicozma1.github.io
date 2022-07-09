@@ -1,12 +1,10 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
-import PageSection from "../../components/page/PageSection"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
 const Fall2021: PageSectionProps = {
-	title        : "Fall 2021",
-	items        : [
+	title: "Fall 2021",
+	items: [
 		{
 			"title"      : "Cultivating a Growth Mindset",
 			"subtitle"   : "Presenter: Gemma Leigh Roberts",

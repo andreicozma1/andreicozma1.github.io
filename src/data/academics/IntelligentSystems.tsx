@@ -11,9 +11,9 @@ const Completed: PageSectionProps = {
 			"title"       : "COSC 525 - Deep Learning",
 			"subtitle"    : `Theoretical and practical aspects of how to build deep networks for representations of high-dimensional data.`,
 			"contentChips": [
-				"Loss and Optimization",
-				"Artificial Neural Network", "Convolutional Neural Network", "Autoencoder",
-				"Generative Adversarial Network", "RNN", "LSTM", "Transformer", "Python", "TensorFlow", "Numpy", "Matplotlib"
+				"Loss and Optimization", "Artificial Neural Network", "Convolutional Neural Network", "Autoencoder",
+				"Generative Adversarial Network", "RNN", "LSTM", "Transformer", "Python", "TensorFlow", "Numpy",
+				"Matplotlib"
 			],
 			"avatar"      : <AccessAlarmIcon/>
 		}, {
@@ -22,8 +22,8 @@ const Completed: PageSectionProps = {
 			"avatar"      : <AccessAlarmIcon/>,
 			"contentChips": [
 				"Uninformed and Informed Search", "Search Engines", "Adversarial Search", "Constraint Satisfaction",
-				"Planning", "Knowledge Representation & Reasoning", "Decision-Making", "Multi-Agent Systems",
-				"Python", "TensorFlow", "Scikit-Learn", "Numpy", "Matplotlib"
+				"Planning", "Knowledge Representation & Reasoning", "Decision-Making", "Multi-Agent Systems", "Python",
+				"TensorFlow", "Scikit-Learn", "Numpy", "Matplotlib"
 			]
 		}, {
 			"title"       : "COSC 522 - Machine Learning",
@@ -35,13 +35,14 @@ const Completed: PageSectionProps = {
 				"Boosting", "Neural Networks", "Python", "Numpy", "Matplotlib"
 			]
 		}, {
-			"title"   : "COSC 420 - Biologically-Inspired Computation",
-			"subtitle": `Recent developments in computational methods inspired by nature, including the use of biologically inspired algorithms to solve problems.`,
+			"title"       : "COSC 420 - Biologically-Inspired Computation",
+			"subtitle"    : `Recent developments in computational methods inspired by nature, including the use of biologically inspired algorithms to solve problems.`,
 			"contentChips": [
-				"Neural Networks", "Genetic Algorithms", "Evolutionary Programming", "Ant-Swarm Optimization", "Artificial Immune Systems",
-				"Swarm Intelligence", "Cellular Automata", "Multi-Agent Systems", "Cooperation", "Competition", "Python", "Numpy", "Matplotlib"
+				"Neural Networks", "Genetic Algorithms", "Evolutionary Programming", "Ant-Swarm Optimization",
+				"Artificial Immune Systems", "Swarm Intelligence", "Cellular Automata", "Multi-Agent Systems",
+				"Cooperation", "Competition", "Python", "Numpy", "Matplotlib"
 			],
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"      : <AccessAlarmIcon/>
 		}
 	]
 }

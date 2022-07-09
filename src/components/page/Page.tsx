@@ -20,24 +20,29 @@ const Page = ({
 	const particlesInit = async (engine) => {
 		await loadFull(engine)
 	}
+	const particlesOptionsCopy = { ...particlesOptions }
+	if (data.href === "/") {
+		particlesOptionsCopy.particles.opacity.value = 0.5
+	} else {
+		particlesOptionsCopy.particles.opacity.value = 0.25
+	}
 
 	const [ checked, setChecked ] = React.useState(false)
-
 	useEffect(() => {
 		setChecked(true)
 	}, [])
 
 	return (<ThemeProvider theme={theme}>
 		{/*// @ts-ignore*/}
-		<Particles init={particlesInit} options={particlesOptions}
+		<Particles init={particlesInit} options={particlesOptionsCopy}
 				   style={{
 					   position: "fixed",
-					   filter  : theme.particles.filter,
+					   filter  : theme.particles.filter
 				   }}/>
 		<ResponsiveTopBar page={data}/>
 		<Container component={Stack} spacing={2} sx={{
 			paddingBottom: theme.spacing(2),
-			opacity      : 0.99,
+			opacity      : 0.99
 		}}>
 			{data.sections && <PageBreadcrumbs page={data}/>}
 			{data.notes && <SlideNotes notesArray={data.notes}/>}
