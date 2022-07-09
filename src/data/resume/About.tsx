@@ -22,11 +22,17 @@ const About: PageSectionProps = {
             help find solutions to world problems.`
 			]
 		}, {
-			"title"  : "Research Interests",
+			"title"  : "Skills & Interests",
 			"avatar"  : <AccessAlarmIcon/>,
-			"content": [
-				`My main career and research interests include making use of Deep Learning, Machine Learning, and Artificial Intelligence techniques with a focus on Natural Language Processing and Computer Vision.`,
-				`I am also really passionate about fields such as Cyber-security, Data Analytics, Mobile & Embedded Systems, and others.`
+			"contentChips": [
+				"Deep Learning",
+				"Machine Learning",
+				"Artificial Intelligence",
+				"Natural Language Processing",
+				"Computer Vision",
+				"Cyber-security",
+				"Data Analytics",
+				"Mobile & Embedded Systems"
 			]
 		}
 	]

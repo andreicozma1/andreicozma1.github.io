@@ -19,17 +19,25 @@ import { InfoCardProps } from "../interfaces/InfoCardProps"
 const PageSection = ({ props }: { props: PageSectionProps }) => {
 
 	const getChipsSx = (index: number) => {
-		if (index % 2 === 0) return {
+		let chipsProps = {
 			my: "0px",
-			ml: "auto",
-			mr: "0px"
+			p : "0px"
+		}
+		if (index % 2 === 0) {
+			chipsProps = {
+				...chipsProps,
+				ml: "auto",
+				mr: "0px"
+			}
+		} else {
+			chipsProps = {
+				...chipsProps,
+				ml: "0px",
+				mr: "auto"
+			}
 		}
 
-		return {
-			my: "0px",
-			ml: "0px",
-			mr: "auto"
-		}
+		return chipsProps
 	}
 
 	const getColor = (index: number): TimelineDotProps["color"] => {
@@ -62,8 +70,8 @@ const PageSection = ({ props }: { props: PageSectionProps }) => {
 						{itemProps.headerChips && <Chips text={itemProps.headerChips} direction="row"
                                                          defaultVariant="filled"
                                                          sx={getChipsSx(index)}/>}
-						{itemProps.contentChips && <Chips text={itemProps.headerChips} orientation="row"
-                                                           defaultVariant="filled"
+						{itemProps.contentChips && <Chips text={itemProps.contentChips} direction="row"
+                                                          defaultVariant="filled"
                                                           sx={getChipsSx(index)}/>}
 					</TimelineOppositeContent>
 					<TimelineSeparator>

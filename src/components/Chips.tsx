@@ -20,7 +20,8 @@ const Chips = ({
 		ml: "auto",
 		my: "auto",
 		py: theme.spacing(1),
-		px: theme.spacing(2), ...sx
+		px: theme.spacing(2),
+		...sx
 	}
 
 	const getIcon = (text: string) => {

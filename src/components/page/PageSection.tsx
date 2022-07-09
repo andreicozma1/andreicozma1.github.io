@@ -31,8 +31,9 @@ const PageSection = ({ props }: { props: PageSectionProps }) => {
 							subtitle={itemProps.subtitle}
 							content={itemProps.content}
 							avatar={itemProps.avatar}
+							headerChips={itemProps.headerChips}
 							contentChips={itemProps.contentChips}
-							headerChips={itemProps.headerChips}></props.itemComponent>
+						/>
 					</Grid>
 				})}
 			</Grid>
