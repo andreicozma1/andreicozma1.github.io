@@ -52,8 +52,8 @@ const SmartChip = ({
 	const getColor = (text: string): ChipProps["color"] => {
 		if (mAchieve.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "success"
 		if (mProg.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "primary"
-		if (mLib.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "primary"
-		if (mDB.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "info"
+		if (mLib.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "info"
+		if (mDB.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "success"
 		if (mTool.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "secondary"
 		return defaultColor || "default"
 	}
