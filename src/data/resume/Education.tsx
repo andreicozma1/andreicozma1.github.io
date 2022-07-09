@@ -11,7 +11,7 @@ const Education: PageSectionProps = {
 			"subtitle"   : "University of Tennessee, Knoxville",
 			"avatar"     : <AccessAlarmIcon/>,
 			"headerChips": [
-				"Starting 08/2022"
+				"Starting Fall 2022"
 			],
 			"content"    : [
 				"Concentration: Intelligent Systems & Machine Learning"
