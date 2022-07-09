@@ -115,7 +115,7 @@ const theme = createTheme({
 		opacity           : 0.99,
 		selectedFontWeight: "bold",
 		hiddenOpacity     : 0.5,
-		spacing           : 2
+		spacing           : 1
 	},
 	particles         : {
 		filter: "blur(15px)"

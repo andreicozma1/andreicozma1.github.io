@@ -1,6 +1,10 @@
 import * as React from "react"
 import Typography from "@mui/material/Typography"
 import Avatar from "@mui/material/Avatar"
+import { Menu, MenuItem, Tooltip } from "@mui/material"
+import { IconButton } from "gatsby-theme-material-ui"
+
+const settings = [ "LinkedIn", "GitHub", "Source Code" ]
 
 const HeaderAvatar = ({ variant }: { variant: string }) => {
 
@@ -8,7 +12,7 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 	if (variant === "xs") {
 		display = {
 			xs: "flex",
-			md: "none",
+			md: "none"
 		}
 	} else {
 		display = {
@@ -17,13 +21,19 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 		}
 	}
 
-	return <>
+	const [ anchorElUser, setAnchorElUser ] = React.useState(null)
+	const handleOpenUserMenu = (event) => {
+		setAnchorElUser(event.currentTarget)
+	}
+	const handleCloseUserMenu = () => {
+		setAnchorElUser(null)
+	}
 
+	return <>
 		<Typography
 			variant="h6"
 			noWrap
 			component="a"
-			href="/"
 			sx={{
 				mr            : 2,
 				display       : display,
@@ -39,10 +49,34 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 		>
 			Andrei Cozma
 		</Typography>
-		<Avatar alt="Andrei Cozma" src="/avatar.jpg" sx={{
-			display: display,
-			mr     : 3
-		}}/>
+		<Tooltip title="Open settings">
+			<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+				<Avatar alt="Andrei Cozma" src="/avatar.jpg" sx={{
+					display: display,
+					mr     : 3
+				}}/>
+			</IconButton>
+		</Tooltip>
+		<Menu
+			sx={{ mt: "45px" }}
+			id="menu-appbar"
+			anchorEl={anchorElUser}
+			anchorOrigin={{
+				vertical  : "top",
+				horizontal: "right"
+			}}
+			keepMounted
+			transformOrigin={{
+				vertical  : "top",
+				horizontal: "right"
+			}}
+			open={Boolean(anchorElUser)}
+			onClose={handleCloseUserMenu}
+		>
+			{settings.map((setting) => (<MenuItem key={setting} onClick={handleCloseUserMenu}>
+				<Typography textAlign="center">{setting}</Typography>
+			</MenuItem>))}
+		</Menu>
 	</>
 }
 

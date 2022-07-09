@@ -83,7 +83,8 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							}}
 						>
 							{filterPages().map(([ title, info ]) => {
-								return <MenuItem key={title} onClick={handleCloseNavMenu} component={Link} to={info.href}>
+								return <MenuItem key={title} onClick={handleCloseNavMenu} component={Link}
+												 to={info.href}>
 									<Typography
 										textAlign="center"
 										// underlined if current page
@@ -105,8 +106,8 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 					<Box sx={{
 						flexGrow: 1,
 						display : {
-							xs            : "none",
-							md            : "flex", // align right
+							xs: "none",
+							md: "flex" // align right
 						}
 					}}
 						 component={Stack}
