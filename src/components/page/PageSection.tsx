@@ -15,6 +15,7 @@ import {
 } from "@mui/lab"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
 import TimelineOppositeChipsContent from "../chips/TimelineOppositeChipsContent"
+import InfoCard from "../cards/InfoCard"
 
 const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 
@@ -42,11 +43,11 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 					<TimelineConnector/>
 				</TimelineSeparator>
 				<TimelineContent>
-					<props.itemComponent
+					<InfoCard
 						title={itemProps.title}
 						subtitle={itemProps.subtitle}
 						content={itemProps.content}
-					></props.itemComponent>
+					></InfoCard>
 				</TimelineContent>
 			</TimelineItem>
 		})}
@@ -62,7 +63,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 				return <Grid item xs={12} md={props.variant === "grid6"
 					? 6
 					: 12} key={index}>
-					<props.itemComponent
+					<InfoCard
 						title={itemProps.title}
 						subtitle={itemProps.subtitle}
 						content={itemProps.content}

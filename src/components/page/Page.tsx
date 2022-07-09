@@ -9,6 +9,7 @@ import { loadFull } from "tsparticles"
 import particlesOptions from "../../config/particles.json"
 import { PageProps } from "../interfaces/PageProps"
 import SlideNotes from "../SlideNotes"
+import PageSection from "./PageSection"
 
 const Page = ({
 				  data,
@@ -45,7 +46,7 @@ const Page = ({
 				  timeout={theme.transitionDuration.page}>
 				<Box>
 					{data.sections && data.sections.map((section, index) => (
-						<section.layout key={index} props={section}></section.layout>))}
+						<PageSection key={index} props={section}></PageSection>))}
 					{children}
 				</Box>
 			</Fade>

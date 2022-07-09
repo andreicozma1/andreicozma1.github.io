@@ -6,8 +6,6 @@ import PageSection from "../../components/page/PageSection"
 
 const Education: PageSectionProps = {
 	title        : "Education",
-	layout       : PageSection,
-	itemComponent: InfoCard,
 	variant       : "timeline",
 	items        : [
 		{

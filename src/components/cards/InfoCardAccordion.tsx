@@ -3,7 +3,7 @@ import * as React from "react"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
 import theme from "../../config/theme"
-import Chips from "../chips/Chips"
+import SmartChipBox from "../chips/SmartChipBox"
 
 const InfoCardAccordion = ({
 							   title,
@@ -32,7 +32,7 @@ const InfoCardAccordion = ({
 							px: "0px"
 						}}>
 			</CardHeader>
-			{headerChips && <Chips text={headerChips} containerSx={{
+			{headerChips && <SmartChipBox text={headerChips} containerSx={{
 				px: 1
 			}}/>}
 		</AccordionSummary>

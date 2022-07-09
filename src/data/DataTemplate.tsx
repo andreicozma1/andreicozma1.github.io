@@ -6,8 +6,6 @@ import { PageSectionProps } from "../components/interfaces/PageSectionProps"
 
 const DataTemplate: PageSectionProps = {
 	title        : "Data Template",
-	layout       : PageSection,
-	itemComponent: InfoCardAccordion,
 	items        : [
 		{
 			"title"  : "Section 1",

@@ -1,4 +1,4 @@
-import Chips from "./Chips"
+import SmartChipBox from "./SmartChipBox"
 import * as React from "react"
 
 const CardHeaderChips = ({
@@ -6,8 +6,8 @@ const CardHeaderChips = ({
 						 }: {
 	chips: string | string[],
 }) => {
-	return (<Chips text={chips}
-				   containerSx={{
+	return (<SmartChipBox text={chips}
+						  containerSx={{
 					   px: 1
 				   }}/>)
 }

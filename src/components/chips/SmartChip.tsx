@@ -30,6 +30,33 @@ const SmartChip = ({
 		if (text.includes("GPA")) {
 			return "secondary"
 		}
+		const mProg = [
+			"Assembly", "C/C++", "C#", "Java", "Python", "Ruby", "Swift", "TypeScript", "HTML", "CSS", "JavaScript",
+			"PHP", "Bash", "CoffeeScript", "GoLang", "Haskell", "Lua", "Perl", "Rust", "Scala", "Shell", "Visual Basic",
+		]
+		if (mProg.some(m => text.includes(m))) {
+			return "primary"
+		}
+
+		const mLib = [
+			"React", "Angular", "Vue", "Node", "Express", "Django", "Flask", "Docker", "AWS", "Matplotlib", "Pandas",
+			"Numpy", "Scikit-Learn", "TensorFlow", "Keras", "PyTorch", "JQuery"
+		]
+
+		if (mLib.some(m => text.includes(m))) {
+			return "secondary"
+		}
+
+		const mDB = [ "SQL", "NoSQL", "MongoDB", "MySQL", "PostgreSQL", "Firebase" ]
+		if (mDB.some(m => text.includes(m))) {
+			return "success"
+		}
+
+		const mTool = [ "Git", "GitHub", "GitLab", "Jira", "BitBucket", "Jenkins" ]
+		if (mTool.some(m => text.includes(m))) {
+			return "info"
+		}
+
 		return defaultColor || "default"
 	}
 

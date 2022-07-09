@@ -6,8 +6,6 @@ import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
 const Spring2022: PageSectionProps = {
 	title        : "Spring 2022",
-	layout       : PageSection,
-	itemComponent: InfoCardAccordion,
 	items        : [
 		{
 			"title"      : "Healthcare AI – Augmenting Clinical Workflow",

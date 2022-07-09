@@ -6,8 +6,6 @@ import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
 const AchievementsLicensesCertifications: PageSectionProps = {
 	title        : "Achievements, Licenses, & Certifications",
-	layout       : PageSection,
-	itemComponent: InfoCard,
 	variant      : "grid6",
 	items        : [
 		{

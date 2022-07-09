@@ -6,8 +6,6 @@ import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
 const Spring2021: PageSectionProps = {
 	title        : "Spring 2021",
-	layout       : PageSection,
-	itemComponent: InfoCardAccordion,
 	items        : [
 		{
 			"title"      : "DNA Topology and Transcription Regulation",

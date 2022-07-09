@@ -1,35 +1,49 @@
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
-import PageSection from "../../components/page/PageSection"
-import InfoCard from "../../components/cards/InfoCard"
 
 // Use the types of the InfoCardData interface
 const Cybersecurity: PageSectionProps = {
-	title        : "Cybersecurity",
-	layout       : PageSection,
-	itemComponent: InfoCard,
-	variant	  : "grid6",
-	items        : [
+	title  : "Cybersecurity",
+	variant: "grid6",
+	items  : [
 		{
-			"title"  : "COSC 466 - Software Security",
-			"avatar" : <AccessAlarmIcon/>,
-			"content": null
+			"title"       : "COSC 466 - Software Security",
+			"subtitle"    : `An in-depth introduction to software security. The focus is on identifying vulnerabilities in software, 
+						exploiting vulnerabilities in software, and software development best practices for avoiding vulnerabilities
+						 during the design, implementation, testing, and deployment of software.`,
+			"contentChips": [
+				"Threat Modeling", "Security Architecture", "Security Testing", "Security Analysis",
+				"X86 Assembly", "C/C++", "Python", "JavaScript"
+			],
+			"avatar"      : <AccessAlarmIcon/>
 		}, {
-			"title"  : "ECE 462 - Cyber-Physical System Security",
-			"avatar" : <AccessAlarmIcon/>,
-			"content": null
+			"title"       : "ECE 462 - Cyber-Physical System Security",
+			"subtitle"    : `Introduction to security challenges and techniques at both the physical layer and the cyber layer of important 
+			cyber-physical systems.`,
+			"contentChips": [
+				"Security Architecture, Testing, and Analysis", "Transportation Systems", "Avionics",
+				"Industrial Automation", "Vehicular Systems", "Medical Systems", "Power Systems", "SCADA",
+				"Nuclear Plants"
+			],
+			"avatar"      : <AccessAlarmIcon/>
 		}, {
-			"title"   : "COSC 469 - Mobile/Embedded Systems Security",
-			"subtitle": `In-depth exploration of mobile and embedded systems security, their design challenges and common pitfalls, as well as the tools and techniques for security testing of these systems.`,
-			"avatar"  : <AccessAlarmIcon/>
+			"title"       : "ECE 469 - Mobile/Embedded Systems Security",
+			"subtitle"    : `Introduction to vulnerabilities and threat vectors associated with mobile and embedded devices, 
+			such as smartphones, wearable devices, and IoT devices.`,
+			"contentChips": [
+				"Mobile Operating Systems", "Mobile Location and Activity Privacy", "User/Device Authentication",
+				"IoT Wireless Security", "Side-Channel Attacks", "Security and Privacy Breaches on Smart Home" +
+				" Devices", "Python"
+			],
+			"avatar"      : <AccessAlarmIcon/>
 		}, {
 			"title"       : "COSC 366 - Introduction to Cybersecurity",
-			"subtitle"    : `This course is an introduction to the field of Cybersecurity with a focus on the application of secure systems design principles and the analysis of common security vulnerabilities.`,
+			"subtitle"    : `A broad introduction to cybersecurity concepts and practices, and the current challenges in cybersecurity.`,
 			"avatar"      : <AccessAlarmIcon/>,
 			"contentChips": [
-				"cryptography", "authentication", "access control", "secure communications", "network security",
-				"software security"
+				"Security Goals", "Threat Modeling", "Software Security", "Operating System Security", "Cryptography",
+				"Network Security", "Human Factors", "Authentication", "Access control", "C/C++", "Python", "JavaScript", "X86 Assembly"
 			]
 		}
 	]

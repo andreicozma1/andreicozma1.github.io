@@ -1,5 +1,5 @@
 import { InfoCardProps } from "../interfaces/InfoCardProps"
-import Chips from "./Chips"
+import SmartChipBox from "./SmartChipBox"
 import * as React from "react"
 
 const TimelineOppositeChipsContent = ({
@@ -30,12 +30,12 @@ const TimelineOppositeChipsContent = ({
 	}
 
 	return <>
-		{itemProps.headerChips && <Chips text={itemProps.headerChips}
-                                         defaultVariant="filled"
-                                         containerSx={getChipsSx(index)}/>}
-		{itemProps.contentChips && <Chips text={itemProps.contentChips}
-                                          defaultVariant="filled"
-                                          containerSx={getChipsSx(index)}/>}
+		{itemProps.headerChips && <SmartChipBox text={itemProps.headerChips}
+                                                defaultVariant="filled"
+                                                containerSx={getChipsSx(index)}/>}
+		{itemProps.contentChips && <SmartChipBox text={itemProps.contentChips}
+                                                 defaultVariant="filled"
+                                                 containerSx={getChipsSx(index)}/>}
 	</>
 }
 

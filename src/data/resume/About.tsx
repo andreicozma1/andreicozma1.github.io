@@ -5,10 +5,7 @@ import InfoCard from "../../components/cards/InfoCard"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
 const About: PageSectionProps = {
-	title: "About", // note: "I am a Software Developer with a strong passion for learning, improving, and creating.",
-	// noteSeverity: "info",
-	layout       : PageSection,
-	itemComponent: InfoCard,
+	title: "About",
 	variant      : "grid6",
 	items        : [
 		{

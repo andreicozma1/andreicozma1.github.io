@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography"
 import Avatar from "@mui/material/Avatar"
 import { Menu, MenuItem, Tooltip } from "@mui/material"
 import { IconButton } from "gatsby-theme-material-ui"
+import { MouseEventHandler } from "react"
 
 const settings = [ "LinkedIn", "GitHub", "Source Code" ]
 
@@ -22,7 +23,7 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 	}
 
 	const [ anchorElUser, setAnchorElUser ] = React.useState(null)
-	const handleOpenUserMenu = (event) => {
+	const handleOpenUserMenu = (event: any) => {
 		setAnchorElUser(event.currentTarget)
 	}
 	const handleCloseUserMenu = () => {

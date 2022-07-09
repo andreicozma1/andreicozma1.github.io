@@ -6,8 +6,6 @@ import InfoCardAccordion from "../../components/cards/InfoCardAccordion"
 
 const Fall2021: PageSectionProps = {
 	title        : "Fall 2021",
-	layout       : PageSection,
-	itemComponent: InfoCardAccordion,
 	items        : [
 		{
 			"title"      : "Cultivating a Growth Mindset",

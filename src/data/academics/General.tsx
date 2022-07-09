@@ -7,14 +7,12 @@ import InfoCard from "../../components/cards/InfoCard"
 // Use the types of the InfoCardData interface
 const General: PageSectionProps = {
 	title        : "General",
-	layout       : PageSection,
-	itemComponent: InfoCard,
 	variant	  : "grid6",
 	items        : [
 		{
 			"title"  : "COSC 402 - Senior Design Practicum",
+			"subtitle": `A design course that focuses the student’s attention on professional practice, ethics, accumulated background of curricular components, and recent developments in the field. The focus is on teaching both the design process and design principles that allow students to utilize all of the above elements to effectively create designs for major design projects.`,
 			"avatar" : <AccessAlarmIcon/>,
-			"content": null
 		}, {
 			"title"   : "COSC 493 - Advanced Automata Theory",
 			"avatar"  : <AccessAlarmIcon/>,
@@ -28,8 +26,9 @@ const General: PageSectionProps = {
 			"avatar"      : <AccessAlarmIcon/>,
 			"subtitle"    : `In-depth focus on developing a strong understanding of the basics of databases and their usage in web applications as well as an introduction to various scripting languages.`,
 			"contentChips": [
-				"relational algebra", "SQL", "MongoDB", "database design", "data models",
-				"entity-relationship diagrams", "web databases", "XML", "HTML", "CSS", "JavaScript", "PHP"
+				"Relational Algebra", "Database Design", "Data Models",
+				"Entity-Relationship Diagrams", "Web Databases", "XML", "HTML", "CSS", "JavaScript", "PHP",
+				"Node.JS", "JQuery", "SQL", "MongoDB"
 			]
 		}, {
 			"title"       : "COSC 370 - Introduction to Scientific Computing",
@@ -38,12 +37,12 @@ const General: PageSectionProps = {
 			"avatar"      : <AccessAlarmIcon/>,
 			"contentChips": [
 				"Program Design", "Data Structures", "Computational Complexity", "Scientific Computing Environments",
-				"High Performance Software Packages"
+				"High Performance Software Packages", "Python", "Numpy", "Matplotlib"
 			]
 		}, {
 			"title"  : "COSC 367 - Honors Systems Programming",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`An in-depth introduction to the C programming language and its use in systems programming, covering the
         methodologies of operating systems with topics regarding memory and process layout, system calls, buffering,
         file I/O, file systems, directories, metadata, assembly code, stack frames, memory management, process
@@ -55,7 +54,7 @@ const General: PageSectionProps = {
 		}, {
 			"title"  : "COSC 365 - Programming Languages and Systems",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`An in-depth study of the design, implementation, and application of programming languages as well as an introduction to the basics of operating systems.`,
 				`Topics include: language paradigms, syntax and semantics, type systems, memory management, bindings, exception handling, objects, inheritance, polymorphism, and concurrency.`,
 				`Also covered are: processes, threads, inter-process communication, scheduling, memory management, file systems, and security.`
@@ -63,14 +62,14 @@ const General: PageSectionProps = {
 		}, {
 			"title"  : "COSC 361 - Operating Systems",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`In-depth study of the design, implementation, and performance of modern operating systems with a focus on Unix and a modern re-implementation of 6th edition Unix called XV6.`,
 				`Topics include process and thread management, CPU scheduling, process synchronization, deadlocks, memory management, virtual memory, file systems, I/O systems, and security.`
 			]
 		}, {
 			"title"  : "COSC 340 - Software Engineering",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`A strong focus on the application of a systematic, disciplined, quantifiable approach to the design,
         development, operation, and maintenance of software, and the study of these approaches. Applying engineering
         to software processes that are used in real-life working environments to help design, manage, maintain, and
@@ -80,7 +79,7 @@ const General: PageSectionProps = {
 		}, {
 			"title"  : "COSC 317 - Honors Discrete Structures",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`Introduction to Set Theory, Graph Theory, and Logic & Proof strategies as the principles of software
         programming and design.`, `Topics covered include sets, combinatorics, logic and proof techniques, mathematical induction, recursion,
         functions, relations, equivalence relations, partial orderings.`, `Application of proof techniques to prove correctness of algorithms. Introduction to basic counting and
@@ -89,7 +88,7 @@ const General: PageSectionProps = {
 		}, {
 			"title"  : "COSC 312 - Algorithm Analysis and Automata",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`This course is an introduction to the Theory of Computation, the logic of computation with respect to
         machines as well as the implications related to current computing challenges and limits.`, `Topics covered include finite automata, regular grammars & languages, pushdown automata, context-free
         grammars and languages, as well as Turing Machines and Lambda-Calculus. Also covers major topics of Computer
@@ -99,7 +98,7 @@ const General: PageSectionProps = {
 		}, {
 			"title"  : "COSC 307 - Honors Data Structures and Algorithms II",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`This course focuses on the application of fundamental data structures and associated algorithms most
         commonly used in software development and design.`, `Design and implement C++ programs that solve problems related to object-oriented programming, sorting
         algorithms, disjoint sets, basic graph algorithms including toplological sort, depth-first search, and
@@ -111,7 +110,7 @@ const General: PageSectionProps = {
 		}, {
 			"title"  : "COSC 140 - Data Structures and Algorithms I",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`Development and application of a multitude of data structures and algorithms proeminently used in software
         design together with problem-solving techniques.`, `Advanced problem solving and algorithm development, programming, data structures and applications, algorithm
         complexity and running times, I/O techniques, lists, queues, stacks, hash tables, files, etc.`
@@ -119,7 +118,7 @@ const General: PageSectionProps = {
 		}, {
 			"title"  : "COSC 130 - Computer Organization & Architecture",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`Hands-on experience with applying computer organization and architecture techniques while developing
         software with C++ and RISC-V Assembly.`, `Topics discussed and applied include number systems, binary arithmetic, floating-point arithmetic, boolean
         algebra, bitwise operators, combinational and sequential circuits, registers, processor functional units and
@@ -129,7 +128,7 @@ const General: PageSectionProps = {
 		}, {
 			"title"  : "COSC 102 - Introduction to Computer Science",
 			"avatar" : <AccessAlarmIcon/>,
-			"content": [
+			"subtitle": [
 				`Introduction and hands-on experience with the basics of programming languages, problem solving, and
         algorithm development. variables and assignments, branches, loops, arrays and vectors, streams and
         formatting, functions, command line arguments, classes and structures, pointers.`, `Emphasis on organization and characteristics of modern digital computers with emphasis on software

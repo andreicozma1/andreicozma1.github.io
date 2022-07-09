@@ -6,8 +6,6 @@ import PageSection from "../../components/page/PageSection"
 
 const WorkExperience: PageSectionProps = {
 	title        : "Work Experience",
-	layout       : PageSection,
-	itemComponent: InfoCard,
 	variant       : "timeline",
 	items        : [
 		{

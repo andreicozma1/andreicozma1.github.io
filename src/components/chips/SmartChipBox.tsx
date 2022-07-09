@@ -2,7 +2,7 @@ import { Box, ChipProps } from "@mui/material"
 import * as React from "react"
 import SmartChip from "./SmartChip"
 
-const Chips = ({
+const SmartChipBox = ({
 				   text,
 				   defaultColor,
 				   defaultVariant,
@@ -27,4 +27,4 @@ const Chips = ({
 	</Box>
 }
 
-export default Chips
+export default SmartChipBox
