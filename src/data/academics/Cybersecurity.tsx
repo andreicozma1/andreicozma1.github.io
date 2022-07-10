@@ -16,7 +16,7 @@ const Cybersecurity: PageSectionProps = {
 				"contentChips": [
 					"Threat Modeling", "Security Architecture", "Security Testing", "Security Analysis"
 				],
-				"languages"   : [ "X86 Assembly", "C/C++", "Python", "JavaScript" ]
+				"languages"   : [ "C/C++", "Python", "JavaScript", "X86 Assembly" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
@@ -53,7 +53,7 @@ const Cybersecurity: PageSectionProps = {
 					"Security Goals", "Threat Modeling", "Software Security", "Operating System Security",
 					"Cryptography", "Network Security", "Human Factors", "Authentication", "Access control"
 				],
-				"languages"   : [ "X86 Assembly", "C/C++", "Python", "JavaScript" ]
+				"languages"   : [ "C/C++", "Python", "JavaScript", "X86 Assembly" ]
 			}
 
 		}
