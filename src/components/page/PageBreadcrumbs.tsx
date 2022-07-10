@@ -62,7 +62,7 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 				{/*	onDelete={handleOpenUserMenu}*/}
 				{/*/>*/}
 				{page.sections && page.sections.map((section) => {
-					return <StyledBreadcrumb component={Link} label={section.title}
+					return section.title && <StyledBreadcrumb component={Link} label={section.title}
 											 key={"#" + section.title} href={"#" + section.title}
 					/>
 				})}
