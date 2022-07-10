@@ -72,8 +72,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 	const matches = useMediaQuery(theme.breakpoints.down("sm"))
 
 	return <Box sx={{ flexGrow: 1 }}>
-		<Masonry columns={2} spacing={theme.section.itemSpacing}
-		>
+		<Masonry columns={2} spacing={theme.section.itemSpacing}>
 			{props.items.map((itemProps: InfoCardProps, index: number) => {
 
 				let headerChips = itemProps.chips && [

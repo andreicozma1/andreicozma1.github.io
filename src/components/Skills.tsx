@@ -4,11 +4,15 @@ import { pages } from "../config/pages"
 import SmartChipBox from "./page/chips/SmartChipBox"
 import { PageSection } from "./page/PageSectionTemplate"
 import { NoteProps } from "./interfaces/NoteProps"
+import { PageSectionProps } from "./interfaces/PageSectionProps"
 
-const Skills = () => {
+
+// Use PageSectionProps to get the title, notes, and items
+const Skills = ({ title, notes, items, variant }: PageSectionProps) => {
 	const displayOrder = [ "languages", "libraries", "tools" ]
-	const title = "Skills"
-	const notes: Array<NoteProps> = [
+	title = title || "Skills"
+
+	notes = [
 		{
 			text    : "An overview of my skillset based on the contents listed in this portfolio.",
 			severity: "info"

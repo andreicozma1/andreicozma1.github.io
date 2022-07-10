@@ -1,18 +1,15 @@
-import { Box, Breadcrumbs, Chip, emphasize, Menu, MenuItem, Slide, styled } from "@mui/material"
+import { Box, Breadcrumbs, Chip, emphasize, Slide, Stack, styled } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import theme from "../../config/theme"
 import NavigateNextIcon from "@mui/icons-material/NavigateNext"
 import { PageProps } from "../interfaces/PageProps"
-import Typography from "@mui/material/Typography"
 import { Link } from "gatsby-theme-material-ui"
 
 export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 	const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800]
 	return {
 		backgroundColor,
-		height            : theme.spacing(4),
 		color             : theme.palette.text.primary,
 		fontWeight        : theme.typography.fontWeightRegular,
 		"&:hover, &:focus": {
@@ -50,46 +47,51 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 	return <Slide in={checked}
 				  direction="right"
 				  timeout={theme.transitionDuration.breadcrumb}>
-		<Box>
 			<Breadcrumbs aria-label="breadcrumb"
-						 separator={<NavigateNextIcon fontSize="small"/>}
 						 sx={{
-							 paddingTop: theme.spacing(2)
+							 paddingTop: theme.spacing(2),
 						 }}>
-				<StyledBreadcrumb
-					component="a"
-					label={page.href}
-					href="#"
-					icon={page.icon}
-				/>
-				<StyledBreadcrumb
-					label="#"
-					deleteIcon={<ExpandMoreIcon/>}
-					onDelete={handleOpenUserMenu}
-				/>
+				<Stack spacing={0.5} direction="row">
+					<StyledBreadcrumb
+						component={Link}
+						label={page.href}
+						href="#"
+						icon={page.icon}
+					/>
+					{/*<StyledBreadcrumb*/}
+					{/*	label="#"*/}
+					{/*	deleteIcon={<ExpandMoreIcon/>}*/}
+					{/*	onDelete={handleOpenUserMenu}*/}
+					{/*/>*/}
+					{page.sections && page.sections.map((section) => {
+						return <StyledBreadcrumb component={Link} label={section.title}
+												 key={section.title} href={"#" + section.title}
+						/>
+					})}
+				</Stack>
 
 			</Breadcrumbs>
-			<Menu
-				sx={{ mt: "30px" }}
-				id="menu-appbar"
-				anchorEl={anchorElUser}
-				anchorOrigin={{
-					vertical  : "top",
-					horizontal: "center"
-				}}
-				keepMounted
-				transformOrigin={{
-					vertical  : "top",
-					horizontal: "center"
-				}}
-				open={Boolean(anchorElUser)}
-				onClose={handleCloseUserMenu}
-			>
-				{settings.map((setting) => (<MenuItem key={setting} onClick={handleCloseUserMenu}>
-					<Typography textAlign="center" component={Link} href={"#" + setting}>{setting}</Typography>
-				</MenuItem>))}
-			</Menu>
-		</Box>
+			{/*<Menu*/}
+			{/*	sx={{ mt: "30px" }}*/}
+			{/*	id="menu-appbar"*/}
+			{/*	anchorEl={anchorElUser}*/}
+			{/*	anchorOrigin={{*/}
+			{/*		vertical  : "top",*/}
+			{/*		horizontal: "center"*/}
+			{/*	}}*/}
+			{/*	keepMounted*/}
+			{/*	transformOrigin={{*/}
+			{/*		vertical  : "top",*/}
+			{/*		horizontal: "center"*/}
+			{/*	}}*/}
+			{/*	open={Boolean(anchorElUser)}*/}
+			{/*	onClose={handleCloseUserMenu}*/}
+			{/*>*/}
+			{/*	{settings.map((setting) => (<MenuItem key={setting} onClick={handleCloseUserMenu}>*/}
+			{/*		<Typography textAlign="center" component={Link} underline="none"*/}
+			{/*					href={"#" + setting}>{setting}</Typography>*/}
+			{/*	</MenuItem>))}*/}
+			{/*</Menu>*/}
 	</Slide>
 }
 
