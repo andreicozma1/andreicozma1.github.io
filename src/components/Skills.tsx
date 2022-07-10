@@ -61,7 +61,7 @@ const Skills = () => {
 
 				let title = "Other"
 				if (sk === "languages") title = "Programming Languages"
-				if (sk === "libraries") title = "LibrarX86 ies & Frameworks"
+				if (sk === "libraries") title = "Libraries & Frameworks"
 				if (sk === "tools") title = "Other"
 
 				let skillCountsMap: { name: string; count: number }[] = []
