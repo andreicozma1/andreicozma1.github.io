@@ -32,8 +32,8 @@ const Page = ({
 		particlesOptionsCopy.particles.size.value = 200
 		particlesOptionsCopy.particles.size.anim.size_min = 50
 	} else {
-		particlesOptionsCopy.particles.size.value = 150
-		particlesOptionsCopy.particles.size.anim.size_min = 30
+		particlesOptionsCopy.particles.size.value = 100
+		particlesOptionsCopy.particles.size.anim.size_min = 25
 	}
 
 	const [ checked, setChecked ] = React.useState(false)
