@@ -9,11 +9,14 @@ const General: PageSectionProps = {
 	items  : [
 		{
 			"title"   : "COSC 401/402 - Senior Design",
-			"subtitle": `A design course that focuses the student’s attention on professional practice, ethics, accumulated background of curricular components, and recent developments in the field. The focus is on teaching both the design process and design principles that allow students to utilize all of the above elements to effectively create designs for major design projects.`,
+			"subtitle": `A design course that focuses the student’s attention on professional practice, ethics, 
+						accumulated background of curricular components, and recent developments in the field. 
+						The focus is on teaching both the design process and design principles that allow students 
+						to utilize all of the above elements to effectively create designs for major design projects.`,
 			"chips"   : {
 				"languages": [ "JavaScript", "TypeScript", "HTML", "CSS", "Python", "Bash Scripting" ],
 				"libraries": [ "React.JS", "Redux", "Node.JS", "Flask", "Material-UI" ],
-				"tools"    : [ "Docker", "Git", "GitHub", "GitHub Actions", "Atlassian Jira", "AWS" ]
+				"tools"    : [ "Docker", "Git & GitHub", "GitHub", "GitHub Actions", "Atlassian Jira", "AWS" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
@@ -31,7 +34,7 @@ const General: PageSectionProps = {
 				],
 				"languages"   : [ "Java" ],
 				"libraries"   : [ "JavaFX" ],
-				"tools"       : [ "Git" ]
+				"tools"       : [ "Git & GitHub", "Maven" ]
 			}
 		}, {
 			"title"   : "COSC 465 - Databases and Scripting Languages",
@@ -45,7 +48,7 @@ const General: PageSectionProps = {
 				],
 				"languages"   : [ "HTML", "CSS", "JavaScript", "PHP", "SQL" ],
 				"libraries"   : [ "Node.JS", "JQuery" ],
-				"tools"       : [ "MongoDB", "Git" ]
+				"tools"       : [ "MongoDB", "MySQL", "Git & GitHub" ]
 			}
 
 		}, {
@@ -60,15 +63,13 @@ const General: PageSectionProps = {
 				],
 				"languages"   : [ "Python" ],
 				"libraries"   : [ "Numpy", "Matplotlib" ],
-				"tools"       : [ "Git" ]
+				"tools"       : [ "Git & GitHub" ]
 			}
 		}, {
 			"title"   : "COSC 367 - Honors Systems Programming",
 			"avatar"  : <AccessAlarmIcon/>,
-			"subtitle": `An in-depth introduction to the C programming language and its use in systems programming, covering the
-						methodologies of operating systems. Enforcing efficient analysis and problem solving skills, the understanding 
-						of a variety of topics in order to become proficient Software Developers and develop
-						effective software solutions.`,
+			"subtitle": `An in-depth introduction to the C programming language and its use in systems programming, 
+						covering the methodologies of operating systems.`,
 			"chips"   : {
 				"contentChips": [
 					"Operating Systems Design", "Computer Architectures", "Memory Management", "Process Management",
@@ -76,7 +77,7 @@ const General: PageSectionProps = {
 					"Directory Management", "Metadata", "Stack Frames"
 				],
 				"languages"   : [ "C/C++", "X86 Assembly" ],
-				"tools"       : [ "Git" ]
+				"tools"       : [ "Git & GitHub" ]
 			}
 
 		}, {
@@ -86,14 +87,12 @@ const General: PageSectionProps = {
 			 			as well as an introduction to the basics of operating systems.`,
 			"chips"   : {
 				"contentChips": [
-					"Language Paradigms", "Syntax and Semantics", "Type Systems", "Memory Management", "Bindings",
-					"Exception Handling", "Objects", "Inheritance", "Polymorphism", "Concurrency", "Processes",
-					"Threads", "Inter-Process Communication", "Scheduling", "Memory Management", "File Systems",
-					"Security"
+					"Language Paradigms", "Memory Management", "Exception Handling", "Objects", "Inheritance",
+					"Polymorphism", "Concurrency", "Processes & Threads", "Inter-Process Communication", "Scheduling"
 				],
 				"languages"   : [ "Java", "Python", "JavaScript", "HTML", "CSS", "PHP", "SQL" ],
 				"libraries"   : [ "Node.JS", "JQuery" ],
-				"tools"       : [ "Git" ]
+				"tools"       : [ "Git & GitHub" ]
 			}
 		}, {
 			"title"   : "COSC 361 - Operating Systems",
@@ -106,22 +105,20 @@ const General: PageSectionProps = {
 					"Virtual Memory", "File Systems", "IO Systems", "Security"
 				],
 				"languages"   : [ "C/C++" ],
-				"tools"       : [ "Unix", "Linux", "Git" ]
+				"tools"       : [ "Unix", "Linux", "Git & GitHub" ]
 			}
 		}, {
 			"title"   : "COSC 340 - Software Engineering",
 			"avatar"  : <AccessAlarmIcon/>,
 			"subtitle": `A strong focus on the application of a systematic, disciplined, quantifiable approach to 
-						the design, development, operation, and maintenance of software, and the study of these approaches. 
-						Applying engineering to software processes that are used in real-life working environments 
-						to help design, manage, maintain, and test software at a large scale.`,
+						the design, development, operation, and maintenance of software, and the study of these approaches.`,
 			"chips"   : {
 				"contentChips": [
 					"Software Requirements", "Software Design", "Software Construction", "Software Testing",
 					"Software Quality", "Software Maintenance", "Software Management", "Software Models and Methods"
 				],
 				"languages"   : [ "Python" ],
-				"tools"       : [ "Git", "GitHub", "GitHub Actions" ]
+				"tools"       : [ "Git & GitHub", "GitHub", "GitHub Actions" ]
 			}
 		}, {
 			"title"   : "COSC 317 - Honors Discrete Structures",
@@ -135,30 +132,28 @@ const General: PageSectionProps = {
 					"Functions", "Relations", "Equivalence Relations", "Partial Orderings"
 				],
 				"languages"   : [ "Python" ],
-				"tools"       : [ "Git" ]
+				"tools"       : [ "Git & GitHub" ]
 			}
 		}, {
 			"title"   : "COSC 312 - Algorithm Analysis and Automata",
 			"avatar"  : <AccessAlarmIcon/>,
 			"subtitle": `This course is an introduction to the Theory of Computation, the logic of computation
-						 with respect to machines as well as the implications related to current computing challenges and limits. 
-						 Also covers major topics of Computer Science such as decidability, the Halting Problem, reducibility, 
-						 and complexity as relating to the analysis of algorithms.`,
+						 with respect to machines as well as the implications related to current computing challenges 
+						 and limits.`,
 			"chips"   : {
 				"contentChips": [
 					"Finite Automata", "Regular Grammars & Languages", "Pushdown Automata",
-					"Context-Free Grammars and Languages", "Turing Machines", "Lambda-Calculus"
+					"Context-Free Grammars and Languages", "Turing Machines", "Lambda-Calculus", "Decidability",
+					"The Halting Problem", "Reducibility", "Complexity"
 				],
 				"languages"   : [ "Python" ],
-				"tools"       : [ "Git" ]
+				"tools"       : [ "Git & GitHub" ]
 			}
 		}, {
 			"title"   : "COSC 307 - Honors Data Structures and Algorithms II",
 			"avatar"  : <AccessAlarmIcon/>,
 			"subtitle": `This course focuses on the application of fundamental data structures and associated 
-						algorithms most commonly used in software development and design. An in-depth final project and 
-						presentation which included the design and implementation of a software application with the usage 
-						of a variety of data structures and algorithms covered in this course.`,
+						algorithms most commonly used in software development and design.`,
 			"chips"   : {
 				"contentChips": [
 					"Object-Oriented Programming", "Sorting Algorithms", "Disjoint Sets", "Basic Graph Algorithms",
@@ -166,7 +161,7 @@ const General: PageSectionProps = {
 					"Minimum Spanning Trees", "Network Flow", "Dynamic Programming"
 				],
 				"languages"   : [ "C/C++" ],
-				"tools"       : [ "Git", "GitHub", "GitHub Actions" ]
+				"tools"       : [ "Git & GitHub", "GitHub", "GitHub Actions", "Maven" ]
 			}
 		}, {
 			"title"   : "COSC 140 - Data Structures and Algorithms I",
@@ -201,12 +196,12 @@ const General: PageSectionProps = {
 			"avatar"  : <AccessAlarmIcon/>,
 			"subtitle": `Introduction and hands-on experience with the basics of programming languages, 
 						problem solving, and algorithm development. Emphasis on organization and characteristics of 
-						modern digital computers with emphasis on software engineering, object-oriented programming, 
-						building abstractions with procedures and data, and programming in a modern computer language.`,
+						modern digital computers.`,
 			"chips"   : {
 				"contentChips": [
 					"Variables and Assignments", "Branches", "Loops", "Arrays and Vectors", "Streams and Formatting",
-					"Functions", "Command Line Arguments", "Classes and Structures", "Pointers"
+					"Functions", "Command Line Arguments", "Classes and Structures", "Pointers", "Software Engineering",
+					"Object-Oriented Programming", "Abstractions", "Procedures"
 				],
 				"languages"   : [ "C/C++" ]
 			}

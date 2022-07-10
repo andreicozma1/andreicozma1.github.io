@@ -24,7 +24,8 @@ const mLib = [
 ]
 const mDB = [ "NoSQL", "MongoDB", "MySQL", "PostgreSQL", "Firebase", "SQLite" ]
 const mTool = [
-	"Linux", "Windows", "macOS", "Git", "GitHub", "GitLab", "Jira", "BitBucket", "Jenkins", "Docker", "AWS", "Unix"
+	"Unix", "Linux", "Windows", "macOS", "Git & GitHub", "Git", "GitHub", "GitLab", "BitBucket", "Jira", "Jenkins",
+	"Docker", "AWS", "Jupyter Notebook", "Maven", "Gradle"
 ]
 const mPosition = [ "President", "Secretary", "Manager" ]
 const mMember = [ "Member", "Volunteer" ]

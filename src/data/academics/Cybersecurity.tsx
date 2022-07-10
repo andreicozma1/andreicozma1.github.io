@@ -14,7 +14,9 @@ const Cybersecurity: PageSectionProps = {
 						during the design, implementation, testing, and deployment of software.`,
 			"chips"   : {
 				"contentChips": [
-					"Threat Modeling", "Security Architecture", "Security Testing", "Security Analysis"
+					"Threat Modeling", "Security Principles", "Security Testing", "Binary Representations",
+					"Machine Programming", "Buffer Overflows", "Format-String Vulnerabilities", "Integer Overflows",
+					"Injection Attacks", "XSS", "CSRF", "Memory Management", "Error Handling", "Race Conditions"
 				],
 				"languages"   : [ "C/C++", "Python", "JavaScript", "X86 Assembly" ]
 			},
@@ -37,7 +39,7 @@ const Cybersecurity: PageSectionProps = {
 			such as smartphones, wearable devices, and IoT devices.`,
 			"chips"   : {
 				"contentChips": [
-					"Mobile Operating Systems", "Mobile Location and Activity Privacy", "User/Device Authentication",
+					"Mobile Operating Systems", "Mobile Location and Activity Privacy", "User & Device Authentication",
 					"IoT Wireless Security", "Side-Channel Attacks",
 					"Security and Privacy Breaches on Smart Home" + " Devices"
 				],

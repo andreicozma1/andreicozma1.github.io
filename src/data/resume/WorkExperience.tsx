@@ -13,7 +13,7 @@ const WorkExperience: PageSectionProps = {
 				"date"        : [ "05/2022 - Present" ],
 				"contentChips": [ "Cybersecurity", "Phishing", "Data Analytics" ],
 				"languages"   : [ "Python", "GoLang" ],
-				"tools"       : [ "Linux", "Git" ]
+				"tools"       : [ "Linux", "Git & GitHub" ]
 			},
 			"content" : [
 				`Assist with research and ongoing projects, including software development and analysis on a variety of cybersecurity topics, writing and documenting research and findings, performing analytics, collecting and analyzing data, and creating visualizations of results.`
@@ -41,7 +41,7 @@ const WorkExperience: PageSectionProps = {
 					"Cybersecurity", "Web Security", "Certificates", "Phishing", "Data Analytics"
 				],
 				"languages"   : [ "Python", "JavaScript", "Bash Scripting" ],
-				"tools"       : [ "Linux", "Git", "Docker", "MongoDB", "PostgreSQL" ],
+				"tools"       : [ "Linux", "Git & GitHub", "Docker", "MongoDB", "PostgreSQL" ],
 				"date"        : [ "03/2021 - 10/2021" ]
 			},
 			"content" : [
@@ -54,7 +54,7 @@ const WorkExperience: PageSectionProps = {
 			"chips"   : {
 				"date"        : [ "05/2021 - 08/2021" ],
 				"languages"   : [ "Java", "Kotlin", "C/C++", "Python", "Bash Scripting" ],
-				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Jenkins" ],
+				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "Jenkins" ],
 				"contentChips": [
 					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems"
 				]
@@ -71,7 +71,7 @@ const WorkExperience: PageSectionProps = {
 			"chips"   : {
 				"date"        : [ "01/2020 - 12/2020" ],
 				"languages"   : [ "Java", "Kotlin", "C/C++", "Python", "Bash Scripting" ],
-				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Jenkins" ],
+				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "Jenkins" ],
 				"contentChips": [
 					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems"
 				]

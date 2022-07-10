@@ -12,12 +12,13 @@ const Completed: PageSectionProps = {
 			"subtitle": `Theoretical and practical aspects of how to build deep networks for representations of high-dimensional data.`,
 			"chips"   : {
 				"contentChips": [
-					"Loss and Optimization", "Artificial Neural Network", "Convolutional Neural Network", "Autoencoder",
-					"Generative Adversarial Network", "RNN", "LSTM", "Transformer"
+					"Loss and Optimization", "Gradient Descent", "Back-Propagation", "Artificial Neural Network",
+					"Convolutional Neural Network", "Auto-Encoders", "Generative Adversarial Network", "RNN", "LSTM",
+					"Transformer"
 				],
 				"languages"   : [ "Python" ],
 				"libraries"   : [ "TensorFlow", "Numpy", "Matplotlib" ],
-				"tools"       : [ "GitHub" ]
+				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
@@ -30,7 +31,7 @@ const Completed: PageSectionProps = {
 				],
 				"languages"   : [ "Python" ],
 				"libraries"   : [ "TensorFlow", "Scikit-Learn", "Numpy", "Matplotlib" ],
-				"tools"       : [ "GitHub" ]
+				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
@@ -44,7 +45,7 @@ const Completed: PageSectionProps = {
 				],
 				"languages"   : [ "Python" ],
 				"libraries"   : [ "Numpy", "Matplotlib" ],
-				"tools"       : [ "GitHub" ]
+				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}, {
@@ -52,12 +53,13 @@ const Completed: PageSectionProps = {
 			"subtitle": `Recent developments in computational methods inspired by nature, including the use of biologically inspired algorithms to solve problems.`,
 			"chips"   : {
 				"contentChips": [
-					"Neural Networks", "Genetic Algorithms", "Evolutionary Programming", "Ant-Swarm Optimization",
-					"Artificial Immune Systems", "Swarm Intelligence", "Cellular Automata", "Multi-Agent Systems",
-					"Cooperation", "Competition"
+					"Artificial Neural Networks", "Spiking Neural Networks", "Genetic Algorithms",
+					"Evolutionary Programming", "Ant-Swarm Optimization", "Artificial Immune Systems",
+					"Swarm Intelligence", "Cellular Automata", "Multi-Agent Systems", "Cooperation", "Competition"
 				],
 				"languages"   : [ "Python" ],
-				"libraries"   : [ "Numpy", "Matplotlib" ]
+				"libraries"   : [ "Numpy", "Matplotlib" ],
+				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
 		}
