@@ -26,7 +26,7 @@ const Page = ({
 	if (pageProps.href === "/") {
 		particlesOptionsCopy.particles.opacity.value = 0.5
 	} else {
-		particlesOptionsCopy.particles.opacity.value = 0.25
+		particlesOptionsCopy.particles.opacity.value = 0.4
 	}
 	if (matches) {
 		particlesOptionsCopy.particles.size.value = 200
@@ -70,9 +70,7 @@ const Page = ({
 				</Box>
 			</Fade>
 			<CustomSpeedDial pageProps={pageProps}/>
-
 		</Container>
-
 	</ThemeProvider>)
 }
 
