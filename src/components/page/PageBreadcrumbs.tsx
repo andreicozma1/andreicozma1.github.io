@@ -22,18 +22,18 @@ export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 }) as typeof Chip // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
 const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
-	const [ checked, setChecked ] = React.useState(false)
+	const [ animationDone, setAnimationDone ] = React.useState(false)
 
-	const [ anchorElUser, setAnchorElUser ] = React.useState(null)
-	const handleOpenUserMenu = (event: any) => {
-		setAnchorElUser(event.currentTarget)
-	}
-	const handleCloseUserMenu = () => {
-		setAnchorElUser(null)
-	}
+	// const [ anchorElUser, setAnchorElUser ] = React.useState(null)
+	// const handleOpenUserMenu = (event: any) => {
+	// 	setAnchorElUser(event.currentTarget)
+	// }
+	// const handleCloseUserMenu = () => {
+	// 	setAnchorElUser(null)
+	// }
 
 	useEffect(() => {
-		setChecked(true)
+		setAnimationDone(true)
 	}, [])
 
 	let settings: string[] = []
@@ -43,7 +43,7 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 		}
 	}
 
-	return <Slide in={checked}
+	return <Slide in={animationDone}
 				  direction="right"
 				  timeout={theme.transitionDuration.breadcrumb}>
 		<Breadcrumbs aria-label="breadcrumb"
@@ -51,12 +51,12 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 						 paddingTop: theme.spacing(2)
 					 }}>
 			<Grid container>
-				<StyledBreadcrumb
-					component={Link}
-					label={page.href}
-					href="#"
-					icon={page.icon}
-				/>
+				{/*<StyledBreadcrumb*/}
+				{/*	component={Link}*/}
+				{/*	label={page.href}*/}
+				{/*	href="#"*/}
+				{/*	icon={page.icon}*/}
+				{/*/>*/}
 				{/*<StyledBreadcrumb*/}
 				{/*	label="#"*/}
 				{/*	deleteIcon={<ExpandMoreIcon/>}*/}
@@ -64,8 +64,7 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 				{/*/>*/}
 				{page.sections && page.sections.map((section) => {
 					return section.title && <StyledBreadcrumb component={Link} label={section.title}
-                                                              key={"#" + section.title} href={"#" + section.title}
-                    />
+                                                              key={"#" + section.title} href={"#" + section.title}/>
 				})}
 			</Grid>
 
