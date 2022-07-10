@@ -50,7 +50,6 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 					 sx={{
 						 paddingTop: theme.spacing(2)
 					 }}>
-			<Stack spacing={0.5} direction="row">
 				<StyledBreadcrumb
 					component={Link}
 					label={page.href}
@@ -67,7 +66,6 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 											 key={"#" + section.title} href={"#" + section.title}
 					/>
 				})}
-			</Stack>
 
 		</Breadcrumbs>
 		{/*<Menu*/}
