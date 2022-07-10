@@ -1,4 +1,4 @@
-import { Breadcrumbs, Chip, emphasize, Slide, Stack, styled } from "@mui/material"
+import { Box, Breadcrumbs, Chip, emphasize, Grid, Slide, styled } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"
 import theme from "../../config/theme"
@@ -50,6 +50,7 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 					 sx={{
 						 paddingTop: theme.spacing(2)
 					 }}>
+			<Grid container>
 				<StyledBreadcrumb
 					component={Link}
 					label={page.href}
@@ -63,9 +64,11 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 				{/*/>*/}
 				{page.sections && page.sections.map((section) => {
 					return section.title && <StyledBreadcrumb component={Link} label={section.title}
-											 key={"#" + section.title} href={"#" + section.title}
-					/>
+                                                              key={"#" + section.title} href={"#" + section.title}
+                    />
 				})}
+			</Grid>
+
 
 		</Breadcrumbs>
 		{/*<Menu*/}
