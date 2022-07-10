@@ -26,7 +26,7 @@ const Page = ({
 	if (pageProps.href === "/") {
 		particlesOptionsCopy.particles.opacity.value = 0.5
 	} else {
-		particlesOptionsCopy.particles.opacity.value = 0.4
+		particlesOptionsCopy.particles.opacity.value = 0.3
 	}
 	if (matches) {
 		particlesOptionsCopy.particles.size.value = 200
