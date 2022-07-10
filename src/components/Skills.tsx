@@ -17,7 +17,7 @@ const Skills = ({
 
 	notes = [
 		{
-			text: "An overview of my skillset based on the contents listed in this portfolio.",
+			text    : "An overview of my skillset based on the contents listed in this portfolio.",
 			severity: "info"
 		}
 	]

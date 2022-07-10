@@ -10,6 +10,7 @@ import particlesOptions from "../../config/particles.json"
 import { PageProps } from "../interfaces/PageProps"
 import SlideNotes from "../SlideNotes"
 import PageSectionTemplate from "./PageSectionTemplate"
+import CustomSpeedDial from "../CustomSpeedDial"
 
 const Page = ({
 				  pageProps,
@@ -66,7 +67,10 @@ const Page = ({
 					{children}
 				</Box>
 			</Fade>
+			<CustomSpeedDial/>
+
 		</Container>
+
 	</ThemeProvider>)
 }
 
