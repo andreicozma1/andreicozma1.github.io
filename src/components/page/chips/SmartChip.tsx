@@ -34,7 +34,6 @@ const mChapter = [ "Chapter", "Club" ]
 function getType(text: string) {
 	const tl = text.toLowerCase()
 	if (mAchieve.some(m => tl.includes(m.toLowerCase()))) return "achieve"
-	if (mDate.some(m => tl.includes(m.toLowerCase()))) return "date"
 	if (mDB.some(m => tl.includes(m.toLowerCase()))) return "db"
 	if (mTool.some(m => tl.includes(m.toLowerCase()))) return "tool"
 	if (mLib.some(m => tl.includes(m.toLowerCase()))) return "lib"
@@ -42,6 +41,7 @@ function getType(text: string) {
 	if (mPosition.some(m => tl.includes(m.toLowerCase()))) return "position"
 	if (mMember.some(m => tl.includes(m.toLowerCase()))) return "member"
 	if (mChapter.some(m => tl.includes(m.toLowerCase()))) return "chapter"
+	if (mDate.some(m => tl.includes(m.toLowerCase()))) return "date"
 	return "skill"
 }
 
