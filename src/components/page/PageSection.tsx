@@ -68,20 +68,28 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 }
 
 const SectionList = ({ props }: { props: PageSectionProps }) => {
+	const matches = useMediaQuery(theme.breakpoints.down("sm"))
+
 	return <Box sx={{ flexGrow: 1 }}>
 		<Grid container spacing={theme.section.itemSpacing}
 			  justifyContent="space-evenly"
 			  alignItems="stretch">
 			{props.items.map((itemProps: InfoCardProps, index: number) => {
 
-				const headerChips = itemProps.chips && [
+				let headerChips = itemProps.chips && [
 					...itemProps.chips.headerChips || [], ...itemProps.chips.date || []
 				]
-				const contentChips = itemProps.chips && [
+				let contentChips = itemProps.chips && [
 					...itemProps.chips.awards || [], ...itemProps.chips.positions || [],
 					...itemProps.chips.languages || [], ...itemProps.chips.libraries || [],
 					...itemProps.chips.tools || [], ...itemProps.chips.contentChips || []
 				]
+
+				if (matches) {
+					console.log("matches")
+					contentChips = [ ...contentChips || [], ...headerChips || []]
+					headerChips = []
+				}
 
 				return <Grid item xs={12} md={props.variant === "grid6"
 					? 6

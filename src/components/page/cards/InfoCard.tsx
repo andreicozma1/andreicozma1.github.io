@@ -40,7 +40,7 @@ const InfoCard = ({
 
 		</Box>
 
-		{(content || contentChips) && <CardContent component={Stack} spacing={theme.card.spacing}>
+		{(content || contentChips) && <CardContent>
 			{content && <CardContentText text={content}/>}
 			{contentChips && <CardContentChips chips={contentChips}/>}
         </CardContent>}

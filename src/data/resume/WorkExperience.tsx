@@ -10,7 +10,7 @@ const WorkExperience: PageSectionProps = {
 			"title"   : "Summer Research Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
 			"chips"   : {
-				"date"        : [ "05/2021 - Present" ],
+				"date"        : [ "05/2022 - Present" ],
 				"contentChips": [ "Cybersecurity", "Phishing", "Data Analytics" ],
 				"languages"   : [ "Python", "GoLang" ],
 				"tools"       : [ "Linux", "Git" ]
