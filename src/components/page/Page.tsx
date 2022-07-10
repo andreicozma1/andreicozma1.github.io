@@ -50,7 +50,8 @@ const Page = ({
 		<ResponsiveTopBar page={pageProps}/>
 		<Container component={Stack} spacing={2} sx={{
 			paddingBottom: theme.spacing(3),
-			opacity      : 0.99
+			opacity      : 0.99,
+			marginTop: theme.spacing(10)
 		}}>
 			{pageProps.sections && <PageBreadcrumbs page={pageProps}/>}
 			{pageProps.notes && <SlideNotes notesArray={pageProps.notes}/>}

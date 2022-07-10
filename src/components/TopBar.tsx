@@ -40,8 +40,7 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 		timeout={theme.transitionDuration.topbar}
 		direction="down">
 
-		<AppBar position="static" sx={{ opacity: theme.topbar.opacity }}>
-
+		<AppBar position="fixed" sx={{ opacity: theme.topbar.opacity }}>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Box sx={{
