@@ -118,7 +118,7 @@ const theme = createTheme({
 		spacing           : 1
 	},
 	particles         : {
-		filter: "blur(20px)"
+		filter: "blur(1vmax)"
 	},
 	section           : {
 		titleVariant   : "h5",
