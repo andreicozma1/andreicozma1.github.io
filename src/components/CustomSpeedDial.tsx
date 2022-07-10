@@ -3,18 +3,20 @@ import { useEffect, useState } from "react"
 import Box from "@mui/material/Box"
 import SpeedDial from "@mui/material/SpeedDial"
 import SpeedDialAction from "@mui/material/SpeedDialAction"
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined"
-import SaveIcon from "@mui/icons-material/Save"
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward"
+import GitHubIcon from "@mui/icons-material/GitHub"
+import LinkedInIcon from "@mui/icons-material/LinkedIn"
 
 const actions = [
 	{
-		icon: <FileCopyIcon/>,
-		name: "LinkedIn"
+		icon: <LinkedInIcon/>,
+		name: "LinkedIn",
+		url : "https://www.linkedin.com/in/andreicozma1/"
 	}, {
-		icon: <SaveIcon/>,
-		name: "GitHub"
+		icon: <GitHubIcon/>,
+		name: "GitHub",
+		url : "https://github.com/andreicozma1"
 	}
 ]
 
@@ -74,14 +76,16 @@ export default function CustomSpeedDial() {
 				bottom  : 16,
 				right   : 16
 			}}
-			onClick={scrollToTop}
 			icon={isTop ? <ArrowDownwardIcon/> : <ArrowUpwardIcon/>}
 		>
 			{actions.map((action) => (<SpeedDialAction
-				key={action.name}
 				icon={action.icon}
 				tooltipTitle={action.name}
+				onClick={() => {
+					window.open(action.url, "_blank")
+				}}
 			/>))}
+
 		</SpeedDial>
 	</Box>)
 }
