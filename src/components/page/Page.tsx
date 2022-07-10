@@ -1,4 +1,4 @@
-import { Box, Container, Fade, Stack, ThemeProvider } from "@mui/material"
+import { Box, Container, Fade, Stack, ThemeProvider, useMediaQuery } from "@mui/material"
 import ResponsiveTopBar from "../TopBar"
 import * as React from "react"
 import { ReactNode, useEffect } from "react"
@@ -16,6 +16,7 @@ const Page = ({
 				  children
 			  }: { pageProps: PageProps, children?: ReactNode }) => {
 
+	const matches = useMediaQuery(theme.breakpoints.up("md"))
 	// @ts-ignore
 	const particlesInit = async (engine) => {
 		await loadFull(engine)
@@ -25,6 +26,13 @@ const Page = ({
 		particlesOptionsCopy.particles.opacity.value = 0.5
 	} else {
 		particlesOptionsCopy.particles.opacity.value = 0.25
+	}
+	if (matches) {
+		particlesOptionsCopy.particles.size.value = 200
+		particlesOptionsCopy.particles.size.anim.size_min = 50
+	} else {
+		particlesOptionsCopy.particles.size.value = 150
+		particlesOptionsCopy.particles.size.anim.size_min = 30
 	}
 
 	const [ checked, setChecked ] = React.useState(false)
