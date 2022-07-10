@@ -4,7 +4,7 @@ import theme from "../../config/theme"
 import { PageSectionProps } from "../interfaces/PageSectionProps"
 import SlideNotes from "../SlideNotes"
 import {
-	Timeline,
+	Masonry, Timeline,
 	TimelineConnector,
 	TimelineContent,
 	TimelineDot,
@@ -72,7 +72,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 	const matches = useMediaQuery(theme.breakpoints.down("sm"))
 
 	return <Box sx={{ flexGrow: 1 }}>
-		<Grid container spacing={theme.section.itemSpacing}
+		<Masonry columns={2} spacing={theme.section.itemSpacing}
 		>
 			{props.items.map((itemProps: InfoCardProps, index: number) => {
 
@@ -102,7 +102,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 					/>
 				</Grid>
 			})}
-		</Grid>
+		</Masonry>
 	</Box>
 }
 
