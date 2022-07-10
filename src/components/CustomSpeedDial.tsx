@@ -7,6 +7,8 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward"
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward"
 import GitHubIcon from "@mui/icons-material/GitHub"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
+import { Backdrop } from "@mui/material"
+import { PageProps } from "./interfaces/PageProps"
 
 const actions = [
 	{
@@ -20,7 +22,7 @@ const actions = [
 	}
 ]
 
-export default function CustomSpeedDial() {
+export default function CustomSpeedDial({ props }: { props: PageProps }) {
 
 	const [ isTop, setIsTop ] = React.useState(true)
 
@@ -39,7 +41,6 @@ export default function CustomSpeedDial() {
 
 		setIsTop(!isTop)
 	}
-
 	const [ lastScrollPosition, setLastScrollPosition ] = useState(0)
 	const [ scrollPosition, setScrollPosition ] = useState(0)
 	const handleScroll = () => {
@@ -61,31 +62,47 @@ export default function CustomSpeedDial() {
 		}
 	}, [])
 
-	return (<Box sx={{
-		transform: "translateZ(0px)",
-		flexGrow : 1,
-		position : "fixed",
-		bottom   : "4%",
-		right    : "4%"
-	}}>
+	const [ open, setOpen ] = React.useState(false)
+	const handleOpen = () => setOpen(true)
+	const handleClose = () => setOpen(false)
 
-		<SpeedDial
-			ariaLabel="SpeedDial basic example"
-			sx={{
-				position: "absolute",
-				bottom  : 16,
-				right   : 16
-			}}
-			icon={isTop ? <ArrowDownwardIcon/> : <ArrowUpwardIcon/>}
-		>
-			{actions.map((action) => (<SpeedDialAction
-				icon={action.icon}
-				tooltipTitle={action.name}
-				onClick={() => {
-					window.open(action.url, "_blank")
-				}}
-			/>))}
+	return (<>
+		<Backdrop open={open}/>
 
-		</SpeedDial>
-	</Box>)
+		<Box onClick={scrollToTop}
+			 sx={{
+				 position: "fixed",
+				 bottom  : "5%",
+				 right   : "5%"
+			 }}>
+			<SpeedDial
+				ariaLabel="mySpeedDial"
+				onClose={handleClose}
+				onOpen={handleOpen}
+				open={open}
+				icon={isTop ? <ArrowDownwardIcon/> : <ArrowUpwardIcon/>}>
+
+				{/*{props.sections && props.sections.map((section, index) => {*/}
+				{/*	const icon = section.icon ? section.icon : <NavigateBeforeIcon/>*/}
+				{/*	return <SpeedDialAction*/}
+				{/*		key={index}*/}
+				{/*		icon={icon}*/}
+				{/*		tooltipTitle={section.title}*/}
+				{/*		tooltipOpen*/}
+				{/*		onClick={() => {*/}
+				{/*			window.location.href = "#" + section.title*/}
+				{/*		}}/>*/}
+				{/*})}*/}
+
+				{actions.map((action) => (<SpeedDialAction
+					icon={action.icon}
+					tooltipTitle={action.name}
+					tooltipOpen
+					onClick={() => {
+						window.open(action.url, "_blank")
+					}}
+				/>))}
+			</SpeedDial>
+		</Box>
+	</>)
 }

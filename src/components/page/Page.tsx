@@ -67,7 +67,7 @@ const Page = ({
 					{children}
 				</Box>
 			</Fade>
-			<CustomSpeedDial/>
+			<CustomSpeedDial props={pageProps}/>
 
 		</Container>
 
