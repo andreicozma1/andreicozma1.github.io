@@ -1,8 +1,8 @@
 import { Chip, ChipProps } from "@mui/material"
 import * as React from "react"
+import { useEffect } from "react"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined"
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined"
 import { SmartChipProps } from "../../interfaces/SmartChipProps"
 import CodeOutlinedIcon from "@mui/icons-material/CodeOutlined"
 import CollectionsBookmarkOutlinedIcon from "@mui/icons-material/CollectionsBookmarkOutlined"
@@ -12,64 +12,82 @@ import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded"
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
 
+const mDate = [ "/", " - " ]
+const mAchieve = [ "GPA", "Summa Cum Laude" ]
+const mProg = [
+	"Assembly", "C++", "C/C++", "C#", "Java", "Kotlin", "Python", "Ruby", "Swift", "TypeScript", "HTML", "CSS",
+	"JavaScript", "PHP", "Bash", "CoffeeScript", "GoLang", "Haskell", "Perl", "Rust", "Scala", "Shell", "Visual Basic",
+	"SQL"
+]
+const mLib = [
+	"React.JS", "Angular", "Vue", "Node.JS", "Express", "Django", "Flask", "Matplotlib", "Pandas", "Numpy", "Scikit-Learn",
+	"TensorFlow", "Keras", "PyTorch", "JQuery", "Material-UI", "Redux", "JavaFX"
+]
+const mDB = [ "NoSQL", "MongoDB", "MySQL", "PostgreSQL", "Firebase", "SQLite" ]
+const mTool = [
+	"Linux", "Windows", "macOS", "Git", "GitHub", "GitLab", "Jira", "BitBucket", "Jenkins", "Docker", "AWS", "Unix"
+]
+const mPosition = [ "President", "Secretary", "Manager" ]
+const mMember = [ "Member", "Volunteer" ]
+const mChapter = [ "Chapter", "Club" ]
+
+function getType(text: string) {
+	const tl = text.toLowerCase()
+	if (mAchieve.some(m => tl.includes(m.toLowerCase()))) return "achieve"
+	if (mDate.some(m => tl.includes(m.toLowerCase()))) return "date"
+	if (mDB.some(m => tl.includes(m.toLowerCase()))) return "db"
+	if (mTool.some(m => tl.includes(m.toLowerCase()))) return "tool"
+	if (mLib.some(m => tl.includes(m.toLowerCase()))) return "lib"
+	if (mProg.some(m => tl.includes(m.toLowerCase()))) return "prog"
+	if (mPosition.some(m => tl.includes(m.toLowerCase()))) return "position"
+	if (mMember.some(m => tl.includes(m.toLowerCase()))) return "member"
+	if (mChapter.some(m => tl.includes(m.toLowerCase()))) return "chapter"
+	return "skill"
+}
+
 const SmartChip = ({
 					   text,
 					   defaultColor,
-					   defaultVariant
+					   defaultVariant,
+					   defaultSize,
 				   }: SmartChipProps) => {
-	const spacing = 0.5
-	const mDate = [ "/", " - " ]
-	const mAchieve = [ "GPA", "Summa Cum Laude" ]
-	const mProg = [
-		"Assembly", "C++", "C/C++", "C#", "Java", "Kotlin", "Python", "Ruby", "Swift", "TypeScript", "HTML", "CSS",
-		"JavaScript", "PHP", "Bash", "CoffeeScript", "GoLang", "Haskell", "Perl", "Rust", "Scala", "Shell",
-		"Visual Basic"
-	]
-	const mLib = [
-		"React", "Angular", "Vue", "Node", "Express", "Django", "Flask", "Matplotlib", "Pandas", "Numpy",
-		"Scikit-Learn", "TensorFlow", "Keras", "PyTorch", "JQuery", "Material-UI", "Redux"
-	]
-	const mDB = [ "SQL", "NoSQL", "MongoDB", "MySQL", "PostgreSQL", "Firebase", "SQLite" ]
-	const mTool = [
-		"Linux", "Windows", "macOS", "Git", "GitHub", "GitLab", "Jira", "BitBucket", "Jenkins", "Docker", "AWS"
-	]
-	const mPosition = [ "President", "Secretary", "Manager" ]
-	const mMember = [ "Member", "Volunteer" ]
-	const mChapter = [ "Chapter", "Club" ]
 
-	const getIcon = (text: string) => {
-		if (mAchieve.some(m => text.toLowerCase().includes(m.toLowerCase()))) return <MilitaryTechOutlinedIcon/>
-		if (mProg.some(m => text.toLowerCase().includes(m.toLowerCase()))) return <CodeOutlinedIcon/>
-		if (mLib.some(m => text.toLowerCase().includes(m.toLowerCase()))) return <CollectionsBookmarkOutlinedIcon/>
-		if (mDB.some(m => text.toLowerCase().includes(m.toLowerCase()))) return <StorageOutlinedIcon/>
-		if (mTool.some(m => text.toLowerCase().includes(m.toLowerCase()))) return <SelectAllOutlinedIcon/>
-		if (mPosition.some(m => text.toLowerCase().includes(m.toLowerCase()))) return <StarRateRoundedIcon/>
-		if (mMember.some(m => text.toLowerCase().includes(m.toLowerCase()))) return <PeopleOutlineOutlinedIcon/>
-		if (mChapter.some(m => text.toLowerCase().includes(m.toLowerCase()))) return <HomeOutlinedIcon/>
-		if (mDate.some(m => text.includes(m))) return <CalendarMonthOutlinedIcon/>
-		if (text.includes("Asynchronous")) return <LanguageOutlinedIcon/>
+	const spacing = 0.5
+	let type = getType(text)
+
+	const getIcon = () => {
+		if (type === "achieve") return <MilitaryTechOutlinedIcon/>
+		if (type === "db") return <StorageOutlinedIcon/>
+		if (type === "tool") return <SelectAllOutlinedIcon/>
+		if (type === "lib") return <CollectionsBookmarkOutlinedIcon/>
+		if (type === "prog") return <CodeOutlinedIcon/>
+		if (type === "position") return <StarRateRoundedIcon/>
+		if (type === "member") return <PeopleOutlineOutlinedIcon/>
+		if (type === "chapter") return <HomeOutlinedIcon/>
+		if (type === "date") return <CalendarMonthOutlinedIcon/>
 		return undefined
 	}
 
-	const getColor = (text: string): ChipProps["color"] => {
-		if (mAchieve.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "success"
-		if (mProg.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "primary"
-		if (mLib.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "info"
-		if (mDB.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "success"
-		if (mTool.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "secondary"
+	const getColor = (): ChipProps["color"] => {
+		if (type === "achieve") return "success"
+		if (type === "db") return "success"
+		if (type === "tool") return "secondary"
+		if (type === "lib") return "info"
+		if (type === "prog") return "primary"
 		return defaultColor || "default"
 	}
 
-	const getVariant = (text: string): ChipProps["variant"] => {
-		if (mDate.every(m => text.includes(m))) return "outlined"
-		if (mAchieve.some(m => text.toLowerCase().includes(m.toLowerCase()))) return "filled"
+	const getVariant = (): ChipProps["variant"] => {
+		if (type === "date") return "outlined"
+		if (type === "achieve") return "filled"
 		return defaultVariant || "outlined"
 	}
 
 	return <Chip label={text}
-				 variant={getVariant(text)}
-				 color={getColor(text)}
-				 icon={getIcon(text)}
+				 variant={getVariant()}
+				 color={getColor()}
+				 icon={getIcon()}
+				 size={defaultSize || "medium"}
 				 sx={{
 					 my: spacing,
 					 mx: spacing

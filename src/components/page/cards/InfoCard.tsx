@@ -1,5 +1,6 @@
-import { Box, Card, CardContent, CardHeader, Stack, SvgIconTypeMap } from "@mui/material"
+import { Box, Card, CardContent, CardHeader, SvgIconTypeMap } from "@mui/material"
 import * as React from "react"
+import { ReactNode } from "react"
 import theme from "../../../config/theme"
 import CardHeaderChips from "./CardHeaderChips"
 import CardContentChips from "./CardContentChips"
@@ -11,9 +12,10 @@ const InfoCard = ({
 					  avatar,
 					  headerChips,
 					  contentChips,
-					  content
+					  content,
+					  children
 				  }: {
-	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[],
+	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], children?: ReactNode
 }) => {
 
 	if (contentChips && contentChips.length === 0) contentChips = undefined
@@ -40,9 +42,10 @@ const InfoCard = ({
 
 		</Box>
 
-		{(content || contentChips) && <CardContent>
+		{(content || contentChips || children) && <CardContent>
 			{content && <CardContentText text={content}/>}
 			{contentChips && <CardContentChips chips={contentChips}/>}
+			{children}
         </CardContent>}
 	</Card>
 }

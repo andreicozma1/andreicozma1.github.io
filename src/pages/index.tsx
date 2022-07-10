@@ -6,7 +6,7 @@ import HomeAvatar from "../components/avatars/HomeAvatar"
 const Home = () => {
 	const pageData = usePage("Home")
 
-	return <Page data={pageData}>
+	return <Page pageProps={pageData}>
 		<HomeAvatar/>
 	</Page>
 }

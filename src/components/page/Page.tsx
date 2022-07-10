@@ -9,19 +9,19 @@ import { loadFull } from "tsparticles"
 import particlesOptions from "../../config/particles.json"
 import { PageProps } from "../interfaces/PageProps"
 import SlideNotes from "../SlideNotes"
-import PageSection from "./PageSection"
+import PageSectionTemplate from "./PageSectionTemplate"
 
 const Page = ({
-				  data,
+				  pageProps,
 				  children
-			  }: { data: PageProps, children?: ReactNode }) => {
+			  }: { pageProps: PageProps, children?: ReactNode }) => {
 
 	// @ts-ignore
 	const particlesInit = async (engine) => {
 		await loadFull(engine)
 	}
 	const particlesOptionsCopy = { ...particlesOptions }
-	if (data.href === "/") {
+	if (pageProps.href === "/") {
 		particlesOptionsCopy.particles.opacity.value = 0.5
 	} else {
 		particlesOptionsCopy.particles.opacity.value = 0.25
@@ -39,19 +39,21 @@ const Page = ({
 					   position: "fixed",
 					   filter  : theme.particles.filter
 				   }}/>
-		<ResponsiveTopBar page={data}/>
+		<ResponsiveTopBar page={pageProps}/>
 		<Container component={Stack} spacing={2} sx={{
-			paddingBottom: theme.spacing(2),
+			paddingBottom: theme.spacing(3),
 			opacity      : 0.99
 		}}>
-			{data.sections && <PageBreadcrumbs page={data}/>}
-			{data.notes && <SlideNotes notesArray={data.notes}/>}
+			{pageProps.sections && <PageBreadcrumbs page={pageProps}/>}
+			{pageProps.notes && <SlideNotes notesArray={pageProps.notes}/>}
 
 			<Fade in={checked}
 				  timeout={theme.transitionDuration.page}>
 				<Box>
-					{data.sections && data.sections.map((section, index) => (
-						<PageSection key={index} props={section}></PageSection>))}
+					{pageProps.sections && pageProps.sections.map((section, index) => {
+						if (React.isValidElement(section)) return section
+						return <PageSectionTemplate key={index} props={section}></PageSectionTemplate>
+					})}
 					{children}
 				</Box>
 			</Fade>

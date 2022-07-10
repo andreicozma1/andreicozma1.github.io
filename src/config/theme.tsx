@@ -127,12 +127,12 @@ const theme = createTheme({
 		verticalMargin : 3
 	},
 	card              : {
-		elevation        : 8,
+		elevation        : 4,
 		fontWeight       : "medium",
 		iconColor        : "primary",
 		spacing          : 1,
 		headerOpacity    : 0.99,
-		contentOpacity   : 0.5,
+		contentOpacity   : 0.6,
 		titleFontSize    : 16,
 		subheaderFontSize: 15
 	}

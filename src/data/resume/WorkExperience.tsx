@@ -41,7 +41,7 @@ const WorkExperience: PageSectionProps = {
 					"Cybersecurity", "Web Security", "Certificates", "Phishing", "Data Analytics"
 				],
 				"languages"   : [ "Python", "JavaScript", "Bash Scripting" ],
-				"tools"       : [ "Linux", "Git", "Docker", "MongoDB", "SQL" ],
+				"tools"       : [ "Linux", "Git", "Docker", "MongoDB", "PostgreSQL"],
 				"date"        : [ "03/2021 - 10/2021" ]
 			},
 			"content" : [

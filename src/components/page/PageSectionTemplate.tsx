@@ -16,6 +16,7 @@ import {
 import { InfoCardProps } from "../interfaces/InfoCardProps"
 import TimelineChips from "./chips/TimelineChips"
 import InfoCard from "./cards/InfoCard"
+import { NoteProps } from "../interfaces/NoteProps"
 
 const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 	const getColor = (index: number): TimelineDotProps["color"] => {
@@ -87,7 +88,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 
 				if (matches) {
 					console.log("matches")
-					contentChips = [ ...contentChips || [], ...headerChips || []]
+					contentChips = [ ...contentChips || [], ...headerChips || [] ]
 					headerChips = []
 				}
 
@@ -108,11 +109,12 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 	</Box>
 }
 
-const PageSection = ({ props }: { props: PageSectionProps }) => {
-
-	const matches = useMediaQuery(theme.breakpoints.up("md"))
-
-	return <Stack id={props.title && props.title || ""}
+export const PageSection = ({
+								title,
+								notes,
+								children
+							}: { title: string, notes?: Array<NoteProps>, children: React.ReactNode }) => {
+	return <Stack id={title && title || ""}
 				  spacing={theme.section.itemSpacing}
 				  sx={{
 					  my: theme.section.verticalMargin
@@ -122,13 +124,21 @@ const PageSection = ({ props }: { props: PageSectionProps }) => {
 					sx={{
 						textDecoration: "underline"
 					}}>
-			{props.title}
+			{title}
 		</Typography>
-		{props.notes && <SlideNotes notesArray={props.notes}/>}
-		{matches && props.variant === "timeline"
-			? <SectionTimeline props={props}/>
-			: <SectionList props={props}/>}
+		{notes && <SlideNotes notesArray={notes}/>}
+		{children}
 	</Stack>
 }
 
-export default PageSection
+const PageSectionTemplate = ({ props }: { props: PageSectionProps }) => {
+	const matches = useMediaQuery(theme.breakpoints.up("md"))
+
+	return <PageSection title={props.title} notes={props.notes}>
+		{matches && props.variant === "timeline"
+			? <SectionTimeline props={props}/>
+			: <SectionList props={props}/>}
+	</PageSection>
+}
+
+export default PageSectionTemplate

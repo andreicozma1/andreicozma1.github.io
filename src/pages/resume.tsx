@@ -5,7 +5,7 @@ import { usePage } from "../config/pages"
 const Resume = () => {
 	const pageData = usePage("Resume")
 
-	return <Page data={pageData}>
+	return <Page pageProps={pageData}>
 	</Page>
 }
 

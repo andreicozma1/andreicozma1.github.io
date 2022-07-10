@@ -7,6 +7,7 @@ import DataResume from "../data/resume"
 import DataProjects from "../data/projects"
 import DataSeminars from "../data/seminars"
 import { PageProps } from "../components/interfaces/PageProps"
+import Skills from "../components/Skills"
 
 export const pages: { [key: string]: PageProps } = {
 	"Home"     : {
@@ -16,7 +17,9 @@ export const pages: { [key: string]: PageProps } = {
 	"Resume"   : {
 		href    : "/resume",
 		icon    : <SummarizeRounded/>,
-		sections: [ ...DataResume ]
+		sections: [
+			...DataResume, <Skills/>
+		]
 	},
 	"Projects" : {
 		href    : "/projects",
@@ -27,7 +30,9 @@ export const pages: { [key: string]: PageProps } = {
 	"Academics": {
 		href    : "/academics",
 		icon    : <SchoolRounded/>,
-		sections: [ ...DataAcademics ]
+		sections: [
+			...DataAcademics, <Skills/>
+		]
 	},
 	"Seminars" : {
 		href    : "/seminars",

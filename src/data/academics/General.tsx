@@ -12,7 +12,7 @@ const General: PageSectionProps = {
 			"subtitle": `A design course that focuses the student’s attention on professional practice, ethics, accumulated background of curricular components, and recent developments in the field. The focus is on teaching both the design process and design principles that allow students to utilize all of the above elements to effectively create designs for major design projects.`,
 			"chips"   : {
 				"languages": [ "JavaScript", "TypeScript", "HTML", "CSS", "Python", "Bash Scripting" ],
-				"libraries": [ "React", "Redux", "Node", "Flask", "Material-UI" ],
+				"libraries": [ "React.JS", "Redux", "Node.JS", "Flask", "Material-UI" ],
 				"tools"    : [ "Docker", "Git", "GitHub Actions", "Atlassian Jira", "AWS" ]
 			},
 			"avatar"  : <AccessAlarmIcon/>
