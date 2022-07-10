@@ -31,9 +31,11 @@ const Page = ({
 	if (matches) {
 		particlesOptionsCopy.particles.size.value = 200
 		particlesOptionsCopy.particles.size.anim.size_min = 50
+		particlesOptionsCopy.particles.number.density.value_area = 2000
 	} else {
 		particlesOptionsCopy.particles.size.value = 100
-		particlesOptionsCopy.particles.size.anim.size_min = 25
+		particlesOptionsCopy.particles.size.anim.size_min = 50
+		particlesOptionsCopy.particles.number.density.value_area = 1250
 	}
 
 	const [ checked, setChecked ] = React.useState(false)
