@@ -45,7 +45,10 @@ function getType(text: string) {
 }
 
 const SmartChip = ({
-					   text, defaultColor, defaultVariant, defaultSize
+					   text,
+					   defaultColor,
+					   defaultVariant,
+					   defaultSize
 				   }: SmartChipProps) => {
 
 	const spacing = 0.5
@@ -85,7 +88,8 @@ const SmartChip = ({
 				 icon={getIcon()}
 				 size={defaultSize || "medium"}
 				 sx={{
-					 my: spacing, mx: spacing
+					 my: spacing,
+					 mx: spacing
 				 }}/>
 }
 

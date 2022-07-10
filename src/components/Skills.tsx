@@ -10,7 +10,8 @@ const Skills = () => {
 	const title = "Skills"
 	const notes: Array<NoteProps> = [
 		{
-			text: "An overview of my skillset based on the contents listed in this portfolio.", severity: "info"
+			text    : "An overview of my skillset based on the contents listed in this portfolio.",
+			severity: "info"
 		}
 	]
 	const [ skillsList, setSkillsList ] = useState({})
@@ -66,7 +67,8 @@ const Skills = () => {
 				let skillCountsMap: { name: string; count: number }[] = []
 				Object.entries(skillList).forEach(([ name, count ]) => {
 					skillCountsMap.push({
-						name, count
+						name,
+						count
 					})
 				})
 				skillCountsMap.sort((a, b) => b.count - a.count)

@@ -5,7 +5,11 @@ import { InfoCardProps } from "../../interfaces/InfoCardProps"
 import theme from "../../../config/theme"
 
 const InfoCardAccordion = ({
-							   title, subtitle, avatar, chips, content
+							   title,
+							   subtitle,
+							   avatar,
+							   chips,
+							   content
 						   }: InfoCardProps) => {
 
 	return (<Accordion elevation={theme.card.elevation}
@@ -22,7 +26,8 @@ const InfoCardAccordion = ({
 						avatar={avatar}
 						titleTypographyProps={{ fontWeight: theme.card.fontWeight }}
 						sx={{
-							py: "0px", px: "0px"
+							py: "0px",
+							px: "0px"
 						}}>
 			</CardHeader>
 		</AccordionSummary>

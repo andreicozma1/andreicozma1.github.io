@@ -45,8 +45,10 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Box sx={{
-						flexGrow: 0, display: {
-							xs: "flex", md: "none"
+						flexGrow: 0,
+						display : {
+							xs: "flex",
+							md: "none"
 						}
 					}}>
 						<IconButton
@@ -63,17 +65,20 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							id="menu-appbar"
 							anchorEl={anchorElNav}
 							anchorOrigin={{
-								vertical: "bottom", horizontal: "left"
+								vertical  : "bottom",
+								horizontal: "left"
 							}}
 							keepMounted
 							transformOrigin={{
-								vertical: "top", horizontal: "left"
+								vertical  : "top",
+								horizontal: "left"
 							}}
 							open={Boolean(anchorElNav)}
 							onClose={handleCloseNavMenu}
 							sx={{
 								display: {
-									xs: "block", md: "none"
+									xs: "block",
+									md: "none"
 								}
 							}}
 						>
@@ -97,8 +102,10 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 					<HeaderAvatar variant="xs"/>
 
 					<Box sx={{
-						flexGrow: 1, display: {
-							xs: "none", md: "flex" // align right
+						flexGrow: 1,
+						display : {
+							xs: "none",
+							md: "flex" // align right
 						}
 					}}
 						 component={Stack}

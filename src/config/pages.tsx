@@ -10,28 +10,46 @@ import { PageProps } from "../components/interfaces/PageProps"
 import Skills from "../components/Skills"
 
 export const pages: { [key: string]: PageProps } = {
-	"Home"        : {
-		href: "/", icon: <HomeRounded/>
-	}, "Resume"   : {
-		href: "/resume", icon: <SummarizeRounded/>, sections: [
+	"Home"     : {
+		href: "/",
+		icon: <HomeRounded/>
+	},
+	"Resume"   : {
+		href    : "/resume",
+		icon    : <SummarizeRounded/>,
+		sections: [
 			...DataResume, <Skills/>
 		]
-	}, "Projects" : {
-		href: "/projects", icon: <CodeRounded/>, sections: [ ...DataProjects ], hidden: true
-	}, "Academics": {
-		href: "/academics", icon: <SchoolRounded/>, sections: [
+	},
+	"Projects" : {
+		href    : "/projects",
+		icon    : <CodeRounded/>,
+		sections: [ ...DataProjects ],
+		hidden  : true
+	},
+	"Academics": {
+		href    : "/academics",
+		icon    : <SchoolRounded/>,
+		sections: [
 			...DataAcademics, <Skills/>
 		]
-	}, "Seminars" : {
-		href       : "/seminars", icon: <CampaignRoundedIcon/>, notes: [
+	},
+	"Seminars" : {
+		href    : "/seminars",
+		icon    : <CampaignRoundedIcon/>,
+		notes   : [
 			{ text: "The UT Honors and Scholars Programs offer a variety of engagement opportunities to be involved and engaged, both inside and outside the classroom." },
 			{
 				text    : "These seminars inspire scholars to explore their academic interests through engaging and rewarding co-curricular experiences.",
 				severity: "info"
 			}
-		], sections: [ ...DataSeminars ]
-	}, "Blog"     : {
-		href: "/blog", icon: <BookRounded/>, hidden: true
+		],
+		sections: [ ...DataSeminars ]
+	},
+	"Blog"     : {
+		href  : "/blog",
+		icon  : <BookRounded/>,
+		hidden: true
 	}
 }
 

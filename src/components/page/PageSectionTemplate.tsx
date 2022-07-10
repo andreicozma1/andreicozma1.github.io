@@ -40,7 +40,10 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 			return <TimelineItem key={index}>
 				<TimelineOppositeContent
 					sx={{
-						display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"
+						display       : "flex",
+						alignItems    : "center",
+						justifyContent: "center",
+						flexDirection : "column"
 					}}>
 					{timelineChips1 && <TimelineChips chips={timelineChips1} index={index}/>}
 					{timelineChips2 && <TimelineChips chips={timelineChips2} index={index}/>}
@@ -70,8 +73,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 
 	return <Box sx={{ flexGrow: 1 }}>
 		<Grid container spacing={theme.section.itemSpacing}
-			  justifyContent="space-evenly"
-			  alignItems="stretch">
+		>
 			{props.items.map((itemProps: InfoCardProps, index: number) => {
 
 				let headerChips = itemProps.chips && [
@@ -105,7 +107,9 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 }
 
 export const PageSection = ({
-								title, notes, children
+								title,
+								notes,
+								children
 							}: { title: string, notes?: Array<NoteProps>, children: React.ReactNode }) => {
 	return <Stack id={title && title || ""}
 				  spacing={theme.section.itemSpacing}

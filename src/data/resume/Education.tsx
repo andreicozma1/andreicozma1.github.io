@@ -3,20 +3,29 @@ import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
 const Education: PageSectionProps = {
-	title: "Education", variant: "timeline", items: [
+	title  : "Education",
+	variant: "timeline",
+	items  : [
 		{
-			"title"     : "Computer Science M.S.", "subtitle": "University of Tennessee, Knoxville",
-			"avatar"    : <AccessAlarmIcon/>, "chips": {
+			"title"   : "Computer Science M.S.",
+			"subtitle": "University of Tennessee, Knoxville",
+			"avatar"  : <AccessAlarmIcon/>,
+			"chips"   : {
 				"date": [ "Starting Fall 2022" ]
-			}, "content": [
+			},
+			"content" : [
 				"Concentration: Intelligent Systems & Machine Learning"
 			]
 		}, {
-			"title"     : "Computer Science 5-Yr B.S./M.S.", "subtitle": "University of Tennessee, Knoxville",
-			"avatar"    : <AccessAlarmIcon/>, "chips": {
-				"date"     : [ "08/2018 - 05/2022" ], "awards": [ "Summa Cum Laude", "GPA: 3.87" ],
+			"title"   : "Computer Science 5-Yr B.S./M.S.",
+			"subtitle": "University of Tennessee, Knoxville",
+			"avatar"  : <AccessAlarmIcon/>,
+			"chips"   : {
+				"date"     : [ "08/2018 - 05/2022" ],
+				"awards"   : [ "Summa Cum Laude", "GPA: 3.87" ],
 				"positions": [ "VolHacks President", "Pi Kappa Phi Secretary", "Chancellor's Honors Program" ]
-			}, "content": [
+			},
+			"content" : [
 				"Minors: Cybersecurity & Business Administration"
 			]
 		}

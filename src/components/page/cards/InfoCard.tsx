@@ -7,7 +7,13 @@ import CardContentChips from "./CardContentChips"
 import CardContentText from "./CardContentText"
 
 const InfoCard = ({
-					  title, subtitle, avatar, headerChips, contentChips, content, children
+					  title,
+					  subtitle,
+					  avatar,
+					  headerChips,
+					  contentChips,
+					  content,
+					  children
 				  }: {
 	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], children?: ReactNode
 }) => {
@@ -26,7 +32,8 @@ const InfoCard = ({
 			<CardHeader title={title}
 						subheader={subtitle}
 						titleTypographyProps={{
-							fontWeight: theme.card.fontWeight, fontSize: theme.card.titleFontSize
+							fontWeight: theme.card.fontWeight,
+							fontSize  : theme.card.titleFontSize
 						}}
 						subheaderTypographyProps={{ fontSize: theme.card.subheaderFontSize }}
 						sx={{ display: "inline-flex" }}

@@ -11,11 +11,16 @@ interface SmartChipBoxProps {
 }
 
 const SmartChipBox = ({
-						  text, defaultColor, defaultVariant, defaultSize, containerSx
+						  text,
+						  defaultColor,
+						  defaultVariant,
+						  defaultSize,
+						  containerSx
 					  }: SmartChipBoxProps) => {
 
 	const cSx = {
-		ml: "auto", my: "auto", ...containerSx
+		ml: "auto",
+		my: "auto", ...containerSx
 	}
 
 	return <Box sx={cSx}>
