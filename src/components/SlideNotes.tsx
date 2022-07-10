@@ -19,9 +19,7 @@ const SlideNotes = ({ notesArray }: { notesArray: Array<NoteProps> }) => {
 
 			return <Slide key={index}
 						  in={checked}
-						  direction={index % 2 === 0
-							  ? "left"
-							  : "right"}
+						  direction={index % 2 === 0 ? "left" : "right"}
 						  timeout={theme.transitionDuration.notes}>
 				<Alert severity={note.severity}>{note.text}</Alert>
 			</Slide>

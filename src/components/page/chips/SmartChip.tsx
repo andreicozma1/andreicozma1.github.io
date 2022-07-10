@@ -1,6 +1,5 @@
 import { Chip, ChipProps } from "@mui/material"
 import * as React from "react"
-import { useEffect } from "react"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined"
 import { SmartChipProps } from "../../interfaces/SmartChipProps"
@@ -20,8 +19,8 @@ const mProg = [
 	"SQL"
 ]
 const mLib = [
-	"React.JS", "Angular", "Vue", "Node.JS", "Express", "Django", "Flask", "Matplotlib", "Pandas", "Numpy", "Scikit-Learn",
-	"TensorFlow", "Keras", "PyTorch", "JQuery", "Material-UI", "Redux", "JavaFX"
+	"React.JS", "Angular", "Vue", "Node.JS", "Express", "Django", "Flask", "Matplotlib", "Pandas", "Numpy",
+	"Scikit-Learn", "TensorFlow", "Keras", "PyTorch", "JQuery", "Material-UI", "Redux", "JavaFX"
 ]
 const mDB = [ "NoSQL", "MongoDB", "MySQL", "PostgreSQL", "Firebase", "SQLite" ]
 const mTool = [
@@ -46,10 +45,7 @@ function getType(text: string) {
 }
 
 const SmartChip = ({
-					   text,
-					   defaultColor,
-					   defaultVariant,
-					   defaultSize,
+					   text, defaultColor, defaultVariant, defaultSize
 				   }: SmartChipProps) => {
 
 	const spacing = 0.5
@@ -89,8 +85,7 @@ const SmartChip = ({
 				 icon={getIcon()}
 				 size={defaultSize || "medium"}
 				 sx={{
-					 my: spacing,
-					 mx: spacing
+					 my: spacing, mx: spacing
 				 }}/>
 }
 

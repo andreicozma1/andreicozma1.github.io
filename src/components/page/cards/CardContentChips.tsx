@@ -8,8 +8,7 @@ const CardContentChips = ({
 }) => {
 	return <SmartChipBox text={chips} defaultVariant="filled"
 						 containerSx={{
-							 display: "block",
-							 pt: 1,
+							 display: "block", pt: 1
 						 }}/>
 }
 

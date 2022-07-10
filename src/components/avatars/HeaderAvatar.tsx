@@ -11,13 +11,11 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 	let display
 	if (variant === "xs") {
 		display = {
-			xs: "flex",
-			md: "none"
+			xs: "flex", md: "none"
 		}
 	} else {
 		display = {
-			xs: "none",
-			md: "flex"
+			xs: "none", md: "flex"
 		}
 	}
 
@@ -35,16 +33,8 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 			noWrap
 			component="a"
 			sx={{
-				mr            : 2,
-				display       : display,
-				fontFamily    : "monospace",
-				flexGrow      : variant === "xs"
-					? 1
-					: 0,
-				fontWeight    : 700,
-				letterSpacing : ".2rem",
-				color         : "inherit",
-				textDecoration: "none"
+				mr           : 2, display: display, fontFamily: "monospace", flexGrow: variant === "xs" ? 1 : 0,
+				fontWeight   : 700, letterSpacing: ".2rem", color: "inherit", textDecoration: "none"
 			}}
 		>
 			Andrei Cozma
@@ -52,8 +42,7 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 		<Tooltip title="Open settings">
 			<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 				<Avatar alt="Andrei Cozma" src="/avatar.jpg" sx={{
-					display: display,
-					mr     : 3
+					display: display, mr: 3
 				}}/>
 			</IconButton>
 		</Tooltip>
@@ -62,13 +51,11 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 			id="menu-appbar"
 			anchorEl={anchorElUser}
 			anchorOrigin={{
-				vertical  : "top",
-				horizontal: "right"
+				vertical: "top", horizontal: "right"
 			}}
 			keepMounted
 			transformOrigin={{
-				vertical  : "top",
-				horizontal: "right"
+				vertical: "top", horizontal: "right"
 			}}
 			open={Boolean(anchorElUser)}
 			onClose={handleCloseUserMenu}

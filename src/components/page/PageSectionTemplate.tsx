@@ -40,10 +40,7 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 			return <TimelineItem key={index}>
 				<TimelineOppositeContent
 					sx={{
-						display       : "flex",
-						alignItems    : "center",
-						justifyContent: "center",
-						flexDirection : "column"
+						display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"
 					}}>
 					{timelineChips1 && <TimelineChips chips={timelineChips1} index={index}/>}
 					{timelineChips2 && <TimelineChips chips={timelineChips2} index={index}/>}
@@ -92,9 +89,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 					headerChips = []
 				}
 
-				return <Grid item xs={12} md={props.variant === "grid6"
-					? 6
-					: 12} key={index}>
+				return <Grid item xs={12} md={props.variant === "grid6" ? 6 : 12} key={index}>
 					<InfoCard
 						title={itemProps.title}
 						subtitle={itemProps.subtitle}
@@ -110,9 +105,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 }
 
 export const PageSection = ({
-								title,
-								notes,
-								children
+								title, notes, children
 							}: { title: string, notes?: Array<NoteProps>, children: React.ReactNode }) => {
 	return <Stack id={title && title || ""}
 				  spacing={theme.section.itemSpacing}
@@ -135,9 +128,7 @@ const PageSectionTemplate = ({ props }: { props: PageSectionProps }) => {
 	const matches = useMediaQuery(theme.breakpoints.up("md"))
 
 	return <PageSection title={props.title} notes={props.notes}>
-		{matches && props.variant === "timeline"
-			? <SectionTimeline props={props}/>
-			: <SectionList props={props}/>}
+		{matches && props.variant === "timeline" ? <SectionTimeline props={props}/> : <SectionList props={props}/>}
 	</PageSection>
 }
 

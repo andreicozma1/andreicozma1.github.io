@@ -76,7 +76,8 @@ const Skills = () => {
 					skillCounts.push(`${sc.name} (${sc.count})`)
 				})
 
-				return <InfoCard title={title}><SmartChipBox text={skillCounts}/>
+				return <InfoCard title={title}>
+					<SmartChipBox text={skillCounts} defaultVariant="filled"/>
 				</InfoCard>
 			}
 		})}

@@ -45,10 +45,8 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Box sx={{
-						flexGrow: 0,
-						display : {
-							xs: "flex",
-							md: "none"
+						flexGrow: 0, display: {
+							xs: "flex", md: "none"
 						}
 					}}>
 						<IconButton
@@ -65,20 +63,17 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 							id="menu-appbar"
 							anchorEl={anchorElNav}
 							anchorOrigin={{
-								vertical  : "bottom",
-								horizontal: "left"
+								vertical: "bottom", horizontal: "left"
 							}}
 							keepMounted
 							transformOrigin={{
-								vertical  : "top",
-								horizontal: "left"
+								vertical: "top", horizontal: "left"
 							}}
 							open={Boolean(anchorElNav)}
 							onClose={handleCloseNavMenu}
 							sx={{
 								display: {
-									xs: "block",
-									md: "none"
+									xs: "block", md: "none"
 								}
 							}}
 						>
@@ -89,11 +84,9 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 										textAlign="center"
 										// underlined if current page
 										sx={{
-											opacity: info.hidden
-												? theme.topbar.hiddenOpacity
+											opacity: info.hidden ? theme.topbar.hiddenOpacity
 												: 1, ...(page.href === info.href
-												? { fontWeight: theme.topbar.selectedFontWeight }
-												: {})
+												? { fontWeight: theme.topbar.selectedFontWeight } : {})
 										}}
 									>{title}</Typography>
 								</MenuItem>
@@ -104,10 +97,8 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 					<HeaderAvatar variant="xs"/>
 
 					<Box sx={{
-						flexGrow: 1,
-						display : {
-							xs: "none",
-							md: "flex" // align right
+						flexGrow: 1, display: {
+							xs: "none", md: "flex" // align right
 						}
 					}}
 						 component={Stack}
@@ -121,19 +112,14 @@ const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 								onClick={handleCloseNavMenu}
 								href={info.href}
 								startIcon={info.icon}
-								variant={page.href === info.href
-									? "contained"
-									: "outlined"}
+								variant={page.href === info.href ? "contained" : "outlined"}
 								color="secondary"
 								sx={{
 									color  : "white", // underlined if current page
-									opacity: info.hidden
-										? theme.topbar.hiddenOpacity
-										: 1, ...(page.href === info.href
+									opacity: info.hidden ? theme.topbar.hiddenOpacity : 1, ...(page.href === info.href
 										? {
 											fontWeight: theme.topbar.selectedFontWeight
-										}
-										: {})
+										} : {})
 								}}
 							>
 								{title}

@@ -12,8 +12,7 @@ import SlideNotes from "../SlideNotes"
 import PageSectionTemplate from "./PageSectionTemplate"
 
 const Page = ({
-				  pageProps,
-				  children
+				  pageProps, children
 			  }: { pageProps: PageProps, children?: ReactNode }) => {
 
 	// @ts-ignore
@@ -36,13 +35,11 @@ const Page = ({
 		{/*// @ts-ignore*/}
 		<Particles init={particlesInit} options={particlesOptionsCopy}
 				   style={{
-					   position: "fixed",
-					   filter  : theme.particles.filter
+					   position: "fixed", filter: theme.particles.filter
 				   }}/>
 		<ResponsiveTopBar page={pageProps}/>
 		<Container component={Stack} spacing={2} sx={{
-			paddingBottom: theme.spacing(3),
-			opacity      : 0.99
+			paddingBottom: theme.spacing(3), opacity: 0.99
 		}}>
 			{pageProps.sections && <PageBreadcrumbs page={pageProps}/>}
 			{pageProps.notes && <SlideNotes notesArray={pageProps.notes}/>}

@@ -3,16 +3,10 @@ import * as React from "react"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { InfoCardProps } from "../../interfaces/InfoCardProps"
 import theme from "../../../config/theme"
-import SmartChipBox from "../chips/SmartChipBox"
 
 const InfoCardAccordion = ({
-							   title,
-							   subtitle,
-							   avatar,
-							   chips,
-							   content
+							   title, subtitle, avatar, chips, content
 						   }: InfoCardProps) => {
-
 
 	return (<Accordion elevation={theme.card.elevation}
 					   sx={{
@@ -28,19 +22,16 @@ const InfoCardAccordion = ({
 						avatar={avatar}
 						titleTypographyProps={{ fontWeight: theme.card.fontWeight }}
 						sx={{
-							py: "0px",
-							px: "0px"
+							py: "0px", px: "0px"
 						}}>
 			</CardHeader>
 		</AccordionSummary>
 
 		{content && <AccordionDetails>
             <Stack spacing={theme.card.spacing}>
-				{typeof content === "string"
-					? <Typography>{content}</Typography>
-					: content.map((c, i) => {
-						return <Typography key={i}>{c}</Typography>
-					})}
+				{typeof content === "string" ? <Typography>{content}</Typography> : content.map((c, i) => {
+					return <Typography key={i}>{c}</Typography>
+				})}
             </Stack>
         </AccordionDetails>}
 	</Accordion>)
