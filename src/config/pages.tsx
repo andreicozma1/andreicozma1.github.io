@@ -18,7 +18,7 @@ export const pages: { [key: string]: PageProps } = {
 		href    : "/resume",
 		icon    : <SummarizeRounded/>,
 		sections: [
-			...DataResume, <Skills/>
+			...DataResume, <Skills title="Skills" items={[]}/>
 		]
 	},
 	"Projects" : {
@@ -31,7 +31,7 @@ export const pages: { [key: string]: PageProps } = {
 		href    : "/academics",
 		icon    : <SchoolRounded/>,
 		sections: [
-			...DataAcademics, <Skills/>
+			...DataAcademics, <Skills title="Skills" items={[]}/>
 		]
 	},
 	"Seminars" : {

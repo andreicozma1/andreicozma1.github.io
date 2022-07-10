@@ -4,7 +4,8 @@ import theme from "../../config/theme"
 import { PageSectionProps } from "../interfaces/PageSectionProps"
 import SlideNotes from "../SlideNotes"
 import {
-	Masonry, Timeline,
+	Masonry,
+	Timeline,
 	TimelineConnector,
 	TimelineContent,
 	TimelineDot,

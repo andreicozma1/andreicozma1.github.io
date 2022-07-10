@@ -48,9 +48,9 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 			Andrei Cozma
 		</Typography>
 		<Tooltip title="Home">
-			<IconButton onClick={handleOpenUserMenu}  sx={{ p: 0 }}>
+			<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 				<Link href="/">
-					<Avatar  alt="Andrei Cozma" src="/avatar.jpg" sx={{
+					<Avatar alt="Andrei Cozma" src="/avatar.jpg" sx={{
 						display: display,
 						mr     : 3
 					}}/>

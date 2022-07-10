@@ -51,7 +51,7 @@ const Page = ({
 		<Container component={Stack} spacing={2} sx={{
 			paddingBottom: theme.spacing(3),
 			opacity      : 0.99,
-			marginTop: theme.spacing(10)
+			marginTop    : theme.spacing(10)
 		}}>
 			{pageProps.sections && <PageBreadcrumbs page={pageProps}/>}
 			{pageProps.notes && <SlideNotes notesArray={pageProps.notes}/>}
@@ -64,10 +64,9 @@ const Page = ({
 						return <PageSectionTemplate key={index} props={section}></PageSectionTemplate>
 					})}
 					{children}
-				</Box>
-			</Fade>
-		</Container>
-	</ThemeProvider>)
-}
+						</Box>
+						</Fade>
+						</Container>
+						</ThemeProvider>)}
 
-export default Page
+					export default Page

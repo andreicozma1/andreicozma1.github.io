@@ -3,18 +3,21 @@ import InfoCard from "./page/cards/InfoCard"
 import { pages } from "../config/pages"
 import SmartChipBox from "./page/chips/SmartChipBox"
 import { PageSection } from "./page/PageSectionTemplate"
-import { NoteProps } from "./interfaces/NoteProps"
 import { PageSectionProps } from "./interfaces/PageSectionProps"
 
-
 // Use PageSectionProps to get the title, notes, and items
-const Skills = ({ title, notes, items, variant }: PageSectionProps) => {
+const Skills = ({
+					title,
+					notes,
+					items,
+					variant
+				}: PageSectionProps) => {
 	const displayOrder = [ "languages", "libraries", "tools" ]
 	title = title || "Skills"
 
 	notes = [
 		{
-			text    : "An overview of my skillset based on the contents listed in this portfolio.",
+			text: "An overview of my skillset based on the contents listed in this portfolio.",
 			severity: "info"
 		}
 	]
@@ -82,7 +85,7 @@ const Skills = ({ title, notes, items, variant }: PageSectionProps) => {
 					skillCounts.push(`${sc.name} (${sc.count})`)
 				})
 
-				return <InfoCard title={title}>
+				return <InfoCard title={title} key={sk}>
 					<SmartChipBox text={skillCounts} defaultVariant="filled"/>
 				</InfoCard>
 			}
