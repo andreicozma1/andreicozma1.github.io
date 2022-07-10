@@ -70,10 +70,11 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 }
 
 const SectionList = ({ props }: { props: PageSectionProps }) => {
-	const matches = useMediaQuery(theme.breakpoints.down("sm"))
+	const matches = useMediaQuery(theme.breakpoints.down("md"))
+	const matchesSm = useMediaQuery(theme.breakpoints.down("sm"))
 
 	return <Box sx={{ flexGrow: 1 }}>
-		<Masonry columns={2} spacing={theme.section.itemSpacing}>
+		<Masonry columns={props.variant === "grid6" ? (matches ? 1 : 2) : 1} spacing={theme.section.itemSpacing}>
 			{props.items.map((itemProps: InfoCardProps, index: number) => {
 
 				let headerChips = itemProps.chips && [
@@ -85,13 +86,13 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 					...itemProps.chips.tools || [], ...itemProps.chips.contentChips || []
 				]
 
-				if (matches) {
+				if (matchesSm) {
 					console.log("matches")
 					contentChips = [ ...contentChips || [], ...headerChips || [] ]
 					headerChips = []
 				}
 
-				return <Grid item xs={12} md={props.variant === "grid6" ? 6 : 12} key={index}>
+				return <Grid item xs={12} key={index}>
 					<InfoCard
 						title={itemProps.title}
 						subtitle={itemProps.subtitle}
