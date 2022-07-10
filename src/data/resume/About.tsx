@@ -9,21 +9,20 @@ const About: PageSectionProps = {
 		{
 			"title"  : "Personal Statement",
 			"content": [
-				`In my personal and work life I am an enthusiastic and dedicated team player with a positive attitude,
-            driven to adapt to any situation. I always strive to attain the highest possible standards of quality and excellence.`,
-				`My fascination with technology from an early age has sparked a strong passion for learning, improving,
-            problem-solving, and self-reflecting.
-            I am constantly seeking to learn new skills, gain experiences and the knowledge needed to be able to
-            help find solutions to world problems.`
+				`In my personal, professional, and academic life, I am an enthusiastic and dedicated team player with 
+				a positive attitude. I always strive to attain the highest possible 
+				standards of quality and excellence, and am driven to adapt to any situation.`, `My fascination with 
+				technology from an early age has sparked a strong passion for learning,
+				 problem-solving, self-reflecting, and improving. I am continually seeking to learn new skills, 
+				 gain new experiences, and the knowledge needed to be able to help find solutions to world problems.`
 			],
 			"avatar" : <AccessAlarmIcon/>
 		}, {
 			"title" : "Topics of Interest",
 			"chips" : {
 				"contentChips": [
-					"Intelligent Systems", "Cybersecurity", "Deep Learning", "Machine Learning",
-					"Artificial Intelligence", "Natural Language Processing", "Computer Vision", "Data Analytics",
-					"Mobile & Embedded Systems"
+					"Intelligent Systems", "Deep Learning", "Cybersecurity", "Web Development", "Data Science",
+					"Data Analytics", "Mobile & Embedded Systems", "Natural Language Processing", "Computer Vision"
 				]
 			},
 			"avatar": <AccessAlarmIcon/>
