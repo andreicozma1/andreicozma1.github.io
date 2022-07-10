@@ -7,6 +7,8 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import { Backdrop } from "@mui/material"
 import { PageProps } from "./interfaces/PageProps"
 import AddIcon from "@mui/icons-material/Add"
+import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded"
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded"
 
 const actions = [
 	{
@@ -20,24 +22,37 @@ const actions = [
 	}
 ]
 
-export default function CustomSpeedDial({ props }: { props: PageProps }) {
-
-	const [ isTop, setIsTop ] = React.useState(true)
+export default function CustomSpeedDial({ pageProps }: { pageProps: PageProps }) {
 
 	const scrollToTop = () => {
-		if (isTop) {
-			window.scrollTo({
-				top     : document.body.scrollHeight,
-				behavior: "smooth"
-			})
-		} else {
-			window.scrollTo({
-				top     : 0,
-				behavior: "smooth"
-			})
-		}
-		setIsTop(!isTop)
+		window.scrollTo({
+			top     : 0,
+			behavior: "smooth"
+		})
 	}
+
+	const scrollToBottom = () => {
+		window.scrollTo({
+			top     : document.body.scrollHeight,
+			behavior: "smooth"
+		})
+	}
+
+	const permActions = [
+		{
+			icon  : <KeyboardArrowDownRoundedIcon/>,
+			name  : "Bottom",
+			action: () => {
+				scrollToBottom()
+			}
+		}, {
+			icon  : <KeyboardArrowUpRoundedIcon/>,
+			name  : "Top",
+			action: () => {
+				scrollToTop()
+			}
+		}
+	]
 
 	const [ open, setOpen ] = React.useState(false)
 	const handleOpen = () => setOpen(true)
@@ -46,12 +61,11 @@ export default function CustomSpeedDial({ props }: { props: PageProps }) {
 	return (<>
 		<Backdrop open={open}/>
 
-		<Box onClick={scrollToTop}
-			 sx={{
-				 position: "fixed",
-				 bottom  : "5%",
-				 right   : "5%"
-			 }}>
+		<Box sx={{
+			position: "fixed",
+			bottom  : "5%",
+			right   : "5%"
+		}}>
 			<SpeedDial
 				ariaLabel="mySpeedDial"
 				onClose={handleClose}
@@ -70,6 +84,13 @@ export default function CustomSpeedDial({ props }: { props: PageProps }) {
 				{/*			window.location.href = "#" + section.title*/}
 				{/*		}}/>*/}
 				{/*})}*/}
+				{pageProps.href !== "/" && permActions.map((action) => (<SpeedDialAction
+					key={action.name}
+					icon={action.icon}
+					tooltipTitle={action.name}
+					tooltipOpen
+					onClick={action.action}
+				/>))}
 
 				{actions.map((action) => (<SpeedDialAction
 					key={action.name}

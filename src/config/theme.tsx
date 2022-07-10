@@ -108,8 +108,8 @@ const theme = createTheme({
 		notes     : 1000
 	},
 	avatar            : {
-		borderSize: "0.75rem",
-		size      : "25vh"
+		borderSize: "0.5rem",
+		size      : "28vh"
 	},
 	topbar            : {
 		opacity           : 0.99,
