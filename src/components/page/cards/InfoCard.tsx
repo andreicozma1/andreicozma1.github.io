@@ -22,7 +22,8 @@ const InfoCard = ({
 
 	return <Card elevation={theme.card.elevation}
 				 sx={{
-					 background: `rgba(255, 255, 255, ${theme.card.contentOpacity})`
+					 background: `rgba(255, 255, 255, ${theme.card.contentOpacity})`,
+					 height: "100%"
 				 }}>
 		<Box sx={{
 			background: `rgba(255, 255, 255, ${theme.card.headerOpacity})`, ...(headerChips && {
