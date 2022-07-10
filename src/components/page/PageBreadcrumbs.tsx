@@ -64,7 +64,7 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 				{/*/>*/}
 				{page.sections && page.sections.map((section) => {
 					return <StyledBreadcrumb component={Link} label={section.title}
-											 key={section.title} href={"#" + section.title}
+											 key={"#" + section.title} href={"#" + section.title}
 					/>
 				})}
 			</Stack>

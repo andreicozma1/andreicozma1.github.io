@@ -64,9 +64,10 @@ const Page = ({
 						return <PageSectionTemplate key={index} props={section}></PageSectionTemplate>
 					})}
 					{children}
-						</Box>
-						</Fade>
-						</Container>
-						</ThemeProvider>)}
+				</Box>
+			</Fade>
+		</Container>
+	</ThemeProvider>)
+}
 
-					export default Page
+export default Page
