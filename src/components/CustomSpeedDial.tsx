@@ -72,6 +72,7 @@ export default function CustomSpeedDial({ props }: { props: PageProps }) {
 				{/*})}*/}
 
 				{actions.map((action) => (<SpeedDialAction
+					key={action.name}
 					icon={action.icon}
 					tooltipTitle={action.name}
 					tooltipOpen
