@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -18,7 +18,7 @@ const WorkExperience: PageSectionProps = {
 			"content" : [
 				`Assist with research and ongoing projects, including software development and analysis on a variety of cybersecurity topics, writing and documenting research and findings, performing analytics, collecting and analyzing data, and creating visualizations of results.`
 			],
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Undergraduate Teaching Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
@@ -32,7 +32,7 @@ const WorkExperience: PageSectionProps = {
 			"content" : [
 				`Teaching assistant for Dr. Doowon Kim's Introduction to Cybersecurity course. Main responsibilities include assisting students and answering questions they may have about the course materials, providing useful feedback, grading quizzes and other assignments, etc.`
 			],
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Undergraduate Research Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
@@ -47,7 +47,7 @@ const WorkExperience: PageSectionProps = {
 			"content" : [
 				`Assist with research and ongoing projects, including software development and analysis on a variety of cybersecurity topics, writing and documenting research and findings, performing analytics, collecting and analyzing data, and creating visualizations of results.`
 			],
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Software Developer Intern (Summer)",
 			"subtitle": "Elo Touch Solutions",
@@ -64,7 +64,7 @@ const WorkExperience: PageSectionProps = {
                 Enterprise-Level Touchscreen Solutions, as well as for customers and business partners.`, `Using Java, Kotlin, Version Control systems, the Android SDK as well as ELO SDKs to develop
                 platform solutions with the Android Open Source Project (AOSP) as part of a Full-Stack Environment.`
 			],
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Software Developer Intern (All-Year)",
 			"subtitle": "Elo Touch Solutions",
@@ -81,7 +81,7 @@ const WorkExperience: PageSectionProps = {
                 Enterprise-Level Touchscreen Solutions, as well as for customers and business partners.`, `Using Java, Kotlin, Version Control systems, the Android SDK as well as ELO SDKs to develop
                 platform solutions with the Android Open Source Project (AOSP) as part of a Full-Stack Environment.`
 			],
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Asset Protection",
 			"subtitle": "Walmart Inc.",
@@ -94,7 +94,7 @@ const WorkExperience: PageSectionProps = {
                 with investigations, maintaining paperwork, logs and other required documentation, and appropriately
                 executing emergency response procedures.`
 			],
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}
 	]
 

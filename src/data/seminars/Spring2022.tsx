@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -8,7 +8,7 @@ const Spring2022: PageSectionProps = {
 		{
 			"title"   : "Healthcare AI – Augmenting Clinical Workflow",
 			"subtitle": "Presenter: Gemma Leigh Roberts",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "04/19/2022" ]
 			},
@@ -21,7 +21,7 @@ const Spring2022: PageSectionProps = {
 		}, {
 			"title"   : "Hypersonic Technology: What it is, Why it Matters, and the State of American Defense Capabilities",
 			"subtitle": "Presenter: Dr. Ragini Acharya",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "04/22/2022" ]
 			},
@@ -33,7 +33,7 @@ const Spring2022: PageSectionProps = {
 		}, {
 			"title"   : "History of Philosophy – DuBois’ on the Philosophy of Science",
 			"subtitle": "Presenter: Liam Kofi Bright (https://historyofphilosophy.net/du-bois-bright)",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "Asynchronous" ]
 			},

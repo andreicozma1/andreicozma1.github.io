@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -18,10 +18,10 @@ const General: PageSectionProps = {
 				"libraries": [ "React.JS", "Redux", "Node.JS", "Flask", "Material-UI" ],
 				"tools"    : [ "Docker", "Git & GitHub", "GitHub", "GitHub Actions", "Atlassian Jira", "AWS" ]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "COSC 493 - Advanced Automata Theory",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `Working on the development of a Turing Machine to be used as an educational aid to students. 
 						The pre-existing version of the simulator was written in Java and various improvements, 
 						additions, and modifications were made to it in order to make it more user-friendly 
@@ -38,7 +38,7 @@ const General: PageSectionProps = {
 			}
 		}, {
 			"title"   : "COSC 465 - Databases and Scripting Languages",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `In-depth focus on developing a strong understanding of the basics of databases and their 
 						usage in web applications as well as an introduction to various scripting languages.`,
 			"chips"   : {
@@ -55,7 +55,7 @@ const General: PageSectionProps = {
 			"title"   : "COSC 370 - Introduction to Scientific Computing",
 			"subtitle": `An in-depth focus on the implementation, analysis, and design of numerical algorithms with
 						the Python programming language in order to solve problems in science and engineering.`,
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"contentChips": [
 					"Program Design", "Data Structures", "Computational Complexity",
@@ -67,7 +67,7 @@ const General: PageSectionProps = {
 			}
 		}, {
 			"title"   : "COSC 367 - Honors Systems Programming",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `An in-depth introduction to the C programming language and its use in systems programming, 
 						covering the methodologies of operating systems.`,
 			"chips"   : {
@@ -82,7 +82,7 @@ const General: PageSectionProps = {
 
 		}, {
 			"title"   : "COSC 365 - Programming Languages and Systems",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `An in-depth study of the design, implementation, and application of programming languages
 			 			as well as an introduction to the basics of operating systems.`,
 			"chips"   : {
@@ -96,7 +96,7 @@ const General: PageSectionProps = {
 			}
 		}, {
 			"title"   : "COSC 361 - Operating Systems",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `In-depth study of the design, implementation, and performance of modern operating systems
 			 			with a focus on Unix and a modern re-implementation of 6th edition Unix called XV6.`,
 			"chips"   : {
@@ -109,7 +109,7 @@ const General: PageSectionProps = {
 			}
 		}, {
 			"title"   : "COSC 340 - Software Engineering",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `A strong focus on the application of a systematic, disciplined, quantifiable approach to 
 						the design, development, operation, and maintenance of software, and the study of these approaches.`,
 			"chips"   : {
@@ -122,7 +122,7 @@ const General: PageSectionProps = {
 			}
 		}, {
 			"title"   : "COSC 317 - Honors Discrete Structures",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `Introduction to Set Theory, Graph Theory, and Logic & Proof strategies as 
 						the principles of software programming and design. Application of proof techniques to prove 
 						correctness of algorithms.`,
@@ -136,7 +136,7 @@ const General: PageSectionProps = {
 			}
 		}, {
 			"title"   : "COSC 312 - Algorithm Analysis and Automata",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `This course is an introduction to the Theory of Computation, the logic of computation
 						 with respect to machines as well as the implications related to current computing challenges 
 						 and limits.`,
@@ -151,7 +151,7 @@ const General: PageSectionProps = {
 			}
 		}, {
 			"title"   : "COSC 307 - Honors Data Structures and Algorithms II",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `This course focuses on the application of fundamental data structures and associated 
 						algorithms most commonly used in software development and design.`,
 			"chips"   : {
@@ -165,7 +165,7 @@ const General: PageSectionProps = {
 			}
 		}, {
 			"title"   : "COSC 140 - Data Structures and Algorithms I",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `Development and application of a multitude of data structures and algorithms 
 						proeminently used in software design together with problem-solving techniques.`,
 			"chips"   : {
@@ -179,7 +179,7 @@ const General: PageSectionProps = {
 
 		}, {
 			"title"   : "COSC 130 - Computer Organization & Architecture",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `Hands-on experience with applying computer organization and architecture techniques 
 						while developing software with C++ and RISC-V Assembly.`,
 			"chips"   : {
@@ -193,7 +193,7 @@ const General: PageSectionProps = {
 			}
 		}, {
 			"title"   : "COSC 102 - Introduction to Computer Science",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"subtitle": `Introduction and hands-on experience with the basics of programming languages, 
 						problem solving, and algorithm development. Emphasis on organization and characteristics of 
 						modern digital computers.`,

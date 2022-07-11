@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -8,7 +8,7 @@ const Spring2021: PageSectionProps = {
 		{
 			"title"   : "DNA Topology and Transcription Regulation",
 			"subtitle": "Presenter: Dr. Laura Finzi, Emory University, Physics Department",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "03/31/2021" ]
 			},
@@ -18,7 +18,7 @@ const Spring2021: PageSectionProps = {
 		}, {
 			"title"   : "In-space Manufacturing",
 			"subtitle": "Presenter: Tracie Prater of NASA",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "03/02/2021" ]
 			},
@@ -28,7 +28,7 @@ const Spring2021: PageSectionProps = {
 		}, {
 			"title"   : "CHP Overview - All Cohorts",
 			"subtitle": "Presenter: Rebekah Page",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "01/21/2021" ]
 			},

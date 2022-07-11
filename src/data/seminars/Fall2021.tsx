@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -8,7 +8,7 @@ const Fall2021: PageSectionProps = {
 		{
 			"title"   : "Cultivating a Growth Mindset",
 			"subtitle": "Presenter: Gemma Leigh Roberts",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "12/3/2021" ]
 			},
@@ -18,7 +18,7 @@ const Fall2021: PageSectionProps = {
 		}, {
 			"title"   : "Probability and Stochastic Processes Seminar",
 			"subtitle": "Presenter: Dr. Federico Sau (IST Austria)",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "11/16/2021" ]
 			},
@@ -29,7 +29,7 @@ const Fall2021: PageSectionProps = {
 		}, {
 			"title"   : "Energy & Environment Forum with Dr. Megan Donahue, Ecologist from Hawaii",
 			"subtitle": "Presenter: Dr. Megan Donahue (Hawaii Institute of Marine Biology)",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "11/16/2021" ]
 			},

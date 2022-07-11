@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -20,7 +20,7 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "TensorFlow", "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "COSC 523 - Artificial Intelligence",
 			"subtitle": `Theoretical and applied aspects of artificial intelligence, including search, learning, decision-making, and reasoning.`,
@@ -33,7 +33,7 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "TensorFlow", "Scikit-Learn", "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "COSC 522 - Machine Learning",
 			"subtitle": `Theoretical and practical aspects of machine learning techniques related to pattern recognition, including both supervised and unsupervised learning methods for classification and regression.`,
@@ -47,7 +47,7 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "COSC 420 - Biologically-Inspired Computation",
 			"subtitle": `Recent developments in computational methods inspired by nature, including the use of biologically inspired algorithms to solve problems.`,
@@ -61,7 +61,7 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}
 	]
 }

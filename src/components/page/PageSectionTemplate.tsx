@@ -121,7 +121,10 @@ export const PageSection = ({
 								notes,
 								children
 							}: { title: string, notes?: Array<NoteProps>, children: React.ReactNode }) => {
-	return <Stack id={title && title || ""}
+
+	let id = title.replace(/,/g, "").replace(/&/g, "").replace(/  /g, " ").replace(/ /g, "-").toLowerCase()
+
+	return <Stack id={id && id || ""}
 				  spacing={theme.section.itemSpacing}
 				  sx={{
 					  my: theme.section.verticalMargin

@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -8,7 +8,7 @@ const Fall2020: PageSectionProps = {
 		{
 			"title"   : "BlueSky Statistics Workshop",
 			"subtitle": "Presenter: Bob Muenchen (Office of Information Technology (OIT))",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "11/06/2020" ]
 			},
@@ -20,7 +20,7 @@ const Fall2020: PageSectionProps = {
 		}, {
 			"title"   : "Data Management Best Practices",
 			"subtitle": "Presenter: Chris Eaker",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "Asynchronous" ]
 			},
@@ -35,7 +35,7 @@ const Fall2020: PageSectionProps = {
 		}, {
 			"title"   : "Leading with Confidencece",
 			"subtitle": "Presenters: Karen D. Boyd and Megan King (Educational Leadership and Policy Studies)",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "11/03/2020" ]
 			},

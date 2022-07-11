@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -9,7 +9,7 @@ const Education: PageSectionProps = {
 		{
 			"title"   : "Computer Science M.S.",
 			"subtitle": "University of Tennessee, Knoxville",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date": [ "Starting Fall 2022" ]
 			},
@@ -19,7 +19,7 @@ const Education: PageSectionProps = {
 		}, {
 			"title"   : "Computer Science 5-Yr B.S./M.S.",
 			"subtitle": "University of Tennessee, Knoxville",
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"date"     : [ "08/2018 - 05/2022" ],
 				"awards"   : [ "Summa Cum Laude", "GPA: 3.87" ],

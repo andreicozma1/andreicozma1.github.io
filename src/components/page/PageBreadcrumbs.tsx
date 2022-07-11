@@ -8,7 +8,6 @@ import * as React from "react"
 import { useEffect } from "react"
 import theme from "../../config/theme"
 import { PageProps } from "../interfaces/PageProps"
-import { Link } from "gatsby-theme-material-ui"
 
 export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 	const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800]
@@ -40,6 +39,18 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 		}
 	}
 
+	const scroll = (title) => {
+		// replace commas with nothing
+		// replace spaces with dashes
+		// replace and signs with nothing
+		title = title.replace(/,/g, "").replace(/&/g, "").replace(/  /g, " ").replace(/ /g, "-").toLowerCase()
+		const section = document.querySelector("#" + title)
+		if (section) section.scrollIntoView({
+			behavior: "smooth",
+			block   : "start"
+		})
+	}
+
 	return <Slide in={animationDone}
 				  direction="right"
 				  timeout={theme.transitionDuration.breadcrumb}>
@@ -47,8 +58,10 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 			<Grid container spacing={0.75}>
 				{page.sections && page.sections.map((section) => {
 					return section.title && <Grid item key={"#" + section.title}>
-                        <StyledBreadcrumb component={Link} label={section.title}
-                                          href={"#" + section.title}/>
+                        <StyledBreadcrumb label={section.title}
+                                          onClick={() => {
+											  scroll(section.title)
+										  }}/>
                     </Grid>
 				})}
 			</Grid>

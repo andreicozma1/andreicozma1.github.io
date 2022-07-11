@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -16,7 +16,7 @@ const About: PageSectionProps = {
 				 problem-solving, self-reflecting, and improving. I am continually seeking to learn new skills, 
 				 gain new experiences, and the knowledge needed to be able to help find solutions to world problems.`
 			],
-			"avatar" : <AccessAlarmIcon/>
+			"avatar" : <WorkspacesOutlinedIcon/>
 		}, {
 			"title" : "Topics of Interest",
 			"chips" : {
@@ -25,7 +25,7 @@ const About: PageSectionProps = {
 					"Data Analytics", "Mobile & Embedded Systems", "Natural Language Processing", "Computer Vision"
 				]
 			},
-			"avatar": <AccessAlarmIcon/>
+			"avatar": <WorkspacesOutlinedIcon/>
 		}
 	]
 }

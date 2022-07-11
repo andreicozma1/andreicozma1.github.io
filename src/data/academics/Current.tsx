@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -9,16 +9,16 @@ const Current: PageSectionProps = {
 	items  : [
 		{
 			"title" : "COSC 524 - Natural Language Processing",
-			"avatar": <AccessAlarmIcon/>
+			"avatar": <WorkspacesOutlinedIcon/>
 		}, {
 			"title" : "COSC 517 - Reinforcement Learning",
-			"avatar": <AccessAlarmIcon/>
+			"avatar": <WorkspacesOutlinedIcon/>
 		}, {
 			"title" : "COSC 562 - Operating Systems: Design & Implementation",
-			"avatar": <AccessAlarmIcon/>
+			"avatar": <WorkspacesOutlinedIcon/>
 		}, {
 			"title" : "COSC 530 - Computer Systems Organization",
-			"avatar": <AccessAlarmIcon/>
+			"avatar": <WorkspacesOutlinedIcon/>
 		}
 	]
 }

@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -20,7 +20,7 @@ const Cybersecurity: PageSectionProps = {
 				],
 				"languages"   : [ "C/C++", "Python", "JavaScript", "X86 Assembly" ]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "ECE 462 - Cyber-Physical System Security",
 			"subtitle": `Introduction to security challenges and techniques at both the physical layer and the cyber layer of important 
@@ -32,7 +32,7 @@ const Cybersecurity: PageSectionProps = {
 					"Nuclear Plants"
 				]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "ECE 469 - Mobile/Embedded Systems Security",
 			"subtitle": `Introduction to vulnerabilities and threat vectors associated with mobile and embedded devices, 
@@ -45,11 +45,11 @@ const Cybersecurity: PageSectionProps = {
 				],
 				"languages"   : [ "Python" ]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "COSC 366 - Introduction to Cybersecurity",
 			"subtitle": `A broad introduction to cybersecurity concepts and practices, and the current challenges in cybersecurity.`,
-			"avatar"  : <AccessAlarmIcon/>,
+			"avatar"  : <WorkspacesOutlinedIcon/>,
 			"chips"   : {
 				"contentChips": [
 					"Security Goals", "Threat Modeling", "Software Security", "Operating System Security",

@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../components/interfaces/PageSectionProps"
 
@@ -7,23 +7,23 @@ const DataTemplate: PageSectionProps = {
 	items: [
 		{
 			"title"  : "Section 1",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar" : <WorkspacesOutlinedIcon/>,
 			"content": "Content 1"
 		}, {
 			"title"  : "Section 2",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar" : <WorkspacesOutlinedIcon/>,
 			"content": "Content 2"
 		}, {
 			"title"  : "Section 3",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar" : <WorkspacesOutlinedIcon/>,
 			"content": "Content 3"
 		}, {
 			"title"  : "Section 4",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar" : <WorkspacesOutlinedIcon/>,
 			"content": "Content 4"
 		}, {
 			"title"  : "Section 5",
-			"avatar" : <AccessAlarmIcon/>,
+			"avatar" : <WorkspacesOutlinedIcon/>,
 			"content": "Content 5"
 		}
 	]

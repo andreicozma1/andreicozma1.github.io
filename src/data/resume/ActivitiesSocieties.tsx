@@ -1,4 +1,4 @@
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm"
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -15,7 +15,7 @@ const ActivitiesSocieties: PageSectionProps = {
 					"Operations Manager for Sponsorships (2019)", "President (2020-2021)"
 				]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Pi Kappa Phi",
 			"subtitle": "Social Fraternity on the UY campus",
@@ -25,7 +25,7 @@ const ActivitiesSocieties: PageSectionProps = {
 					"Chapter Secretary", "Housing Manager", "Website Developer"
 				]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Chancellor's Honors Program",
 			"subtitle": "UT principal honors program",
@@ -35,7 +35,7 @@ const ActivitiesSocieties: PageSectionProps = {
 					"Member & Volunteer"
 				]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "National Honor Society & Beta Club",
 			"subtitle": "Highschool Honor Societies",
@@ -45,7 +45,7 @@ const ActivitiesSocieties: PageSectionProps = {
 					"Initiated Member & Volunteer", "Awarded Medallion for Most Volunteer Hours"
 				]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Computer Science & Robotics Clubs",
 			"subtitle": "Highschool Clubs",
@@ -55,7 +55,7 @@ const ActivitiesSocieties: PageSectionProps = {
 					"HackClub Chapter", "President, Organizer, and Tutor"
 				]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Spanish Club & Honor Society",
 			"subtitle": "Highschool Honor Societies & Clubs",
@@ -65,7 +65,7 @@ const ActivitiesSocieties: PageSectionProps = {
 					"Vice President", "Initiated Member & Volunteer"
 				]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "American Red Cross Volunteer",
 			"subtitle": "Middle Tennessee Chapter",
@@ -73,7 +73,7 @@ const ActivitiesSocieties: PageSectionProps = {
 				"date"     : [ "08/2014 - Present" ],
 				"positions": [ "Member", "Volunteer" ]
 			},
-			"avatar"  : <AccessAlarmIcon/>
+			"avatar"  : <WorkspacesOutlinedIcon/>
 		}
 	]
 }
