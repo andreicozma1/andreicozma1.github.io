@@ -23,3 +23,12 @@ Deploying to GitHub Pages (`main` branch)
 ```
 npm run deploy
 ```
+
+## Usage Rights
+
+Please credit with the following snippet if intending to use any parts of this project:
+```
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+```
