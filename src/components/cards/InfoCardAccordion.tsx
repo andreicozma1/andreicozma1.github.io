@@ -1,8 +1,8 @@
 import { Accordion, AccordionDetails, AccordionSummary, CardHeader, Stack, Typography } from "@mui/material"
 import * as React from "react"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
-import { InfoCardProps } from "../../interfaces/InfoCardProps"
-import theme from "../../../config/theme"
+import { InfoCardProps } from "../interfaces/InfoCardProps"
+import theme from "../../config/theme"
 
 const InfoCardAccordion = ({
 							   title,

@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, CardHeader, SvgIconTypeMap } from "@mui/material"
 import * as React from "react"
 import { ReactNode } from "react"
-import theme from "../../../config/theme"
+import theme from "../../config/theme"
 import CardHeaderChips from "./CardHeaderChips"
 import CardContentChips from "./CardContentChips"
 import CardContentText from "./CardContentText"
@@ -20,9 +20,14 @@ const InfoCard = ({
 
 	if (contentChips && contentChips.length === 0) contentChips = undefined
 
+	let chipsStyle = {}
+	if (content) {
+		chipsStyle = { mt: theme.card.contentPaddingV }
+	}
+
 	return <Card elevation={theme.card.elevation}
 				 sx={{
-					 background: `rgba(255, 255, 255, ${theme.card.contentOpacity})` // height    : "100%"
+					 background: `rgba(255, 255, 255, ${theme.card.contentOpacity})`
 				 }}>
 		<Box sx={{
 			background: `rgba(255, 255, 255, ${theme.card.headerOpacity})`, ...(headerChips && {
@@ -42,9 +47,13 @@ const InfoCard = ({
 
 		</Box>
 
-		{(content || contentChips || children) && <CardContent>
+		{(content || contentChips || children) && <CardContent sx={{
+			px: theme.card.contentPaddingH,
+			py: theme.card.contentPaddingV,
+			"&:last-child": { pb: theme.card.contentPaddingV }
+		}}>
 			{content && <CardContentText text={content}/>}
-			{contentChips && <CardContentChips chips={contentChips}/>}
+			{contentChips && <CardContentChips chips={contentChips} containerSx={chipsStyle}/>}
 			{children}
         </CardContent>}
 	</Card>

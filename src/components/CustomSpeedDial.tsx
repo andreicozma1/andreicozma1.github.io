@@ -4,7 +4,7 @@ import SpeedDial from "@mui/material/SpeedDial"
 import SpeedDialAction from "@mui/material/SpeedDialAction"
 import GitHubIcon from "@mui/icons-material/GitHub"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
-import { Backdrop } from "@mui/material"
+import { Backdrop, SpeedDialIcon } from "@mui/material"
 import { PageProps } from "./interfaces/PageProps"
 import AddIcon from "@mui/icons-material/Add"
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded"
@@ -23,6 +23,9 @@ const actions = [
 ]
 
 export default function CustomSpeedDial({ pageProps }: { pageProps: PageProps }) {
+	const [ open, setOpen ] = React.useState(false)
+	const handleOpen = () => setOpen(true)
+	const handleClose = () => setOpen(false)
 
 	const scrollToTop = () => {
 		window.scrollTo({
@@ -38,25 +41,30 @@ export default function CustomSpeedDial({ pageProps }: { pageProps: PageProps })
 		})
 	}
 
+	const gotoPage = (url: string | URL | undefined) => {
+		setOpen(false)
+		window.open(url, "_blank")
+	}
+
 	const permActions = [
 		{
 			icon  : <KeyboardArrowDownRoundedIcon/>,
 			name  : "Bottom",
 			action: () => {
 				scrollToBottom()
+				setOpen(false)
 			}
 		}, {
 			icon  : <KeyboardArrowUpRoundedIcon/>,
 			name  : "Top",
 			action: () => {
 				scrollToTop()
+				setOpen(false)
 			}
 		}
 	]
 
-	const [ open, setOpen ] = React.useState(false)
-	const handleOpen = () => setOpen(true)
-	const handleClose = () => setOpen(false)
+
 
 	return (<>
 		<Backdrop open={open}/>
@@ -71,7 +79,7 @@ export default function CustomSpeedDial({ pageProps }: { pageProps: PageProps })
 				onClose={handleClose}
 				onOpen={handleOpen}
 				open={open}
-				icon={<AddIcon/>}>
+				icon={<SpeedDialIcon/>}>
 
 				{/*{props.sections && props.sections.map((section, index) => {*/}
 				{/*	const icon = section.icon ? section.icon : <NavigateBeforeIcon/>*/}
@@ -97,9 +105,7 @@ export default function CustomSpeedDial({ pageProps }: { pageProps: PageProps })
 					icon={action.icon}
 					tooltipTitle={action.name}
 					tooltipOpen
-					onClick={() => {
-						window.open(action.url, "_blank")
-					}}
+					onClick={() => gotoPage(action.url)}
 				/>))}
 			</SpeedDial>
 		</Box>

@@ -15,8 +15,8 @@ import {
 	TimelineSeparator
 } from "@mui/lab"
 import { InfoCardProps } from "../interfaces/InfoCardProps"
-import TimelineChips from "./chips/TimelineChips"
-import InfoCard from "./cards/InfoCard"
+import TimelineChips from "../chips/TimelineChips"
+import InfoCard from "../cards/InfoCard"
 import { NoteProps } from "../interfaces/NoteProps"
 
 const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
@@ -74,7 +74,11 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 	const matchesSm = useMediaQuery(theme.breakpoints.down("sm"))
 
 	return <Box sx={{ flexGrow: 1 }}>
-		<Masonry columns={props.variant === "grid6" ? (matches ? 1 : 2) : 1} spacing={theme.section.itemSpacing}>
+		<Masonry columns={props.variant === "grid6" ? (matches ? 1 : 2) : 1}
+				 spacing={theme.section.itemSpacing}
+				 sx={{
+					 m: 0
+				 }}>
 			{props.items.map((itemProps: InfoCardProps, index: number) => {
 
 				let headerChips = itemProps.chips && [

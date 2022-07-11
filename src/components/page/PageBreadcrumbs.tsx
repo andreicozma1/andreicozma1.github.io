@@ -46,10 +46,7 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 	return <Slide in={animationDone}
 				  direction="right"
 				  timeout={theme.transitionDuration.breadcrumb}>
-		<Breadcrumbs aria-label="breadcrumb"
-					 sx={{
-						 paddingTop: theme.spacing(2)
-					 }}>
+		<Breadcrumbs aria-label="breadcrumb">
 			<Grid container>
 				{/*<StyledBreadcrumb*/}
 				{/*	component={Link}*/}

@@ -1,15 +1,17 @@
 import SmartChipBox from "../chips/SmartChipBox"
 import * as React from "react"
+import theme from "../../config/theme"
 
 const CardContentChips = ({
-							  chips
+							  chips,
+							  containerSx
 						  }: {
-	chips: string | string[],
+	chips: string | string[], containerSx?: React.CSSProperties
 }) => {
 	return <SmartChipBox text={chips} defaultVariant="filled"
 						 containerSx={{
 							 display: "block",
-							 pt     : 1
+							 ...containerSx
 						 }}/>
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import InfoCard from "./page/cards/InfoCard"
+import InfoCard from "./cards/InfoCard"
 import { pages } from "../config/pages"
-import SmartChipBox from "./page/chips/SmartChipBox"
+import SmartChipBox from "./chips/SmartChipBox"
 import { PageSection } from "./page/PageSectionTemplate"
 import { PageSectionProps } from "./interfaces/PageSectionProps"
 

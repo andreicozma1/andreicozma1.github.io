@@ -38,8 +38,13 @@ declare module "@mui/material/styles" {
 			spacing: number
 			headerOpacity: number
 			contentOpacity: number
-			titleFontSize: number
-			subheaderFontSize: number
+			titleFontSize: number | string
+			subheaderFontSize: number | string
+			contentFontSize: number | string
+			contentPaddingH: number | string
+			contentPaddingV: number | string
+			chipFontSize: number | string
+			chipHeight: number | string
 		}
 	}
 
@@ -78,8 +83,13 @@ declare module "@mui/material/styles" {
 			spacing: number
 			headerOpacity: number
 			contentOpacity: number
-			titleFontSize: number
-			subheaderFontSize: number
+			titleFontSize: number | string
+			subheaderFontSize: number | string
+			contentFontSize: number | string
+			contentPaddingH: number | string
+			contentPaddingV: number | string
+			chipFontSize: number | string
+			chipHeight: number | string
 		}
 	}
 
@@ -124,7 +134,7 @@ const theme = createTheme({
 		titleVariant   : "h5",
 		titleFontWeight: "medium",
 		itemSpacing    : 1,
-		verticalMargin : 3
+		verticalMargin : 1.5
 	},
 	card              : {
 		elevation        : 4,
@@ -133,8 +143,13 @@ const theme = createTheme({
 		spacing          : 1,
 		headerOpacity    : 0.99,
 		contentOpacity   : 0.6,
-		titleFontSize    : 16,
-		subheaderFontSize: 15
+		titleFontSize    : "0.9rem",
+		subheaderFontSize: "0.85rem",
+		contentFontSize  : "0.9rem",
+		contentPaddingH   : "0.9rem",
+		contentPaddingV   : "0.75rem",
+		chipFontSize: "0.8rem",
+		chipHeight: "1.7rem"
 	}
 })
 

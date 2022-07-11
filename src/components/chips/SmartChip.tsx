@@ -2,7 +2,7 @@ import { Chip, ChipProps } from "@mui/material"
 import * as React from "react"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined"
-import { SmartChipProps } from "../../interfaces/SmartChipProps"
+import { SmartChipProps } from "../interfaces/SmartChipProps"
 import CodeOutlinedIcon from "@mui/icons-material/CodeOutlined"
 import CollectionsBookmarkOutlinedIcon from "@mui/icons-material/CollectionsBookmarkOutlined"
 import StorageOutlinedIcon from "@mui/icons-material/StorageOutlined"
@@ -10,6 +10,7 @@ import SelectAllOutlinedIcon from "@mui/icons-material/SelectAllOutlined"
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded"
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
+import theme from "../../config/theme"
 
 const mDate = [ "/", " - " ]
 const mAchieve = [ "GPA", "Summa Cum Laude" ]
@@ -90,7 +91,9 @@ const SmartChip = ({
 				 size={defaultSize || "medium"}
 				 sx={{
 					 my: spacing,
-					 mx: spacing
+					 mx: spacing,
+					 fontSize: theme.card.chipFontSize,
+					 height: theme.card.chipHeight
 				 }}/>
 }
 
