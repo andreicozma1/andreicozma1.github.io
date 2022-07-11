@@ -13,6 +13,7 @@ import { Backdrop, SpeedDialIcon } from "@mui/material"
 import { PageProps } from "./interfaces/PageProps"
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded"
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded"
+import CodeIcon from '@mui/icons-material/Code';
 
 const actions = [
 	{
@@ -23,6 +24,10 @@ const actions = [
 		icon: <GitHubIcon/>,
 		name: "GitHub",
 		url : "https://github.com/andreicozma1"
+	}, {
+		icon: <CodeIcon/>,
+		name: "Source",
+		url : "https://github.com/andreicozma1/andreicozma1.github.io/tree/source"
 	}
 ]
 
