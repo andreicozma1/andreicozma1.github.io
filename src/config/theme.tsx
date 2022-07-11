@@ -148,7 +148,7 @@ const theme = createTheme({
 		spacing          : 1,
 		headerOpacity    : 0.99,
 		contentOpacity   : 0.6,
-		titleFontSize    : "0.9rem",
+		titleFontSize    : "0.95rem",
 		subheaderFontSize: "0.85rem",
 		contentFontSize  : "0.9rem",
 		contentPaddingH  : "0.9rem",

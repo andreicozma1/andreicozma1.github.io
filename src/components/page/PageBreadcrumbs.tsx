@@ -29,14 +29,6 @@ export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 	const [ animationDone, setAnimationDone ] = React.useState(false)
 
-	// const [ anchorElUser, setAnchorElUser ] = React.useState(null)
-	// const handleOpenUserMenu = (event: any) => {
-	// 	setAnchorElUser(event.currentTarget)
-	// }
-	// const handleCloseUserMenu = () => {
-	// 	setAnchorElUser(null)
-	// }
-
 	useEffect(() => {
 		setAnimationDone(true)
 	}, [])
@@ -53,17 +45,6 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 				  timeout={theme.transitionDuration.breadcrumb}>
 		<Breadcrumbs aria-label="breadcrumb">
 			<Grid container spacing={0.75}>
-				{/*<StyledBreadcrumb*/}
-				{/*	component={Link}*/}
-				{/*	label={page.href}*/}
-				{/*	href="#"*/}
-				{/*	icon={page.icon}*/}
-				{/*/>*/}
-				{/*<StyledBreadcrumb*/}
-				{/*	label="#"*/}
-				{/*	deleteIcon={<ExpandMoreIcon/>}*/}
-				{/*	onDelete={handleOpenUserMenu}*/}
-				{/*/>*/}
 				{page.sections && page.sections.map((section) => {
 					return section.title && <Grid item key={"#" + section.title}>
                         <StyledBreadcrumb component={Link} label={section.title}
@@ -71,30 +52,7 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
                     </Grid>
 				})}
 			</Grid>
-
-
 		</Breadcrumbs>
-		{/*<Menu*/}
-		{/*	sx={{ mt: "30px" }}*/}
-		{/*	id="menu-appbar"*/}
-		{/*	anchorEl={anchorElUser}*/}
-		{/*	anchorOrigin={{*/}
-		{/*		vertical  : "top",*/}
-		{/*		horizontal: "center"*/}
-		{/*	}}*/}
-		{/*	keepMounted*/}
-		{/*	transformOrigin={{*/}
-		{/*		vertical  : "top",*/}
-		{/*		horizontal: "center"*/}
-		{/*	}}*/}
-		{/*	open={Boolean(anchorElUser)}*/}
-		{/*	onClose={handleCloseUserMenu}*/}
-		{/*>*/}
-		{/*	{settings.map((setting) => (<MenuItem key={setting} onClick={handleCloseUserMenu}>*/}
-		{/*		<Typography textAlign="center" component={Link} underline="none"*/}
-		{/*					href={"#" + setting}>{setting}</Typography>*/}
-		{/*	</MenuItem>))}*/}
-		{/*</Menu>*/}
 	</Slide>
 }
 
