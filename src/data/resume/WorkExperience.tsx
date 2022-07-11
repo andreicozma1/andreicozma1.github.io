@@ -1,4 +1,4 @@
-import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined"
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -16,7 +16,7 @@ const WorkExperience: PageSectionProps = {
 				"tools"       : [ "Linux", "Git & GitHub" ]
 			},
 			"content" : [
-				`Assist with research and ongoing projects, including software development and analysis on a variety of cybersecurity topics, writing and documenting research and findings, performing analytics, collecting and analyzing data, and creating visualizations of results.`
+				`Assist with research and various ongoing projects, including the development of software and scripts to aid with the data collection, creation of visualizations, performing analysis of results, and writing and documenting research and findings.`
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
@@ -30,7 +30,7 @@ const WorkExperience: PageSectionProps = {
 				"date"        : [ "01/2022 - 05/2022" ]
 			},
 			"content" : [
-				`Teaching assistant for Dr. Doowon Kim's Introduction to Cybersecurity course. Main responsibilities include assisting students and answering questions they may have about the course materials, providing useful feedback, grading quizzes and other assignments, etc.`
+				`Teaching assistant for Dr. Doowon Kim's Introduction to Cybersecurity course. Primary responsibilities include assisting students and answering questions they may have about the course materials, providing helpful feedback, grading quizzes and other assignments, exam proctoring, etc.`
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
@@ -45,7 +45,8 @@ const WorkExperience: PageSectionProps = {
 				"date"        : [ "03/2021 - 10/2021" ]
 			},
 			"content" : [
-				`Assist with research and ongoing projects, including software development and analysis on a variety of cybersecurity topics, writing and documenting research and findings, performing analytics, collecting and analyzing data, and creating visualizations of results.`
+				`Assist with research on various ongoing projects, developing software and scripts to aid with collecting and analyzing data, creating visualizations, and interpreting results.`,
+				`Topics: Security updates for JavaScript libraries, timeliness of security patches becoming available, the amounts of vulnerable library versions still widely in use, crypto-jacking, certificate collection, phishing blacklists, and more.`
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
@@ -60,9 +61,8 @@ const WorkExperience: PageSectionProps = {
 				]
 			},
 			"content" : [
-				`Design, implement, and test Software Frameworks, Solutions, and Demo Applications for ELO's
-                Enterprise-Level Touchscreen Solutions, as well as for customers and business partners.`, `Using Java, Kotlin, Version Control systems, the Android SDK as well as ELO SDKs to develop
-                platform solutions with the Android Open Source Project (AOSP) as part of a Full-Stack Environment.`
+				`Design, implement, and test software frameworks, solutions, and demo applications for ELO's enterprise touchscreen solutions and customers and business partners.`,
+				`Using Java, Kotlin, Linux, Bash Scripting, Git, Atlassian JIRA, and the Android SDK to develop enterprise solutions with the Android Open Source Project (AOSP) as part of an Agile work environment.`
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
@@ -77,9 +77,8 @@ const WorkExperience: PageSectionProps = {
 				]
 			},
 			"content" : [
-				`Design, implement, and test Software Frameworks, Solutions, and Demo Applications for ELO's
-                Enterprise-Level Touchscreen Solutions, as well as for customers and business partners.`, `Using Java, Kotlin, Version Control systems, the Android SDK as well as ELO SDKs to develop
-                platform solutions with the Android Open Source Project (AOSP) as part of a Full-Stack Environment.`
+				`Design, implement, and test software frameworks, solutions, and demo applications for ELO's enterprise touchscreen solutions and customers and business partners.`,
+				`Using Java, Kotlin, Linux, Bash Scripting, Git, Atlassian JIRA, and the Android SDK to develop enterprise solutions with the Android Open Source Project (AOSP) as part of an Agile work environment.`
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
