@@ -1,4 +1,9 @@
-import { Box, Breadcrumbs, Chip, emphasize, Grid, Slide, styled } from "@mui/material"
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+import { Breadcrumbs, Chip, emphasize, Grid, Slide, styled } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"
 import theme from "../../config/theme"
@@ -61,9 +66,9 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 				{/*/>*/}
 				{page.sections && page.sections.map((section) => {
 					return section.title && <Grid item key={"#" + section.title}>
-						<StyledBreadcrumb component={Link} label={section.title}
-                                                               href={"#" + section.title}/>
-					</Grid>
+                        <StyledBreadcrumb component={Link} label={section.title}
+                                          href={"#" + section.title}/>
+                    </Grid>
 				})}
 			</Grid>
 

@@ -1,3 +1,8 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
 import { createTheme, IconProps } from "@mui/material"
 import { Variant } from "@mui/material/styles/createTypography"
 
@@ -146,10 +151,10 @@ const theme = createTheme({
 		titleFontSize    : "0.9rem",
 		subheaderFontSize: "0.85rem",
 		contentFontSize  : "0.9rem",
-		contentPaddingH   : "0.9rem",
-		contentPaddingV   : "0.75rem",
-		chipFontSize: "0.8rem",
-		chipHeight: "1.7rem"
+		contentPaddingH  : "0.9rem",
+		contentPaddingV  : "0.75rem",
+		chipFontSize     : "0.8rem",
+		chipHeight       : "1.7rem"
 	}
 })
 

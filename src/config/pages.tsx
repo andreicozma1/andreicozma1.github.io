@@ -1,3 +1,8 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
 import { BookRounded, CodeRounded, HomeRounded, SchoolRounded, SummarizeRounded } from "@mui/icons-material"
 import CampaignRoundedIcon from "@mui/icons-material/CampaignRounded"
 

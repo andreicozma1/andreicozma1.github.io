@@ -1,3 +1,8 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
 import { Alert, Slide, Stack } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"

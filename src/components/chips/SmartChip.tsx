@@ -1,3 +1,9 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
 import { Chip, ChipProps } from "@mui/material"
 import * as React from "react"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
@@ -91,10 +97,10 @@ const SmartChip = ({
 				 icon={getIcon()}
 				 size={defaultSize || "medium"}
 				 sx={{
-					 my: spacingY,
-					 mr: spacingR,
+					 my      : spacingY,
+					 mr      : spacingR,
 					 fontSize: theme.card.chipFontSize,
-					 height: theme.card.chipHeight
+					 height  : theme.card.chipHeight
 				 }}/>
 }
 

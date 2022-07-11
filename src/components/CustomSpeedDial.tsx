@@ -1,3 +1,8 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
 import * as React from "react"
 import Box from "@mui/material/Box"
 import SpeedDial from "@mui/material/SpeedDial"
@@ -6,7 +11,6 @@ import GitHubIcon from "@mui/icons-material/GitHub"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import { Backdrop, SpeedDialIcon } from "@mui/material"
 import { PageProps } from "./interfaces/PageProps"
-import AddIcon from "@mui/icons-material/Add"
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded"
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded"
 
@@ -63,8 +67,6 @@ export default function CustomSpeedDial({ pageProps }: { pageProps: PageProps })
 			}
 		}
 	]
-
-
 
 	return (<>
 		<Backdrop open={open}/>

@@ -1,3 +1,8 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
 import { Box, Card, CardContent, CardHeader, SvgIconTypeMap } from "@mui/material"
 import * as React from "react"
 import { ReactNode } from "react"
@@ -48,8 +53,8 @@ const InfoCard = ({
 		</Box>
 
 		{(content || contentChips || children) && <CardContent sx={{
-			px: theme.card.contentPaddingH,
-			py: theme.card.contentPaddingV,
+			px            : theme.card.contentPaddingH,
+			py            : theme.card.contentPaddingV,
 			"&:last-child": { pb: theme.card.contentPaddingV }
 		}}>
 			{content && <CardContentText text={content}/>}

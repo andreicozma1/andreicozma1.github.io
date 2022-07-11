@@ -1,3 +1,9 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
 import { Box, ChipProps } from "@mui/material"
 import * as React from "react"
 import SmartChip from "./SmartChip"

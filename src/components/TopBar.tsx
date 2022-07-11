@@ -1,3 +1,8 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
 import * as React from "react"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"

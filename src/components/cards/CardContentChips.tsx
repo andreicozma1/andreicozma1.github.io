@@ -1,6 +1,10 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
 import SmartChipBox from "../chips/SmartChipBox"
 import * as React from "react"
-import theme from "../../config/theme"
 
 const CardContentChips = ({
 							  chips,
@@ -10,8 +14,7 @@ const CardContentChips = ({
 }) => {
 	return <SmartChipBox text={chips} defaultVariant="filled"
 						 containerSx={{
-							 display: "block",
-							 ...containerSx
+							 display: "block", ...containerSx
 						 }}/>
 }
 
