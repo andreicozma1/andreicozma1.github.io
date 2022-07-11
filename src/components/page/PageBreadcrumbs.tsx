@@ -47,7 +47,7 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 				  direction="right"
 				  timeout={theme.transitionDuration.breadcrumb}>
 		<Breadcrumbs aria-label="breadcrumb">
-			<Grid container>
+			<Grid container spacing={0.75}>
 				{/*<StyledBreadcrumb*/}
 				{/*	component={Link}*/}
 				{/*	label={page.href}*/}
@@ -60,8 +60,10 @@ const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 				{/*	onDelete={handleOpenUserMenu}*/}
 				{/*/>*/}
 				{page.sections && page.sections.map((section) => {
-					return section.title && <StyledBreadcrumb component={Link} label={section.title}
-                                                              key={"#" + section.title} href={"#" + section.title}/>
+					return section.title && <Grid item key={"#" + section.title}>
+						<StyledBreadcrumb component={Link} label={section.title}
+                                                               href={"#" + section.title}/>
+					</Grid>
 				})}
 			</Grid>
 

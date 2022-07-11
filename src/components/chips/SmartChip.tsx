@@ -53,7 +53,8 @@ const SmartChip = ({
 					   defaultSize
 				   }: SmartChipProps) => {
 
-	const spacing = 0.5
+	const spacingY = 0.3
+	const spacingR = 0.5
 	let type = getType(text)
 
 	const getIcon = () => {
@@ -90,8 +91,8 @@ const SmartChip = ({
 				 icon={getIcon()}
 				 size={defaultSize || "medium"}
 				 sx={{
-					 my: spacing,
-					 mx: spacing,
+					 my: spacingY,
+					 mr: spacingR,
 					 fontSize: theme.card.chipFontSize,
 					 height: theme.card.chipHeight
 				 }}/>
