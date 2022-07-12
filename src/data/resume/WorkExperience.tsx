@@ -30,7 +30,11 @@ const WorkExperience: PageSectionProps = {
 				"date"        : [ "01/2022 - 05/2022" ]
 			},
 			"content" : [
-				`Teaching assistant for Dr. Doowon Kim's Introduction to Cybersecurity course. Primary responsibilities include assisting students and answering questions they may have about the course materials, providing helpful feedback, grading quizzes and other assignments, exam proctoring, etc.`
+				`Teaching assistant for Dr. Doowon Kim's Introduction to
+				Cybersecurity course. Primary responsibilities include assisting
+				students and answering questions they may have about the course
+				materials, providing helpful feedback, grading quizzes and other
+				assignments, exam proctoring, etc.`
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
