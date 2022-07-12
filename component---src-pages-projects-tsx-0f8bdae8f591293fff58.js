@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpersonal_portfolio=self.webpackChunkpersonal_portfolio||[]).push([[317],{6002:function(e,r,o){o.r(r);var t=o(7294),n=o(7557),a=o(6369);r.default=function(){var e=(0,a.q)("Projects");return t.createElement(n.Z,{pageProps:e})}}}]);
-//# sourceMappingURL=component---src-pages-projects-tsx-0f8bdae8f591293fff58.js.map
