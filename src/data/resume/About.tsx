@@ -12,8 +12,9 @@ const About: PageSectionProps = {
 				`In my personal, professional, and academic life, I am an enthusiastic and dedicated team player with 
 				a positive attitude. I always strive to attain the highest possible 
 				standards of quality and excellence, and am driven to adapt to any situation.`, `My fascination with 
-				technology from an early age has sparked a strong passion for learning,
-				 problem-solving, self-reflecting, and improving. I am continually seeking to learn new skills, 
+				computers, electronics, and science from an early age has sparked a passion for exploring and 
+				learning about the inner workings of current and emerging technologies that have become an 
+				essential part of our day-to-day lives.`, `I am continually seeking to learn new skills, 
 				 gain new experiences, and the knowledge needed to be able to help find solutions to world problems.`
 			],
 			"avatar" : <WorkspacesOutlinedIcon/>
