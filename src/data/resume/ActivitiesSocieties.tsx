@@ -1,4 +1,4 @@
-import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined"
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -8,7 +8,7 @@ const ActivitiesSocieties: PageSectionProps = {
 	items  : [
 		{
 			"title"   : "VolHacks",
-			"subtitle": "UT's Yearly Hackathon Event",
+			"subtitle": "UTK's Yearly Hackathon Event",
 			"chips"   : {
 				"date"     : [ "04/2019 - Present" ],
 				"positions": [
@@ -18,17 +18,20 @@ const ActivitiesSocieties: PageSectionProps = {
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Pi Kappa Phi",
-			"subtitle": "Social Fraternity on the UY campus",
+			"subtitle": "Greek Letter & Social Fraternity on campus",
 			"chips"   : {
-				"date"     : [ "04/2019 - Present" ],
-				"positions": [
+				"date"        : [ "04/2019 - Present" ],
+				"positions"   : [
 					"Chapter Secretary", "Housing Manager", "Website Developer"
+				],
+				"contentChips": [
+					"Alpha Sigma Chapter"
 				]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "Chancellor's Honors Program",
-			"subtitle": "UT principal honors program",
+			"subtitle": "UTK's Principal Honors Program",
 			"chips"   : {
 				"date"     : [ "08/2018 - 05/2022" ],
 				"positions": [
@@ -50,9 +53,12 @@ const ActivitiesSocieties: PageSectionProps = {
 			"title"   : "Computer Science & Robotics Clubs",
 			"subtitle": "Highschool Clubs",
 			"chips"   : {
-				"date"     : [ "09/2014 - 05/2018" ],
-				"positions": [
-					"HackClub Chapter", "President, Organizer, and Tutor"
+				"date"        : [ "09/2014 - 05/2018" ],
+				"positions"   : [
+					"President, Organizer, and Tutor"
+				],
+				"contentChips": [
+					"HackClub Chapter"
 				]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
