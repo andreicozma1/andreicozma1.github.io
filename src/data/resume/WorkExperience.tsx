@@ -59,9 +59,9 @@ const WorkExperience: PageSectionProps = {
 			"chips"   : {
 				"date"        : [ "05/2021 - 08/2021" ],
 				"languages"   : [ "Java", "Kotlin", "C/C++", "Python", "Bash Scripting" ],
-				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "Jenkins" ],
+				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "WebView", "Cordova", "Jenkins"],
 				"contentChips": [
-					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems", "WebView", "Cordova"
+					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems",
 				]
 			},
 			"content" : [
@@ -75,9 +75,9 @@ const WorkExperience: PageSectionProps = {
 			"chips"   : {
 				"date"        : [ "01/2020 - 12/2020" ],
 				"languages"   : [ "Java", "Kotlin", "C/C++", "Python", "Bash Scripting" ],
-				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "Jenkins" ],
+				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "WebView", "Cordova", "Jenkins"],
 				"contentChips": [
-					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems", "WebView", "Cordova"
+					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems",
 				]
 			},
 			"content" : [
