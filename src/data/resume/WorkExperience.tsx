@@ -61,7 +61,7 @@ const WorkExperience: PageSectionProps = {
 				"languages"   : [ "Java", "Kotlin", "C/C++", "Python", "Bash Scripting" ],
 				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "Jenkins" ],
 				"contentChips": [
-					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems"
+					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems", "WebView", "Cordova"
 				]
 			},
 			"content" : [
@@ -77,7 +77,7 @@ const WorkExperience: PageSectionProps = {
 				"languages"   : [ "Java", "Kotlin", "C/C++", "Python", "Bash Scripting" ],
 				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "Jenkins" ],
 				"contentChips": [
-					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems"
+					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems", "WebView", "Cordova"
 				]
 			},
 			"content" : [
