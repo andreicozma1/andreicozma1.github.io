@@ -45,7 +45,7 @@ const ActivitiesSocieties: PageSectionProps = {
 			"chips"   : {
 				"date"     : [ "08/2016 - 05/2018" ],
 				"positions": [
-					"Initiated Member & Volunteer", "Awarded Medallion for Most Volunteer Hours"
+					"Initiated Member", "Volunteer", "Awarded Medallion for Most Volunteer Hours"
 				]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
