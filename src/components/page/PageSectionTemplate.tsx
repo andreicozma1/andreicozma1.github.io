@@ -67,6 +67,7 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 						content={itemProps.content}
 						headerChips={headerChips}
 						contentChips={contentChips}
+						actions={itemProps.actions}
 					></InfoCard>
 				</TimelineContent>
 			</TimelineItem>
@@ -109,6 +110,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 						avatar={itemProps.avatar}
 						headerChips={headerChips}
 						contentChips={contentChips}
+						actions={itemProps.actions}
 					/>
 				</Grid>
 			})}
