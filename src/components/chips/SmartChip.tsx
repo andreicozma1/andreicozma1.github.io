@@ -32,7 +32,7 @@ const mLib = [
 const mDB = [ "NoSQL", "MongoDB", "MySQL", "PostgreSQL", "Firebase", "SQLite" ]
 const mTool = [
 	"Unix", "Linux", "Windows", "macOS", "Git & GitHub", "Git", "GitHub", "GitLab", "BitBucket", "Jira", "Jenkins",
-	"Docker", "AWS", "Jupyter Notebook", "Maven", "Gradle"
+	"Docker", "AWS", "Jupyter Notebook", "Maven", "Gradle", "WebView", "Cordova"
 ]
 const mPosition = [ "President", "Secretary", "Manager" ]
 const mMember = [ "Member", "Volunteer" ]

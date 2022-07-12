@@ -54,7 +54,7 @@ const WorkExperience: PageSectionProps = {
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
-			"title"   : "Software Developer Intern (Summer)",
+			"title"   : "Android Software Developer Intern",
 			"subtitle": "Elo Touch Solutions",
 			"chips"   : {
 				"date"        : [ "05/2021 - 08/2021" ],
@@ -70,7 +70,7 @@ const WorkExperience: PageSectionProps = {
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
-			"title"   : "Software Developer Intern (All-Year)",
+			"title"   : "Android Software Developer Intern",
 			"subtitle": "Elo Touch Solutions",
 			"chips"   : {
 				"date"        : [ "01/2020 - 12/2020" ],
