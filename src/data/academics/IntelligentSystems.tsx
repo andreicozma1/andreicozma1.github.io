@@ -20,6 +20,23 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "TensorFlow", "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
+			"actions": [
+				{
+					"text": "Project GitHub",
+					"href": "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Report",
+					"href": "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/blob/main/submission/CS525_DeepLearning_FinalProject_Report.pdf",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Proposal",
+					"href": "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/blob/main/submission/CS525_FinalProject_Proposal.pdf",
+					"target": "_blank"
+				},
+			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "COSC 523 - Artificial Intelligence",
@@ -33,6 +50,23 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "TensorFlow", "Scikit-Learn", "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
+			"actions": [
+				{
+					"text": "Project GitHub",
+					"href": "https://github.com/andreicozma1/CS523-TeamProject",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Report",
+					"href": "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_FinalReport.pdf",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Proposal",
+					"href": "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_ProjectProposal.pdf",
+					"target": "_blank"
+				},
+			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "COSC 522 - Machine Learning",
@@ -47,6 +81,23 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
+			"actions": [
+				{
+					"text": "Project GitHub",
+					"href": "https://github.com/andreicozma1/CS522-TeamProject/",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Paper",
+					"href": "https://github.com/andreicozma1/CS522-TeamProject/blob/main/submission/CS522_FinalTeamProject_Report.pdf",
+					"target": "_blank"
+				},
+				{
+					"text": "Presentation Slides",
+					"href": "https://github.com/andreicozma1/CS522-TeamProject/blob/main/submission/CS522_FinalTeamProject_Presentation.pdf",
+					"target": "_blank"
+				}
+			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
 			"title"   : "COSC 420 - Biologically-Inspired Computation",
@@ -61,6 +112,23 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
+			"actions": [
+				{
+					"text": "Project GitHub",
+					"href": "https://github.com/andreicozma1/COSC420-FinalProject",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Paper",
+					"href": "https://github.com/andreicozma1/COSC420-FinalProject/blob/main/submission/CS420%20-%20Final%20Report%20-%20Andrei%20Cozma.pdf",
+					"target": "_blank"
+				},
+				{
+					"text": "Presentation Poster",
+					"href": "https://github.com/andreicozma1/COSC420-FinalProject/blob/main/submission/CS420%20-%20Research%20Poster%20-%20Andrei%20Cozma.pdf",
+					"target": "_blank"
+				}
+			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}
 	]
