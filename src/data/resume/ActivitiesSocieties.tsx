@@ -42,7 +42,7 @@ const ActivitiesSocieties: PageSectionProps = {
 		},
 		{
 			"title"   : "Computer Science & Robotics Clubs",
-			"subtitle": "Highschool Clubs Leadership",
+			"subtitle": "Club Leadership Experiences",
 			"chips"   : {
 				"date"        : [ "09/2014 - 05/2018" ],
 				"positions"   : [
@@ -56,7 +56,7 @@ const ActivitiesSocieties: PageSectionProps = {
 		},
 		{
 			"title"   : "National Honor Society & Beta Club",
-			"subtitle": "Highschool Honor Societies",
+			"subtitle": "Honor Societies Experiences",
 			"chips"   : {
 				"date"     : [ "08/2016 - 05/2018" ],
 				"positions": [
