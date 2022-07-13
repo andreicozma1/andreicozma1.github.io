@@ -54,7 +54,7 @@ const WorkExperience: PageSectionProps = {
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
-			"title"   : "Android Software Developer Intern",
+			"title"   : "Software Developer Intern (Summer)",
 			"subtitle": "Elo Touch Solutions",
 			"chips"   : {
 				"date"        : [ "05/2021 - 08/2021" ],
@@ -62,7 +62,7 @@ const WorkExperience: PageSectionProps = {
 				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "WebView", "Cordova", "Jenkins"],
 				"contentChips": [
 					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems",
-				]
+				],
 			},
 			"content" : [
 				`Design, implement, and test software frameworks, solutions, and demo applications for ELO's enterprise touchscreen solutions and customers and business partners.`,
@@ -70,7 +70,7 @@ const WorkExperience: PageSectionProps = {
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
-			"title"   : "Android Software Developer Intern",
+			"title"   : "Software Developer Intern (All-Year)",
 			"subtitle": "Elo Touch Solutions",
 			"chips"   : {
 				"date"        : [ "01/2020 - 12/2020" ],
@@ -78,7 +78,7 @@ const WorkExperience: PageSectionProps = {
 				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "WebView", "Cordova", "Jenkins"],
 				"contentChips": [
 					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems",
-				]
+				],
 			},
 			"content" : [
 				`Design, implement, and test software frameworks, solutions, and demo applications for ELO's enterprise touchscreen solutions and customers and business partners.`,
