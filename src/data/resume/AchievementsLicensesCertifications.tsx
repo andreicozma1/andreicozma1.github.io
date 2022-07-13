@@ -27,14 +27,15 @@ const AchievementsLicensesCertifications: PageSectionProps = {
 				"headerChips": [ "Awarded 05/2018" ]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
-		}, {
-			"title"   : "NHS Medallion (Most Volunteer Hours)",
-			"subtitle": "No expiration",
-			"chips"   : {
-				"headerChips": [ "Awarded 05/2018" ]
-			},
-			"avatar"  : <WorkspacesOutlinedIcon/>
-		}
+		},
+		// {
+		// 	"title"   : "NHS Medallion (Most Volunteer Hours)",
+		// 	"subtitle": "No expiration",
+		// 	"chips"   : {
+		// 		"headerChips": [ "Awarded 05/2018" ]
+		// 	},
+		// 	"avatar"  : <WorkspacesOutlinedIcon/>
+		// }
 	]
 }
 
