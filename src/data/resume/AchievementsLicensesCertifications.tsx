@@ -1,4 +1,4 @@
-import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined"
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -27,8 +27,7 @@ const AchievementsLicensesCertifications: PageSectionProps = {
 				"headerChips": [ "Awarded 05/2018" ]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
-		},
-		// {
+		} //, {
 		// 	"title"   : "NHS Medallion (Most Volunteer Hours)",
 		// 	"subtitle": "No expiration",
 		// 	"chips"   : {
@@ -36,6 +35,7 @@ const AchievementsLicensesCertifications: PageSectionProps = {
 		// 	},
 		// 	"avatar"  : <WorkspacesOutlinedIcon/>
 		// }
+
 	]
 }
 

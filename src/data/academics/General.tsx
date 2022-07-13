@@ -1,4 +1,4 @@
-import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined"
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -18,22 +18,20 @@ const General: PageSectionProps = {
 				"libraries": [ "React.JS", "Redux", "Node.JS", "Flask", "Material-UI" ],
 				"tools"    : [ "Docker", "Git & GitHub", "GitHub", "GitHub Actions", "Atlassian Jira", "AWS" ]
 			},
-			"actions": [
+			"actions" : [
 				{
-					"text": "Project GitHub",
-					"href": "https://github.com/CS401-Team-Project/Smart-Ledger/",
+					"text"  : "Project GitHub",
+					"href"  : "https://github.com/CS401-Team-Project/Smart-Ledger/",
 					"target": "_blank"
-				},
-				{
-					"text": "Project Report",
-					"href": "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Report.pdf",
+				}, {
+					"text"  : "Project Report",
+					"href"  : "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Report.pdf",
 					"target": "_blank"
-				},
-				{
-					"text": "Project Presentation",
-					"href": "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Presentation.pdf",
+				}, {
+					"text"  : "Project Presentation",
+					"href"  : "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Presentation.pdf",
 					"target": "_blank"
-				},
+				}
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {

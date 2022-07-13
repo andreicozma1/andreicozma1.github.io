@@ -1,4 +1,4 @@
-import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined"
 import * as React from "react"
 import { PageSectionProps } from "../components/interfaces/PageSectionProps"
 

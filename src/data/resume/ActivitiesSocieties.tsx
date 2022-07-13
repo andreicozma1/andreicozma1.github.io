@@ -39,8 +39,7 @@ const ActivitiesSocieties: PageSectionProps = {
 				]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
-		},
-		{
+		}, {
 			"title"   : "Computer Science & Robotics Clubs",
 			"subtitle": "Club Leadership Experiences",
 			"chips"   : {
@@ -53,8 +52,7 @@ const ActivitiesSocieties: PageSectionProps = {
 				]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
-		},
-		{
+		}, {
 			"title"   : "National Honor Society & Beta Club",
 			"subtitle": "Honor Societies Experiences",
 			"chips"   : {
@@ -64,8 +62,7 @@ const ActivitiesSocieties: PageSectionProps = {
 				]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
-		},
-		// {
+		} //, {
 		// 	"title"   : "Spanish Club & Honor Society",
 		// 	"subtitle": "Highschool Honor Societies & Clubs",
 		// 	"chips"   : {

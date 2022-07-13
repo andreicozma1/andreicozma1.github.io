@@ -13,7 +13,7 @@ import { Backdrop, SpeedDialIcon } from "@mui/material"
 import { PageProps } from "./interfaces/PageProps"
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded"
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded"
-import CodeIcon from '@mui/icons-material/Code';
+import CodeIcon from "@mui/icons-material/Code"
 
 const actions = [
 	{

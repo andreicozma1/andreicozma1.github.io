@@ -1,4 +1,4 @@
-import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined"
 import * as React from "react"
 import { PageSectionProps } from "../../components/interfaces/PageSectionProps"
 
@@ -20,22 +20,20 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "TensorFlow", "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
-			"actions": [
+			"actions" : [
 				{
-					"text": "Project GitHub",
-					"href": "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/",
+					"text"  : "Project GitHub",
+					"href"  : "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/",
 					"target": "_blank"
-				},
-				{
-					"text": "Project Report",
-					"href": "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/blob/main/submission/CS525_DeepLearning_FinalProject_Report.pdf",
+				}, {
+					"text"  : "Project Report",
+					"href"  : "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/blob/main/submission/CS525_DeepLearning_FinalProject_Report.pdf",
 					"target": "_blank"
-				},
-				{
-					"text": "Project Proposal",
-					"href": "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/blob/main/submission/CS525_FinalProject_Proposal.pdf",
+				}, {
+					"text"  : "Project Proposal",
+					"href"  : "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/blob/main/submission/CS525_FinalProject_Proposal.pdf",
 					"target": "_blank"
-				},
+				}
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
@@ -50,22 +48,20 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "TensorFlow", "Scikit-Learn", "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
-			"actions": [
+			"actions" : [
 				{
-					"text": "Project GitHub",
-					"href": "https://github.com/andreicozma1/CS523-TeamProject",
+					"text"  : "Project GitHub",
+					"href"  : "https://github.com/andreicozma1/CS523-TeamProject",
 					"target": "_blank"
-				},
-				{
-					"text": "Project Report",
-					"href": "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_FinalReport.pdf",
+				}, {
+					"text"  : "Project Report",
+					"href"  : "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_FinalReport.pdf",
 					"target": "_blank"
-				},
-				{
-					"text": "Project Proposal",
-					"href": "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_ProjectProposal.pdf",
+				}, {
+					"text"  : "Project Proposal",
+					"href"  : "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_ProjectProposal.pdf",
 					"target": "_blank"
-				},
+				}
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
 		}, {
@@ -81,20 +77,18 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
-			"actions": [
+			"actions" : [
 				{
-					"text": "Project GitHub",
-					"href": "https://github.com/andreicozma1/CS522-TeamProject/",
+					"text"  : "Project GitHub",
+					"href"  : "https://github.com/andreicozma1/CS522-TeamProject/",
 					"target": "_blank"
-				},
-				{
-					"text": "Project Paper",
-					"href": "https://github.com/andreicozma1/CS522-TeamProject/blob/main/submission/CS522_FinalTeamProject_Report.pdf",
+				}, {
+					"text"  : "Project Paper",
+					"href"  : "https://github.com/andreicozma1/CS522-TeamProject/blob/main/submission/CS522_FinalTeamProject_Report.pdf",
 					"target": "_blank"
-				},
-				{
-					"text": "Presentation Slides",
-					"href": "https://github.com/andreicozma1/CS522-TeamProject/blob/main/submission/CS522_FinalTeamProject_Presentation.pdf",
+				}, {
+					"text"  : "Presentation Slides",
+					"href"  : "https://github.com/andreicozma1/CS522-TeamProject/blob/main/submission/CS522_FinalTeamProject_Presentation.pdf",
 					"target": "_blank"
 				}
 			],
@@ -112,20 +106,18 @@ const Completed: PageSectionProps = {
 				"libraries"   : [ "Numpy", "Matplotlib" ],
 				"tools"       : [ "Jupyter Notebook", "Git & GitHub" ]
 			},
-			"actions": [
+			"actions" : [
 				{
-					"text": "Project GitHub",
-					"href": "https://github.com/andreicozma1/COSC420-FinalProject",
+					"text"  : "Project GitHub",
+					"href"  : "https://github.com/andreicozma1/COSC420-FinalProject",
 					"target": "_blank"
-				},
-				{
-					"text": "Project Paper",
-					"href": "https://github.com/andreicozma1/COSC420-FinalProject/blob/main/submission/CS420%20-%20Final%20Report%20-%20Andrei%20Cozma.pdf",
+				}, {
+					"text"  : "Project Paper",
+					"href"  : "https://github.com/andreicozma1/COSC420-FinalProject/blob/main/submission/CS420%20-%20Final%20Report%20-%20Andrei%20Cozma.pdf",
 					"target": "_blank"
-				},
-				{
-					"text": "Presentation Poster",
-					"href": "https://github.com/andreicozma1/COSC420-FinalProject/blob/main/submission/CS420%20-%20Research%20Poster%20-%20Andrei%20Cozma.pdf",
+				}, {
+					"text"  : "Presentation Poster",
+					"href"  : "https://github.com/andreicozma1/COSC420-FinalProject/blob/main/submission/CS420%20-%20Research%20Poster%20-%20Andrei%20Cozma.pdf",
 					"target": "_blank"
 				}
 			],

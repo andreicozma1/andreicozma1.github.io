@@ -17,8 +17,8 @@ const About: PageSectionProps = {
 			],
 			"avatar" : <WorkspacesOutlinedIcon/>
 		}, {
-			"title" : "Topics of Interest",
-			"chips" : {
+			"title"  : "Topics of Interest",
+			"chips"  : {
 				"contentChips": [
 					"Intelligent Systems", "Deep Learning", "Cybersecurity", "Web Development", "Data Science",
 					"Data Analytics", "Mobile & Embedded Systems", "Natural Language Processing", "Computer Vision"
@@ -26,12 +26,12 @@ const About: PageSectionProps = {
 			},
 			"actions": [
 				{
-					"text": "Resume PDF",
-					"href": "/resume.pdf",
+					"text"  : "Resume PDF",
+					"href"  : "/resume.pdf",
 					"target": "_blank"
 				}
 			],
-			"avatar": <WorkspacesOutlinedIcon/>
+			"avatar" : <WorkspacesOutlinedIcon/>
 		}
 	]
 }

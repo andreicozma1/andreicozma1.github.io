@@ -59,10 +59,10 @@ const WorkExperience: PageSectionProps = {
 			"chips"   : {
 				"date"        : [ "05/2021 - 08/2021" ],
 				"languages"   : [ "Java", "Kotlin", "C/C++", "Python", "Bash Scripting" ],
-				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "WebView", "Cordova", "Jenkins"],
+				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "WebView", "Cordova", "Jenkins" ],
 				"contentChips": [
-					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems",
-				],
+					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems"
+				]
 			},
 			"content" : [
 				`Design, implement, and test software frameworks, solutions, and demo applications for ELO's enterprise touchscreen solutions and customers and business partners.`,
@@ -75,18 +75,17 @@ const WorkExperience: PageSectionProps = {
 			"chips"   : {
 				"date"        : [ "01/2020 - 12/2020" ],
 				"languages"   : [ "Java", "Kotlin", "C/C++", "Python", "Bash Scripting" ],
-				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "WebView", "Cordova", "Jenkins"],
+				"tools"       : [ "Linux", "Git", "Atlassian Jira", "Gradle", "WebView", "Cordova", "Jenkins" ],
 				"contentChips": [
-					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems",
-				],
+					"Operating System Development", "AOSP", "Android SDK", "Embedded Systems"
+				]
 			},
 			"content" : [
 				`Design, implement, and test software frameworks, solutions, and demo applications for ELO's enterprise touchscreen solutions and customers and business partners.`,
 				`Using Java, Kotlin, Linux, Bash Scripting, Git, Atlassian JIRA, and the Android SDK to develop enterprise solutions with the Android Open Source Project (AOSP) as part of an Agile work environment.`
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
-		},
-		// {
+		} //, {
 		// 	"title"   : "Asset Protection",
 		// 	"subtitle": "Walmart Inc.",
 		// 	"chips"   : {
@@ -95,8 +94,8 @@ const WorkExperience: PageSectionProps = {
 		// 	},
 		// 	"content" : [
 		// 		`Secure and safeguard the facility by observing and communicating suspicious activity, assisting
-        //         with investigations, maintaining paperwork, logs and other required documentation, and appropriately
-        //         executing emergency response procedures.`
+		//         with investigations, maintaining paperwork, logs and other required documentation, and appropriately
+		//         executing emergency response procedures.`
 		// 	],
 		// 	"avatar"  : <WorkspacesOutlinedIcon/>
 		// }
