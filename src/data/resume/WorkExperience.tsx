@@ -85,20 +85,21 @@ const WorkExperience: PageSectionProps = {
 				`Using Java, Kotlin, Linux, Bash Scripting, Git, Atlassian JIRA, and the Android SDK to develop enterprise solutions with the Android Open Source Project (AOSP) as part of an Agile work environment.`
 			],
 			"avatar"  : <WorkspacesOutlinedIcon/>
-		}, {
-			"title"   : "Asset Protection",
-			"subtitle": "Walmart Inc.",
-			"chips"   : {
-				"date"        : [ "05/2019 - 08/2019" ],
-				"contentChips": [ "Asset Protection", "Theft Investigation", "Security" ]
-			},
-			"content" : [
-				`Secure and safeguard the facility by observing and communicating suspicious activity, assisting
-                with investigations, maintaining paperwork, logs and other required documentation, and appropriately
-                executing emergency response procedures.`
-			],
-			"avatar"  : <WorkspacesOutlinedIcon/>
-		}
+		},
+		// {
+		// 	"title"   : "Asset Protection",
+		// 	"subtitle": "Walmart Inc.",
+		// 	"chips"   : {
+		// 		"date"        : [ "05/2019 - 08/2019" ],
+		// 		"contentChips": [ "Asset Protection", "Theft Investigation", "Security" ]
+		// 	},
+		// 	"content" : [
+		// 		`Secure and safeguard the facility by observing and communicating suspicious activity, assisting
+        //         with investigations, maintaining paperwork, logs and other required documentation, and appropriately
+        //         executing emergency response procedures.`
+		// 	],
+		// 	"avatar"  : <WorkspacesOutlinedIcon/>
+		// }
 	]
 
 }

@@ -39,7 +39,22 @@ const ActivitiesSocieties: PageSectionProps = {
 				]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
-		}, {
+		},
+		{
+			"title"   : "Computer Science & Robotics Clubs",
+			"subtitle": "Highschool Clubs Leadership",
+			"chips"   : {
+				"date"        : [ "09/2014 - 05/2018" ],
+				"positions"   : [
+					"President", "Organizer", "Tutor"
+				],
+				"contentChips": [
+					"HackClub Chapter"
+				]
+			},
+			"avatar"  : <WorkspacesOutlinedIcon/>
+		},
+		{
 			"title"   : "National Honor Society & Beta Club",
 			"subtitle": "Highschool Honor Societies",
 			"chips"   : {
@@ -49,38 +64,27 @@ const ActivitiesSocieties: PageSectionProps = {
 				]
 			},
 			"avatar"  : <WorkspacesOutlinedIcon/>
-		}, {
-			"title"   : "Computer Science & Robotics Clubs",
-			"subtitle": "Highschool Clubs",
-			"chips"   : {
-				"date"        : [ "09/2014 - 05/2018" ],
-				"positions"   : [
-					"President, Organizer, and Tutor"
-				],
-				"contentChips": [
-					"HackClub Chapter"
-				]
-			},
-			"avatar"  : <WorkspacesOutlinedIcon/>
-		}, {
-			"title"   : "Spanish Club & Honor Society",
-			"subtitle": "Highschool Honor Societies & Clubs",
-			"chips"   : {
-				"date"     : [ "08/2014 - 05/2018" ],
-				"positions": [
-					"Vice President", "Initiated Member & Volunteer"
-				]
-			},
-			"avatar"  : <WorkspacesOutlinedIcon/>
-		}, {
-			"title"   : "American Red Cross Volunteer",
-			"subtitle": "Middle Tennessee Chapter",
-			"chips"   : {
-				"date"     : [ "08/2014 - Present" ],
-				"positions": [ "Member", "Volunteer" ]
-			},
-			"avatar"  : <WorkspacesOutlinedIcon/>
-		}
+		},
+		// {
+		// 	"title"   : "Spanish Club & Honor Society",
+		// 	"subtitle": "Highschool Honor Societies & Clubs",
+		// 	"chips"   : {
+		// 		"date"     : [ "08/2014 - 05/2018" ],
+		// 		"positions": [
+		// 			"Vice President", "Initiated Member & Volunteer"
+		// 		]
+		// 	},
+		// 	"avatar"  : <WorkspacesOutlinedIcon/>
+		// },
+		// {
+		// 	"title"   : "American Red Cross Volunteer",
+		// 	"subtitle": "Middle Tennessee Chapter",
+		// 	"chips"   : {
+		// 		"date"     : [ "08/2014 - Present" ],
+		// 		"positions": [ "Member", "Volunteer" ]
+		// 	},
+		// 	"avatar"  : <WorkspacesOutlinedIcon/>
+		// }
 	]
 }
 
