@@ -13,12 +13,6 @@ const config: GatsbyConfig = {
         'gatsby-plugin-material-ui',
         'gatsby-theme-material-ui',
         {
-            resolve: 'gatsby-plugin-google-analytics',
-            options: {
-                "trackingId": "G-0JN1CT4YEF"
-            }
-        },
-        {
             resolve: 'gatsby-source-filesystem',
             options: {
                 "name": "images",
