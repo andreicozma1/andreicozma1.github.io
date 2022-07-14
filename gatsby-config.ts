@@ -51,7 +51,7 @@ const config: GatsbyConfig = {
                     // Avoids sending pageview hits from custom paths
                     exclude: [],
                     // Defaults to https://www.googletagmanager.com
-                    origin: "https://www.andreicozma.com",
+                    origin: "https://andreicozma.com",
                 },
             },
         }
