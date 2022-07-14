@@ -5,15 +5,12 @@ on:
     branches: [ "source" ]
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [ 16.x ]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
       - uses: actions/checkout@v3
       - name: Setup
@@ -22,12 +19,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - name: Build
-        env:
-          SECRETS_FILE_CONTENTS: ${{ secrets.SECRETS_FILE_CONTENTS }}
         run: |
           npm ci
           echo $SECRETS_FILE_CONTENTS > .env
           npm run build
+        env:
+          SECRETS_FILE_CONTENTS: ${{ secrets.SECRETS_FILE_CONTENTS }}
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
