@@ -43,6 +43,16 @@ const config: GatsbyConfig = {
                     // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ad
                     // 360, and Campaign Manager)
                 ], // This object gets passed directly to the gtag config command
+                pluginConfig: {
+                    // Puts tracking script in the head instead of the body
+                    head: true,
+                    // Setting this parameter is also optional
+                    respectDNT: true,
+                    // Avoids sending pageview hits from custom paths
+                    exclude: [],
+                    // Defaults to https://www.googletagmanager.com
+                    origin: "https://www.andreicozma.com",
+                },
             },
         }
     ]
