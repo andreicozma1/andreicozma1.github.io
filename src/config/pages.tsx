@@ -60,9 +60,7 @@ export const pages: { [key: string]: PageProps } = {
 	"Photos"     : {
 		href  : "/photos",
 		icon  : <BookRounded/>,
-		hidden: true,
 		sections: [ <Photos/> ],
-		fullWidth: true
 	}
 }
 

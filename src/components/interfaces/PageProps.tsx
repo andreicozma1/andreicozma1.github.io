@@ -13,5 +13,4 @@ export interface PageProps {
 	sections?: Array<PageSectionProps | JSX.Element>,
 	notes?: Array<NoteProps>,
 	hidden?: boolean,
-	fullWidth?: boolean
 }
