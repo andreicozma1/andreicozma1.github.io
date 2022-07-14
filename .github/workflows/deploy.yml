@@ -20,14 +20,14 @@ jobs:
           cache: 'npm'
       - name: Build
         run: |
-          # npm ci
+          npm ci
           echo "HERE1"
           echo $SECRETS_FILE_CONTENTS > .env
           echo "HERE2"
           cat .env
           echo $SECRETS_FILE_CONTENTS
           echo "HERE3"
-          # npm run build
+          npm run build
         env:
           SECRETS_FILE_CONTENTS: ${{ secrets.SECRETS_FILE_CONTENTS }}
       - name: Deploy
