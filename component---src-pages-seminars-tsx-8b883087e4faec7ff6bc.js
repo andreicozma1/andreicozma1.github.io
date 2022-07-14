@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpersonal_portfolio=self.webpackChunkpersonal_portfolio||[]).push([[508],{7320:function(e,r,n){n.r(r);var o=n(7294),a=n(5100),t=n(6369);r.default=function(){var e=(0,t.q)("Seminars");return o.createElement(a.Z,{pageProps:e})}}}]);
-//# sourceMappingURL=component---src-pages-seminars-tsx-8b883087e4faec7ff6bc.js.map
