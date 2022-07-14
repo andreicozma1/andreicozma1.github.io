@@ -16,11 +16,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Build
+      - name: Setup
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - name: Build
         env:
           SECRETS_FILE_CONTENTS: ${{ secrets.SECRETS_FILE_CONTENTS }}
         run: |
