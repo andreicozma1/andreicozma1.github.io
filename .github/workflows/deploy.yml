@@ -25,6 +25,7 @@ jobs:
           echo $SECRETS_FILE_CONTENTS > .env
           echo "HERE2"
           cat .env
+          echo $SECRETS_FILE_CONTENTS
           echo "HERE3"
           # npm run build
         env:
