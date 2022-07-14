@@ -22,11 +22,18 @@ const config: GatsbyConfig = {
                     head: true,
                     // Avoids sending pageview hits from custom paths
                     exclude: [],
-                    // Defaults to https://www.googletagmanager.com
-                    origin: "https://andreicozma.com",
                 },
             },
         },
+        {
+            resolve: "gatsby-source-google-photos",
+            options: {
+                albumsTitles: ["TITLE_A", "TITLE_B"],
+            },
+        },
+        "gatsby-transformer-sharp",
+        "gatsby-plugin-sharp",
+        "gatsby-plugin-image",
         'gatsby-plugin-material-ui',
         'gatsby-theme-material-ui',
         {
