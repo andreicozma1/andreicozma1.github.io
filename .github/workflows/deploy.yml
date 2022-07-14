@@ -19,9 +19,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - name: Setup Env
-        run: echo ${{SECRETS_FILE_CONTENTS}} | base64 -d > ./.env
-        env:
-          SECRETS_FILE_CONTENTS: ${{ secrets.SECRETS_FILE_CONTENTS }}
+        run: echo ${{secrets.SECRETS_FILE_CONTENTS}} | base64 -d > ./.env
       - name: Build
         run: |
           npm ci
