@@ -10,6 +10,23 @@ const config: GatsbyConfig = {
     // Learn more at: https://gatsby.dev/graphql-typegen
     graphqlTypegen: true,
     plugins: [
+        {
+            resolve: `gatsby-plugin-google-gtag`,
+            options: {
+                // You can add multiple tracking ids and a pageview event will be fired for all of them.
+                trackingIds: [
+                    "G-0JN1CT4YEF", // Google Analytics / GA
+                ], // This object gets passed directly to the gtag config command
+                pluginConfig: {
+                    // Puts tracking script in the head instead of the body
+                    head: true,
+                    // Avoids sending pageview hits from custom paths
+                    exclude: [],
+                    // Defaults to https://www.googletagmanager.com
+                    origin: "https://andreicozma.com",
+                },
+            },
+        },
         'gatsby-plugin-material-ui',
         'gatsby-theme-material-ui',
         {
@@ -27,27 +44,6 @@ const config: GatsbyConfig = {
                 "path": "./src/pages/"
             },
             __key: "pages"
-        }, {
-            resolve: `gatsby-plugin-google-gtag`,
-            options: {
-                // You can add multiple tracking ids and a pageview event will be fired for all of them.
-                trackingIds: [
-                    "G-0JN1CT4YEF", // Google Analytics / GA
-                    // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
-                    // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ad
-                    // 360, and Campaign Manager)
-                ], // This object gets passed directly to the gtag config command
-                pluginConfig: {
-                    // Puts tracking script in the head instead of the body
-                    head: true,
-                    // Setting this parameter is also optional
-                    respectDNT: true,
-                    // Avoids sending pageview hits from custom paths
-                    exclude: [],
-                    // Defaults to https://www.googletagmanager.com
-                    origin: "https://andreicozma.com",
-                },
-            },
         }
     ]
 };
