@@ -38,11 +38,9 @@ const Photos = () => {
 			let columns = matchesMd ? (matchesLg ? 3 : 2) : 1
 			const photos = data.allGooglePhotosAlbum.nodes
 			return photos.map((albumNode: any) => (<PageSection title={albumNode.title} key={albumNode.title}>
-					<Masonry columns={columns} spacing={1}>
+					<Masonry columns={columns} spacing={2}>
 						{albumNode.photos.map((photoNode: any) => {
-							return <div>
-								<GatsbyImage image={getImage(photoNode.file)} alt="Photo"/>
-							</div>
+							return <GatsbyImage image={getImage(photoNode.file)} alt="Photo"/>
 						})}
 					</Masonry>
 				</PageSection>

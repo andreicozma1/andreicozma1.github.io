@@ -52,7 +52,6 @@ const Page = ({
 				   }}/>
 		<ResponsiveTopBar page={pageProps}/>
 		<Container component={Stack} spacing={2}
-				   maxWidth={(pageProps.fullWidth ? "xl": "lg")}
 				   sx={{
 					   paddingBottom: 3,
 					   opacity      : 0.99,
