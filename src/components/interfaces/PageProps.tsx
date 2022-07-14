@@ -12,5 +12,6 @@ export interface PageProps {
 	icon: React.ReactElement,
 	sections?: Array<PageSectionProps | JSX.Element>,
 	notes?: Array<NoteProps>,
-	hidden?: boolean
+	hidden?: boolean,
+	fullWidth?: boolean
 }

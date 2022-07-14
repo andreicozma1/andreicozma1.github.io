@@ -28,7 +28,8 @@ const config: GatsbyConfig = {
         {
             resolve: "gatsby-source-google-photos",
             options: {
-                albumsTitles: ["TITLE_A", "TITLE_B"],
+                albumsTitles: ["Photography"],
+                debug: true,
             },
         },
         "gatsby-transformer-sharp",

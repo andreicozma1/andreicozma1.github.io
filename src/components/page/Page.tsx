@@ -51,11 +51,13 @@ const Page = ({
 					   filter  : theme.particles.filter
 				   }}/>
 		<ResponsiveTopBar page={pageProps}/>
-		<Container component={Stack} spacing={2} sx={{
-			paddingBottom: 3,
-			opacity      : 0.99,
-			marginTop    : "75px"
-		}}>
+		<Container component={Stack} spacing={2}
+				   maxWidth={(pageProps.fullWidth ? "xl": "lg")}
+				   sx={{
+					   paddingBottom: 3,
+					   opacity      : 0.99,
+					   marginTop    : "75px"
+				   }}>
 			{pageProps.sections && <PageBreadcrumbs page={pageProps}/>}
 			{pageProps.notes && <SlideNotes notesArray={pageProps.notes}/>}
 

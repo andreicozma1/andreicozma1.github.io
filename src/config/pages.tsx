@@ -13,6 +13,7 @@ import DataProjects from "../data/projects"
 import DataSeminars from "../data/seminars"
 import { PageProps } from "../components/interfaces/PageProps"
 import Skills from "../components/Skills"
+import Photos from "../components/Photos"
 
 export const pages: { [key: string]: PageProps } = {
 	"Home"     : {
@@ -55,6 +56,13 @@ export const pages: { [key: string]: PageProps } = {
 		href  : "/blog",
 		icon  : <BookRounded/>,
 		hidden: true
+	},
+	"Photos"     : {
+		href  : "/photos",
+		icon  : <BookRounded/>,
+		hidden: true,
+		sections: [ <Photos/> ],
+		fullWidth: true
 	}
 }
 
