@@ -25,7 +25,7 @@ jobs:
           SECRETS_FILE_CONTENTS: ${{ secrets.SECRETS_FILE_CONTENTS }}
       - run: |
           npm ci
-          echo "SECRETS_FILE_CONTENTS=${SECRETS_FILE_CONTENTS}" > .env
+          echo $SECRETS_FILE_CONTENTS > .env
           npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
