@@ -1,6 +1,7 @@
 **.jar
 .DS_Store
 .idea
+.env
 node_modules
 
 node_modules/
