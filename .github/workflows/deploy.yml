@@ -22,7 +22,7 @@ jobs:
         run: |
           npm ci
           echo "HERE1"
-          echo $SECRETS_FILE_CONTENTS > .env
+          echo $SECRETS_FILE_CONTENTS | base64 -d > ./.env
           echo "HERE2"
           cat .env
           echo $SECRETS_FILE_CONTENTS
