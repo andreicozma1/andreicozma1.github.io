@@ -23,7 +23,7 @@ jobs:
           cache: 'npm'
         env:
           SECRETS_FILE_CONTENTS: ${{ secrets.SECRETS_FILE_CONTENTS }}
-      - run: |
+        run: |
           npm ci
           echo $SECRETS_FILE_CONTENTS > .env
           npm run build
