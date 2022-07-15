@@ -6,12 +6,12 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 import { Alert, Slide, Stack } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"
-import { NoteProps } from "./interfaces/NoteProps"
-import theme from "../config/theme"
+import ThemeConfig from "../config/ThemeConfig"
+import { NoteProps } from "./props/UIComponentsProps"
 
 const SlideNotes = ({ notesArray }: { notesArray: Array<NoteProps> }) => {
 
-	const spacing = theme.spacing(1)
+	const spacing = ThemeConfig.spacing(1)
 
 	return (<Stack spacing={spacing}>
 		{notesArray.map((note, index) => {
@@ -25,7 +25,7 @@ const SlideNotes = ({ notesArray }: { notesArray: Array<NoteProps> }) => {
 			return <Slide key={index}
 						  in={checked}
 						  direction={index % 2 === 0 ? "left" : "right"}
-						  timeout={theme.transitionDuration.notes}>
+						  timeout={ThemeConfig.transitionDuration.notes}>
 				<Alert severity={note.severity}>{note.text}</Alert>
 			</Slide>
 		})}

@@ -7,7 +7,7 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 import { Avatar, Box, styled, Zoom } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"
-import theme from "../../config/theme"
+import ThemeConfig from "../../config/ThemeConfig"
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
 	width    : theme.avatar.size,
@@ -32,7 +32,7 @@ const HomeAvatar = () => {
 			transform: "translate(-50%, -50%)"
 		}}>
 			<Zoom in={checked}
-				  timeout={theme.transitionDuration.avatar}>
+				  timeout={ThemeConfig.transitionDuration.avatar}>
 				<StyledAvatar
 					alt="Andrei Cozma"
 					src="avatar_alt.jpg"
