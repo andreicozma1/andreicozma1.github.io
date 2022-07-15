@@ -34,8 +34,8 @@ const PhotosSection = () => {
 			const photos = data.allGooglePhotosAlbum.nodes
 			return photos.map((albumNode: any) => (<PageSection title={albumNode.title} key={albumNode.title}>
 					<Masonry columns={columns} spacing={2}>
-						{albumNode.photos.map((photoNode: any) => {
-							return <GatsbyImage image={getImage(photoNode.file)} alt="Photo"/>
+						{albumNode.photos.map((photoNode: any, index) => {
+							return <GatsbyImage image={getImage(photoNode.file)} alt={"Photo " + photoNode.file} key={photoNode.file + index}/>
 						})}
 					</Masonry>
 				</PageSection>
