@@ -3,7 +3,7 @@ Author: Andrei Cozma
 Website: https://andreicozma.com
 Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
-import { Alert, Fade, Grow, Slide, Stack } from "@mui/material"
+import { Alert, Grow, Stack } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"
 import ThemeConfig from "../config/ThemeConfig"
@@ -23,8 +23,8 @@ const SlideNotes = ({ notesArray }: { notesArray: Array<NoteProps> }) => {
 			}, [])
 
 			return <Grow key={index}
-						  in={checked}
-						  timeout={ThemeConfig.transitionDuration.notes}>
+						 in={checked}
+						 timeout={ThemeConfig.transitionDuration.notes}>
 				<Alert severity={note.severity}>{note.text}</Alert>
 			</Grow>
 		})}

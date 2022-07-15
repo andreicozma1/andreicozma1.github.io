@@ -16,6 +16,7 @@ import { PageComponentsProps } from "../props/PageComponentsProps"
 import { Button, IconButton, Link } from "gatsby-theme-material-ui"
 import { AppBar, Slide, Stack, Toolbar } from "@mui/material"
 import ThemeConfig from "../../config/ThemeConfig"
+import IconsConfig from "../../config/IconsConfig"
 
 const ResponsiveAppBar = ({ page }: { page: PageComponentsProps }) => {
 	const [ anchorElNav, setAnchorElNav ] = React.useState<null | HTMLElement>(null)
@@ -118,11 +119,13 @@ const ResponsiveAppBar = ({ page }: { page: PageComponentsProps }) => {
 					>
 						{/*// if dev mode show hidden pages in menu*/}
 						{filterPages().map(([ title, info ]) => {
+							// @ts-ignore
+							const icon = IconsConfig[info.icon]
 							return <Button
 								key={title}
 								onClick={handleCloseNavMenu}
 								href={info.href}
-								startIcon={info.icon}
+								startIcon={icon}
 								variant={page.href === info.href ? "contained" : "outlined"}
 								color="secondary"
 								sx={{

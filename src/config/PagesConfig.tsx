@@ -3,54 +3,51 @@ Author: Andrei Cozma
 Website: https://andreicozma.com
 Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
-import { BookRounded, CodeRounded, HomeRounded, SchoolRounded, SummarizeRounded } from "@mui/icons-material"
-import CampaignRoundedIcon from "@mui/icons-material/CampaignRounded"
-
 import React from "react"
 import { PageComponentsProps } from "../components/props/PageComponentsProps"
-import About from "./data/resume/About"
-import Education from "./data/resume/Education"
-import WorkExperience from "./data/resume/WorkExperience"
-import AchievementsLicensesCertifications from "./data/resume/AchievementsLicensesCertifications"
-import ActivitiesSocieties from "./data/resume/ActivitiesSocieties"
-import Current from "./data/academics/Current"
-import IntelligentSystems from "./data/academics/IntelligentSystems"
-import Cybersecurity from "./data/academics/Cybersecurity"
-import General from "./data/academics/General"
-import Spring2022 from "./data/seminars/Spring2022"
-import Fall2021 from "./data/seminars/Fall2021"
-import Spring2021 from "./data/seminars/Spring2021"
-import Fall2020 from "./data/seminars/Fall2020"
-import DataTemplate from "./data/DataTemplate"
+import About from "./data/resume/About.json"
+import Education from "./data/resume/Education.json"
+import WorkExperience from "./data/resume/WorkExperience.json"
+import AchievementsLicensesCertifications from "./data/resume/AchievementsLicensesCertifications.json"
+import ActivitiesSocieties from "./data/resume/ActivitiesSocieties.json"
+import Current from "./data/academics/Current.json"
+import IntelligentSystems from "./data/academics/IntelligentSystems.json"
+import Cybersecurity from "./data/academics/Cybersecurity.json"
+import General from "./data/academics/General.json"
+import Spring2022 from "./data/seminars/Spring2022.json"
+import Fall2021 from "./data/seminars/Fall2021.json"
+import Spring2021 from "./data/seminars/Spring2021.json"
+import Fall2020 from "./data/seminars/Fall2020.json"
+import DataTemplate from "./data/DataTemplate.json"
 
 export const pagesConfig: { [key: string]: PageComponentsProps } = {
 	"Home"     : {
 		href: "/",
-		icon: <HomeRounded/>
+		icon: "im_home"
 	},
 	"Resume"   : {
 		href: "/resume",
-		icon: <SummarizeRounded/>,
+		icon: "im_resume",
 		data: [
 			About, Education, WorkExperience, AchievementsLicensesCertifications, ActivitiesSocieties
 		]
 	},
 	"Projects" : {
 		href  : "/projects",
-		icon  : <CodeRounded/>,
+		icon  : "im_projects",
 		data  : [ DataTemplate ],
 		hidden: true
 	},
 	"Academics": {
 		href: "/academics",
-		icon: <SchoolRounded/>,
+		icon: "im_academics",
 		data: [
 			Current, IntelligentSystems, Cybersecurity, General
 		]
 	},
 	"Seminars" : {
 		href : "/seminars",
-		icon : <CampaignRoundedIcon/>,
+		icon : "im_seminars",
 		notes: [
 			{ text: "The UT Honors and Scholars Programs offer a variety of engagement opportunities to be involved and engaged, both inside and outside the classroom." },
 			{
@@ -64,12 +61,12 @@ export const pagesConfig: { [key: string]: PageComponentsProps } = {
 	},
 	"Blog"     : {
 		href  : "/blog",
-		icon  : <BookRounded/>,
+		icon  : "im_blog",
 		hidden: true
 	},
 	"Photos"   : {
 		href: "/photos",
-		icon: <BookRounded/>
+		icon: "im_photos"
 	}
 }
 

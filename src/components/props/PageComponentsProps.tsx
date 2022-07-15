@@ -10,7 +10,7 @@ import { NoteProps } from "./UIComponentsProps"
 
 export interface PageComponentsProps {
 	href: string,
-	icon: React.ReactElement,
+	icon: string,
 	data?: Array<PageSectionProps>,
 	notes?: Array<NoteProps>,
 	hidden?: boolean,
@@ -21,17 +21,7 @@ export interface PageSectionProps {
 	items: Array<DataCardProps>,
 	icon?: string,
 	notes?: Array<NoteProps>,
-	variant?: "grid6" | "grid12" | "timeline",
+	variant?: string,
 }
 
-export class PageElement extends React.Component<any, any> implements PageSectionProps {
-	title: string
-	notes?: Array<NoteProps>
-
-	constructor(props: PageSectionProps) {
-		super(props)
-		this.title = props.title
-		this.notes = props.notes
-	}
-}
 

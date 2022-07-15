@@ -7,7 +7,6 @@ import React from "react"
 import DataCard from "./cards/DataCard"
 import { pagesConfig } from "../config/PagesConfig"
 import SmartChipBox from "./chips/SmartChipBox"
-import { PageElement } from "./props/PageComponentsProps"
 import { PageSection } from "./layout/PageSectionTemplate"
 import { NoteProps } from "./props/UIComponentsProps"
 
