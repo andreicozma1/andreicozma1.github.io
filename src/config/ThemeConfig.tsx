@@ -21,11 +21,12 @@ const ThemeConfig = createTheme({
 		}
 	},
 	transitionDuration: {
-		topbar    : 500,
-		avatar    : 1000,
+		topbar    : 1000,
+		avatar    : 2000,
 		breadcrumb: 1500,
 		page      : 250,
-		notes     : 1000
+		notes     : 1000,
+		fab       : 1000
 	},
 	avatar            : {
 		borderSize: "0.5rem",

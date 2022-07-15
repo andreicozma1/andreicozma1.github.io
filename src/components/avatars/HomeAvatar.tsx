@@ -8,6 +8,7 @@ import { Avatar, Box, styled, Zoom } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"
 import ThemeConfig from "../../config/ThemeConfig"
+import { Link } from "gatsby-theme-material-ui"
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
 	width    : theme.avatar.size,
@@ -24,22 +25,22 @@ const HomeAvatar = () => {
 		setChecked(true)
 	}, [])
 
-	return <>
-		<Box style={{
-			position : "absolute",
-			top      : "50%",
-			left     : "50%",
-			transform: "translate(-50%, -50%)"
-		}}>
-			<Zoom in={checked}
-				  timeout={ThemeConfig.transitionDuration.avatar}>
+	return <Box style={{
+		position : "absolute",
+		top      : "50%",
+		left     : "50%",
+		transform: "translate(-50%, -50%)"
+	}}>
+		<Link href="/resume">
+			<Zoom in={checked} timeout={ThemeConfig.transitionDuration.avatar}>
 				<StyledAvatar
 					alt="Andrei Cozma"
 					src="avatar_alt.jpg"
 				/>
 			</Zoom>
-		</Box>
-	</>
+		</Link>
+
+	</Box>
 }
 
 export default HomeAvatar
