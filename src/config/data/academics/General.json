@@ -52,7 +52,7 @@
 		{
 			"title": "COSC 493 - Advanced Automata Theory",
 			"avatar": "extension",
-			"subtitle": "Working on the development of a Turing Machine to be used as an educational aid to students. The pre-existing version of the simulator was written in Java and various improvements,  additions, and modifications were made to it in order to make it more user-friendly  and efficient. The goal of this project was to help students understand the basics of automata theory and Turing Machines by providing them with a tool that would allow them to experiment with different configurations in real-time.",
+			"subtitle": "Working on the development of a Turing Machine to be used as educational aid to students. The pre-existing version of the simulator was written in Java and various improvements, additions, and modifications were made to it in order to make it more user-friendly and efficient. The goal of this project was to help students understand the basics of automata theory and Turing Machines by providing them with a tool that would allow them to experiment with different configurations in real-time.",
 			"chips": {
 				"contentChips": [
 					"Turing Machine Simulator",
@@ -241,7 +241,7 @@
 		{
 			"title": "COSC 317 - Honors Discrete Structures",
 			"avatar": "lan",
-			"subtitle": "Introduction to Set Theory, Graph Theory, and Logic & Proof strategies as the principles of software programming and design. Application of proof techniques to prove  correctness of algorithms.",
+			"subtitle": "Introduction to Set Theory, Graph Theory, and Logic & Proof strategies as the principles of software programming and design. Application of proof techniques to prove correctness of algorithms.",
 			"chips": {
 				"contentChips": [
 					"Set Theory",
@@ -265,12 +265,12 @@
 		{
 			"title": "COSC 312 - Algorithm Analysis and Automata",
 			"avatar": "lan",
-			"subtitle": "This course is an introduction to the Theory of Computation, the logic of computation  with respect to machines as well as the implications related to current computing challenges   and limits.",
+			"subtitle": "This course is an introduction to the Theory of Computation, the logic of computation with respect to machines as well as the implications related to current computing challenges and limits.",
 			"chips": {
 				"contentChips": [
 					"Finite Automata",
 					"Regular Grammars & Languages",
-					"Pushdown Automata",
+					"Push-down Automata",
 					"Context-Free Grammars and Languages",
 					"Turing Machines",
 					"Lambda-Calculus",
@@ -319,7 +319,7 @@
 		{
 			"title": "COSC 140 - Data Structures and Algorithms I",
 			"avatar": "data_object",
-			"subtitle": "Development and application of a multitude of data structures and algorithms proeminently used in software design together with problem-solving techniques.",
+			"subtitle": "Development and application of a multitude of data structures and algorithms which are prominently used in software design together with problem-solving techniques.",
 			"chips": {
 				"contentChips": [
 					"Data Structures and Algorithms",
@@ -369,7 +369,7 @@
 		{
 			"title": "COSC 102 - Introduction to Computer Science",
 			"avatar": "code",
-			"subtitle": "Introduction and hands-on experience with the basics of programming languages, problem solving, and algorithm development. Emphasis on organization and characteristics of  modern digital computers.",
+			"subtitle": "Introduction and hands-on experience with the basics of programming languages, problem-solving, and algorithm development. Emphasis on organization and characteristics of modern digital computers.",
 			"chips": {
 				"contentChips": [
 					"Variables and Assignments",

@@ -7,7 +7,7 @@
 			"subtitle": "The University of Tennessee, Knoxville",
 			"chips": {
 				"date": ["05/2022 - Present"],
-				"contentChips": ["Cybersecurity", "Phishing", "Data Analytics"],
+				"contentChips": ["Cyber-security", "Phishing", "Data Analytics"],
 				"languages": ["Python", "GoLang"],
 				"tools": ["Linux", "Git & GitHub"]
 			},
@@ -21,13 +21,13 @@
 			"subtitle": "The University of Tennessee, Knoxville",
 			"chips": {
 				"contentChips": [
-					"Cybersecurity", "Security Goals", "Threat Modeling", "Software Security",
+					"Cyber-security", "Security Goals", "Threat Modeling", "Software Security",
 					"Operating System Security", "Cryptography", "Network Security", "Human Factors"
 				],
 				"date": ["01/2022 - 05/2022"]
 			},
 			"content": [
-				"Teaching assistant for Dr. Doowon Kim's Introduction to Cybersecurity course. Primary responsibilities include assisting students and answering questions they may have about the course materials, providing helpful feedback, grading quizzes and other assignments, exam proctoring, etc. "
+				"Teaching assistant for Dr. Doowon Kim's Introduction to Cyber-security course. Primary responsibilities include assisting students and answering questions they may have about the course materials, providing helpful feedback, grading quizzes and other assignments, exam proctoring, etc. "
 
 			],
 			"avatar": "menu_book"
@@ -36,7 +36,7 @@
 			"subtitle": "The University of Tennessee, Knoxville",
 			"chips": {
 				"contentChips": [
-					"Cybersecurity", "Web Security", "Certificates", "Phishing", "Data Analytics"
+					"Cyber-security", "Web Security", "Certificates", "Phishing", "Data Analytics"
 				],
 				"languages": ["Python", "JavaScript", "Bash Scripting"],
 				"tools": ["Linux", "Git & GitHub", "Docker", "MongoDB", "PostgreSQL"],
@@ -44,7 +44,7 @@
 			},
 			"content": [
 				"Assist with research on various ongoing projects, developing software and scripts to aid with collecting and analyzing data, creating visualizations, and interpreting results.",
-				"Topics: Security updates for JavaScript libraries, timeliness of security patches becoming available, the amounts of vulnerable library versions still widely in use, crypto-jacking, certificate collection, phishing blacklists, and more."
+				"Topics: Security updates for JavaScript libraries, timeliness of security patches becoming available, the amounts and versions of vulnerable libraries still widely in use, crypto-jacking, certificate collection, phishing blacklists, and more."
 
 			],
 			"avatar": "science"

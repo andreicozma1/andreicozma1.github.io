@@ -9,23 +9,18 @@ import ThemeConfig from "../config/ThemeConfig"
 const PhotosSection = () => {
 
 	return <StaticQuery
-		query={graphql`
-						query {
+		query={graphql` query {
 							allGooglePhotosAlbum {
 								nodes {
 									title
 									cover {
 										file {
-											childImageSharp {
-												gatsbyImageData
-											}
+											childImageSharp { gatsbyImageData	}
 										}
 									}
 									photos {
 										file {
-											childImageSharp {
-												gatsbyImageData
-											}
+											childImageSharp {gatsbyImageData}
 										}
 									}
 								}

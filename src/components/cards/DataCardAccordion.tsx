@@ -13,7 +13,6 @@ const DataCardAccordion = ({
 							   title,
 							   subtitle,
 							   avatar,
-							   chips,
 							   content
 						   }: DataCardProps) => {
 

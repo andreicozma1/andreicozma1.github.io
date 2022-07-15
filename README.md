@@ -26,7 +26,7 @@ npm run deploy
 
 ## Usage Rights
 
-Please credit with the following snippet if intending to use any parts of this project:
+Please credit with the following snippet if intended to use any parts of this project:
 ```
 Author: Andrei Cozma
 Website: https://andreicozma.com

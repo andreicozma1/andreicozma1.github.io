@@ -33,7 +33,7 @@ const ResponsiveAppBar = ({ page }: { page: PageComponentsProps }) => {
 	}
 
 	const filterPages = () => {
-		return Object.entries(pagesConfig).filter(([ title, info ]) => isDev || !info.hidden)
+		return Object.entries(pagesConfig).filter(([ , info ]) => isDev || !info.hidden)
 	}
 
 	// when the component is mounted set checked to true
