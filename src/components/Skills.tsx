@@ -31,7 +31,7 @@ class Skills extends React.Component<any, any> {
 	countSkills() {
 		let skl = {}
 		Object.keys(pagesConfig).forEach(pk => {
-			let sections = pagesConfig[pk]["data"]
+			let sections = pagesConfig[pk]["sections"]
 			if (sections) {
 				sections.forEach(s => {
 					let items = s["items"]

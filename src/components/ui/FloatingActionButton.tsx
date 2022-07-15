@@ -9,14 +9,14 @@ import Box from "@mui/material/Box"
 import SpeedDial from "@mui/material/SpeedDial"
 import SpeedDialAction from "@mui/material/SpeedDialAction"
 import { Backdrop, Slide, SpeedDialIcon } from "@mui/material"
-import { PageComponentsProps } from "../props/PageComponentsProps"
+import { PageProps } from "../props/PageComponentsProps"
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded"
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded"
 import FloatingActionButtonConfig from "../../config/data/FloatingActionButtonConfig"
 import LinkIcon from "@mui/icons-material/Link"
 import ThemeConfig from "../../config/ThemeConfig"
 
-export default function FloatingActionButton({ pageProps }: { pageProps: PageComponentsProps }) {
+export default function FloatingActionButton({ pageProps }: { pageProps: PageProps }) {
 	const [ open, setOpen ] = React.useState(false)
 	const handleOpen = () => setOpen(true)
 	const handleClose = () => setOpen(false)

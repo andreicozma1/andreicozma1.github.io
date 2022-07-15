@@ -11,7 +11,6 @@ export interface SmartChipProps {
 	defaultColor?: ChipProps["color"],
 	defaultVariant?: ChipProps["variant"],
 	defaultSize?: ChipProps["size"],
-	store?: boolean
 }
 
 export interface NoteProps {

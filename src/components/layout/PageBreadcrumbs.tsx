@@ -7,7 +7,7 @@ import { Breadcrumbs, Chip, emphasize, Grid, Slide, styled } from "@mui/material
 import * as React from "react"
 import { useEffect } from "react"
 import ThemeConfig from "../../config/ThemeConfig"
-import { PageComponentsProps } from "../props/PageComponentsProps"
+import { PageProps } from "../props/PageComponentsProps"
 
 export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 	const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800]
@@ -25,7 +25,7 @@ export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 	}
 }) as typeof Chip // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
-const PageBreadcrumbs = ({ page }: { page: PageComponentsProps }) => {
+const PageBreadcrumbs = ({ page }: { page: PageProps }) => {
 	const [ animationDone, setAnimationDone ] = React.useState(false)
 
 	useEffect(() => {
@@ -33,8 +33,8 @@ const PageBreadcrumbs = ({ page }: { page: PageComponentsProps }) => {
 	}, [])
 
 	let settings: string[] = []
-	if (page.data) {
-		for (let section of page.data) {
+	if (page.sections) {
+		for (let section of page.sections) {
 			settings.push(section.title)
 		}
 	}
@@ -56,7 +56,7 @@ const PageBreadcrumbs = ({ page }: { page: PageComponentsProps }) => {
 				  timeout={ThemeConfig.transitionDuration.breadcrumb}>
 		<Breadcrumbs aria-label="breadcrumb">
 			<Grid container spacing={0.75}>
-				{page.data && page.data.map((section) => {
+				{page.sections && page.sections.map((section) => {
 					return <Grid item key={"#" + section.title}>
 						<StyledBreadcrumb label={section.title}
 										  onClick={() => {

@@ -12,13 +12,13 @@ import Container from "@mui/material/Container"
 import MenuItem from "@mui/material/MenuItem"
 import HeaderAvatar from "../avatars/HeaderAvatar"
 import { pagesConfig } from "../../config/PagesConfig"
-import { PageComponentsProps } from "../props/PageComponentsProps"
+import { PageProps } from "../props/PageComponentsProps"
 import { Button, IconButton, Link } from "gatsby-theme-material-ui"
 import { AppBar, Slide, Stack, Toolbar } from "@mui/material"
 import ThemeConfig from "../../config/ThemeConfig"
 import IconsConfig from "../../config/IconsConfig"
 
-const ResponsiveAppBar = ({ page }: { page: PageComponentsProps }) => {
+const ResponsiveAppBar = ({ page }: { page: PageProps }) => {
 	const [ anchorElNav, setAnchorElNav ] = React.useState<null | HTMLElement>(null)
 
 	const [ checked, setChecked ] = React.useState(false)

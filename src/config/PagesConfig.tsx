@@ -4,7 +4,7 @@ Website: https://andreicozma.com
 Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 import React from "react"
-import { PageComponentsProps } from "../components/props/PageComponentsProps"
+import { PageProps } from "../components/props/PageComponentsProps"
 import About from "./data/resume/About.json"
 import Education from "./data/resume/Education.json"
 import WorkExperience from "./data/resume/WorkExperience.json"
@@ -20,7 +20,7 @@ import Spring2021 from "./data/seminars/Spring2021.json"
 import Fall2020 from "./data/seminars/Fall2020.json"
 import DataTemplate from "./data/DataTemplate.json"
 
-export const pagesConfig: { [key: string]: PageComponentsProps } = {
+export const pagesConfig: { [key: string]: PageProps } = {
 	"Home"     : {
 		href: "/",
 		icon: "im_home"
@@ -28,20 +28,20 @@ export const pagesConfig: { [key: string]: PageComponentsProps } = {
 	"Resume"   : {
 		href: "/resume",
 		icon: "im_resume",
-		data: [
+		sections: [
 			About, Education, WorkExperience, AchievementsLicensesCertifications, ActivitiesSocieties
 		]
 	},
 	"Projects" : {
-		href  : "/projects",
-		icon  : "im_projects",
-		data  : [ DataTemplate ],
-		hidden: true
+		href    : "/projects",
+		icon    : "im_projects",
+		sections: [ DataTemplate ],
+		hidden  : true
 	},
 	"Academics": {
 		href: "/academics",
 		icon: "im_academics",
-		data: [
+		sections: [
 			Current, IntelligentSystems, Cybersecurity, General
 		]
 	},
@@ -55,7 +55,7 @@ export const pagesConfig: { [key: string]: PageComponentsProps } = {
 				severity: "info"
 			}
 		],
-		data : [
+		sections: [
 			Spring2022, Fall2021, Spring2021, Fall2020
 		]
 	},

@@ -9,13 +9,13 @@ import { SvgIconTypeMap } from "@mui/material"
 export interface DataCardProps {
 	title: string,
 	subtitle?: string,
-	avatar?: SvgIconTypeMap["props"]["children"],
-	content?: string | string[],
+	avatar?: string,
+	content?: string[],
 	chips?: DataCardChipsProps,
-	actions?: Array<DataCardActionsProps>,
+	actions?: Array<DataCardActionProps>,
 }
 
-export interface DataCardActionsProps {
+export interface DataCardActionProps {
 	text: string,
 	href: string,
 	target?: string,

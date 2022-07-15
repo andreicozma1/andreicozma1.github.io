@@ -8,10 +8,10 @@ import React from "react"
 import { DataCardProps } from "./DataCardComponentsProps"
 import { NoteProps } from "./UIComponentsProps"
 
-export interface PageComponentsProps {
+export interface PageProps {
 	href: string,
 	icon: string,
-	data?: Array<PageSectionProps>,
+	sections?: Array<PageSectionProps>,
 	notes?: Array<NoteProps>,
 	hidden?: boolean,
 }

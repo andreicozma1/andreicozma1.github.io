@@ -7,7 +7,7 @@ import ThemeConfig from "../../config/ThemeConfig"
 import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles"
 import particlesOptions from "../../config/data/particlesConfig"
-import { PageComponentsProps } from "../props/PageComponentsProps"
+import { PageProps } from "../props/PageComponentsProps"
 import SlideNotes from "../SlideNotes"
 import PageSectionTemplate from "./PageSectionTemplate"
 import FloatingActionButton from "../ui/FloatingActionButton"
@@ -15,7 +15,7 @@ import FloatingActionButton from "../ui/FloatingActionButton"
 const Page = ({
 				  pageProps,
 				  children
-			  }: { pageProps: PageComponentsProps, children?: ReactNode }) => {
+			  }: { pageProps: PageProps, children?: ReactNode }) => {
 
 	const matches = useMediaQuery(ThemeConfig.breakpoints.up("md"))
 	// @ts-ignore
@@ -57,13 +57,13 @@ const Page = ({
 					   opacity      : 0.99,
 					   marginTop    : "75px"
 				   }}>
-			{pageProps.data && <PageBreadcrumbs page={pageProps}/>}
+			{pageProps.sections && <PageBreadcrumbs page={pageProps}/>}
 			{pageProps.notes && <SlideNotes notesArray={pageProps.notes}/>}
 
 			<Fade in={checked}
 				  timeout={ThemeConfig.transitionDuration.page}>
 				<Box>
-					{pageProps.data && pageProps.data.map((section, index) => {
+					{pageProps.sections && pageProps.sections.map((section, index) => {
 						return <PageSectionTemplate key={index} props={section}></PageSectionTemplate>
 					})}
 					{children}

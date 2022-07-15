@@ -10,7 +10,7 @@ import ThemeConfig from "../../config/ThemeConfig"
 import CardHeaderChips from "./CardHeaderChips"
 import CardContentChips from "./CardContentChips"
 import CardContentText from "./CardContentText"
-import { DataCardActionsProps } from "../props/DataCardComponentsProps"
+import { DataCardActionProps } from "../props/DataCardComponentsProps"
 import { Button } from "gatsby-theme-material-ui"
 
 const DataCard = ({
@@ -23,7 +23,7 @@ const DataCard = ({
 					  actions,
 					  children
 				  }: {
-	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], actions?: Array<DataCardActionsProps>
+	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], actions?: Array<DataCardActionProps>
 	children?: ReactNode
 }) => {
 
