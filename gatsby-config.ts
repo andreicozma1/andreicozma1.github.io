@@ -14,14 +14,14 @@ const config: GatsbyConfig = {
     // Learn more at: https://gatsby.dev/graphql-typegen
     graphqlTypegen: true,
     plugins: [
-        {
-            resolve: `gatsby-source-contentful`,
-            options: {
-                spaceId: process.env.CONTENTFUL_SPACE_ID,
-                // Learn about environment variables: https://gatsby.dev/env-vars
-                accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-            },
-        },
+        // {
+        //     resolve: `gatsby-source-contentful`,
+        //     options: {
+        //         spaceId: process.env.CONTENTFUL_SPACE_ID,
+        //         // Learn about environment variables: https://gatsby.dev/env-vars
+        //         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        //     },
+        // },
         {
             resolve: `gatsby-plugin-google-gtag`,
             options: {
