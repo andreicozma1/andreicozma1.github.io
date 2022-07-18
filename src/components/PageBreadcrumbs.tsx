@@ -6,8 +6,8 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 import { Breadcrumbs, Chip, emphasize, Grid, Slide, styled } from "@mui/material"
 import * as React from "react"
 import { useEffect } from "react"
-import ThemeConfig from "../../config/ThemeConfig"
-import { PageProps } from "../props/PageComponentsProps"
+import ThemeConfig from "../config/ThemeConfig"
+import { PageProps } from "./props/PageComponentsProps"
 
 export const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 	const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800]

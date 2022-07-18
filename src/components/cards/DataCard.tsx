@@ -11,7 +11,7 @@ import CardHeaderChips from "./CardHeaderChips"
 import CardContentChips from "./CardContentChips"
 import CardContentText from "./CardContentText"
 import { DataCardActionProps } from "../props/DataCardComponentsProps"
-import { Button, Link } from "gatsby-theme-material-ui"
+import { Button } from "gatsby-theme-material-ui"
 
 const DataCard = ({
 					  title,
@@ -20,13 +20,14 @@ const DataCard = ({
 					  headerChips,
 					  contentChips,
 					  content,
-					  clickAction,
+					  tooltip,
 					  actions,
 					  headerChipsAlign,
 					  contentAlign,
+					  onClick,
 					  children
 				  }: {
-	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], clickAction?: DataCardActionProps, actions?: Array<DataCardActionProps>, headerChipsAlign?: "left" | "right", contentAlign?: "left" | "right" | "center", children?: ReactNode
+	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], tooltip?: string, actions?: Array<DataCardActionProps>, headerChipsAlign?: "left" | "right", contentAlign?: "left" | "right" | "center", onClick?: () => void, children?: ReactNode
 }) => {
 	if (headerChipsAlign === undefined) headerChipsAlign = "right"
 	if (contentChips && contentChips.length === 0) contentChips = undefined
@@ -42,8 +43,12 @@ const DataCard = ({
 					  onMouseLeave={() => {
 						  setIsHover(false)
 					  }}
+					  onClick={onClick}
+					  style={{
+						  cursor: "pointer"
+					  }}
 					  sx={{
-						  background: `rgba(255, 255, 255, ${ThemeConfig.card.contentOpacity})`, ...(clickAction && isHover && { outline: `4px solid ${ThemeConfig.palette.secondary.main}` } || {})
+						  background: `rgba(255, 255, 255, ${ThemeConfig.card.contentOpacity})`, ...(onClick && isHover && { outline: `2px solid ${ThemeConfig.palette.secondary.light}` } || {})
 					  }}>
 			<Box sx={{
 				background: `rgba(255, 255, 255, ${ThemeConfig.card.headerOpacity})`, ...(headerChips && {
@@ -52,15 +57,14 @@ const DataCard = ({
 			}}>
 				{headerChips && headerChipsAlign === "left" &&
                     <CardHeaderChips chips={headerChips} align={headerChipsAlign}/>}
-				<CardHeader title={title}
-							subheader={subtitle}
-							titleTypographyProps={{
-								fontWeight: ThemeConfig.card.fontWeight,
-								fontSize  : ThemeConfig.card.titleFontSize
-							}}
-							subheaderTypographyProps={{ fontSize: ThemeConfig.card.subheaderFontSize }}
-					// sx={{ display: "inline-flex" }}
-							{...(avatar && { avatar: <Icon>{avatar}</Icon> })}/>
+				{(title || subtitle || avatar) && <CardHeader title={title}
+                                                              subheader={subtitle}
+                                                              titleTypographyProps={{
+																  fontWeight: ThemeConfig.card.fontWeight,
+																  fontSize  : ThemeConfig.card.titleFontSize
+															  }}
+                                                              subheaderTypographyProps={{ fontSize: ThemeConfig.card.subheaderFontSize }}
+															  {...(avatar && { avatar: <Icon>{avatar}</Icon> })}/>}
 				{headerChips && headerChipsAlign === "right" &&
                     <CardHeaderChips chips={headerChips} align={headerChipsAlign}/>}
 			</Box>
@@ -83,6 +87,9 @@ const DataCard = ({
 				{actions.map((action, index) => {
 					return <Button key={index}
 								   variant="outlined"
+								   onClick={(e) => {
+									   e.stopPropagation()
+								   }}
 								   href={action.href}
 								   {...action.target && { target: action.target } || {}}>
 						{action.text}
@@ -92,8 +99,11 @@ const DataCard = ({
 		</Card>)
 	}
 
-	return clickAction && <Tooltip arrow title={clickAction.text} placement="top-start">
-		{<Link underline="none" variant="caption" to={clickAction.href} target={clickAction.target}>{getCard()}</Link>}
+	// return clickAction && <Tooltip arrow title={clickAction.text} placement="top-start">
+	// 	{<Link underline="none" variant="caption" to={clickAction.href} target={clickAction.target}>{getCard()}</Link>}
+	// </Tooltip> || getCard()
+	return tooltip && <Tooltip arrow title={tooltip} placement="top-start">
+		{getCard()}
     </Tooltip> || getCard()
 }
 

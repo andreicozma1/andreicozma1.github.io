@@ -26,8 +26,8 @@ export const pagesConfig: { [key: string]: PageProps } = {
 		icon: "im_home"
 	},
 	"Resume"   : {
-		href: "/resume",
-		icon: "im_resume",
+		href    : "/resume",
+		icon    : "im_resume",
 		sections: [
 			About, Education, WorkExperience, AchievementsLicensesCertifications, ActivitiesSocieties
 		]
@@ -39,16 +39,16 @@ export const pagesConfig: { [key: string]: PageProps } = {
 		hidden  : true
 	},
 	"Academics": {
-		href: "/academics",
-		icon: "im_academics",
+		href    : "/academics",
+		icon    : "im_academics",
 		sections: [
 			Current, IntelligentSystems, Cybersecurity, General
 		]
 	},
 	"Seminars" : {
-		href : "/seminars",
-		icon : "im_seminars",
-		notes: [
+		href    : "/seminars",
+		icon    : "im_seminars",
+		notes   : [
 			{ text: "The UT Honors and Scholars Programs offer a variety of engagement opportunities to be involved and engaged, both inside and outside the classroom." },
 			{
 				text    : "These seminars inspire scholars to explore their academic interests through engaging and rewarding co-curricular experiences.",

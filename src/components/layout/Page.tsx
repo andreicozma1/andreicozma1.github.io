@@ -2,15 +2,25 @@ import { Box, Container, Fade, Stack, ThemeProvider, useMediaQuery } from "@mui/
 import ResponsiveTopBar from "../ui/TopBar"
 import * as React from "react"
 import { ReactNode, useEffect } from "react"
-import PageBreadcrumbs from "./PageBreadcrumbs"
+import PageBreadcrumbs from "../PageBreadcrumbs"
 import ThemeConfig from "../../config/ThemeConfig"
 import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles"
-import particlesOptions from "../../config/data/particlesConfig"
+import particlesOptions from "../../config/data/particlesConfig.json"
 import { PageProps } from "../props/PageComponentsProps"
 import SlideNotes from "../SlideNotes"
-import PageSectionTemplate from "./PageSectionTemplate"
+import SectionResponsive from "./SectionResponsive"
 import FloatingActionButton from "../ui/FloatingActionButton"
+import { configureStore } from "@reduxjs/toolkit"
+import { Provider } from "react-redux"
+import cardReducer from "../../reducers/selectedCard"
+import BackdropCard from "../cards/BackdropCard"
+
+const store = configureStore({
+	reducer: {
+		backdropCard: cardReducer
+	}
+})
 
 const Page = ({
 				  pageProps,
@@ -51,26 +61,30 @@ const Page = ({
 					   filter  : ThemeConfig.particles.filter
 				   }}/>
 		<ResponsiveTopBar page={pageProps}/>
-		<Container component={Stack} spacing={2}
-				   sx={{
-					   paddingBottom: 3,
-					   opacity      : 0.99,
-					   marginTop    : "75px"
-				   }}>
-			{pageProps.sections && <PageBreadcrumbs page={pageProps}/>}
-			{pageProps.notes && <SlideNotes notesArray={pageProps.notes}/>}
 
-			<Fade in={checked}
-				  timeout={ThemeConfig.transitionDuration.page}>
-				<Box>
-					{pageProps.sections && pageProps.sections.map((section, index) => {
-						return <PageSectionTemplate key={index} props={section}></PageSectionTemplate>
-					})}
-					{children}
-				</Box>
-			</Fade>
-			<FloatingActionButton pageProps={pageProps}/>
-		</Container>
+		<Provider store={store}>
+			<Container component={Stack} spacing={2}
+					   sx={{
+						   paddingBottom: 3,
+						   opacity      : 0.99,
+						   marginTop    : "75px"
+					   }}>
+				{pageProps.sections && <PageBreadcrumbs page={pageProps}/>}
+				{pageProps.notes && <SlideNotes notesArray={pageProps.notes}/>}
+
+				<Fade in={checked}
+					  timeout={ThemeConfig.transitionDuration.page}>
+					<Box>
+						{pageProps.sections && pageProps.sections.map((section, index) => {
+							return <SectionResponsive key={index} props={section}></SectionResponsive>
+						})}
+						{children}
+					</Box>
+				</Fade>
+				<FloatingActionButton pageProps={pageProps}/>
+			</Container>
+			<BackdropCard/>
+		</Provider>
 	</ThemeProvider>)
 }
 

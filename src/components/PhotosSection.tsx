@@ -2,9 +2,10 @@ import React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, StaticQuery } from "gatsby"
 import { Masonry } from "@mui/lab"
-import { PageSection } from "./layout/PageSectionTemplate"
 import { useMediaQuery } from "@mui/material"
 import ThemeConfig from "../config/ThemeConfig"
+import Section from "./layout/Section"
+import DataCardResponsive from "./cards/DataCardResponsive"
 
 const PhotosSection = () => {
 
@@ -32,13 +33,21 @@ const PhotosSection = () => {
 			const matchesLg = useMediaQuery(ThemeConfig.breakpoints.up("lg"))
 			let columns = matchesMd ? (matchesLg ? 3 : 2) : 1
 			const photos = data.allGooglePhotosAlbum.nodes
-			return photos.map((albumNode: any) => (<PageSection title={albumNode.title} key={albumNode.title}>
+			return photos.map((albumNode: any) => (<Section title={albumNode.title} key={albumNode.title}>
 					<Masonry columns={columns} spacing={2}>
-						{albumNode.photos.map((photoNode: any, index) => {
-							return <GatsbyImage image={getImage(photoNode.file)} alt={"Photo " + photoNode.file} key={photoNode.file + index}/>
+						{albumNode.photos.map((photoNode: any, index: number) => {
+							console.log(photoNode)
+							return <>
+								<DataCardResponsive maxWidth="xl"
+													itemProps={{
+														tooltip: "Expand Image"
+													}}
+													key={photoNode.file + index}>
+									<GatsbyImage image={getImage(photoNode.file)} alt={"Photo " + photoNode.file}/>
+								</DataCardResponsive></>
 						})}
 					</Masonry>
-				</PageSection>
+				</Section>
 
 			))
 		}}

@@ -4,11 +4,11 @@ Website: https://andreicozma.com
 Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 import React from "react"
-import DataCard from "./cards/DataCard"
 import { pagesConfig } from "../config/PagesConfig"
-import SmartChipBox from "./chips/SmartChipBox"
-import { PageSection } from "./layout/PageSectionTemplate"
 import { NoteProps } from "./props/UIComponentsProps"
+import Section from "./layout/Section"
+import DataCardResponsive from "./cards/DataCardResponsive"
+import SmartChipBox from "./chips/SmartChipBox"
 
 // Use PageSectionProps to get the title, notes, and items
 class Skills extends React.Component<any, any> {
@@ -63,7 +63,7 @@ class Skills extends React.Component<any, any> {
 	}
 
 	render() {
-		return <PageSection title={this.title} notes={this.notes}>
+		return <Section title={this.title} notes={this.notes}>
 			{this.state.skillsList && this.state.displayOrder.map((sk: React.Key) => {
 				const skillList = this.state.skillsList[sk]
 				if (skillList) {
@@ -86,12 +86,12 @@ class Skills extends React.Component<any, any> {
 						skillCounts.push(`${sc.name} (${sc.count})`)
 					})
 
-					return <DataCard title={title} key={sk}>
+					return <DataCardResponsive itemProps={{ title: title }} key={sk}>
 						<SmartChipBox text={skillCounts} defaultVariant="filled"/>
-					</DataCard>
+					</DataCardResponsive>
 				}
 			})}
-		</PageSection>
+		</Section>
 	}
 }
 

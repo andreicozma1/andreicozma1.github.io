@@ -5,19 +5,20 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 
 export interface DataCardProps {
-	title: string,
+	title?: string,
 	subtitle?: string,
 	avatar?: string,
 	content?: string[],
 	chips?: DataCardChipsProps,
 	actions?: Array<DataCardActionProps>,
 	contentAlign?: "left" | "right" | "center",
-	clickAction?: DataCardActionProps
+	tooltip?: string,
+	attachment?: string,
 }
 
 export interface DataCardActionProps {
 	text: string,
-	href: string,
+	href?: string,
 	target?: string,
 }
 
