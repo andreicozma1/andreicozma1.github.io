@@ -29,7 +29,7 @@
 			"actions": [
 				{
 					"text": "Diploma",
-					"href": "./diploma.pdf",
+					"href": "/diploma.pdf",
 					"target": "_blank"
 				}
 			],
