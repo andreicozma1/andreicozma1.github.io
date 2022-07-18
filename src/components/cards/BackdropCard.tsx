@@ -1,9 +1,16 @@
-import { Dialog, DialogContent } from "@mui/material"
+import { Dialog, DialogContent, Grow } from "@mui/material"
 import * as React from "react"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DataCardResponsive from "./DataCardResponsive"
 import { setCardData } from "../../reducers/selectedCard"
+import { TransitionProps } from "@mui/material/transitions"
+
+const Transition = React.forwardRef(function Transition(props: TransitionProps & {
+	children: React.ReactElement<any, any>;
+}, ref: React.Ref<unknown>) {
+	return <Grow ref={ref} {...props} children={props.children}/>
+})
 
 const BackdropCard = () => {
 	const dispatch = useDispatch()
@@ -22,6 +29,7 @@ const BackdropCard = () => {
 	}, [ backdropCard ])
 
 	return <Dialog onClose={handleClose} open={open}
+				   TransitionComponent={Transition}
 				   scroll="paper"
 				   maxWidth={backdropCard && backdropCard.maxWidth || "sm"}>
 		<DialogContent sx={{ p: 0 }}>
@@ -31,7 +39,6 @@ const BackdropCard = () => {
 		</DialogContent>
 
 	</Dialog>
-
 }
 
 export default BackdropCard
