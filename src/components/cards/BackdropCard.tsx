@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import DataCardResponsive from "./DataCardResponsive"
 import { setCardData } from "../../reducers/selectedCard"
 import { TransitionProps } from "@mui/material/transitions"
+import ThemeConfig from "../../config/ThemeConfig"
 
 const Transition = React.forwardRef(function Transition(props: TransitionProps & {
 	children: React.ReactElement<any, any>;
@@ -31,6 +32,9 @@ const BackdropCard = () => {
 	return <Dialog onClose={handleClose} open={open}
 				   TransitionComponent={Transition}
 				   scroll="paper"
+				   PaperProps={{
+					   sx: { m: ThemeConfig.spacing(2) }
+				   }}
 				   maxWidth={backdropCard && backdropCard.maxWidth || "sm"}>
 		<DialogContent sx={{ p: 0 }}>
 			{backdropCard && <DataCardResponsive itemProps={backdropCard.itemProps}>
