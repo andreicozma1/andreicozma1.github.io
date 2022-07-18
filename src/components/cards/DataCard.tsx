@@ -14,18 +14,7 @@ import { DataCardActionProps } from "../props/DataCardComponentsProps"
 import { Button } from "gatsby-theme-material-ui"
 
 const DataCard = ({
-					  title,
-					  subtitle,
-					  avatar,
-					  headerChips,
-					  contentChips,
-					  content,
-					  tooltip,
-					  actions,
-					  headerChipsAlign,
-					  contentAlign,
-					  onClick,
-					  children
+					  title, subtitle, avatar, headerChips, contentChips, content, tooltip, actions, headerChipsAlign, contentAlign, onClick, children
 				  }: {
 	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], tooltip?: string, actions?: Array<DataCardActionProps>, headerChipsAlign?: "left" | "right", contentAlign?: "left" | "right" | "center", onClick?: () => void, children?: ReactNode
 }) => {
@@ -60,8 +49,7 @@ const DataCard = ({
 				{(title || subtitle || avatar) && <CardHeader title={title}
                                                               subheader={subtitle}
                                                               titleTypographyProps={{
-																  fontWeight: ThemeConfig.card.fontWeight,
-																  fontSize  : ThemeConfig.card.titleFontSize
+																  fontWeight: ThemeConfig.card.fontWeight, fontSize: ThemeConfig.card.titleFontSize
 															  }}
                                                               subheaderTypographyProps={{ fontSize: ThemeConfig.card.subheaderFontSize }}
 															  {...(avatar && { avatar: <Icon>{avatar}</Icon> })}/>}
@@ -69,10 +57,7 @@ const DataCard = ({
                     <CardHeaderChips chips={headerChips} align={headerChipsAlign}/>}
 			</Box>
 			{(content || contentChips || children) && <CardContent sx={{
-				px            : ThemeConfig.card.contentPaddingH,
-				py            : ThemeConfig.card.contentPaddingV,
-				textAlign     : contentAlign,
-				"&:last-child": { pb: ThemeConfig.card.contentPaddingV }
+				px: ThemeConfig.card.contentPaddingH, py: ThemeConfig.card.contentPaddingV, textAlign: contentAlign, "&:last-child": { pb: ThemeConfig.card.contentPaddingV }
 			}}>
 				{content && <CardContentText text={content}/>}
 				{contentChips && <CardContentChips chips={contentChips} containerSx={chipsStyle}/>}
@@ -80,9 +65,7 @@ const DataCard = ({
             </CardContent>}
 
 			{actions && <CardActions sx={{
-				justifyContent: "center",
-				pb            : ThemeConfig.card.contentPaddingV,
-				mb            : ThemeConfig.card.contentPaddingV
+				justifyContent: "center", pb: ThemeConfig.card.contentPaddingV, mb: ThemeConfig.card.contentPaddingV
 			}}>
 				{actions.map((action, index) => {
 					return <Button key={index}

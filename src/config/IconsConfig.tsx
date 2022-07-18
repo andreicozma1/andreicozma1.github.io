@@ -4,13 +4,8 @@ import {
 import React from "react"
 
 const IconsConfig = {
-	"im_home"     : <HomeRounded/>,
-	"im_resume"   : <SummarizeRounded/>,
-	"im_projects" : <CodeRounded/>,
-	"im_academics": <SchoolRounded/>,
-	"im_seminars" : <CampaignRounded/>,
-	"im_blog"     : <BookRounded/>,
-	"im_photos"   : <Camera/>
+	"im_home": <HomeRounded/>, "im_resume": <SummarizeRounded/>, "im_projects": <CodeRounded/>, "im_academics":
+		<SchoolRounded/>, "im_seminars": <CampaignRounded/>, "im_blog": <BookRounded/>, "im_photos": <Camera/>
 }
 
 export default IconsConfig

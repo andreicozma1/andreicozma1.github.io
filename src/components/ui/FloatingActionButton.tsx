@@ -29,15 +29,13 @@ export default function FloatingActionButton({ pageProps }: { pageProps: PagePro
 
 	const scrollToTop = () => {
 		window.scrollTo({
-			top     : 0,
-			behavior: "smooth"
+			top: 0, behavior: "smooth"
 		})
 	}
 
 	const scrollToBottom = () => {
 		window.scrollTo({
-			top     : document.body.scrollHeight,
-			behavior: "smooth"
+			top: document.body.scrollHeight, behavior: "smooth"
 		})
 	}
 
@@ -48,16 +46,12 @@ export default function FloatingActionButton({ pageProps }: { pageProps: PagePro
 
 	const permActions = [
 		{
-			icon  : <KeyboardArrowDownRoundedIcon/>,
-			name  : "Bottom",
-			action: () => {
+			icon: <KeyboardArrowDownRoundedIcon/>, name: "Bottom", action: () => {
 				scrollToBottom()
 				setOpen(false)
 			}
 		}, {
-			icon  : <KeyboardArrowUpRoundedIcon/>,
-			name  : "Top",
-			action: () => {
+			icon: <KeyboardArrowUpRoundedIcon/>, name: "Top", action: () => {
 				scrollToTop()
 				setOpen(false)
 			}
@@ -70,9 +64,7 @@ export default function FloatingActionButton({ pageProps }: { pageProps: PagePro
 			   direction="up"
 			   timeout={ThemeConfig.transitionDuration.fab}>
 			<Box sx={{
-				position: "fixed",
-				bottom  : "5%",
-				right   : "5%"
+				position: "fixed", bottom: "5%", right: "5%"
 			}}>
 				<SpeedDial
 					ariaLabel="mySpeedDial"

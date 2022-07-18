@@ -4,11 +4,7 @@ import { Stack, Typography } from "@mui/material"
 import ThemeConfig from "../../config/ThemeConfig"
 import SlideNotes from "../SlideNotes"
 
-const Section = ({
-					 title,
-					 notes,
-					 children
-				 }: { title: string, notes?: Array<NoteProps>, children: React.ReactNode }) => {
+const Section = ({ title, notes, children }: { title: string, notes?: Array<NoteProps>, children: React.ReactNode }) => {
 
 	let id = title && title.replace(/,/g, "").replace(/&/g, "").replace(/  /g, " ").replace(/ /g, "-").toLowerCase()
 

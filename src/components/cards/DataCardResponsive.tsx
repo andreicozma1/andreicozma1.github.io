@@ -7,14 +7,7 @@ import { setCardData } from "../../reducers/selectedCard"
 import * as React from "react"
 import { ReactNode } from "react"
 
-const DataCardResponsive = ({
-								itemProps,
-								overrideProps,
-								maxWidth,
-								children
-							}: {
-	itemProps?: DataCardProps, overrideProps?: any, maxWidth?: string, children?: ReactNode
-}) => {
+const DataCardResponsive = ({ itemProps, overrideProps, maxWidth, children }: { itemProps?: DataCardProps, overrideProps?: any, maxWidth?: string, children?: ReactNode }) => {
 	const dispatch = useDispatch()
 
 	const matchesSm = useMediaQuery(ThemeConfig.breakpoints.down("sm"))
@@ -33,18 +26,14 @@ const DataCardResponsive = ({
 	}
 
 	const cardProps = {
-		...itemProps,
-		headerChips : headerChips,
-		contentChips: contentChips, ...overrideProps
+		...itemProps, headerChips: headerChips, contentChips: contentChips, ...overrideProps
 	}
 
 	return <DataCard
 		{...cardProps}
 		onClick={() => {
 			dispatch(setCardData({
-				itemProps: itemProps,
-				children : children,
-				maxWidth : maxWidth
+				itemProps: itemProps, children: children, maxWidth: maxWidth
 			}))
 		}}>
 		{children}

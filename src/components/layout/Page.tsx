@@ -22,10 +22,7 @@ const store = configureStore({
 	}
 })
 
-const Page = ({
-				  pageProps,
-				  children
-			  }: { pageProps: PageProps, children?: ReactNode }) => {
+const Page = ({ pageProps, children }: { pageProps: PageProps, children?: ReactNode }) => {
 
 	const matches = useMediaQuery(ThemeConfig.breakpoints.up("md"))
 	// @ts-ignore
@@ -57,17 +54,14 @@ const Page = ({
 		{/*// @ts-ignore*/}
 		<Particles init={particlesInit} options={particlesOptionsCopy}
 				   style={{
-					   position: "fixed",
-					   filter  : ThemeConfig.particles.filter
+					   position: "fixed", filter: ThemeConfig.particles.filter
 				   }}/>
 		<ResponsiveTopBar page={pageProps}/>
 
 		<Provider store={store}>
 			<Container component={Stack} spacing={2}
 					   sx={{
-						   paddingBottom: 3,
-						   opacity      : 0.99,
-						   marginTop    : "75px"
+						   paddingBottom: 3, opacity: 0.99, marginTop: "75px"
 					   }}>
 				{pageProps.sections && <PageBreadcrumbs page={pageProps}/>}
 				{pageProps.notes && <SlideNotes notesArray={pageProps.notes}/>}

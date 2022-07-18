@@ -21,52 +21,31 @@ import Fall2020 from "./data/seminars/Fall2020.json"
 import DataTemplate from "./data/DataTemplate.json"
 
 export const pagesConfig: { [key: string]: PageProps } = {
-	"Home"     : {
-		href: "/",
-		icon: "im_home"
-	},
-	"Resume"   : {
-		href    : "/resume",
-		icon    : "im_resume",
-		sections: [
+	"Home": {
+		href: "/", icon: "im_home"
+	}, "Resume": {
+		href: "/resume", icon: "im_resume", sections: [
 			About, Education, WorkExperience, AchievementsLicensesCertifications, ActivitiesSocieties
 		]
-	},
-	"Projects" : {
-		href    : "/projects",
-		icon    : "im_projects",
-		sections: [ DataTemplate ],
-		hidden  : true
-	},
-	"Academics": {
-		href    : "/academics",
-		icon    : "im_academics",
-		sections: [
+	}, "Projects": {
+		href: "/projects", icon: "im_projects", sections: [ DataTemplate ], hidden: true
+	}, "Academics": {
+		href: "/academics", icon: "im_academics", sections: [
 			Current, IntelligentSystems, Cybersecurity, General
 		]
-	},
-	"Seminars" : {
-		href    : "/seminars",
-		icon    : "im_seminars",
-		notes   : [
+	}, "Seminars": {
+		href: "/seminars", icon: "im_seminars", notes: [
 			{ text: "The UT Honors and Scholars Programs offer a variety of engagement opportunities to be involved and engaged, both inside and outside the classroom." },
 			{
-				text    : "These seminars inspire scholars to explore their academic interests through engaging and rewarding co-curricular experiences.",
-				severity: "info"
+				text: "These seminars inspire scholars to explore their academic interests through engaging and rewarding co-curricular experiences.", severity: "info"
 			}
-		],
-		sections: [
+		], sections: [
 			Spring2022, Fall2021, Spring2021, Fall2020
 		]
-	},
-	"Blog"     : {
-		href  : "/blog",
-		icon  : "im_blog",
-		hidden: true
-	},
-	"Photos"   : {
-		href: "/photos",
-		icon: "im_photos"
+	}, "Blog": {
+		href: "/blog", icon: "im_blog", hidden: true
+	}, "Photos": {
+		href: "/photos", icon: "im_photos"
 	}
 }
 

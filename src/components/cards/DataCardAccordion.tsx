@@ -9,12 +9,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import ThemeConfig from "../../config/ThemeConfig"
 import { DataCardProps } from "../props/DataCardComponentsProps"
 
-const DataCardAccordion = ({
-							   title,
-							   subtitle,
-							   avatar,
-							   content
-						   }: DataCardProps) => {
+const DataCardAccordion = ({ title, subtitle, avatar, content }: DataCardProps) => {
 
 	return (<Accordion elevation={ThemeConfig.card.elevation}
 					   sx={{
@@ -30,8 +25,7 @@ const DataCardAccordion = ({
 						avatar={avatar}
 						titleTypographyProps={{ fontWeight: ThemeConfig.card.fontWeight }}
 						sx={{
-							py: "0px",
-							px: "0px"
+							py: "0px", px: "0px"
 						}}>
 			</CardHeader>
 		</AccordionSummary>

@@ -21,13 +21,6 @@ const BackdropCard = () => {
 		if (backdropCard) setOpen(true)
 	}, [ backdropCard ])
 
-	const [ numPages, setNumPages ] = useState(null)
-	const [ pageNumber, setPageNumber ] = useState(1)
-
-	function onDocumentLoadSuccess({ numPages }: any) {
-		setNumPages(numPages)
-	}
-
 	return <Dialog onClose={handleClose} open={open && backdropCard}
 				   maxWidth={backdropCard && backdropCard.maxWidth || "md"}>
 		<DataCardResponsive itemProps={backdropCard && backdropCard.itemProps}>

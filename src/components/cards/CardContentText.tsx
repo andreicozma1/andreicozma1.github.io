@@ -13,8 +13,7 @@ const CardContentText = ({ text }: { text: string | string[] }) => {
 			fontSize: ThemeConfig.card.contentFontSize
 		}}>{text}</Typography> : text && text.map((tl, index) => {
 			return <Typography key={index} sx={{
-				fontSize: ThemeConfig.card.contentFontSize,
-				mt      : ThemeConfig.card.paragraphSpacing
+				fontSize: ThemeConfig.card.contentFontSize, mt: ThemeConfig.card.paragraphSpacing
 			}}>{tl}</Typography>
 		})}
 	</>

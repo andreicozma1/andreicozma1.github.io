@@ -52,12 +52,7 @@ function getType(text: string) {
 	return "skill"
 }
 
-const SmartChip = ({
-					   text,
-					   defaultColor,
-					   defaultVariant,
-					   defaultSize
-				   }: SmartChipProps) => {
+const SmartChip = ({ text, defaultColor, defaultVariant, defaultSize }: SmartChipProps) => {
 
 	const spacingY = 0.3
 	const spacingR = 0.5
@@ -97,10 +92,7 @@ const SmartChip = ({
 				 icon={getIcon()}
 				 size={defaultSize || "medium"}
 				 sx={{
-					 my      : spacingY,
-					 mr      : spacingR,
-					 fontSize: ThemeConfig.card.chipFontSize,
-					 height  : ThemeConfig.card.chipHeight
+					 my: spacingY, mr: spacingR, fontSize: ThemeConfig.card.chipFontSize, height: ThemeConfig.card.chipHeight
 				 }}/>
 }
 

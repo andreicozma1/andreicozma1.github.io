@@ -15,13 +15,11 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 	let display
 	if (variant === "xs") {
 		display = {
-			xs: "flex",
-			md: "none"
+			xs: "flex", md: "none"
 		}
 	} else {
 		display = {
-			xs: "none",
-			md: "flex"
+			xs: "none", md: "flex"
 		}
 	}
 
@@ -31,14 +29,8 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 			noWrap
 			component="a"
 			sx={{
-				mx            : 2,
-				display       : display,
-				fontFamily    : "monospace",
-				flexGrow      : variant === "xs" ? 1 : 0,
-				fontWeight    : 700,
-				letterSpacing : ".2rem",
-				color         : "inherit",
-				textDecoration: "none"
+				mx: 2, display: display, fontFamily: "monospace", flexGrow: variant === "xs" ? 1
+					: 0, fontWeight: 700, letterSpacing: ".2rem", color: "inherit", textDecoration: "none"
 			}}
 		>
 			Andrei Cozma
@@ -47,8 +39,7 @@ const HeaderAvatar = ({ variant }: { variant: string }) => {
 			<IconButton sx={{ p: 0 }}>
 				<Link href="/">
 					<Avatar alt="Andrei Cozma" src="/avatar.jpg" sx={{
-						display: display,
-						mr     : 3
+						display: display, mr: 3
 					}}/>
 				</Link>
 			</IconButton>

@@ -10,17 +10,11 @@ import * as React from "react"
 
 const FloatingActionButtonConfig = [
 	{
-		icon: <LinkedInIcon/>,
-		name: "LinkedIn",
-		url : "https://www.linkedin.com/in/andreicozma1/"
+		icon: <LinkedInIcon/>, name: "LinkedIn", url: "https://www.linkedin.com/in/andreicozma1/"
 	}, {
-		icon: <GitHubIcon/>,
-		name: "GitHub",
-		url : "https://github.com/andreicozma1"
+		icon: <GitHubIcon/>, name: "GitHub", url: "https://github.com/andreicozma1"
 	}, {
-		icon: <CodeIcon/>,
-		name: "Source",
-		url : "https://github.com/andreicozma1/andreicozma1.github.io/tree/source"
+		icon: <CodeIcon/>, name: "Source", url: "https://github.com/andreicozma1/andreicozma1.github.io/tree/source"
 	}
 ]
 

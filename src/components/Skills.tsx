@@ -15,16 +15,14 @@ class Skills extends React.Component<any, any> {
 	title = "Skills"
 	notes: Array<NoteProps> = [
 		{
-			text    : "An overview of my skillset based on the contents listed in this portfolio.",
-			severity: "info"
+			text: "An overview of my skillset based on the contents listed in this portfolio.", severity: "info"
 		}
 	]
 
 	constructor(props: any) {
 		super(props)
 		this.state = {
-			skillsList  : {},
-			displayOrder: [ "languages", "libraries", "tools" ]
+			skillsList: {}, displayOrder: [ "languages", "libraries", "tools" ]
 		}
 	}
 
@@ -75,8 +73,7 @@ class Skills extends React.Component<any, any> {
 					let skillCountsMap: { name: string; count: number }[] = []
 					Object.entries(skillList).forEach(([ name, count ]) => {
 						skillCountsMap.push({
-							name,
-							count
+							name, count
 						})
 					})
 					skillCountsMap.sort((a, b) => b.count - a.count)

@@ -38,7 +38,7 @@ const PhotosSection = () => {
 						{albumNode.photos.map((photoNode: any, index: number) => {
 							console.log(photoNode)
 							return <>
-								<DataCardResponsive maxWidth="xl"
+								<DataCardResponsive maxWidth="lg"
 													itemProps={{
 														tooltip: "Expand Image"
 													}}

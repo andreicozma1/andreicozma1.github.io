@@ -17,14 +17,7 @@ interface SmartChipBoxProps {
 	align?: "left" | "right" | "center"
 }
 
-const SmartChipBox = ({
-						  text,
-						  defaultColor,
-						  defaultVariant,
-						  defaultSize,
-						  containerSx,
-						  align
-					  }: SmartChipBoxProps) => {
+const SmartChipBox = ({ text, defaultColor, defaultVariant, defaultSize, containerSx, align }: SmartChipBoxProps) => {
 
 	let cSx = {
 		my: "auto", ...containerSx
@@ -32,22 +25,17 @@ const SmartChipBox = ({
 	switch (align) {
 		case "left":
 			cSx = {
-				...cSx,
-				mr: "auto",
-				ml: 0
+				...cSx, mr: "auto", ml: 0
 			}
 			break
 		case "right":
 			cSx = {
-				...cSx,
-				ml: "auto",
-				mr: 0
+				...cSx, ml: "auto", mr: 0
 			}
 			break
 		case "center":
 			cSx = {
-				...cSx,
-				mx: "auto"
+				...cSx, mx: "auto"
 			}
 	}
 

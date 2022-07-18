@@ -44,10 +44,7 @@ const TimelineSection = ({ props }: { props: PageSectionProps }) => {
 			return <TimelineItem key={index}>
 				<TimelineOppositeContent
 					sx={{
-						display       : "flex",
-						alignItems    : "center",
-						justifyContent: "center",
-						flexDirection : "column"
+						display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"
 					}}>
 					{timelineChips1 && <TimelineChips chips={timelineChips1} index={index}/>}
 					{timelineChips2 && <TimelineChips chips={timelineChips2} index={index}/>}
@@ -62,10 +59,8 @@ const TimelineSection = ({ props }: { props: PageSectionProps }) => {
 					<DataCardResponsive
 						itemProps={itemProps}
 						overrideProps={{
-							headerChips     : headerChips,
-							contentChips    : contentChips,
-							avatar          : undefined,
-							headerChipsAlign: index % 2 === 0 ? "right" : "left"
+							headerChips: headerChips, contentChips: contentChips, avatar: undefined, headerChipsAlign: index % 2 === 0
+								? "right" : "left"
 						}}/>
 				</TimelineContent>
 			</TimelineItem>
