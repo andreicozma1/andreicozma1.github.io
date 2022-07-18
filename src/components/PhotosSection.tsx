@@ -36,15 +36,13 @@ const PhotosSection = () => {
 			return photos.map((albumNode: any) => (<Section title={albumNode.title} key={albumNode.title}>
 					<Masonry columns={columns} spacing={2}>
 						{albumNode.photos.map((photoNode: any, index: number) => {
-							console.log(photoNode)
-							return <>
-								<DataCardResponsive maxWidth="lg"
-													itemProps={{
-														tooltip: "Expand Image"
-													}}
-													key={photoNode.file + index}>
-									<GatsbyImage image={getImage(photoNode.file)} alt={"Photo " + photoNode.file}/>
-								</DataCardResponsive></>
+							return <DataCardResponsive maxWidth="lg"
+													   itemProps={{
+														   tooltip: "Expand Image"
+													   }}
+													   key={photoNode.file + index}>
+								<GatsbyImage image={getImage(photoNode.file)} alt={"Photo " + photoNode.file}/>
+							</DataCardResponsive>
 						})}
 					</Masonry>
 				</Section>

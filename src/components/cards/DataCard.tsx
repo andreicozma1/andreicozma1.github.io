@@ -72,6 +72,7 @@ const DataCard = ({
 								   variant="outlined"
 								   onClick={(e) => {
 									   e.stopPropagation()
+									   setIsHover(false)
 								   }}
 								   href={action.href}
 								   {...action.target && { target: action.target } || {}}>

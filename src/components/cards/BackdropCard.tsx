@@ -1,4 +1,4 @@
-import { Dialog } from "@mui/material"
+import { Dialog, DialogContent } from "@mui/material"
 import * as React from "react"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -18,14 +18,18 @@ const BackdropCard = () => {
 	}
 
 	useEffect(() => {
-		if (backdropCard) setOpen(true)
+		setOpen(!!backdropCard)
 	}, [ backdropCard ])
 
-	return <Dialog onClose={handleClose} open={open && backdropCard}
-				   maxWidth={backdropCard && backdropCard.maxWidth || "md"}>
-		<DataCardResponsive itemProps={backdropCard && backdropCard.itemProps}>
-			{backdropCard && backdropCard.children}
-		</DataCardResponsive>
+	return <Dialog onClose={handleClose} open={open}
+				   scroll="paper"
+				   maxWidth={backdropCard && backdropCard.maxWidth || "sm"}>
+		<DialogContent sx={{ p: 0 }}>
+			{backdropCard && <DataCardResponsive itemProps={backdropCard.itemProps}>
+				{backdropCard.children}
+            </DataCardResponsive>}
+		</DialogContent>
+
 	</Dialog>
 
 }
