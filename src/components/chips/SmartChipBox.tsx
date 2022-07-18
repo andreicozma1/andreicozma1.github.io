@@ -44,7 +44,7 @@ const SmartChipBox = ({
 				mr: 0
 			}
 			break
-		default:
+		case "center":
 			cSx = {
 				...cSx,
 				mx: "auto"
