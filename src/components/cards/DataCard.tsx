@@ -25,8 +25,9 @@ const DataCard = ({
 					  contentAlign,
 					  children
 				  }: {
-	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], actions?: Array<DataCardActionProps>, headerChipsAlign?: "left" | "right" | "center", contentAlign?: "left" | "right" | "center", children?: ReactNode
+	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], actions?: Array<DataCardActionProps>, headerChipsAlign?: "left" | "right", contentAlign?: "left" | "right" | "center", children?: ReactNode
 }) => {
+	if (headerChipsAlign === undefined) headerChipsAlign = "right"
 	if (contentChips && contentChips.length === 0) contentChips = undefined
 	let chipsStyle = {}
 	if (content) chipsStyle = { mt: ThemeConfig.card.contentPaddingV }
