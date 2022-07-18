@@ -22,7 +22,7 @@ const BackdropCard = () => {
 		setOpen(false)
 		setTimeout(() => {
 			dispatch(setCardData(null))
-		}, 500)
+		}, 350)
 	}
 
 	useEffect(() => {
@@ -35,6 +35,7 @@ const BackdropCard = () => {
 				   PaperProps={{
 					   sx: { m: ThemeConfig.spacing(2) }
 				   }}
+				   transitionDuration={ThemeConfig.transitionDuration.backdropCard}
 				   maxWidth={backdropCard && backdropCard.maxWidth || "sm"}>
 		<DialogContent sx={{ p: 0 }}>
 			{backdropCard && <DataCardResponsive itemProps={backdropCard.itemProps}>

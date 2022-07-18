@@ -18,6 +18,7 @@ declare module "@mui/material/styles" {
 			breadcrumb: number
 			notes: number
 			fab: number
+			backdropCard: number
 		};
 		particles: {
 			filter: string
@@ -65,6 +66,7 @@ declare module "@mui/material/styles" {
 			breadcrumb: number
 			notes: number
 			fab: number
+			backdropCard: number
 		};
 		particles: {
 			filter: string

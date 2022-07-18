@@ -19,7 +19,8 @@
 		"breadcrumb": 1500,
 		"page": 250,
 		"notes": 1000,
-		"fab": 1000
+		"fab": 1000,
+		"backdropCard": 350
 	},
 	"avatar": {
 		"borderSize": "0.5rem",
