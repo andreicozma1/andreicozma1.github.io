@@ -14,6 +14,7 @@ interface SmartChipBoxProps {
 	defaultVariant?: ChipProps["variant"],
 	defaultSize?: ChipProps["size"],
 	containerSx?: object,
+	align?: "left" | "right" | "center"
 }
 
 const SmartChipBox = ({
@@ -21,12 +22,33 @@ const SmartChipBox = ({
 						  defaultColor,
 						  defaultVariant,
 						  defaultSize,
-						  containerSx
+						  containerSx,
+						  align
 					  }: SmartChipBoxProps) => {
 
-	const cSx = {
-		ml: "auto",
+	let cSx = {
 		my: "auto", ...containerSx
+	}
+	switch (align) {
+		case "left":
+			cSx = {
+				...cSx,
+				mr: "auto",
+				ml: 0
+			}
+			break
+		case "right":
+			cSx = {
+				...cSx,
+				ml: "auto",
+				mr: 0
+			}
+			break
+		default:
+			cSx = {
+				...cSx,
+				mx: "auto"
+			}
 	}
 
 	return <Box sx={cSx}>

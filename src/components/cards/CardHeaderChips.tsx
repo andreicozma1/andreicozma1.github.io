@@ -7,13 +7,15 @@ import SmartChipBox from "../chips/SmartChipBox"
 import * as React from "react"
 
 const CardHeaderChips = ({
-							 chips
+							 chips,
+							 align
 						 }: {
-	chips: string | string[],
+	chips: string | string[], align: "left" | "right"
 }) => {
 	return (<SmartChipBox text={chips}
+						  align={align}
 						  containerSx={{
-							  px: 1
+							  px: 1.5
 						  }}/>)
 }
 

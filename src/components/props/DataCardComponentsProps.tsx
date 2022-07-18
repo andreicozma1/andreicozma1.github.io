@@ -13,6 +13,7 @@ export interface DataCardProps {
 	content?: string[],
 	chips?: DataCardChipsProps,
 	actions?: Array<DataCardActionProps>,
+	contentAlign?: "left" | "right" | "center",
 }
 
 export interface DataCardActionProps {

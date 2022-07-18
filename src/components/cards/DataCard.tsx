@@ -21,18 +21,16 @@ const DataCard = ({
 					  contentChips,
 					  content,
 					  actions,
+					  headerChipsAlign,
+					  contentAlign,
 					  children
 				  }: {
-	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], actions?: Array<DataCardActionProps>
-	children?: ReactNode
+	title: string, subtitle?: string, avatar?: SvgIconTypeMap["props"]["children"], content?: string | string[], headerChips?: string | string[], contentChips?: string | string[], actions?: Array<DataCardActionProps>, headerChipsAlign?: "left" | "right" | "center", contentAlign?: "left" | "right" | "center", children?: ReactNode
 }) => {
-
 	if (contentChips && contentChips.length === 0) contentChips = undefined
-
 	let chipsStyle = {}
-	if (content) {
-		chipsStyle = { mt: ThemeConfig.card.contentPaddingV }
-	}
+	if (content) chipsStyle = { mt: ThemeConfig.card.contentPaddingV }
+
 	return <Card elevation={ThemeConfig.card.elevation}
 				 sx={{
 					 background: `rgba(255, 255, 255, ${ThemeConfig.card.contentOpacity})`
@@ -42,6 +40,8 @@ const DataCard = ({
 				display: "flex"
 			} || {})
 		}}>
+			{headerChips && headerChipsAlign === "left" &&
+                <CardHeaderChips chips={headerChips} align={headerChipsAlign}/>}
 			<CardHeader title={title}
 						subheader={subtitle}
 						titleTypographyProps={{
@@ -49,13 +49,15 @@ const DataCard = ({
 							fontSize  : ThemeConfig.card.titleFontSize
 						}}
 						subheaderTypographyProps={{ fontSize: ThemeConfig.card.subheaderFontSize }}
-						sx={{ display: "inline-flex" }}
+				// sx={{ display: "inline-flex" }}
 						{...(avatar && { avatar: <Icon>{avatar}</Icon> })}/>
-			{headerChips && <CardHeaderChips chips={headerChips}/>}
+			{headerChips && headerChipsAlign === "right" &&
+                <CardHeaderChips chips={headerChips} align={headerChipsAlign}/>}
 		</Box>
 		{(content || contentChips || children) && <CardContent sx={{
 			px            : ThemeConfig.card.contentPaddingH,
 			py            : ThemeConfig.card.contentPaddingV,
+			textAlign     : contentAlign,
 			"&:last-child": { pb: ThemeConfig.card.contentPaddingV }
 		}}>
 			{content && <CardContentText text={content}/>}

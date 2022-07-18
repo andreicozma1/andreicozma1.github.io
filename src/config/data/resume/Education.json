@@ -3,7 +3,7 @@
 	"variant": "timeline",
 	"items": [
 		{
-			"title": "Computer Science M.S.",
+			"title": "M.S. in Computer Science",
 			"subtitle": "University of Tennessee, Knoxville",
 			"avatar": "insights",
 			"chips": {
@@ -11,9 +11,10 @@
 			},
 			"content": [
 				"Concentration: Intelligent Systems & Machine Learning"
-			]
+			],
+			"contentAlign": "center"
 		}, {
-			"title": "Computer Science 5-Yr B.S./M.S.",
+			"title": "B.S. in Computer Science",
 			"subtitle": "University of Tennessee, Knoxville",
 			"avatar": "school",
 			"chips": {
@@ -22,8 +23,17 @@
 				"positions": ["VolHacks President", "Pi Kappa Phi Secretary", "Chancellor's Honors Program"]
 			},
 			"content": [
+				"Program: 5-Year B.S./M.S.",
 				"Minors: Cyber-security & Business Administration"
-			]
+			],
+			"actions": [
+				{
+					"text": "Diploma",
+					"href": "./diploma.pdf",
+					"target": "_blank"
+				}
+			],
+			"contentAlign": "center"
 		}
 	]
 }
