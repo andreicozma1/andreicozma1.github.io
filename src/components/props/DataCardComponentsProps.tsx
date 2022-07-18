@@ -4,8 +4,6 @@ Website: https://andreicozma.com
 Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 
-import { SvgIconTypeMap } from "@mui/material"
-
 export interface DataCardProps {
 	title: string,
 	subtitle?: string,
@@ -14,6 +12,7 @@ export interface DataCardProps {
 	chips?: DataCardChipsProps,
 	actions?: Array<DataCardActionProps>,
 	contentAlign?: "left" | "right" | "center",
+	clickAction?: DataCardActionProps
 }
 
 export interface DataCardActionProps {

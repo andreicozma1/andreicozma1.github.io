@@ -26,13 +26,11 @@
 				"Program: 5-Year B.S./M.S.",
 				"Minors: Cyber-security & Business Administration"
 			],
-			"actions": [
-				{
-					"text": "Diploma",
-					"href": "/diploma.pdf",
-					"target": "_blank"
-				}
-			],
+			"clickAction": {
+				"text": "Click this card to view my diploma",
+				"href": "/diploma.pdf",
+				"target": "_blank"
+			},
 			"contentAlign": "center"
 		}
 	]

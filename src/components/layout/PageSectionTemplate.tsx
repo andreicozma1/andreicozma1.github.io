@@ -67,6 +67,7 @@ const SectionTimeline = ({ props }: { props: PageSectionProps }) => {
 						content={itemProps.content}
 						headerChips={headerChips}
 						contentChips={contentChips}
+						clickAction={itemProps.clickAction}
 						actions={itemProps.actions}
 						headerChipsAlign={index % 2 === 0 ? "right" : "left"}
 						contentAlign={itemProps.contentAlign}
@@ -112,6 +113,7 @@ const SectionList = ({ props }: { props: PageSectionProps }) => {
 						avatar={itemProps.avatar}
 						headerChips={headerChips}
 						contentChips={contentChips}
+						clickAction={itemProps.clickAction}
 						actions={itemProps.actions}
 						contentAlign={itemProps.contentAlign}
 					/>
