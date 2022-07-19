@@ -1,13 +1,13 @@
 import * as React from "react"
-import Page from "../components/layout/Page"
-import { usePage } from "../config/PagesConfig"
-import Skills from "../components/Skills"
+import Page from "../components/PageElements/Page"
+import SkillsSection from "../components/Custom/SkillsSection"
+import { usePage } from "../Utils"
 
 const Academics = () => {
 	const pageData = usePage("Academics")
 
 	return <Page pageProps={pageData}>
-		<Skills/>
+		<SkillsSection/>
 	</Page>
 }
 

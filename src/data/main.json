@@ -1,0 +1,11 @@
+{
+	"title"       : "Andrei Cozma",
+	"avatarHome"  : {
+		"src" : "/avatar_home.jpg",
+		"href": "/resume"
+	},
+	"avatarHeader": {
+		"src" : "/avatar_header.jpg",
+		"href": "/"
+	}
+}

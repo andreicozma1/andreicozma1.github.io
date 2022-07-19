@@ -4,15 +4,15 @@ Website: https://andreicozma.com
 Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 import * as React from "react"
-import Page from "../components/layout/Page"
-import { usePage } from "../config/PagesConfig"
-import Skills from "../components/Skills"
+import Page from "../components/PageElements/Page"
+import SkillsSection from "../components/Custom/SkillsSection"
+import { usePage } from "../Utils"
 
 const Resume = () => {
 	const pageData = usePage("Resume")
 
 	return <Page pageProps={pageData}>
-		<Skills/>
+		<SkillsSection/>
 	</Page>
 }
 

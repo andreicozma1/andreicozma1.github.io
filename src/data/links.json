@@ -1,0 +1,20 @@
+{
+	"l_linkedin": {
+		"icon"  : "ic_linkedin",
+		"name"  : "LinkedIn",
+		"href"  : "https://www.linkedin.com/in/andreicozma1/",
+		"target": "_blank"
+	},
+	"l_github"  : {
+		"icon"  : "ic_github",
+		"name"  : "GitHub",
+		"href"  : "https://github.com/andreicozma1",
+		"target": "_blank"
+	},
+	"l_source"  : {
+		"icon"  : "ic_source",
+		"name"  : "Source",
+		"href"  : "https://github.com/andreicozma1/andreicozma1.github.io/tree/source",
+		"target": "_blank"
+	}
+}

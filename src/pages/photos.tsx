@@ -4,9 +4,9 @@ Website: https://andreicozma.com
 Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 import * as React from "react"
-import Page from "../components/layout/Page"
-import { usePage } from "../config/PagesConfig"
-import PhotosSection from "../components/PhotosSection"
+import Page from "../components/PageElements/Page"
+import PhotosSection from "../components/Custom/PhotosSection"
+import { usePage } from "../Utils"
 
 const Photos = () => {
 	const pageData = usePage("Photos")
