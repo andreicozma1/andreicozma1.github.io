@@ -42,8 +42,7 @@ export function DataCardHeader(props: DataCardHeaderProps) {
                                   subheader={props.subtitle}
                                   titleTypographyProps={titleTypographyProps}
                                   subheaderTypographyProps={subheaderTypographyProps}
-                                  avatar={avatar}
-        />}
+                                  avatar={avatar}/>}
 		{headerChipsAlign === "right" && headerChips}
 	</Box>
 }
