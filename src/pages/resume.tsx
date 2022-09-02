@@ -7,6 +7,7 @@ import * as React from "react"
 import Page from "../components/PageElements/Page"
 import SkillsSection from "../components/Custom/SkillsSection"
 import { usePage } from "../Utils"
+import SEO from "../components/SEO"
 
 const Resume = () => {
 	const pageData = usePage("Resume")
@@ -17,3 +18,7 @@ const Resume = () => {
 }
 
 export default Resume
+
+export const Head = () => (
+	<SEO />
+)

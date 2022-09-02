@@ -6,6 +6,7 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 import * as React from "react"
 import Page from "../components/PageElements/Page"
 import { usePage } from "../Utils"
+import SEO from "../components/SEO"
 
 const Seminars = () => {
 	const pageData = usePage("Seminars")
@@ -15,3 +16,7 @@ const Seminars = () => {
 }
 
 export default Seminars
+
+export const Head = () => (
+	<SEO />
+)

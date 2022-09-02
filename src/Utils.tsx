@@ -4,6 +4,25 @@ import * as React from "react"
 import { Pages } from "./config/Pages"
 import { LinkProps } from "./config/Links"
 
+import { graphql, useStaticQuery } from "gatsby"
+
+export const useSiteMetadata = () => {
+	const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+		  siteUrl
+          image
+          title
+          description
+        }
+      }
+    }
+  `)
+
+	return data.site.siteMetadata
+}
+
 export const usePage = (title: string) => {
 	const info = Pages[title]
 	if (!info) {
