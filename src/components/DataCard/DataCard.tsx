@@ -48,12 +48,13 @@ const DataCard = (props: DataCardProp) => {
 		setElevation(Theme.card.elevation)
 	}
 
-	return <Tooltip arrow
+	return <Tooltip title={props.tooltip}
 					placement="top"
-					enterDelay={1500}
-					enterNextDelay={150000}
-					leaveDelay={1000}
-					title={props.tooltip || "Click on a card to focus it"}>
+					enterDelay={1000}
+					enterNextDelay={30000}
+					arrow
+					followCursor
+					{...(props.tooltip === undefined && { open: false } || {})}>
 		<Card elevation={elevation}
 			  onMouseEnter={onCardHover}
 			  onTouchStart={onCardHover}
