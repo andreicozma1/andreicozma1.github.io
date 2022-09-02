@@ -6,8 +6,9 @@ require("dotenv").config({
 
 const config: GatsbyConfig = {
 	siteMetadata: {
-		title  : `Personal Portfolio`,
-		siteUrl: `https://www.andreicozma.com`
+		title  : `Andrei Cozma's Personal Portfolio`,
+		siteUrl: `https://www.andreicozma.com`,
+		description: `This is my personal portfolio website, showcasing my education, work experiences, projects, achievements, licenses, and certifications, and much more!`
 	}, // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
 	// If you use VSCode you can also use the GraphQL plugin
 	// Learn more at: https://gatsby.dev/graphql-typegen
