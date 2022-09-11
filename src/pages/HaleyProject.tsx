@@ -58,9 +58,14 @@ const HaleyProject = () => {
 				// process the date string into a date object using format Fri Aug 26 2022 05:00:37 GMT-0400 (Eastern Daylight Time)
 				const dateObj = new Date(date.toISOString().slice(0, -1))
 				// get the time from the date and
-				// round to the nearest 30 minutes
-				const minRounded = Math.round(dateObj.getMinutes() / 30) * 30
-				const time = dateObj.getHours() + ":" + (minRounded === 0 ? "00" : minRounded)
+				// round to the nearest hour
+				const minRounded = Math.round(dateObj.getMinutes() / 60) * 60
+
+				let hours = dateObj.getHours()
+				if (minRounded === 60) {
+					hours += 1
+				}
+				let time = hours + ":00"
 
 				// get the day of the week from the date
 				const day = dateObj.toLocaleString("default", { weekday: "long" })
@@ -104,15 +109,23 @@ const HaleyProject = () => {
 				}
 			}
 
+			// sort the times in each day using military time
+			for (let day in dataGridData) {
+				dataGridData[day].sort((a, b) => {
+					return a.time.split(":")[0] - b.time.split(":")[0]
+				})
+			}
+
 			console.log(dataGridData)
 			setD(dataGridData)
 		})
 	}
 
 	const schema = [
-		{ column  : "time",
+		{
+			column: "time",
 			type  : String,
-			value : (row) => row.time,
+			value : (row) => row.time
 		}, {
 			column: "3D printing",
 			type  : Number,
@@ -205,13 +218,20 @@ const HaleyProject = () => {
 	]
 
 	const handleDownload = async () => {
+		let data = []
+		let schemas = []
+		let sheets = []
 		for (let day in d) {
-			const data = d[day]
-			await writeXlsxFile(data, {
-				schema,
-				fileName: `${day}.xlsx`,
-			})
+			schemas.push(schema)
+			data.push(d[day])
+			sheets.push(day)
 		}
+		console.log(data)
+		await writeXlsxFile(data, {
+			schema: schemas,
+			fileName: `Processed.xlsx`,
+			sheets  : sheets
+		})
 	}
 	return <Page pageProps={pageData}>
 
@@ -222,14 +242,14 @@ const HaleyProject = () => {
 			InputProps={{
 				fullWidth     : true,
 				startAdornment: (<IconButton component="label">
-						<FileUploadIcon/>
-						<input
-							type="file"
-							hidden
-							onChange={handleUploadInput}
-							name="[name]"
-						/>
-					</IconButton>)
+					<FileUploadIcon/>
+					<input
+						type="file"
+						hidden
+						onChange={handleUploadInput}
+						name="[name]"
+					/>
+				</IconButton>)
 			}}></TextField>
 		{file && <Button variant="contained" sx={{ m: 2 }} onClick={process}>Process</Button>}
 		{d && <Button variant="contained" sx={{ m: 2 }} onClick={handleDownload}>
