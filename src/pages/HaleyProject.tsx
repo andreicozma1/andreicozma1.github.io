@@ -39,7 +39,8 @@ const HaleyProject = () => {
 				"Thursday" : {},
 				"Friday"   : {},
 				"Saturday" : {},
-				"Sunday"   : {}
+				"Sunday"   : {},
+				"TOTALS" : {}
 			}
 
 			for (let i = 1; i < rows.length; i++) {
@@ -82,8 +83,20 @@ const HaleyProject = () => {
 					if (data[day][time] === undefined) {
 						data[day][time] = {}
 					}
-					data[day][time][column] = count
+					if (data[day][time][column] === undefined) {
+						data[day][time][column] = 0
+					}
+					data[day][time][column] += count
+					// add to totals
+					if (data["TOTALS"][time] === undefined) {
+						data["TOTALS"][time] = {}
+					}
+					if (data["TOTALS"][time][column] === undefined) {
+						data["TOTALS"][time][column] = 0
+					}
+					data["TOTALS"][time][column] += count
 				}
+
 			}
 
 			console.log(data)
@@ -230,7 +243,9 @@ const HaleyProject = () => {
 		await writeXlsxFile(data, {
 			schema: schemas,
 			fileName: `Processed.xlsx`,
-			sheets  : sheets
+			sheets  : sheets,
+			stickyRowsCount: 1,
+			stickyColumnsCount: 1
 		})
 	}
 	return <Page pageProps={pageData}>
