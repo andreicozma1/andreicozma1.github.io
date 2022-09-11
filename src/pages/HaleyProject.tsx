@@ -108,7 +108,8 @@ const HaleyProject = () => {
 				"Thursday" : [],
 				"Friday"   : [],
 				"Saturday" : [],
-				"Sunday"   : []
+				"Sunday"   : [],
+				"TOTALS" : []
 			}
 			// incorporate the time as a dictionary key for each row
 			for (let day in data) {
