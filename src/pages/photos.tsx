@@ -13,7 +13,7 @@ const Photos = () => {
 	const pageData = usePage("Photos")
 
 	return <Page pageProps={pageData}>
-		<PhotosSection/>
+		{/*<PhotosSection/>*/}
 	</Page>
 }
 

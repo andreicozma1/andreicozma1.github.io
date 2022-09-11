@@ -67,7 +67,8 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 	},
 	"Photos"   : {
 		href: "/photos",
-		icon: "ic_photos"
+		icon: "ic_photos",
+		hidden: true
 	},
 	"Labs"   : {
 		href: "/labs",
