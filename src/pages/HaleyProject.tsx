@@ -40,7 +40,7 @@ const HaleyProject = () => {
 				"Friday"   : {},
 				"Saturday" : {},
 				"Sunday"   : {},
-				"TOTALS" : {}
+				"TOTALS"   : {}
 			}
 
 			for (let i = 1; i < rows.length; i++) {
@@ -109,7 +109,7 @@ const HaleyProject = () => {
 				"Friday"   : [],
 				"Saturday" : [],
 				"Sunday"   : [],
-				"TOTALS" : []
+				"TOTALS"   : []
 			}
 			// incorporate the time as a dictionary key for each row
 			for (let day in data) {
@@ -242,16 +242,19 @@ const HaleyProject = () => {
 		}
 		console.log(data)
 		await writeXlsxFile(data, {
-			schema: schemas,
-			fileName: `Processed.xlsx`,
-			sheets  : sheets,
-			stickyRowsCount: 1,
+			schema            : schemas,
+			fileName          : `Processed.xlsx`,
+			sheets            : sheets,
+			stickyRowsCount   : 1,
 			stickyColumnsCount: 1
 		})
 	}
 	return <Page pageProps={pageData}>
-		<h1>Hi Haley :)</h1>
-		<h2>Let me know how this works!</h2>
+		<h2>Hii Haley,</h2>
+		<h3>In your `Space Use Raw Data.xlsx` delete the Totals row at the very bottom and also delete the 3 rows you
+			added ("time," "altered time" and "day of week").</h3>
+		<h3>Then, upload the file by clicking the icon below, click process, and finally click download.</h3>
+		<h3>Let me know if this works!</h3>
 		<TextField
 			value={file && file.name || "No File Chosen"}
 			label="Select XLSX File to Process"
