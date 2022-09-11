@@ -36,14 +36,16 @@ const config: GatsbyConfig = {
 					exclude: []
 				}
 			}
-		}, {
-			resolve: "gatsby-source-google-photos",
-			options: {
-				albumsTitles   : [ "Photography" ],
-				photosMaxWidth : 1920,
-				photosMaxHeight: 1080 // debug: true,
-			}
-		}, {
+		},
+		// {
+		// 	resolve: "gatsby-source-google-photos",
+		// 	options: {
+		// 		albumsTitles   : [ "Photography" ],
+		// 		photosMaxWidth : 1920,
+		// 		photosMaxHeight: 1080 // debug: true,
+		// 	}
+		// },
+		{
 			resolve: "gatsby-plugin-google-fonts",
 			options: {
 				fonts: [
