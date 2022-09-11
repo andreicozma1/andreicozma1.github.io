@@ -251,7 +251,7 @@ const HaleyProject = () => {
 	}
 	return <Page pageProps={pageData}>
 		<h2>Hii Haley,</h2>
-		<h3>In your `Space Use Raw Data.xlsx` delete the Totals row at the very bottom and also delete the 3 rows you
+		<h3>In your `Space Use Raw Data.xlsx` delete the Totals row at the very bottom and also delete the 3 columns you
 			added ("time," "altered time" and "day of week").</h3>
 		<h3>Then, upload the file by clicking the icon below, click process, and finally click download.</h3>
 		<h3>Let me know if this works!</h3>
