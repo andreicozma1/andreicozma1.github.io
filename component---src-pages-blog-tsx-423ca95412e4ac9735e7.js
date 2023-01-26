@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpersonal_portfolio=self.webpackChunkpersonal_portfolio||[]).push([[410],{8645:function(e,o,r){r.r(o);var t=r(7294),n=r(5570),a=r(1533);o.default=function(){var e=(0,a.qt)("Blog");return t.createElement(n.Z,{pageProps:e})}}}]);
+//# sourceMappingURL=component---src-pages-blog-tsx-423ca95412e4ac9735e7.js.map
