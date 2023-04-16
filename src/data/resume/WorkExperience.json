@@ -3,11 +3,43 @@
 	"variant": "timeline",
 	"items"  : [
 		{
-			"title"   : "Summer Research Assistant",
+			"title"   : "Software Development Engineer (Security Architecture)",
+			"subtitle": "Zoom Video Communications",
+			"chips"   : {
+				"date"        : [
+					"09/2022 - 12/2022"
+				],
+				"contentChips": [
+					"Cyber-security",
+					"Data Analytics & Visualization",
+					"Inter-process Communication"
+				],
+				"languages"   : [
+					"TypeScript"
+				],
+				"tools"       : [
+					"Vue.js",
+					"Electron.js",
+					"Quasar Framework",
+					"Atlassian Jira",
+					"Git & GitLab",
+					"REST APIs"
+				]
+			},
+			"content" : [
+				"Developed and maintained an Electron application using Quasar Framework with Vue.js and TypeScript in a NodeJS-based development environment, interfacing with Atlassian Jira.",
+				"Created complex visualizations of business logic to improve the effectiveness of the security review process and speed up the analysis of data relations and linkages.",
+				"Performed complex data processing, aggregations, and mappings by spidering through various sets of data queried using a REST API.",
+				"Improved the user interface design, including layout, navigation, and visual design elements, to enhance the user experience, discoverability, and transparency."
+			],
+			"avatar"  : "science"
+		},
+		{
+			"title"   : "Cybersecurity Research Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
 			"chips"   : {
 				"date"        : [
-					"05/2022 - Present"
+					"05/2022 - 08/2022"
 				],
 				"contentChips": [
 					"Cyber-security",
@@ -25,7 +57,6 @@
 			},
 			"content" : [
 				"Assist with research and various ongoing projects, including the development of software and scripts to aid with the data collection, creation of visualizations, performing analysis of results, and writing and documenting research and findings."
-
 			],
 			"avatar"  : "science"
 		},

@@ -43,7 +43,8 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 		href    : "/academics",
 		icon    : "ic_academics",
 		sections: [
-			Current, IntelligentSystems, Cybersecurity, General
+			IntelligentSystems, Cybersecurity, General
+			// Current, IntelligentSystems, Cybersecurity, General
 		]
 	},
 	"Seminars" : {
