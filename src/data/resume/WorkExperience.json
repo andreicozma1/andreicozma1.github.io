@@ -3,6 +3,50 @@
 	"variant": "timeline",
 	"items"  : [
 		{
+			"title"   : "Graduate Research Assistant",
+			"subtitle": "Tickle College of Engineering (UTK)",
+			"chips"   : {
+				"date"        : [
+					"01/2023 - Present"
+				],
+				"contentChips": [
+					"Deep Learning",
+					"Machine Learning",
+					"Digital Signal Processing",
+					"Computer Vision",
+					"Generative Networks"
+				],
+				"languages"   : [
+					"Python"
+				],
+				"tools"       : [
+					"PyTorch",
+					"TensorFlow"
+				]
+			},
+			"content" : [
+				"Research assistant part of the AICIP Research Group advised by Dr. Hairong Qi"
+			],
+			"avatar"  : "science"
+		},
+		{
+			"title"   : "Graduate Teaching Assistant",
+			"subtitle": "Tickle College of Engineering (UTK)",
+			"content" : [
+				"Teaching assistant for Dr. Catherine Schuman's Biologically-Inspired Computation course (COSC 420/527)"
+			],
+			"chips"   : {
+				"date": [
+					"01/2023 - 05/2023"
+				],
+				"contentChips": [
+					"Evolutionary Algorithms",
+					"Spiking Neural Networks",
+					"Biologically-Inspired Computing"
+				]
+			}
+		},
+		{
 			"title"   : "Software Development Engineer (Security Architecture)",
 			"subtitle": "Zoom Video Communications",
 			"chips"   : {
@@ -27,6 +71,7 @@
 				]
 			},
 			"content" : [
+				"Internship (Fall 2022)",
 				"Developed and maintained an Electron application using Quasar Framework with Vue.js and TypeScript in a NodeJS-based development environment, interfacing with Atlassian Jira.",
 				"Created complex visualizations of business logic to improve the effectiveness of the security review process and speed up the analysis of data relations and linkages.",
 				"Performed complex data processing, aggregations, and mappings by spidering through various sets of data queried using a REST API.",
