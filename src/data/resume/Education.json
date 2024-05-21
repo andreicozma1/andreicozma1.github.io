@@ -1,48 +1,53 @@
 {
-	"title"  : "Education",
+	"title": "Education",
 	"variant": "timeline",
-	"items"  : [
+	"items": [
 		{
-			"title"       : "M.S. in Computer Science",
-			"subtitle"    : "University of Tennessee, Knoxville",
-			"avatar"      : "insights",
-			"chips"       : {
+			"title": "M.S. in Computer Science",
+			"subtitle": "University of Tennessee, Knoxville",
+			"avatar": "insights",
+			"chips": {
 				"date": [
 					"Fall 2022 - Present"
+				],
+				"positions": [
+					"Research Assistant",
+					"Teaching Assistant"
 				]
 			},
-			"content"     : [
+			"content": [
 				"Concentration: Intelligent Systems & Machine Learning"
 			],
 			"contentAlign": "center"
 		},
 		{
-			"title"       : "B.S. in Computer Science",
-			"subtitle"    : "University of Tennessee, Knoxville",
-			"avatar"      : "school",
-			"chips"       : {
-				"date"     : [
+			"title": "B.S. in Computer Science",
+			"subtitle": "University of Tennessee, Knoxville",
+			"avatar": "school",
+			"chips": {
+				"date": [
 					"08/2018 - 05/2022"
 				],
-				"awards"   : [
+				"awards": [
 					"Summa Cum Laude",
 					"GPA: 3.87"
 				],
 				"positions": [
-					"VolHacks President",
-					"Pi Kappa Phi Secretary",
-					"Chancellor's Honors Program"
+					"Research Assistant",
+					"Teaching Assistant",
+					"Chancellor's Honors Program",
+					"VolHacks Hackathon Leadership",
+					"Pi Kappa Phi Fraternity Leadership"
 				]
 			},
-			"content"     : [
-				"Program: 5-Year B.S./M.S.",
-				"Minors: Cyber-security & Business Administration"
+			"content": [
+				"Minors: Cybersecurity, Business Administration"
 			],
 			"contentAlign": "center",
-			"actions"     : [
+			"actions": [
 				{
-					"text"  : "View Diploma",
-					"href"  : "/diploma.pdf",
+					"text": "View Diploma",
+					"href": "/diploma.pdf",
 					"target": "_blank"
 				}
 			]

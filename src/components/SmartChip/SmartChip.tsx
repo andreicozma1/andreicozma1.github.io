@@ -15,6 +15,8 @@ import SelectAllOutlinedIcon from "@mui/icons-material/SelectAllOutlined"
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded"
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
+import BiotechIcon from '@mui/icons-material/Biotech';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import Theme from "../../config/Theme"
 
 const mDate = [ "/", " - " ]
@@ -34,6 +36,8 @@ const mTool = [
 	"Docker", "AWS", "Jupyter Notebook", "Maven", "Gradle", "WebView", "Cordova"
 ]
 const mPosition = [ "President", "Secretary", "Manager" ]
+const mResearch = [ "Research", "Publication" ]
+const mTeach = [ "Teach", "Instruct" ]
 const mMember = [ "Member", "Volunteer" ]
 const mChapter = [ "Chapter", "Club" ]
 
@@ -45,6 +49,8 @@ function getType(text: string) {
 	if (mLib.some(m => tl.includes(m.toLowerCase()))) return "lib"
 	if (mProg.some(m => tl.includes(m.toLowerCase()))) return "prog"
 	if (mPosition.some(m => tl.includes(m.toLowerCase()))) return "position"
+	if (mResearch.some(m => tl.includes(m.toLowerCase()))) return "research"
+	if (mTeach.some(m => tl.includes(m.toLowerCase()))) return "teach"
 	if (mMember.some(m => tl.includes(m.toLowerCase()))) return "member"
 	if (mChapter.some(m => tl.includes(m.toLowerCase()))) return "chapter"
 	if (mDate.some(m => tl.includes(m.toLowerCase()))) return "date"
@@ -71,6 +77,8 @@ const SmartChip = (props: SmartChipProps) => {
 		if (type === "lib") return <CollectionsBookmarkOutlinedIcon/>
 		if (type === "prog") return <CodeOutlinedIcon/>
 		if (type === "position") return <StarRateRoundedIcon/>
+		if (type === "research") return <BiotechIcon/>
+		if (type === "teach") return <AutoStoriesIcon/>
 		if (type === "member") return <PeopleOutlineOutlinedIcon/>
 		if (type === "chapter") return <HomeOutlinedIcon/>
 		if (type === "date") return <CalendarMonthOutlinedIcon/>

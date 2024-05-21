@@ -59,7 +59,8 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 		],
 		sections: [
 			Spring2022, Fall2021, Spring2021, Fall2020
-		]
+		],
+		hidden: true
 	},
 	"Blog"     : {
 		href  : "/blog",

@@ -17,6 +17,7 @@ export const DataCardActions = (props: DataCardActionsProps) => {
 			mb            : Theme.card.contentPaddingV
 		}}>
 			{props.actions.map((action, index) => {
+				if (action.hidden) return null
 				return <Button key={index}
 							   variant="outlined"
 							   onClick={props.onButtonClick}

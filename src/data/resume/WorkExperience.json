@@ -1,12 +1,12 @@
 {
-	"title"  : "Work Experience",
+	"title": "Work Experience",
 	"variant": "timeline",
-	"items"  : [
+	"items": [
 		{
-			"title"   : "Graduate Research Assistant",
-			"subtitle": "Tickle College of Engineering (UTK)",
-			"chips"   : {
-				"date"        : [
+			"title": "Graduate Research Assistant",
+			"subtitle": "The University of Tennessee, Knoxville",
+			"chips": {
+				"date": [
 					"01/2023 - Present"
 				],
 				"contentChips": [
@@ -16,26 +16,26 @@
 					"Computer Vision",
 					"Generative Networks"
 				],
-				"languages"   : [
+				"languages": [
 					"Python"
 				],
-				"tools"       : [
+				"tools": [
 					"PyTorch",
 					"TensorFlow"
 				]
 			},
-			"content" : [
-				"Research assistant part of the AICIP Research Group advised by Dr. Hairong Qi"
+			"content": [
+				"Research assistant part of the Advanced Imaging and Collaborative Information Processing (AICIP) research group advised by Dr. Hairong Qi."
 			],
-			"avatar"  : "science"
+			"avatar": "science"
 		},
 		{
-			"title"   : "Graduate Teaching Assistant",
-			"subtitle": "Tickle College of Engineering (UTK)",
-			"content" : [
-				"Teaching assistant for Dr. Catherine Schuman's Biologically-Inspired Computation course (COSC 420/527)"
+			"title": "Graduate Teaching Assistant",
+			"subtitle": "The University of Tennessee, Knoxville",
+			"content": [
+				"Teaching assistant for COSC 420/527 Biologically-Inspired Computation with Dr. Catherine Schuman."
 			],
-			"chips"   : {
+			"chips": {
 				"date": [
 					"01/2023 - 05/2023"
 				],
@@ -47,21 +47,21 @@
 			}
 		},
 		{
-			"title"   : "Software Development Engineer (Security Architecture)",
+			"title": "Software Development Engineer (Security Architecture)",
 			"subtitle": "Zoom Video Communications",
-			"chips"   : {
-				"date"        : [
+			"chips": {
+				"date": [
 					"09/2022 - 12/2022"
 				],
 				"contentChips": [
-					"Cyber-security",
+					"Cybersecurity",
 					"Data Analytics & Visualization",
 					"Inter-process Communication"
 				],
-				"languages"   : [
+				"languages": [
 					"TypeScript"
 				],
-				"tools"       : [
+				"tools": [
 					"Vue.js",
 					"Electron.js",
 					"Quasar Framework",
@@ -70,47 +70,48 @@
 					"REST APIs"
 				]
 			},
-			"content" : [
+			"content": [
 				"Internship (Fall 2022)",
 				"Developed and maintained an Electron application using Quasar Framework with Vue.js and TypeScript in a NodeJS-based development environment, interfacing with Atlassian Jira.",
-				"Created complex visualizations of business logic to improve the effectiveness of the security review process and speed up the analysis of data relations and linkages.",
-				"Performed complex data processing, aggregations, and mappings by spidering through various sets of data queried using a REST API.",
-				"Improved the user interface design, including layout, navigation, and visual design elements, to enhance the user experience, discoverability, and transparency."
+				"Created visualizations of business logic to improve the effectiveness of the security review process and speed up the analysis of data relations and linkages.",
+				"Performed data processing, aggregations, and mappings by spidering through various sets of data queried using a REST API.",
+				"Improved the user interface design, including layout, navigation, and visual design elements, to enhance the user experience, discoverability, and transparency.",
+				"Utilized git flow with GitLab for development practices and Atlassian Jira for project management."
 			],
-			"avatar"  : "science"
+			"avatar": "science"
 		},
 		{
-			"title"   : "Cybersecurity Research Assistant",
+			"title": "Cybersecurity Research Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
-			"chips"   : {
-				"date"        : [
+			"chips": {
+				"date": [
 					"05/2022 - 08/2022"
 				],
 				"contentChips": [
-					"Cyber-security",
+					"Cybersecurity",
 					"Phishing",
 					"Data Analytics"
 				],
-				"languages"   : [
+				"languages": [
 					"Python",
 					"GoLang"
 				],
-				"tools"       : [
+				"tools": [
 					"Linux",
 					"Git & GitHub"
 				]
 			},
-			"content" : [
+			"content": [
 				"Assist with research and various ongoing projects, including the development of software and scripts to aid with the data collection, creation of visualizations, performing analysis of results, and writing and documenting research and findings."
 			],
-			"avatar"  : "science"
+			"avatar": "science"
 		},
 		{
-			"title"   : "Undergraduate Teaching Assistant",
+			"title": "Undergraduate Teaching Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
-					"Cyber-security",
+					"Cybersecurity",
 					"Security Goals",
 					"Threat Modeling",
 					"Software Security",
@@ -119,65 +120,63 @@
 					"Network Security",
 					"Human Factors"
 				],
-				"date"        : [
+				"date": [
 					"01/2022 - 05/2022"
 				]
 			},
-			"content" : [
-				"Teaching assistant for Dr. Doowon Kim's Introduction to Cyber-security course. Primary responsibilities include assisting students and answering questions they may have about the course materials, providing helpful feedback, grading quizzes and other assignments, exam proctoring, etc. "
-
+			"content": [
+				"Teaching assistant for Dr. Doowon Kim's Introduction to Cybersecurity course. Primary responsibilities include assisting students and answering questions they may have about the course materials, providing helpful feedback, grading quizzes and other assignments, exam proctoring, etc. "
 			],
-			"avatar"  : "menu_book"
+			"avatar": "menu_book"
 		},
 		{
-			"title"   : "Undergraduate Research Assistant",
+			"title": "Undergraduate Research Assistant",
 			"subtitle": "The University of Tennessee, Knoxville",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
-					"Cyber-security",
+					"Cybersecurity",
 					"Web Security",
 					"Certificates",
 					"Phishing",
 					"Data Analytics"
 				],
-				"languages"   : [
+				"languages": [
 					"Python",
 					"JavaScript",
 					"Bash Scripting"
 				],
-				"tools"       : [
+				"tools": [
 					"Linux",
 					"Git & GitHub",
 					"Docker",
 					"MongoDB",
 					"PostgreSQL"
 				],
-				"date"        : [
+				"date": [
 					"03/2021 - 10/2021"
 				]
 			},
-			"content" : [
+			"content": [
 				"Assist with research on various ongoing projects, developing software and scripts to aid with collecting and analyzing data, creating visualizations, and interpreting results.",
 				"Topics: Security updates for JavaScript libraries, timeliness of security patches becoming available, the amounts and versions of vulnerable libraries still widely in use, crypto-jacking, certificate collection, phishing blacklists, and more."
-
 			],
-			"avatar"  : "science"
+			"avatar": "science"
 		},
 		{
-			"title"   : "Software Developer Intern (Summer)",
+			"title": "Software Developer Intern (Summer)",
 			"subtitle": "Elo Touch Solutions",
-			"chips"   : {
-				"date"        : [
+			"chips": {
+				"date": [
 					"05/2021 - 08/2021"
 				],
-				"languages"   : [
+				"languages": [
 					"Java",
 					"Kotlin",
 					"C/C++",
 					"Python",
 					"Bash Scripting"
 				],
-				"tools"       : [
+				"tools": [
 					"Linux",
 					"Git",
 					"Atlassian Jira",
@@ -193,28 +192,27 @@
 					"Embedded Systems"
 				]
 			},
-			"content" : [
+			"content": [
 				"Design, implement, and test software frameworks, solutions, and demo applications for ELO's enterprise touchscreen solutions and customers and business partners.",
 				"Using Java, Kotlin, Linux, Bash Scripting, Git, Atlassian JIRA, and the Android SDK to develop enterprise solutions with the Android Open Source Project (AOSP) as part of an Agile work environment."
-
 			],
-			"avatar"  : "developer_mode"
+			"avatar": "developer_mode"
 		},
 		{
-			"title"   : "Software Developer Intern (All-Year)",
+			"title": "Software Developer Intern (All-Year)",
 			"subtitle": "Elo Touch Solutions",
-			"chips"   : {
-				"date"        : [
+			"chips": {
+				"date": [
 					"01/2020 - 12/2020"
 				],
-				"languages"   : [
+				"languages": [
 					"Java",
 					"Kotlin",
 					"C/C++",
 					"Python",
 					"Bash Scripting"
 				],
-				"tools"       : [
+				"tools": [
 					"Linux",
 					"Git",
 					"Atlassian Jira",
@@ -230,12 +228,11 @@
 					"Embedded Systems"
 				]
 			},
-			"content" : [
+			"content": [
 				"Design, implement, and test software frameworks, solutions, and demo applications for ELO's enterprise touchscreen solutions and customers and business partners.",
 				"Using Java, Kotlin, Linux, Bash Scripting, Git, Atlassian JIRA, and the Android SDK to develop enterprise solutions with the Android Open Source Project (AOSP) as part of an Agile work environment."
-
 			],
-			"avatar"  : "developer_mode"
+			"avatar": "developer_mode"
 		}
 	]
 }

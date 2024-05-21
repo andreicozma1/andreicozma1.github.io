@@ -1,36 +1,46 @@
 {
-	"title"  : "Achievements, Licenses, & Certifications",
+	"title": "Achievements, Licenses, & Certifications",
 	"variant": "grid6",
-	"items"  : [
+	"items": [
 		{
-			"title"   : "From Data to Insights with Google Cloud Platform Specialization",
+			"title": "Project Management Foundations (LinkedIn)",
 			"subtitle": "No expiration",
-			"chips"   : {
+			"chips": {
+				"headerChips": [
+					"Awarded 09/2021"
+				]
+			},
+			"avatar": "query_stats"
+		},
+		{
+			"title": "From Data to Insights with Google Cloud Platform Specialization",
+			"subtitle": "No expiration",
+			"chips": {
 				"headerChips": [
 					"Awarded 08/2020"
 				]
 			},
-			"avatar"  : "query_stats"
+			"avatar": "query_stats"
 		},
 		{
-			"title"   : "Google Cloud Essentials Certificate",
+			"title": "Google Cloud Essentials Certificate",
 			"subtitle": "No expiration",
-			"chips"   : {
+			"chips": {
 				"headerChips": [
 					"Awarded 07/2020"
 				]
 			},
-			"avatar"  : "cloud"
+			"avatar": "cloud"
 		},
 		{
-			"title"   : "Tennessee Scholar (Certificate of Excellence)",
+			"title": "Tennessee Scholar Certificate of Excellence",
 			"subtitle": "No expiration",
-			"chips"   : {
+			"chips": {
 				"headerChips": [
 					"Awarded 05/2018"
 				]
 			},
-			"avatar"  : "school"
+			"avatar": "school"
 		}
 	]
 }

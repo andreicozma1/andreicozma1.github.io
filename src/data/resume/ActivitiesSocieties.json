@@ -1,29 +1,29 @@
 {
-	"title"  : "Activities & Societies",
+	"title": "Activities & Societies",
 	"variant": "timeline",
-	"items"  : [
+	"items": [
 		{
-			"title"   : "VolHacks",
+			"title": "VolHacks",
 			"subtitle": "UT's Yearly Hackathon Event",
-			"chips"   : {
-				"date"     : [
-					"04/2019 - Present"
+			"chips": {
+				"date": [
+					"04/2019 - 05/2022"
 				],
 				"positions": [
 					"Operations Manager for Sponsorships (2019)",
 					"President (2020-2021)"
 				]
 			},
-			"avatar"  : "code"
+			"avatar": "code"
 		},
 		{
-			"title"   : "Pi Kappa Phi",
-			"subtitle": "Greek Letter & Social Fraternity on campus",
-			"chips"   : {
-				"date"        : [
-					"04/2019 - Present"
+			"title": "Pi Kappa Phi",
+			"subtitle": "Greek Letter & Social Fraternity",
+			"chips": {
+				"date": [
+					"04/2019 - 05/2022"
 				],
-				"positions"   : [
+				"positions": [
 					"Chapter Secretary",
 					"Housing Manager",
 					"Website Developer"
@@ -32,29 +32,29 @@
 					"Alpha Sigma Chapter"
 				]
 			},
-			"avatar"  : "group"
+			"avatar": "group"
 		},
 		{
-			"title"   : "Chancellor's Honors Program",
+			"title": "Chancellor's Honors Program",
 			"subtitle": "UT's Principal Honors Program",
-			"chips"   : {
-				"date"     : [
+			"chips": {
+				"date": [
 					"08/2018 - 05/2022"
 				],
 				"positions": [
 					"Member & Volunteer"
 				]
 			},
-			"avatar"  : "workspace_premium"
+			"avatar": "workspace_premium"
 		},
 		{
-			"title"   : "Computer Science & Robotics Clubs",
+			"title": "Computer Science & Robotics Clubs",
 			"subtitle": "Club Leadership Experiences",
-			"chips"   : {
-				"date"        : [
+			"chips": {
+				"date": [
 					"09/2014 - 05/2018"
 				],
-				"positions"   : [
+				"positions": [
 					"President",
 					"Organizer",
 					"Tutor"
@@ -63,13 +63,13 @@
 					"HackClub Chapter"
 				]
 			},
-			"avatar"  : "computer"
+			"avatar": "computer"
 		},
 		{
-			"title"   : "National Honor Society & Beta Club",
+			"title": "National Honor Society & Beta Club",
 			"subtitle": "Honor Societies Experiences",
-			"chips"   : {
-				"date"     : [
+			"chips": {
+				"date": [
 					"08/2016 - 05/2018"
 				],
 				"positions": [
@@ -78,7 +78,7 @@
 					"Awarded Medallion for Most Volunteer Hours"
 				]
 			},
-			"avatar"  : "workspace_premium"
+			"avatar": "workspace_premium"
 		}
 	]
 }
