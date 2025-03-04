@@ -3,16 +3,15 @@
 	"variant": "timeline",
 	"items": [
 		{
-			"title": "M.S. in Computer Science",
+			"title": "Computer Science Ph.D.",
 			"subtitle": "University of Tennessee, Knoxville",
 			"avatar": "insights",
 			"chips": {
 				"date": [
-					"Fall 2022 - Present"
+					"2024 - Present"
 				],
 				"positions": [
-					"Research Assistant",
-					"Teaching Assistant"
+					"Research Assistant"
 				]
 			},
 			"content": [
@@ -21,12 +20,34 @@
 			"contentAlign": "center"
 		},
 		{
-			"title": "B.S. in Computer Science",
+			"title": "Computer Science M.S.",
+			"subtitle": "University of Tennessee, Knoxville",
+			"avatar": "insights",
+			"chips": {
+				"date": [
+					"2022 - 2024"
+				],
+				"awards": [
+					"GPA: 3.86"
+				],
+				"positions": [
+					"Research Assistant",
+					"Teaching Assistant"
+				]
+			},
+			"content": [
+				"Concentration: Intelligent Systems & Machine Learning",
+				"Thesis: \"KIPPO - Koopman-Inspired Proximal Policy Optimization\""
+			],
+			"contentAlign": "center"
+		},
+		{
+			"title": "Computer Science B.S.",
 			"subtitle": "University of Tennessee, Knoxville",
 			"avatar": "school",
 			"chips": {
 				"date": [
-					"08/2018 - 05/2022"
+					"2018 - 2022"
 				],
 				"awards": [
 					"Summa Cum Laude",
