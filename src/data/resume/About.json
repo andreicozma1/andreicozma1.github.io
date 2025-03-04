@@ -31,7 +31,7 @@
 					"text": "Resume PDF",
 					"href": "/resume.pdf",
 					"target": "_blank",
-					"hidden": "true"
+					"hidden": "false"
 				}
 			],
 			"avatar": "interests"
