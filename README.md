@@ -1,6 +1,12 @@
 # Personal Portfolio - Andrei Cozma
 
-A personal portfolio written with the Gatsby, React.JS, and MaterialUI (MUI) component library.
+A personal portfolio built with Gatsby, React, and MaterialUI.
+
+## Branch Structure
+
+- **Source Branch:** The `source` branch contains the full source code required for building and developing the project. It includes all the necessary files and resources for development.
+
+- **Main Branch:** The `main` branch is used for deployment. It holds the static files generated from the `source` branch and is what gets published on GitHub Pages.
 
 ## Dependencies
 
