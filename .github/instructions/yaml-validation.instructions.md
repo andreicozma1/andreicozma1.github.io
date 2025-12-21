@@ -129,6 +129,14 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 
 ## Reference
 
-- Tools: `.github/scripts/`
-- Documentation: `.github/scripts/README.md`
-- Tool comparison matrix in README
+**Tool location:** `.github/scripts/actionlint`
+
+**Update actionlint:**
+```bash
+bash <(curl -s https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+mv actionlint .github/scripts/
+```
+
+**Resources:**
+- [actionlint documentation](https://github.com/rhysd/actionlint)
+- [GitHub Actions syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)
