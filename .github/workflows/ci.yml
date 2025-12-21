@@ -80,11 +80,17 @@ jobs:
           echo "## Build Statistics" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Calculate sizes
+          # Calculate sizes (in bytes for comparison, human readable for display)
           TOTAL_SIZE=$(du -sh public | cut -f1)
+          TOTAL_BYTES=$(du -sb public | cut -f1)
           HTML_COUNT=$(find public -name "*.html" | wc -l)
           JS_SIZE=$(find public -name "*.js" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
+          JS_BYTES=$(find public -name "*.js" -exec du -cb {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
           CSS_SIZE=$(find public -name "*.css" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
+          IMG_COUNT=$(find public -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" -o -name "*.webp" 2>/dev/null | wc -l)
+
+          # Get top 5 largest JS files
+          TOP_JS=$(find public -name "*.js" -exec du -h {} \; 2>/dev/null | sort -rh | head -5)
 
           echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
@@ -92,27 +98,44 @@ jobs:
           echo "| HTML Pages | ${HTML_COUNT} |" >> $GITHUB_STEP_SUMMARY
           echo "| JavaScript | ${JS_SIZE} |" >> $GITHUB_STEP_SUMMARY
           echo "| CSS | ${CSS_SIZE} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Images | ${IMG_COUNT} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Store for potential PR comment
+          # Store for PR comment
           echo "total_size=${TOTAL_SIZE}" >> $GITHUB_OUTPUT
+          echo "total_bytes=${TOTAL_BYTES}" >> $GITHUB_OUTPUT
           echo "html_count=${HTML_COUNT}" >> $GITHUB_OUTPUT
+          echo "js_size=${JS_SIZE}" >> $GITHUB_OUTPUT
+          echo "js_bytes=${JS_BYTES}" >> $GITHUB_OUTPUT
+          echo "css_size=${CSS_SIZE}" >> $GITHUB_OUTPUT
+          echo "img_count=${IMG_COUNT}" >> $GITHUB_OUTPUT
+
+          # Save top JS files (escape for JSON)
+          echo "top_js<<EOF" >> $GITHUB_OUTPUT
+          echo "$TOP_JS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Check for large bundles
+        id: bundles
         run: |
           echo "## Bundle Analysis" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Find JS files larger than 200KB
-          LARGE_FILES=$(find public -name "*.js" -size +200k -exec ls -lh {} \; 2>/dev/null || true)
+          LARGE_COUNT=$(find public -name "*.js" -size +200k 2>/dev/null | wc -l)
+          LARGE_FILES=$(find public -name "*.js" -size +200k -exec du -h {} \; 2>/dev/null | sort -rh || true)
 
-          if [ -n "$LARGE_FILES" ]; then
-            echo "⚠️ **Large JavaScript files (>200KB):**" >> $GITHUB_STEP_SUMMARY
+          echo "large_count=${LARGE_COUNT}" >> $GITHUB_OUTPUT
+
+          if [ "$LARGE_COUNT" -gt 0 ]; then
+            echo "⚠️ **Large JavaScript files (>200KB): ${LARGE_COUNT}**" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
             echo "$LARGE_FILES" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "has_large=true" >> $GITHUB_OUTPUT
           else
             echo "✅ No JavaScript files exceed 200KB" >> $GITHUB_STEP_SUMMARY
+            echo "has_large=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Post PR comment with build stats
@@ -120,22 +143,61 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const fs = require('fs');
-
             // Get build stats
             const totalSize = '${{ steps.stats.outputs.total_size }}';
             const htmlCount = '${{ steps.stats.outputs.html_count }}';
+            const jsSize = '${{ steps.stats.outputs.js_size }}';
+            const cssSize = '${{ steps.stats.outputs.css_size }}';
+            const imgCount = '${{ steps.stats.outputs.img_count }}';
             const buildTime = '${{ steps.build.outputs.build_time }}';
+            const hasLargeBundles = '${{ steps.bundles.outputs.has_large }}' === 'true';
+            const largeCount = '${{ steps.bundles.outputs.large_count }}';
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+
+            // Build status indicator
+            const bundleStatus = hasLargeBundles
+              ? `⚠️ ${largeCount} large bundle(s)`
+              : '✅ No large bundles';
+
+            // Format top JS files
+            const topJs = `${{ steps.stats.outputs.top_js }}`.trim();
+            const topJsFormatted = topJs ? topJs.split('\n').map(line => {
+              const parts = line.trim().split(/\s+/);
+              if (parts.length >= 2) {
+                const size = parts[0];
+                const file = parts[1].replace('public/', '');
+                return `| \`${file}\` | ${size} |`;
+              }
+              return '';
+            }).filter(Boolean).join('\n') : '| No JS files | - |';
 
             const body = `## 📊 Build Report
 
             | Metric | Value |
-            |--------|-------|
-            | ⏱️ Build Time | ${buildTime}s |
-            | 📦 Total Size | ${totalSize} |
+            |:-------|------:|
+            | ⏱️ Build Time | **${buildTime}s** |
+            | 📦 Total Size | **${totalSize}** |
             | 📄 HTML Pages | ${htmlCount} |
+            | 📜 JavaScript | ${jsSize} |
+            | 🎨 CSS | ${cssSize} |
+            | 🖼️ Images | ${imgCount} |
 
-            ✅ All checks passed!`;
+            ### Bundle Status
+            ${bundleStatus}
+
+            <details>
+            <summary>📁 Top 5 Largest JS Files</summary>
+
+            | File | Size |
+            |:-----|-----:|
+            ${topJsFormatted}
+
+            </details>
+
+            ---
+            ✅ All checks passed! [View full details](${runUrl})
+
+            <sub>Updated: ${new Date().toISOString()}</sub>`;
 
             // Find existing comment
             const { data: comments } = await github.rest.issues.listComments({
