@@ -38,9 +38,129 @@ jobs:
         run: npm ci
 
       - name: Type check
-        run: npm run typecheck
+        id: typecheck
+        run: |
+          # Enable TypeScript problem matcher for inline annotations
+          echo "::add-matcher::.github/matchers/typescript.json"
+
+          echo "## TypeScript Check" >> $GITHUB_STEP_SUMMARY
+          if npm run typecheck 2>&1 | tee typecheck-output.txt; then
+            echo "✅ No type errors found" >> $GITHUB_STEP_SUMMARY
+            echo "status=success" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Type errors detected:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat typecheck-output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "status=failure" >> $GITHUB_OUTPUT
+            # Output errors again for the matcher to pick up
+            cat typecheck-output.txt
+            exit 1
+          fi
+
+          echo "::remove-matcher owner=tsc::"
 
       - name: Build
-        run: npm run build
+        id: build
+        run: |
+          echo "## Build" >> $GITHUB_STEP_SUMMARY
+          BUILD_START=$(date +%s)
+          npm run build
+          BUILD_END=$(date +%s)
+          BUILD_TIME=$((BUILD_END - BUILD_START))
+          echo "✅ Build completed in ${BUILD_TIME}s" >> $GITHUB_STEP_SUMMARY
+          echo "build_time=${BUILD_TIME}" >> $GITHUB_OUTPUT
         env:
           CI: true
+
+      - name: Generate build stats
+        id: stats
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Build Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Calculate sizes
+          TOTAL_SIZE=$(du -sh public | cut -f1)
+          HTML_COUNT=$(find public -name "*.html" | wc -l)
+          JS_SIZE=$(find public -name "*.js" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
+          CSS_SIZE=$(find public -name "*.css" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
+
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Size | ${TOTAL_SIZE} |" >> $GITHUB_STEP_SUMMARY
+          echo "| HTML Pages | ${HTML_COUNT} |" >> $GITHUB_STEP_SUMMARY
+          echo "| JavaScript | ${JS_SIZE} |" >> $GITHUB_STEP_SUMMARY
+          echo "| CSS | ${CSS_SIZE} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Store for potential PR comment
+          echo "total_size=${TOTAL_SIZE}" >> $GITHUB_OUTPUT
+          echo "html_count=${HTML_COUNT}" >> $GITHUB_OUTPUT
+
+      - name: Check for large bundles
+        run: |
+          echo "## Bundle Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Find JS files larger than 200KB
+          LARGE_FILES=$(find public -name "*.js" -size +200k -exec ls -lh {} \; 2>/dev/null || true)
+
+          if [ -n "$LARGE_FILES" ]; then
+            echo "⚠️ **Large JavaScript files (>200KB):**" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$LARGE_FILES" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No JavaScript files exceed 200KB" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Post PR comment with build stats
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Get build stats
+            const totalSize = '${{ steps.stats.outputs.total_size }}';
+            const htmlCount = '${{ steps.stats.outputs.html_count }}';
+            const buildTime = '${{ steps.build.outputs.build_time }}';
+
+            const body = `## 📊 Build Report
+
+            | Metric | Value |
+            |--------|-------|
+            | ⏱️ Build Time | ${buildTime}s |
+            | 📦 Total Size | ${totalSize} |
+            | 📄 HTML Pages | ${htmlCount} |
+
+            ✅ All checks passed!`;
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('📊 Build Report')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }
