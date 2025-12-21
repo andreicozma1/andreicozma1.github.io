@@ -5,6 +5,7 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 import * as React from "react"
 import { Link } from "gatsby"
+import SEO from "../components/SEO"
 
 // styles
 const pageStyles = {
@@ -32,7 +33,6 @@ const codeStyles = {
 // markup
 const NotFoundPage = () => {
 	return (<main style={pageStyles}>
-		<title>Not found</title>
 		<h1 style={headingStyles}>Page not found</h1>
 		<p style={paragraphStyles}>
 			Sorry{" "}
@@ -53,3 +53,7 @@ const NotFoundPage = () => {
 }
 
 export default NotFoundPage
+
+export const Head = () => (
+	<SEO title="Not Found" />
+)

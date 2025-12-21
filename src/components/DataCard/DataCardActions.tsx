@@ -1,7 +1,7 @@
 import { TemplateDataCardActionProps } from "../TemplatedDataProps"
 import * as React from "react"
 import { CardActions } from "@mui/material"
-import { Button } from "gatsby-theme-material-ui"
+import { Button } from "../GatsbyMuiLink"
 import Theme from "../../config/Theme"
 
 interface DataCardActionsProps {
@@ -17,7 +17,7 @@ export const DataCardActions = (props: DataCardActionsProps) => {
 			mb            : Theme.card.contentPaddingV
 		}}>
 			{props.actions.map((action, index) => {
-				if (action.hidden === "true") return null
+				if (action.hidden) return null
 				return <Button key={index}
 							   variant="outlined"
 							   onClick={props.onButtonClick}

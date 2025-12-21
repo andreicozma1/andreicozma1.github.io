@@ -3,7 +3,7 @@ import {
 } from "@mui/icons-material"
 import React from "react"
 
-export const Icons = {
+export const Icons: Record<string, React.ReactElement> = {
 	"ic_home"     : <HomeRounded/>,
 	"ic_resume"   : <SummarizeRounded/>,
 	"ic_projects" : <CodeRounded/>,

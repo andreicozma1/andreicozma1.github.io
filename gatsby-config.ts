@@ -15,14 +15,6 @@ const config: GatsbyConfig = {
 	// Learn more at: https://gatsby.dev/graphql-typegen
 	graphqlTypegen: true,
 	plugins       : [
-		// {
-		//     resolve: `gatsby-source-contentful`,
-		//     options: {
-		//         spaceId: process.env.CONTENTFUL_SPACE_ID,
-		//         // Learn about environment variables: https://gatsby.dev/env-vars
-		//         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-		//     },
-		// },
 		{
 			resolve: `gatsby-plugin-google-gtag`,
 			options: {
@@ -37,14 +29,6 @@ const config: GatsbyConfig = {
 				}
 			}
 		},
-		// {
-		// 	resolve: "gatsby-source-google-photos",
-		// 	options: {
-		// 		albumsTitles   : [ "Photography" ],
-		// 		photosMaxWidth : 1920,
-		// 		photosMaxHeight: 1080 // debug: true,
-		// 	}
-		// },
 		{
 			resolve: "gatsby-plugin-google-fonts",
 			options: {
@@ -61,7 +45,7 @@ const config: GatsbyConfig = {
 					quality         : 100,
 				}
 			}
-		}, "gatsby-plugin-image", "gatsby-plugin-material-ui", "gatsby-theme-material-ui", {
+		}, "gatsby-plugin-image", {
 			resolve: "gatsby-source-filesystem",
 			options: {
 				"name": "images",

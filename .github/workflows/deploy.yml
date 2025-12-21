@@ -1,35 +1,63 @@
-name: Node.js CI Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ "source" ]
+    branches: ["source"]
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Env
-        run: |
-          echo "$SFC" | base64 -d >> ./.env
-        shell: bash
-        env:
-          SFC: ${{secrets.SECRETS_FILE_CONTENTS}}
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - name: Build App
+          node-version: "20"
+          cache: "npm"
+
+      - name: Setup environment
         run: |
-          npm ci
-          npm run build
-      - name: Deploy App
-        uses: peaceiris/actions-gh-pages@v3
+          if [ -z "${SFC:-}" ]; then
+            echo "::error::SECRETS_FILE_CONTENTS not configured - cannot deploy without environment"
+            exit 1
+          fi
+          echo "$SFC" | base64 -d > ./.env
+          echo "Environment configured ($(wc -l < ./.env) lines)"
+        env:
+          SFC: ${{ secrets.SECRETS_FILE_CONTENTS }}
+
+      - name: Restore Gatsby cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            public
+            .cache
+          key: gatsby-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
+          restore-keys: |
+            gatsby-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
+            gatsby-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: main
+          publish_dir: ./public

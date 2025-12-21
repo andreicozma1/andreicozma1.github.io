@@ -37,7 +37,7 @@ const DataCard = (props: DataCardProp) => {
 
 	const onActionBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.stopPropagation()
-		setElevation(false)
+		setElevation(0)
 	}
 
 	const onCardHover = () => {
