@@ -15,8 +15,9 @@ import {
 } from "@mui/material"
 
 // Helper to check if a URL is internal
+// Excludes protocol-relative URLs (//example.com) which should be treated as external
 const isInternalLink = (url: string): boolean => {
-	return url.startsWith("/") || url.startsWith("#")
+	return (url.startsWith("/") && !url.startsWith("//")) || url.startsWith("#")
 }
 
 // Gatsby-compatible Link component
@@ -48,7 +49,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, GatsbyMuiLinkProps>(
 			<MuiLink
 				href={destination}
 				ref={ref}
-				target={target || "_blank"}
+				target={target ?? "_blank"}
 				rel="noopener noreferrer"
 				{...props}
 			>
@@ -88,7 +89,7 @@ export const Button: React.FC<GatsbyMuiButtonProps> = ({ href, to, children, tar
 			<MuiButton
 				component="a"
 				href={destination}
-				target={target || "_blank"}
+				target={target ?? "_blank"}
 				rel="noopener noreferrer"
 				{...props}
 			>
@@ -134,7 +135,7 @@ export const IconButton: React.FC<GatsbyMuiIconButtonProps> = ({ href, to, child
 			<MuiIconButton
 				component="a"
 				href={destination}
-				target={target || "_blank"}
+				target={target ?? "_blank"}
 				rel="noopener noreferrer"
 				{...props}
 			>

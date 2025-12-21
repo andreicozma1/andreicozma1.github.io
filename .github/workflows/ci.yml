@@ -19,7 +19,7 @@ jobs:
 
       - name: Setup environment
         run: |
-          echo "$SFC" | base64 -d >> ./.env
+          echo "$SFC" | base64 -d > ./.env
         env:
           SFC: ${{ secrets.SECRETS_FILE_CONTENTS }}
 
@@ -87,7 +87,7 @@ jobs:
           JS_SIZE=$(find public -name "*.js" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
           JS_BYTES=$(find public -name "*.js" -exec du -cb {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
           CSS_SIZE=$(find public -name "*.css" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
-          IMG_COUNT=$(find public -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" -o -name "*.webp" 2>/dev/null | wc -l)
+          IMG_COUNT=$(find public \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" -o -name "*.webp" \) 2>/dev/null | wc -l)
 
           # Get top 5 largest JS files
           TOP_JS=$(find public -name "*.js" -exec du -h {} \; 2>/dev/null | sort -rh | head -5)
@@ -199,30 +199,35 @@ jobs:
 
             <sub>Updated: ${new Date().toISOString()}</sub>`;
 
-            // Find existing comment
-            const { data: comments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-            });
-
-            const botComment = comments.find(comment =>
-              comment.user.type === 'Bot' &&
-              comment.body.includes('📊 Build Report')
-            );
-
-            if (botComment) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: botComment.id,
-                body: body
-              });
-            } else {
-              await github.rest.issues.createComment({
+            // Find existing comment and post/update
+            try {
+              const { data: comments } = await github.rest.issues.listComments({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                body: body
               });
+
+              const botComment = comments.find(comment =>
+                comment.user.login === 'github-actions[bot]' &&
+                comment.body.includes('📊 Build Report')
+              );
+
+              if (botComment) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: botComment.id,
+                  body: body
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: body
+                });
+              }
+            } catch (error) {
+              console.error('Failed to post PR comment:', error);
+              // Don't fail the workflow if comment posting fails
             }

@@ -49,6 +49,6 @@ export interface TemplateDataCardActionProps {
 	text: string,
 	href?: string,
 	target?: string,
-	hidden?: string,
+	hidden?: boolean,
 }
 
