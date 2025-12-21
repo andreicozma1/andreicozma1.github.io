@@ -607,8 +607,9 @@ _Building..._
             const buildIcon = hasLargeBundles ? '⚠️' : '✅';
             const surgeConfigured = '${{ secrets.SURGE_TOKEN }}' !== '';
             const deployIcon = surgeConfigured ? '⏳' : '⏸️';
+            const deployLabel = surgeConfigured ? 'Deploy' : 'Preview';
             const deltaDisplay = hasComparison ? ` (${formatDelta(deltaTotal)})` : '';
-            const statusLine = `${typeIcon} Types · ${buildIcon} Build${deltaDisplay} · ${deployIcon} Deploy · ⏱️ ${buildTime}s`;
+            const statusLine = `${typeIcon} Types · ${buildIcon} Build${deltaDisplay} · ${deployIcon} ${deployLabel} · ⏱️ ${buildTime}s`;
 
             // Helper for formatting count deltas
             const formatCountDelta = (delta) => {
@@ -658,7 +659,9 @@ _Building..._
 
             // Check if preview deployment is configured
             const hasSurgeToken = '${{ secrets.SURGE_TOKEN }}' !== '';
-            const previewPlaceholder = hasSurgeToken ? ' · 🚀 _deploying..._<!-- preview-marker -->' : '<!-- preview-marker -->';
+            const previewPlaceholder = hasSurgeToken
+              ? ' · 🚀 _deploying..._<!-- preview-marker -->'
+              : '\n\n> 💡 _Preview deployments not configured. Add `SURGE_TOKEN` secret to enable._<!-- preview-marker -->';
 
             // Build footer with base comparison info and timestamp
             const baseSha = '${{ steps.base-sha.outputs.short_sha }}';
