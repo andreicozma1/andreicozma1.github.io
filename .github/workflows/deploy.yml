@@ -78,9 +78,9 @@ jobs:
           path: |
             public
             .cache
-          key: gatsby-${{ runner.os }}-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ github.sha }}
+          key: gatsby-${{ runner.os }}-${{ hashFiles('package-lock.json', 'yarn.lock') }}-${{ github.sha }}
           restore-keys: |
-            gatsby-${{ runner.os }}-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+            gatsby-${{ runner.os }}-${{ hashFiles('package-lock.json', 'yarn.lock') }}-
             gatsby-${{ runner.os }}-
 
       - name: Install dependencies
