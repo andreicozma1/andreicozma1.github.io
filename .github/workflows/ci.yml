@@ -366,10 +366,9 @@ jobs:
               deltaImg = parseInt('${{ steps.stats.outputs.delta_img }}') || 0;
             }
 
-            // Build status indicator
-            const bundleStatus = hasLargeBundles
-              ? `⚠️ ${largeCount} large bundle(s) detected (>200KB)`
-              : '✅ No large bundles';
+            // Get typecheck and other status
+            const typecheckStatus = '${{ steps.typecheck.outputs.status }}' === 'success';
+            const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
 
             // Format top JS files (from env to handle multiline safely)
             const topJs = (process.env.TOP_JS || '').trim();
@@ -381,7 +380,13 @@ jobs:
                 return `| \`${file}\` | ${size} |`;
               }
               return '';
-            }).filter(Boolean).join('\n') : '| _No JS files found_ | - |';
+            }).filter(Boolean).join('\n') : '';
+
+            // Build status line
+            const typeIcon = typecheckStatus ? '✅' : '❌';
+            const bundleIcon = hasLargeBundles ? '⚠️' : '✅';
+            const deltaDisplay = hasComparison ? formatDelta(deltaTotal) : totalSize;
+            const statusLine = `${typeIcon} Types · ${bundleIcon} Bundles · 📊 ${deltaDisplay} · ⏱️ ${buildTime}s`;
 
             // Helper for formatting count deltas
             const formatCountDelta = (delta) => {
@@ -419,27 +424,24 @@ jobs:
 
             // Build large bundles section (only if there are large bundles)
             let bundleSection = '';
-            if (hasLargeBundles) {
+            if (hasLargeBundles && topJsFormatted) {
               bundleSection = `
-            > ⚠️ **${largeCount} bundle(s) exceed 200KB**
-
-            <details>
-            <summary>📦 Large files</summary>
+            **${largeCount} bundle(s) exceed 200KB:**
 
             | File | Size |
             |:-----|-----:|
             ${topJsFormatted}
-
-            </details>
             `;
             }
 
             const body = `<!-- build-report -->
-            ## 📊 Build Report<!-- preview-marker -->
+            ## CI Report<!-- preview-marker -->
+
+            ${statusLine}
 
             ${statsTable}
             ${bundleSection}
-            ⏱️ ${buildTime}s · ${runUrl}`;
+            \`${commitSha}\` · ${runUrl}`;
 
             // Find existing comment and post/update
             try {
