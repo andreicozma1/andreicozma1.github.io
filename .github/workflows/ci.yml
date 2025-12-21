@@ -159,6 +159,8 @@ jobs:
 
       - name: Generate build stats and compare
         id: stats
+        env:
+          BASE_BUILD_ERROR: ${{ steps.base-build.outputs.base_build_error }}
         run: |
           set -euo pipefail
 
@@ -259,12 +261,8 @@ jobs:
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "> ⚠️ _Base branch (\`${{ github.base_ref }}\`) build failed - comparison not available._" >> $GITHUB_STEP_SUMMARY
 
-            # Show error if captured (use cat with heredoc for safe multiline handling)
-            base_error=$(cat <<'ERREOF'
-            ${{ steps.base-build.outputs.base_build_error }}
-            ERREOF
-            )
-            base_error=$(echo "$base_error" | sed '/^[[:space:]]*$/d')  # Remove empty lines
+            # Show error if captured (passed via env for safe multiline handling)
+            base_error=$(echo "$BASE_BUILD_ERROR" | sed '/^[[:space:]]*$/d')
             if [ -n "$base_error" ]; then
               echo "" >> $GITHUB_STEP_SUMMARY
               echo "<details><summary>Build error</summary>" >> $GITHUB_STEP_SUMMARY
