@@ -140,7 +140,7 @@ Update PR comments as workflow progresses to show current status:
 
 # 3. Final update with all stats
 - name: Post PR comment with build stats
-  # Shows: ✅ Types · ✅ Build · 📊 +2.1K
+  # Shows: ✅ Types · ✅ Bundles · 📊 +2.1K
 ```
 
 **Status indicators:**
