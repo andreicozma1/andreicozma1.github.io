@@ -31,12 +31,48 @@ jobs:
         env:
           SFC: ${{ secrets.SECRETS_FILE_CONTENTS }}
 
+      - name: Get base branch commit SHA
+        id: base-sha
+        run: |
+          BASE_SHA=$(git rev-parse origin/${{ github.base_ref }})
+          echo "sha=${BASE_SHA}" >> $GITHUB_OUTPUT
+          echo "short_sha=${BASE_SHA:0:7}" >> $GITHUB_OUTPUT
+          echo "Base branch ${{ github.base_ref }} is at ${BASE_SHA:0:7}"
+
+      - name: Check base stats cache
+        id: base-cache
+        uses: actions/cache@v4
+        with:
+          path: .base-stats.json
+          key: base-stats-${{ github.base_ref }}-${{ steps.base-sha.outputs.sha }}
+
+      - name: Load cached base stats
+        id: cached-stats
+        if: steps.base-cache.outputs.cache-hit == 'true'
+        run: |
+          echo "Using cached base stats for ${{ steps.base-sha.outputs.short_sha }}"
+
+          # Read stats from cached JSON
+          cat .base-stats.json
+
+          # Export to outputs
+          echo "base_build_success=true" >> $GITHUB_OUTPUT
+          echo "base_total=$(jq -r '.base_total' .base-stats.json)" >> $GITHUB_OUTPUT
+          echo "base_js=$(jq -r '.base_js' .base-stats.json)" >> $GITHUB_OUTPUT
+          echo "base_css=$(jq -r '.base_css' .base-stats.json)" >> $GITHUB_OUTPUT
+          echo "base_html=$(jq -r '.base_html' .base-stats.json)" >> $GITHUB_OUTPUT
+          echo "base_img=$(jq -r '.base_img' .base-stats.json)" >> $GITHUB_OUTPUT
+          echo "base_total_size=$(jq -r '.base_total_size' .base-stats.json)" >> $GITHUB_OUTPUT
+          echo "base_js_size=$(jq -r '.base_js_size' .base-stats.json)" >> $GITHUB_OUTPUT
+          echo "base_css_size=$(jq -r '.base_css_size' .base-stats.json)" >> $GITHUB_OUTPUT
+
       - name: Build base branch for comparison
         id: base-build
+        if: steps.base-cache.outputs.cache-hit != 'true'
         run: |
           set -uo pipefail  # Note: no -e, we handle errors manually
 
-          echo "Building base branch (${{ github.base_ref }}) for comparison..."
+          echo "Building base branch (${{ github.base_ref }} @ ${{ steps.base-sha.outputs.short_sha }})..."
 
           # Save current HEAD
           PR_HEAD=$(git rev-parse HEAD)
@@ -75,13 +111,6 @@ jobs:
               base_html=$(find public -name '*.html' -type f 2>/dev/null | wc -l | tr -d ' ')
               base_img=$(find public \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.gif' -o -name '*.svg' -o -name '*.webp' \) -type f 2>/dev/null | wc -l | tr -d ' ')
 
-              # Output raw bytes for arithmetic
-              echo "base_total=${base_total}" >> $GITHUB_OUTPUT
-              echo "base_js=${base_js}" >> $GITHUB_OUTPUT
-              echo "base_css=${base_css}" >> $GITHUB_OUTPUT
-              echo "base_html=${base_html}" >> $GITHUB_OUTPUT
-              echo "base_img=${base_img}" >> $GITHUB_OUTPUT
-
               # Output human-readable sizes for display
               base_total_size=$(du -sh public | cut -f1)
               if [ -n "$js_files" ]; then
@@ -94,9 +123,29 @@ jobs:
               else
                 base_css_size="0"
               fi
+
+              # Output to GITHUB_OUTPUT
+              echo "base_total=${base_total}" >> $GITHUB_OUTPUT
+              echo "base_js=${base_js}" >> $GITHUB_OUTPUT
+              echo "base_css=${base_css}" >> $GITHUB_OUTPUT
+              echo "base_html=${base_html}" >> $GITHUB_OUTPUT
+              echo "base_img=${base_img}" >> $GITHUB_OUTPUT
               echo "base_total_size=${base_total_size}" >> $GITHUB_OUTPUT
               echo "base_js_size=${base_js_size}" >> $GITHUB_OUTPUT
               echo "base_css_size=${base_css_size}" >> $GITHUB_OUTPUT
+
+              # Save to JSON for caching (will be saved by cache action post-job)
+              jq -n \
+                --arg base_total "$base_total" \
+                --arg base_js "$base_js" \
+                --arg base_css "$base_css" \
+                --arg base_html "$base_html" \
+                --arg base_img "$base_img" \
+                --arg base_total_size "$base_total_size" \
+                --arg base_js_size "$base_js_size" \
+                --arg base_css_size "$base_css_size" \
+                '{base_total: $base_total, base_js: $base_js, base_css: $base_css, base_html: $base_html, base_img: $base_img, base_total_size: $base_total_size, base_js_size: $base_js_size, base_css_size: $base_css_size}' \
+                > .base-stats.json
 
               echo "Base build stats: total=${base_total_size}, js=${base_js_size}, css=${base_css_size}, html=${base_html}, img=${base_img}"
             fi
@@ -123,6 +172,43 @@ jobs:
           echo "Returned to PR branch"
         env:
           CI: true
+
+      # Consolidate base stats from cache or build into single source
+      - name: Consolidate base stats
+        id: base-stats
+        run: |
+          # Use cached stats if available, otherwise use build stats
+          if [ "${{ steps.base-cache.outputs.cache-hit }}" = "true" ]; then
+            echo "Using cached base stats"
+            echo "base_build_success=${{ steps.cached-stats.outputs.base_build_success }}" >> $GITHUB_OUTPUT
+            echo "base_total=${{ steps.cached-stats.outputs.base_total }}" >> $GITHUB_OUTPUT
+            echo "base_js=${{ steps.cached-stats.outputs.base_js }}" >> $GITHUB_OUTPUT
+            echo "base_css=${{ steps.cached-stats.outputs.base_css }}" >> $GITHUB_OUTPUT
+            echo "base_html=${{ steps.cached-stats.outputs.base_html }}" >> $GITHUB_OUTPUT
+            echo "base_img=${{ steps.cached-stats.outputs.base_img }}" >> $GITHUB_OUTPUT
+            echo "base_total_size=${{ steps.cached-stats.outputs.base_total_size }}" >> $GITHUB_OUTPUT
+            echo "base_js_size=${{ steps.cached-stats.outputs.base_js_size }}" >> $GITHUB_OUTPUT
+            echo "base_css_size=${{ steps.cached-stats.outputs.base_css_size }}" >> $GITHUB_OUTPUT
+          else
+            echo "Using freshly built base stats"
+            echo "base_build_success=${{ steps.base-build.outputs.base_build_success }}" >> $GITHUB_OUTPUT
+            echo "base_total=${{ steps.base-build.outputs.base_total }}" >> $GITHUB_OUTPUT
+            echo "base_js=${{ steps.base-build.outputs.base_js }}" >> $GITHUB_OUTPUT
+            echo "base_css=${{ steps.base-build.outputs.base_css }}" >> $GITHUB_OUTPUT
+            echo "base_html=${{ steps.base-build.outputs.base_html }}" >> $GITHUB_OUTPUT
+            echo "base_img=${{ steps.base-build.outputs.base_img }}" >> $GITHUB_OUTPUT
+            echo "base_total_size=${{ steps.base-build.outputs.base_total_size }}" >> $GITHUB_OUTPUT
+            echo "base_js_size=${{ steps.base-build.outputs.base_js_size }}" >> $GITHUB_OUTPUT
+            echo "base_css_size=${{ steps.base-build.outputs.base_css_size }}" >> $GITHUB_OUTPUT
+            # Also forward error if present
+            if [ -n "${{ steps.base-build.outputs.base_build_error }}" ]; then
+              {
+                echo "base_build_error<<ERROR_EOF"
+                echo "${{ steps.base-build.outputs.base_build_error }}"
+                echo "ERROR_EOF"
+              } >> $GITHUB_OUTPUT
+            fi
+          fi
 
       - name: Install dependencies
         run: npm ci
@@ -166,7 +252,7 @@ jobs:
       - name: Generate build stats and compare
         id: stats
         env:
-          BASE_BUILD_ERROR: ${{ steps.base-build.outputs.base_build_error }}
+          BASE_BUILD_ERROR: ${{ steps.base-stats.outputs.base_build_error }}
         run: |
           set -euo pipefail
 
@@ -219,13 +305,13 @@ jobs:
           echo "img_count=${img_count}" >> $GITHUB_OUTPUT
 
           # Check if base build succeeded for comparison
-          if [ "${{ steps.base-build.outputs.base_build_success }}" = "true" ]; then
+          if [ "${{ steps.base-stats.outputs.base_build_success }}" = "true" ]; then
             # Use defaults to prevent arithmetic errors if outputs are empty
-            base_total="${{ steps.base-build.outputs.base_total }}"
-            base_js="${{ steps.base-build.outputs.base_js }}"
-            base_css="${{ steps.base-build.outputs.base_css }}"
-            base_html="${{ steps.base-build.outputs.base_html }}"
-            base_img="${{ steps.base-build.outputs.base_img }}"
+            base_total="${{ steps.base-stats.outputs.base_total }}"
+            base_js="${{ steps.base-stats.outputs.base_js }}"
+            base_css="${{ steps.base-stats.outputs.base_css }}"
+            base_html="${{ steps.base-stats.outputs.base_html }}"
+            base_img="${{ steps.base-stats.outputs.base_img }}"
 
             delta_total=$((total_bytes - ${base_total:-0}))
             delta_js=$((js_bytes - ${base_js:-0}))
@@ -241,9 +327,9 @@ jobs:
             echo "delta_img=${delta_img}" >> $GITHUB_OUTPUT
 
             # Get human-readable base sizes
-            base_total_size="${{ steps.base-build.outputs.base_total_size }}"
-            base_js_size="${{ steps.base-build.outputs.base_js_size }}"
-            base_css_size="${{ steps.base-build.outputs.base_css_size }}"
+            base_total_size="${{ steps.base-stats.outputs.base_total_size }}"
+            base_js_size="${{ steps.base-stats.outputs.base_js_size }}"
+            base_css_size="${{ steps.base-stats.outputs.base_css_size }}"
 
             # Write to step summary with comparison (Base | PR | Delta)
             echo "| Metric | Base | PR | Δ |" >> $GITHUB_STEP_SUMMARY
@@ -319,7 +405,7 @@ jobs:
         env:
           # Pass multiline/complex values via env to avoid template literal issues
           TOP_JS: ${{ steps.stats.outputs.top_js }}
-          BASE_BUILD_ERROR: ${{ steps.base-build.outputs.base_build_error }}
+          BASE_BUILD_ERROR: ${{ steps.base-stats.outputs.base_build_error }}
         with:
           script: |
             // Helper to format bytes
@@ -360,11 +446,11 @@ jobs:
             let baseTotalSize = '', baseJsSize = '', baseCssSize = '', baseHtml = 0, baseImg = 0;
             let deltaTotal = 0, deltaJs = 0, deltaCss = 0, deltaHtml = 0, deltaImg = 0;
             if (hasComparison) {
-              baseTotalSize = '${{ steps.base-build.outputs.base_total_size }}';
-              baseJsSize = '${{ steps.base-build.outputs.base_js_size }}';
-              baseCssSize = '${{ steps.base-build.outputs.base_css_size }}';
-              baseHtml = parseInt('${{ steps.base-build.outputs.base_html }}') || 0;
-              baseImg = parseInt('${{ steps.base-build.outputs.base_img }}') || 0;
+              baseTotalSize = '${{ steps.base-stats.outputs.base_total_size }}';
+              baseJsSize = '${{ steps.base-stats.outputs.base_js_size }}';
+              baseCssSize = '${{ steps.base-stats.outputs.base_css_size }}';
+              baseHtml = parseInt('${{ steps.base-stats.outputs.base_html }}') || 0;
+              baseImg = parseInt('${{ steps.base-stats.outputs.base_img }}') || 0;
               deltaTotal = parseInt('${{ steps.stats.outputs.delta_total }}') || 0;
               deltaJs = parseInt('${{ steps.stats.outputs.delta_js }}') || 0;
               deltaCss = parseInt('${{ steps.stats.outputs.delta_css }}') || 0;

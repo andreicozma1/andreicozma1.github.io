@@ -138,11 +138,49 @@ const updated = body.replace(
 
 ## Build Comparison
 
-**Prefer:** Build base branch in CI for comparison
-- Always accurate, no cache expiration
-- Trade-off: ~2x build time
+### Safe Caching Strategy
 
-**Handle failures gracefully:**
+Cache base branch build stats keyed by commit SHA:
+
+```yaml
+- name: Get base commit SHA
+  id: base-sha
+  run: echo "sha=$(git rev-parse origin/${{ github.base_ref }})" >> $GITHUB_OUTPUT
+
+- name: Check cache
+  uses: actions/cache@v4
+  with:
+    path: .base-stats.json
+    key: base-stats-${{ github.base_ref }}-${{ steps.base-sha.outputs.sha }}
+
+- name: Build if cache miss
+  if: steps.cache.outputs.cache-hit != 'true'
+  run: |
+    # Build and save stats to JSON
+    jq -n --arg total "$total" '{total: $total}' > .base-stats.json
+```
+
+**Why this is safe:**
+- Same commit SHA = same build output (immutable)
+- No race conditions (SHA is unique identifier)
+- No stale data (new commits = new cache key)
+
+**Consolidation pattern:**
+When stats can come from cache or fresh build, use a consolidation step:
+```yaml
+- name: Consolidate stats
+  id: stats
+  run: |
+    if [ "${{ steps.cache.outputs.cache-hit }}" = "true" ]; then
+      echo "value=$(jq -r '.field' .stats.json)" >> $GITHUB_OUTPUT
+    else
+      echo "value=${{ steps.build.outputs.field }}" >> $GITHUB_OUTPUT
+    fi
+```
+Downstream steps reference only `steps.stats.outputs.*`.
+
+### Handle Failures Gracefully
+
 - Base branch may not build (different deps, breaking changes)
 - Show stats without comparison when base fails
 - Include error details in collapsible section
