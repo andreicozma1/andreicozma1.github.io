@@ -581,11 +581,13 @@ _Building..._
               return '';
             }).filter(Boolean).join('\n') : '';
 
-            // Build status line
+            // Build status line - consistent format: Types · Build · Deploy
             const typeIcon = typecheckStatus ? '✅' : '❌';
-            const bundleIcon = hasLargeBundles ? '⚠️' : '✅';
-            const deltaDisplay = hasComparison ? formatDelta(deltaTotal) : totalSize;
-            const statusLine = `${typeIcon} Types · ${bundleIcon} Bundles · 📊 ${deltaDisplay} · ⏱️ ${buildTime}s`;
+            const buildIcon = hasLargeBundles ? '⚠️' : '✅';
+            const surgeConfigured = '${{ secrets.SURGE_TOKEN }}' !== '';
+            const deployIcon = surgeConfigured ? '⏳' : '⏸️';
+            const deltaDisplay = hasComparison ? ` (${formatDelta(deltaTotal)})` : '';
+            const statusLine = `${typeIcon} Types · ${buildIcon} Build${deltaDisplay} · ${deployIcon} Deploy · ⏱️ ${buildTime}s`;
 
             // Helper for formatting count deltas
             const formatCountDelta = (delta) => {
@@ -758,11 +760,21 @@ _Building..._
               );
 
               if (botComment && !botComment.body.includes('<!-- preview-url -->')) {
-                // Replace placeholder (with or without "deploying..." text)
-                const updatedBody = botComment.body.replace(
-                  / · 🚀 _deploying\.\.\._<!-- preview-marker -->|<!-- preview-marker -->/,
-                  ` · 🚀 ${previewUrl}${statusSuffix}<!-- preview-url -->`
-                );
+                // Update deploy status and preview URL
+                const deployStatus = status === 'success' ? '✅' : '⚠️';
+                let updatedBody = botComment.body
+                  // Update deploy status in status line
+                  .replace(/⏳ Deploy/, `${deployStatus} Deploy`)
+                  // Replace preview placeholder with actual URL
+                  .replace(
+                    / · 🚀 _deploying\.\.\._<!-- preview-marker -->|<!-- preview-marker -->/,
+                    ` · 🚀 ${previewUrl}${statusSuffix}<!-- preview-url -->`
+                  )
+                  // Update timestamp
+                  .replace(
+                    /_\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC_/,
+                    `_${new Date().toISOString().replace('T', ' ').substring(0, 19)} UTC_`
+                  );
 
                 await github.rest.issues.updateComment({
                   owner: context.repo.owner,
@@ -770,7 +782,7 @@ _Building..._
                   comment_id: botComment.id,
                   body: updatedBody
                 });
-                console.log(`Updated PR comment with preview URL (status: ${status})`);
+                console.log(`Updated PR comment with preview URL and deploy status (status: ${status})`);
               } else if (!botComment) {
                 console.log('No build report comment found to update');
               } else {
