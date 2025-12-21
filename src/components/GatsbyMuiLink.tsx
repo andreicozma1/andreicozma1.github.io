@@ -14,6 +14,11 @@ import {
 	LinkProps as MuiLinkProps
 } from "@mui/material"
 
+// Helper to check if a URL is internal
+const isInternalLink = (url: string): boolean => {
+	return url.startsWith("/") || url.startsWith("#")
+}
+
 // Gatsby-compatible Link component
 type GatsbyMuiLinkProps = Omit<MuiLinkProps, 'href'> & {
 	href?: string
@@ -21,9 +26,9 @@ type GatsbyMuiLinkProps = Omit<MuiLinkProps, 'href'> & {
 }
 
 export const Link = React.forwardRef<HTMLAnchorElement, GatsbyMuiLinkProps>(
-	({ href, to, children, ...props }, ref) => {
+	({ href, to, children, target, ...props }, ref) => {
 		const destination = to || href || "/"
-		const isInternal = destination.startsWith("/") || destination.startsWith("#")
+		const isInternal = isInternalLink(destination)
 
 		if (isInternal) {
 			return (
@@ -38,8 +43,15 @@ export const Link = React.forwardRef<HTMLAnchorElement, GatsbyMuiLinkProps>(
 			)
 		}
 
+		// External links get security attributes
 		return (
-			<MuiLink href={destination} ref={ref} {...props}>
+			<MuiLink
+				href={destination}
+				ref={ref}
+				target={target || "_blank"}
+				rel="noopener noreferrer"
+				{...props}
+			>
 				{children}
 			</MuiLink>
 		)
@@ -52,16 +64,15 @@ Link.displayName = "Link"
 type GatsbyMuiButtonProps = Omit<MuiButtonProps, 'href'> & {
 	href?: string
 	to?: string
+	target?: string
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, GatsbyMuiButtonProps>(
-	({ href, to, children, ...props }, ref) => {
+	({ href, to, children, target, ...props }, ref) => {
 		const destination = to || href
 
 		if (destination) {
-			const isInternal = destination.startsWith("/") || destination.startsWith("#")
-
-			if (isInternal) {
+			if (isInternalLink(destination)) {
 				return (
 					<MuiButton
 						component={GatsbyLink}
@@ -74,8 +85,15 @@ export const Button = React.forwardRef<HTMLButtonElement, GatsbyMuiButtonProps>(
 				)
 			}
 
+			// External links get security attributes
 			return (
-				<MuiButton href={destination} ref={ref} {...props}>
+				<MuiButton
+					href={destination}
+					ref={ref}
+					target={target || "_blank"}
+					rel="noopener noreferrer"
+					{...props}
+				>
 					{children}
 				</MuiButton>
 			)
@@ -95,16 +113,15 @@ Button.displayName = "Button"
 type GatsbyMuiIconButtonProps = Omit<MuiIconButtonProps, 'href'> & {
 	href?: string
 	to?: string
+	target?: string
 }
 
 export const IconButton = React.forwardRef<HTMLButtonElement, GatsbyMuiIconButtonProps>(
-	({ href, to, children, ...props }, ref) => {
+	({ href, to, children, target, ...props }, ref) => {
 		const destination = to || href
 
 		if (destination) {
-			const isInternal = destination.startsWith("/") || destination.startsWith("#")
-
-			if (isInternal) {
+			if (isInternalLink(destination)) {
 				return (
 					<MuiIconButton
 						component={GatsbyLink}
@@ -117,8 +134,15 @@ export const IconButton = React.forwardRef<HTMLButtonElement, GatsbyMuiIconButto
 				)
 			}
 
+			// External links get security attributes
 			return (
-				<MuiIconButton href={destination} ref={ref} {...props}>
+				<MuiIconButton
+					href={destination}
+					ref={ref}
+					target={target || "_blank"}
+					rel="noopener noreferrer"
+					{...props}
+				>
 					{children}
 				</MuiIconButton>
 			)

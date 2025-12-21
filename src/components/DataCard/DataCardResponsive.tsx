@@ -29,7 +29,6 @@ const DataCardResponsive = (props: DataCardResponsiveProps) => {
 	]
 
 	if (matchesSm) {
-		console.log("matches")
 		contentChips = [ ...contentChips || [], ...headerChips || [] ]
 		headerChips = []
 	}
