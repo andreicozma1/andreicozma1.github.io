@@ -71,15 +71,32 @@ type GatsbyMuiButtonProps = Omit<MuiButtonProps<"button">, 'href'> & {
 	target?: string
 }
 
-export const Button: React.FC<GatsbyMuiButtonProps> = ({ href, to, children, target, ...props }) => {
-	const destination = to || href
+export const Button = React.forwardRef<HTMLButtonElement, GatsbyMuiButtonProps>(
+	({ href, to, children, target, ...props }, ref) => {
+		const destination = to || href
 
-	if (destination) {
-		if (isInternalLink(destination)) {
+		if (destination) {
+			if (isInternalLink(destination)) {
+				return (
+					<MuiButton
+						component={GatsbyLink}
+						to={destination}
+						ref={ref as React.Ref<HTMLAnchorElement>}
+						{...props}
+					>
+						{children}
+					</MuiButton>
+				)
+			}
+
+			// External links get security attributes
 			return (
 				<MuiButton
-					component={GatsbyLink}
-					to={destination}
+					component="a"
+					href={destination}
+					target={target ?? "_blank"}
+					rel="noopener noreferrer"
+					ref={ref as React.Ref<HTMLAnchorElement>}
 					{...props}
 				>
 					{children}
@@ -87,26 +104,13 @@ export const Button: React.FC<GatsbyMuiButtonProps> = ({ href, to, children, tar
 			)
 		}
 
-		// External links get security attributes
 		return (
-			<MuiButton
-				component="a"
-				href={destination}
-				target={target ?? "_blank"}
-				rel="noopener noreferrer"
-				{...props}
-			>
+			<MuiButton ref={ref} {...props}>
 				{children}
 			</MuiButton>
 		)
 	}
-
-	return (
-		<MuiButton {...props}>
-			{children}
-		</MuiButton>
-	)
-}
+)
 
 Button.displayName = "Button"
 
@@ -117,15 +121,32 @@ type GatsbyMuiIconButtonProps = Omit<MuiIconButtonProps<"button">, 'href'> & {
 	target?: string
 }
 
-export const IconButton: React.FC<GatsbyMuiIconButtonProps> = ({ href, to, children, target, ...props }) => {
-	const destination = to || href
+export const IconButton = React.forwardRef<HTMLButtonElement, GatsbyMuiIconButtonProps>(
+	({ href, to, children, target, ...props }, ref) => {
+		const destination = to || href
 
-	if (destination) {
-		if (isInternalLink(destination)) {
+		if (destination) {
+			if (isInternalLink(destination)) {
+				return (
+					<MuiIconButton
+						component={GatsbyLink}
+						to={destination}
+						ref={ref as React.Ref<HTMLAnchorElement>}
+						{...props}
+					>
+						{children}
+					</MuiIconButton>
+				)
+			}
+
+			// External links get security attributes
 			return (
 				<MuiIconButton
-					component={GatsbyLink}
-					to={destination}
+					component="a"
+					href={destination}
+					target={target ?? "_blank"}
+					rel="noopener noreferrer"
+					ref={ref as React.Ref<HTMLAnchorElement>}
 					{...props}
 				>
 					{children}
@@ -133,25 +154,12 @@ export const IconButton: React.FC<GatsbyMuiIconButtonProps> = ({ href, to, child
 			)
 		}
 
-		// External links get security attributes
 		return (
-			<MuiIconButton
-				component="a"
-				href={destination}
-				target={target ?? "_blank"}
-				rel="noopener noreferrer"
-				{...props}
-			>
+			<MuiIconButton ref={ref} {...props}>
 				{children}
 			</MuiIconButton>
 		)
 	}
-
-	return (
-		<MuiIconButton {...props}>
-			{children}
-		</MuiIconButton>
-	)
-}
+)
 
 IconButton.displayName = "IconButton"
