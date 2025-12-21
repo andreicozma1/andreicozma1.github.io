@@ -24,11 +24,37 @@ jobs:
           SFC: ${{ secrets.SECRETS_FILE_CONTENTS }}
 
       - name: Restore base branch build stats
-        id: base-stats
+        id: base-stats-cache
         uses: actions/cache/restore@v4
         with:
           path: .build-stats
           key: build-stats-source-latest
+          # No restore-keys - we want exact match only
+
+      - name: Validate base stats
+        id: base-stats
+        run: |
+          if [ "${{ steps.base-stats-cache.outputs.cache-hit }}" != "true" ]; then
+            echo "No cached base stats found - this is expected for first PR or after cache expiry"
+            echo "available=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          if [ ! -f ".build-stats/base-stats.json" ]; then
+            echo "Cache restored but base-stats.json not found"
+            echo "available=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Validate JSON structure
+          if ! jq -e '.total_bytes and .js_bytes and .css_bytes and .html_count and .img_count' .build-stats/base-stats.json > /dev/null 2>&1; then
+            echo "base-stats.json exists but has invalid structure"
+            echo "available=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "Base stats validated successfully"
+          echo "available=true" >> $GITHUB_OUTPUT
 
       - name: Restore Gatsby cache
         uses: actions/cache@v4
@@ -83,93 +109,120 @@ jobs:
       - name: Generate build stats
         id: stats
         run: |
+          set -euo pipefail
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "## Build Statistics" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
+          # Verify public directory exists
+          if [ ! -d "public" ]; then
+            echo "Error: public directory does not exist after build"
+            exit 1
+          fi
+
           # Calculate current sizes
-          TOTAL_SIZE=$(du -sh public | cut -f1)
-          TOTAL_BYTES=$(du -sb public | cut -f1)
-          HTML_COUNT=$(find public -name "*.html" | wc -l)
-          JS_SIZE=$(find public -name "*.js" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
-          JS_BYTES=$(find public -name "*.js" -exec du -cb {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
-          CSS_SIZE=$(find public -name "*.css" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
-          CSS_BYTES=$(find public -name "*.css" -exec du -cb {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
-          IMG_COUNT=$(find public \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" -o -name "*.webp" \) 2>/dev/null | wc -l)
+          total_bytes=$(du -sb public | cut -f1)
+          total_size=$(du -sh public | cut -f1)
+
+          # Count JS files and size
+          js_files=$(find public -name '*.js' -type f 2>/dev/null)
+          if [ -n "$js_files" ]; then
+            js_bytes=$(echo "$js_files" | xargs du -cb | tail -1 | cut -f1)
+            js_size=$(echo "$js_files" | xargs du -ch | tail -1 | cut -f1)
+          else
+            js_bytes=0
+            js_size="0"
+          fi
+
+          # Count CSS files and size
+          css_files=$(find public -name '*.css' -type f 2>/dev/null)
+          if [ -n "$css_files" ]; then
+            css_bytes=$(echo "$css_files" | xargs du -cb | tail -1 | cut -f1)
+            css_size=$(echo "$css_files" | xargs du -ch | tail -1 | cut -f1)
+          else
+            css_bytes=0
+            css_size="0"
+          fi
+
+          html_count=$(find public -name '*.html' -type f 2>/dev/null | wc -l | tr -d ' ')
+          img_count=$(find public \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.gif' -o -name '*.svg' -o -name '*.webp' \) -type f 2>/dev/null | wc -l | tr -d ' ')
 
           # Get top 5 largest JS files
-          TOP_JS=$(find public -name "*.js" -exec du -h {} \; 2>/dev/null | sort -rh | head -5)
+          TOP_JS=$(find public -name "*.js" -type f -exec du -h {} \; 2>/dev/null | sort -rh | head -5)
 
-          # Check for base stats
-          HAS_BASE_STATS="false"
-          if [ -f ".build-stats/base-stats.json" ]; then
-            HAS_BASE_STATS="true"
-            BASE_TOTAL=$(jq -r '.total_bytes' .build-stats/base-stats.json)
-            BASE_JS=$(jq -r '.js_bytes' .build-stats/base-stats.json)
-            BASE_CSS=$(jq -r '.css_bytes' .build-stats/base-stats.json)
-            BASE_HTML=$(jq -r '.html_count' .build-stats/base-stats.json)
-            BASE_IMG=$(jq -r '.img_count' .build-stats/base-stats.json)
+          # Calculate deltas if base stats available
+          if [ "${{ steps.base-stats.outputs.available }}" = "true" ]; then
+            base_total=$(jq -r '.total_bytes // 0' .build-stats/base-stats.json)
+            base_js=$(jq -r '.js_bytes // 0' .build-stats/base-stats.json)
+            base_css=$(jq -r '.css_bytes // 0' .build-stats/base-stats.json)
+            base_html=$(jq -r '.html_count // 0' .build-stats/base-stats.json)
+            base_img=$(jq -r '.img_count // 0' .build-stats/base-stats.json)
 
-            # Calculate deltas
-            DELTA_TOTAL=$((TOTAL_BYTES - BASE_TOTAL))
-            DELTA_JS=$((JS_BYTES - BASE_JS))
-            DELTA_CSS=$((CSS_BYTES - BASE_CSS))
-            DELTA_HTML=$((HTML_COUNT - BASE_HTML))
-            DELTA_IMG=$((IMG_COUNT - BASE_IMG))
+            delta_total=$((total_bytes - base_total))
+            delta_js=$((js_bytes - base_js))
+            delta_css=$((css_bytes - base_css))
+            delta_html=$((html_count - base_html))
+            delta_img=$((img_count - base_img))
 
             echo "has_base_stats=true" >> $GITHUB_OUTPUT
-            echo "delta_total=${DELTA_TOTAL}" >> $GITHUB_OUTPUT
-            echo "delta_js=${DELTA_JS}" >> $GITHUB_OUTPUT
-            echo "delta_css=${DELTA_CSS}" >> $GITHUB_OUTPUT
-            echo "delta_html=${DELTA_HTML}" >> $GITHUB_OUTPUT
-            echo "delta_img=${DELTA_IMG}" >> $GITHUB_OUTPUT
+            echo "delta_total=${delta_total}" >> $GITHUB_OUTPUT
+            echo "delta_js=${delta_js}" >> $GITHUB_OUTPUT
+            echo "delta_css=${delta_css}" >> $GITHUB_OUTPUT
+            echo "delta_html=${delta_html}" >> $GITHUB_OUTPUT
+            echo "delta_img=${delta_img}" >> $GITHUB_OUTPUT
           else
             echo "has_base_stats=false" >> $GITHUB_OUTPUT
           fi
 
+          # Write to step summary
           echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Total Size | ${TOTAL_SIZE} |" >> $GITHUB_STEP_SUMMARY
-          echo "| HTML Pages | ${HTML_COUNT} |" >> $GITHUB_STEP_SUMMARY
-          echo "| JavaScript | ${JS_SIZE} |" >> $GITHUB_STEP_SUMMARY
-          echo "| CSS | ${CSS_SIZE} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Images | ${IMG_COUNT} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Size | ${total_size} |" >> $GITHUB_STEP_SUMMARY
+          echo "| HTML Pages | ${html_count} |" >> $GITHUB_STEP_SUMMARY
+          echo "| JavaScript | ${js_size} |" >> $GITHUB_STEP_SUMMARY
+          echo "| CSS | ${css_size} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Images | ${img_count} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Store for PR comment
-          echo "total_size=${TOTAL_SIZE}" >> $GITHUB_OUTPUT
-          echo "total_bytes=${TOTAL_BYTES}" >> $GITHUB_OUTPUT
-          echo "html_count=${HTML_COUNT}" >> $GITHUB_OUTPUT
-          echo "js_size=${JS_SIZE}" >> $GITHUB_OUTPUT
-          echo "js_bytes=${JS_BYTES}" >> $GITHUB_OUTPUT
-          echo "css_size=${CSS_SIZE}" >> $GITHUB_OUTPUT
-          echo "css_bytes=${CSS_BYTES}" >> $GITHUB_OUTPUT
-          echo "img_count=${IMG_COUNT}" >> $GITHUB_OUTPUT
+          # Store outputs for PR comment
+          echo "total_size=${total_size}" >> $GITHUB_OUTPUT
+          echo "total_bytes=${total_bytes}" >> $GITHUB_OUTPUT
+          echo "html_count=${html_count}" >> $GITHUB_OUTPUT
+          echo "js_size=${js_size}" >> $GITHUB_OUTPUT
+          echo "js_bytes=${js_bytes}" >> $GITHUB_OUTPUT
+          echo "css_size=${css_size}" >> $GITHUB_OUTPUT
+          echo "css_bytes=${css_bytes}" >> $GITHUB_OUTPUT
+          echo "img_count=${img_count}" >> $GITHUB_OUTPUT
 
-          # Save top JS files
-          echo "top_js<<EOF" >> $GITHUB_OUTPUT
-          echo "$TOP_JS" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          # Save top JS files using heredoc
+          {
+            echo "top_js<<TOPJS_EOF"
+            echo "$TOP_JS"
+            echo "TOPJS_EOF"
+          } >> $GITHUB_OUTPUT
 
       - name: Check for large bundles
         id: bundles
         run: |
+          set -euo pipefail
+
           echo "## Bundle Analysis" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Find JS files larger than 200KB
-          LARGE_COUNT=$(find public -name "*.js" -size +200k 2>/dev/null | wc -l)
-          LARGE_FILES=$(find public -name "*.js" -size +200k -exec du -h {} \; 2>/dev/null | sort -rh || true)
+          large_files=$(find public -name "*.js" -type f -size +200k 2>/dev/null || true)
 
-          echo "large_count=${LARGE_COUNT}" >> $GITHUB_OUTPUT
-
-          if [ "$LARGE_COUNT" -gt 0 ]; then
-            echo "⚠️ **Large JavaScript files (>200KB): ${LARGE_COUNT}**" >> $GITHUB_STEP_SUMMARY
+          if [ -n "$large_files" ]; then
+            large_count=$(echo "$large_files" | wc -l | tr -d ' ')
+            echo "large_count=${large_count}" >> $GITHUB_OUTPUT
+            echo "⚠️ **Large JavaScript files (>200KB): ${large_count}**" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "$LARGE_FILES" >> $GITHUB_STEP_SUMMARY
+            echo "$large_files" | xargs du -h | sort -rh >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
             echo "has_large=true" >> $GITHUB_OUTPUT
           else
+            echo "large_count=0" >> $GITHUB_OUTPUT
             echo "✅ No JavaScript files exceed 200KB" >> $GITHUB_STEP_SUMMARY
             echo "has_large=false" >> $GITHUB_OUTPUT
           fi
@@ -188,11 +241,10 @@ jobs:
             };
 
             // Helper to format delta with icon
-            const formatDelta = (delta, inverse = false) => {
+            const formatDelta = (delta) => {
               if (delta === 0) return '-';
-              const isPositive = delta > 0;
-              const icon = isPositive ? (inverse ? '✅' : '📈') : (inverse ? '📈' : '✅');
-              const sign = isPositive ? '+' : '';
+              const sign = delta > 0 ? '+' : '';
+              const icon = delta > 0 ? '📈' : '📉';
               return `${sign}${formatBytes(delta)} ${icon}`;
             };
 
@@ -223,7 +275,7 @@ jobs:
 
             // Build status indicator
             const bundleStatus = hasLargeBundles
-              ? `⚠️ ${largeCount} large bundle(s)`
+              ? `⚠️ ${largeCount} large bundle(s) detected (>200KB)`
               : '✅ No large bundles';
 
             // Format top JS files
@@ -236,7 +288,7 @@ jobs:
                 return `| \`${file}\` | ${size} |`;
               }
               return '';
-            }).filter(Boolean).join('\n') : '| No JS files | - |';
+            }).filter(Boolean).join('\n') : '| _No JS files found_ | - |';
 
             // Build the comparison table
             let statsTable;
@@ -259,7 +311,7 @@ jobs:
             | 🎨 CSS | ${cssSize} |
             | 🖼️ Images | ${imgCount} |
 
-            > ℹ️ _Base branch stats not available yet. Comparison will show after first merge to source._`;
+            > ℹ️ _Size comparison will be available after the base branch (\`source\`) has been deployed at least once._`;
             }
 
             const body = `## 📊 Build Report
@@ -323,17 +375,22 @@ jobs:
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
-          if [ -z "$SURGE_TOKEN" ]; then
-            echo "SURGE_TOKEN not set, skipping preview deployment"
+          if [ -z "${SURGE_TOKEN:-}" ]; then
+            echo "SURGE_TOKEN not configured - skipping preview deployment"
             echo "deployed=false" >> $GITHUB_OUTPUT
             exit 0
           fi
 
           PREVIEW_URL="pr-${{ github.event.pull_request.number }}-andreicozma1.surge.sh"
-          npx surge ./public "${PREVIEW_URL}" --token "$SURGE_TOKEN"
-          echo "url=https://${PREVIEW_URL}" >> $GITHUB_OUTPUT
-          echo "deployed=true" >> $GITHUB_OUTPUT
-          echo "🚀 Preview deployed to https://${PREVIEW_URL}"
+
+          if npx surge ./public "${PREVIEW_URL}" --token "$SURGE_TOKEN"; then
+            echo "url=https://${PREVIEW_URL}" >> $GITHUB_OUTPUT
+            echo "deployed=true" >> $GITHUB_OUTPUT
+            echo "🚀 Preview deployed to https://${PREVIEW_URL}"
+          else
+            echo "Surge deployment failed"
+            echo "deployed=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Update PR comment with preview URL
         if: github.event_name == 'pull_request' && steps.surge.outputs.deployed == 'true'
@@ -342,28 +399,35 @@ jobs:
           script: |
             const previewUrl = '${{ steps.surge.outputs.url }}';
 
-            const { data: comments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-            });
-
-            const botComment = comments.find(comment =>
-              comment.user.login === 'github-actions[bot]' &&
-              comment.body.includes('📊 Build Report')
-            );
-
-            if (botComment && !botComment.body.includes('🚀 Preview')) {
-              const updatedBody = botComment.body.replace(
-                '---\n            ✅ All checks passed!',
-                `### 🚀 Preview\n            [View Preview](${previewUrl})\n\n            ---\n            ✅ All checks passed!`
-              );
-
-              await github.rest.issues.updateComment({
+            try {
+              const { data: comments } = await github.rest.issues.listComments({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                comment_id: botComment.id,
-                body: updatedBody
+                issue_number: context.issue.number,
               });
-            }
 
+              const botComment = comments.find(comment =>
+                comment.user.login === 'github-actions[bot]' &&
+                comment.body.includes('📊 Build Report')
+              );
+
+              if (botComment && !botComment.body.includes('🚀 Preview')) {
+                const updatedBody = botComment.body.replace(
+                  /---\s*\n\s*✅ All checks passed!/,
+                  `### 🚀 Preview
+            [View Preview](${previewUrl})
+
+            ---
+            ✅ All checks passed!`
+                );
+
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: botComment.id,
+                  body: updatedBody
+                });
+              }
+            } catch (error) {
+              console.error('Failed to update PR comment with preview URL:', error);
+            }
