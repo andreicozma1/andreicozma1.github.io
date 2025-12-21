@@ -10,8 +10,15 @@ import DataCardResponsive from "../DataCard/DataCardResponsive"
 import SmartChipBox from "../SmartChip/SmartChipBox"
 import { NoteProps } from "../UIElement/SlideNotes"
 
+type SkillMap = Record<string, Record<string, number>>
+
+interface SkillsSectionState {
+	skillsList: SkillMap
+	displayOrder: string[]
+}
+
 // Use PageSectionProps to get the title, notes, and items
-class SkillsSection extends React.Component<any, any> {
+class SkillsSection extends React.Component<Record<string, never>, SkillsSectionState> {
 	title = "Skills"
 	notes: Array<NoteProps> = [
 		{
@@ -20,7 +27,7 @@ class SkillsSection extends React.Component<any, any> {
 		}
 	]
 
-	constructor(props: any) {
+	constructor(props: Record<string, never>) {
 		super(props)
 		this.state = {
 			skillsList  : {},
@@ -28,22 +35,23 @@ class SkillsSection extends React.Component<any, any> {
 		}
 	}
 
-	countSkills() {
-		let skl = {}
+	countSkills(): SkillMap {
+		const skl: SkillMap = {}
 		Object.keys(Pages).forEach(pk => {
-			let sections = Pages[pk]["sections"]
+			const sections = Pages[pk]["sections"]
 			if (sections) {
 				sections.forEach(s => {
-					let items = s["items"]
+					const items = s["items"]
 					if (items) {
 						items.forEach(i => {
-							let chips = i["chips"]
+							const chips = i["chips"]
 							if (chips) {
 								Object.keys(chips).forEach(ck => {
 									if (this.state.displayOrder.includes(ck)) {
 										if (!skl[ck]) skl[ck] = {}
-										if (chips) {
-											chips[ck].forEach((c: string) => {
+										const chipList = chips[ck]
+										if (chipList) {
+											chipList.forEach((c: string) => {
 												if (!skl[ck][c]) skl[ck][c] = 0
 												skl[ck][c]++
 											})
@@ -66,7 +74,7 @@ class SkillsSection extends React.Component<any, any> {
 
 	render() {
 		return <PageSection title={this.title} notes={this.notes}>
-			{this.state.skillsList && this.state.displayOrder.map((sk: React.Key) => {
+			{this.state.skillsList && this.state.displayOrder.map((sk: string) => {
 				const skillList = this.state.skillsList[sk]
 				if (skillList) {
 					let title = "Other"
@@ -74,16 +82,16 @@ class SkillsSection extends React.Component<any, any> {
 					if (sk === "libraries") title = "Libraries & Frameworks"
 					if (sk === "tools") title = "Other"
 
-					let skillCountsMap: { name: string; count: number }[] = []
+					const skillCountsMap: { name: string; count: number }[] = []
 					Object.entries(skillList).forEach(([ name, count ]) => {
 						skillCountsMap.push({
 							name,
-							count
+							count: count as number
 						})
 					})
 					skillCountsMap.sort((a, b) => b.count - a.count)
 
-					let skillCounts: string[] = []
+					const skillCounts: string[] = []
 					skillCountsMap.forEach(sc => {
 						skillCounts.push(`${sc.name} (${sc.count})`)
 					})
@@ -92,6 +100,7 @@ class SkillsSection extends React.Component<any, any> {
 						<SmartChipBox text={skillCounts} defaultVariant="filled"/>
 					</DataCardResponsive>
 				}
+				return null
 			})}
 		</PageSection>
 	}

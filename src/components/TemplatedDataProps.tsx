@@ -42,11 +42,13 @@ export interface TemplateDataCardChipsProps {
 	libraries?: string[],
 	tools?: string[],
 	awards?: string[],
+	[key: string]: string[] | undefined,
 }
 
 export interface TemplateDataCardActionProps {
 	text: string,
 	href?: string,
 	target?: string,
+	hidden?: string,
 }
 
