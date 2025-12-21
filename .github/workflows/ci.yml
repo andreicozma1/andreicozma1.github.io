@@ -31,9 +31,9 @@ jobs:
             const body = `<!-- build-report -->
 ## CI Report<!-- preview-marker -->
 
-⏳ Types · ⏳ Build · ⏳ Stats
+⏳ Types · ⏳ Build · ⏳ Deploy
 
-_Running..._
+_Starting..._
 
 \`${commitSha}\` · ${runUrl} · _${timestamp}_`;
 
@@ -314,7 +314,7 @@ _Running..._
                 const body = `<!-- build-report -->
 ## CI Report<!-- preview-marker -->
 
-${typeIcon} Types · ⏳ Build · ⏳ Stats
+${typeIcon} Types · ⏳ Build · ⏳ Deploy
 
 _Building..._
 
