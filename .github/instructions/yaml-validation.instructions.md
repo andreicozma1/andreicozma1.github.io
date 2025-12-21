@@ -21,15 +21,6 @@ applyTo: "**/*.yml,**/*.yaml"
 - Validation failures block merging
 - No local configuration needed - runs automatically
 
-**Optional: Local pre-commit validation (faster feedback):**
-Git hooks require manual setup per developer (not automatic):
-```bash
-git config core.hooksPath .github/hooks
-chmod +x .github/hooks/pre-commit.sample
-mv .github/hooks/pre-commit.sample .github/hooks/pre-commit
-```
-This catches errors before pushing, but CI is the mandatory enforcement layer.
-
 ### Indentation Rules for GitHub Actions
 
 **Critical**: Content within `script: |` blocks must be consistently indented:
@@ -67,7 +58,7 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 **Validates**: YAML syntax, expressions, types, deprecated actions, shell scripts, workflow structure
 **Why**: Only tool that validates GitHub Actions-specific semantics
 **When**: Always - before every commit, in CI pipelines
-**Install**: Downloaded automatically by CI and pre-commit hook, or install manually
+**Install**: Downloaded automatically by CI, or install manually for local use
 
 ### PyYAML - Quick Syntax Check
 
@@ -80,7 +71,7 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 
 **Purpose**: YAML style and formatting consistency
 **Why**: Enforces team coding standards
-**When**: Pre-commit hooks, style CI checks
+**When**: Style CI checks (optional)
 **Note**: Generates many warnings on valid YAML (line length, etc.) - use selectively
 
 ## Common Issues & Patterns
@@ -116,8 +107,7 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 5. Repeat until passing
 
 ### Before Push
-1. Validate manually: `actionlint .github/workflows/*.yml`
-2. Or enable pre-commit hook (auto-downloads actionlint if needed)
+Validate manually: `actionlint .github/workflows/*.yml`
 
 ### Automatic CI Validation (Mandatory)
 - Runs on every PR that modifies workflows
