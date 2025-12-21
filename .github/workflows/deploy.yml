@@ -93,7 +93,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
         env:
           CI: true
-          PREFIX_PATHS: "true"
           GATSBY_BUILD_TIME: ${{ github.event.head_commit.timestamp }}
           GATSBY_COMMIT_SHA: ${{ github.sha }}
 
