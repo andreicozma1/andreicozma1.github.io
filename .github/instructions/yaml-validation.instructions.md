@@ -61,12 +61,13 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 
 ## Validation Tools
 
-### actionlint (.github/scripts/actionlint) - Primary Tool
+### actionlint - Primary Tool
 
 **Purpose**: Comprehensive GitHub Actions workflow validation
 **Validates**: YAML syntax, expressions, types, deprecated actions, shell scripts, workflow structure
 **Why**: Only tool that validates GitHub Actions-specific semantics
 **When**: Always - before every commit, in CI pipelines
+**Install**: Downloaded automatically by CI and pre-commit hook, or install manually
 
 ### PyYAML - Quick Syntax Check
 
@@ -104,14 +105,19 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 ## Optimized Workflow Development Cycle
 
 ### During Development (Fastest Feedback)
-1. Edit workflow file
-2. Run actionlint immediately: `.github/scripts/actionlint .github/workflows/your-file.yml`
-3. Fix issues in real-time
-4. Repeat until passing
+1. Install actionlint locally (one-time):
+   ```bash
+   bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+   sudo mv actionlint /usr/local/bin/
+   ```
+2. Edit workflow file
+3. Run actionlint immediately: `actionlint .github/workflows/your-file.yml`
+4. Fix issues in real-time
+5. Repeat until passing
 
 ### Before Push
-1. Validate manually: `.github/scripts/actionlint .github/workflows/*.yml`
-2. Or enable pre-commit hook for automatic local validation (optional)
+1. Validate manually: `actionlint .github/workflows/*.yml`
+2. Or enable pre-commit hook (auto-downloads actionlint if needed)
 
 ### Automatic CI Validation (Mandatory)
 - Runs on every PR that modifies workflows
@@ -129,13 +135,28 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 
 ## Reference
 
-**Tool location:** `.github/scripts/actionlint`
-
-**Update actionlint:**
+**Install actionlint (local development):**
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
-mv actionlint .github/scripts/
+# Download and install to /usr/local/bin
+bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+sudo mv actionlint /usr/local/bin/
+
+# Verify installation
+actionlint --version
 ```
+
+**Usage:**
+```bash
+# Validate all workflows
+actionlint .github/workflows/*.yml
+
+# Validate specific file
+actionlint .github/workflows/pr.yml
+```
+
+**CI:**
+- Automatically downloads and runs on every PR
+- No manual setup required
 
 **Resources:**
 - [actionlint documentation](https://github.com/rhysd/actionlint)

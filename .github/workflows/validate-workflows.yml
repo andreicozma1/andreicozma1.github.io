@@ -23,13 +23,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate workflow files with actionlint
+      - name: Install actionlint
+        run: |
+          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          sudo mv actionlint /usr/local/bin/
+          echo "Installed actionlint $(actionlint --version)"
+
+      - name: Validate workflow files
         run: |
           echo "## 🔍 Workflow Validation" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Run actionlint on all workflow files
-          if .github/scripts/actionlint .github/workflows/*.yml 2>&1 | tee actionlint-output.txt; then
+          if actionlint .github/workflows/*.yml 2>&1 | tee actionlint-output.txt; then
             echo "✅ **All workflow files are valid**" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "Validated files:" >> $GITHUB_STEP_SUMMARY

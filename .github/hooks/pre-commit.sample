@@ -23,18 +23,38 @@ fi
 echo "🔍 Validating workflow files..."
 echo ""
 
-# Check if actionlint exists
-if [ ! -f ".github/scripts/actionlint" ]; then
-  echo "❌ Error: actionlint not found at .github/scripts/actionlint"
-  echo "Please run: bash <(curl -s https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)"
-  exit 1
+# Check if actionlint is available, install if not
+if ! command -v actionlint &> /dev/null; then
+  echo "📥 Installing actionlint..."
+  if bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash); then
+    sudo mv actionlint /usr/local/bin/ 2>/dev/null || {
+      echo "⚠️  Could not install to /usr/local/bin (needs sudo)"
+      echo "Installing to current directory..."
+      # actionlint is already in current dir from download script
+    }
+  else
+    echo "❌ Failed to download actionlint"
+    echo "Skipping validation (will be checked by CI)"
+    exit 0
+  fi
+fi
+
+# Determine actionlint path
+if command -v actionlint &> /dev/null; then
+  ACTIONLINT="actionlint"
+elif [ -f "./actionlint" ]; then
+  ACTIONLINT="./actionlint"
+else
+  echo "⚠️  actionlint not available, skipping local validation"
+  echo "CI will validate workflows on push"
+  exit 0
 fi
 
 # Validate each staged workflow file
 VALIDATION_FAILED=0
 for file in $STAGED_WORKFLOWS; do
   echo "Validating: $file"
-  if ! .github/scripts/actionlint "$file"; then
+  if ! $ACTIONLINT "$file"; then
     VALIDATION_FAILED=1
   fi
 done
