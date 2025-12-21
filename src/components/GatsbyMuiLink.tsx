@@ -28,6 +28,9 @@ type GatsbyMuiLinkProps = Omit<MuiLinkProps, 'href'> & {
 
 export const Link = React.forwardRef<HTMLAnchorElement, GatsbyMuiLinkProps>(
 	({ href, to, children, target, ...props }, ref) => {
+		if (process.env.NODE_ENV === 'development' && !to && !href) {
+			console.warn('GatsbyMuiLink: Link component used without "to" or "href" prop, defaulting to "/"')
+		}
 		const destination = to || href || "/"
 		const isInternal = isInternalLink(destination)
 
