@@ -440,8 +440,12 @@ jobs:
             `;
             }
 
+            // Check if preview deployment is configured
+            const hasSurgeToken = '${{ secrets.SURGE_TOKEN }}' !== '';
+            const previewPlaceholder = hasSurgeToken ? ' · 🚀 _deploying..._<!-- preview-marker -->' : '<!-- preview-marker -->';
+
             const body = `<!-- build-report -->
-            ## CI Report<!-- preview-marker -->
+            ## CI Report${previewPlaceholder}
 
             ${statusLine}
 
@@ -554,8 +558,9 @@ jobs:
               );
 
               if (botComment && !botComment.body.includes('<!-- preview-url -->')) {
+                // Replace placeholder (with or without "deploying..." text)
                 const updatedBody = botComment.body.replace(
-                  /<!-- preview-marker -->/,
+                  / · 🚀 _deploying\.\.\._<!-- preview-marker -->|<!-- preview-marker -->/,
                   ` · 🚀 ${previewUrl}${statusSuffix}<!-- preview-url -->`
                 );
 

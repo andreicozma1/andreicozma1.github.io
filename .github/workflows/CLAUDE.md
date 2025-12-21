@@ -244,9 +244,46 @@ echo "::error::Something failed"
 | Silent success | Hard to audit what happened | Job summary with clear outcomes |
 | Logging only to console | Not discoverable | Use `::warning::` and `::error::` annotations |
 
+### Secret Validation
+
+Always validate required secrets before using them:
+
+**Production workflows** - fail if missing:
+```bash
+if [ -z "${SECRET:-}" ]; then
+  echo "::error::SECRET not configured - cannot proceed"
+  exit 1
+fi
+```
+
+**Optional features** - warn and skip:
+```bash
+if [ -z "${SECRET:-}" ]; then
+  echo "::warning::SECRET not configured - feature will be skipped"
+  echo "status=skipped" >> $GITHUB_OUTPUT
+  exit 0
+fi
+```
+
+### Placeholders for Async Content
+
+When content will be filled in later (e.g., preview URL after deployment), show a placeholder:
+
+**Anti-pattern** (confusing):
+```markdown
+## CI Report<!-- preview-marker -->
+```
+User doesn't know a URL will appear here.
+
+**Pattern** (clear state):
+```markdown
+## CI Report · 🚀 _deploying..._<!-- preview-marker -->
+```
+User knows deployment is in progress. Replace with actual URL when ready.
+
 ## General Principles
 
-1. **Validate early** - Check inputs/directories exist before using
+1. **Validate early** - Check inputs/secrets/directories exist before using
 2. **Fail explicitly** - Clear error messages, not silent failures
 3. **Escape properly** - Env vars > heredocs in YAML
 4. **Provide context** - Show what failed and why in user-facing output
@@ -256,3 +293,5 @@ echo "::error::Something failed"
 8. **Prefer raw values** - URLs, counts, sizes without extra formatting
 9. **Verify, don't assume** - Check that actions actually succeeded
 10. **Make outcomes discoverable** - Job summaries, annotations, status outputs
+11. **Show pending state** - Use placeholders for content that will be filled in later
+12. **Validate secrets** - Check required secrets, warn/skip for optional ones
