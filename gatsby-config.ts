@@ -61,7 +61,7 @@ const config: GatsbyConfig = {
 					quality         : 100,
 				}
 			}
-		}, "gatsby-plugin-image", "gatsby-plugin-material-ui", "gatsby-theme-material-ui", {
+		}, "gatsby-plugin-image", {
 			resolve: "gatsby-source-filesystem",
 			options: {
 				"name": "images",

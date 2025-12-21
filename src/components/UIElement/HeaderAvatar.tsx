@@ -8,7 +8,7 @@ import * as React from "react"
 import Typography from "@mui/material/Typography"
 import Avatar from "@mui/material/Avatar"
 import { Tooltip } from "@mui/material"
-import { IconButton, Link } from "gatsby-theme-material-ui"
+import { IconButton, Link } from "../GatsbyMuiLink"
 import Main from "../../config/Main"
 
 const HeaderAvatar = ({ variant }: { variant: string }) => {

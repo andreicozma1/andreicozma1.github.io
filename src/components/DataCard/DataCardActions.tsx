@@ -1,7 +1,7 @@
 import { TemplateDataCardActionProps } from "../TemplatedDataProps"
 import * as React from "react"
 import { CardActions } from "@mui/material"
-import { Button } from "gatsby-theme-material-ui"
+import { Button } from "../GatsbyMuiLink"
 import Theme from "../../config/Theme"
 
 interface DataCardActionsProps {
