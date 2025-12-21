@@ -180,6 +180,7 @@ jobs:
           # Use cached stats if available, otherwise use build stats
           if [ "${{ steps.base-cache.outputs.cache-hit }}" = "true" ]; then
             echo "Using cached base stats"
+            echo "from_cache=true" >> $GITHUB_OUTPUT
             echo "base_build_success=${{ steps.cached-stats.outputs.base_build_success }}" >> $GITHUB_OUTPUT
             echo "base_total=${{ steps.cached-stats.outputs.base_total }}" >> $GITHUB_OUTPUT
             echo "base_js=${{ steps.cached-stats.outputs.base_js }}" >> $GITHUB_OUTPUT
@@ -191,6 +192,7 @@ jobs:
             echo "base_css_size=${{ steps.cached-stats.outputs.base_css_size }}" >> $GITHUB_OUTPUT
           else
             echo "Using freshly built base stats"
+            echo "from_cache=false" >> $GITHUB_OUTPUT
             echo "base_build_success=${{ steps.base-build.outputs.base_build_success }}" >> $GITHUB_OUTPUT
             echo "base_total=${{ steps.base-build.outputs.base_total }}" >> $GITHUB_OUTPUT
             echo "base_js=${{ steps.base-build.outputs.base_js }}" >> $GITHUB_OUTPUT
@@ -530,6 +532,12 @@ jobs:
             const hasSurgeToken = '${{ secrets.SURGE_TOKEN }}' !== '';
             const previewPlaceholder = hasSurgeToken ? ' · 🚀 _deploying..._<!-- preview-marker -->' : '<!-- preview-marker -->';
 
+            // Build footer with base comparison info
+            const baseSha = '${{ steps.base-sha.outputs.short_sha }}';
+            const fromCache = '${{ steps.base-stats.outputs.from_cache }}' === 'true';
+            const cacheIndicator = fromCache ? ' 📦' : '';
+            const baseRef = hasComparison ? ` · vs \`${baseBranch}@${baseSha}\`${cacheIndicator}` : '';
+
             const body = `<!-- build-report -->
             ## CI Report${previewPlaceholder}
 
@@ -537,7 +545,7 @@ jobs:
 
             ${statsTable}
             ${bundleSection}
-            \`${commitSha}\` · ${runUrl}`;
+            \`${commitSha}\`${baseRef} · ${runUrl}`;
 
             // Find existing comment and post/update
             try {
