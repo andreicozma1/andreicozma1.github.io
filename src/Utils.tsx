@@ -17,7 +17,6 @@ export const useSiteMetadata = () => {
           description
           buildTime
           commitSha
-          version
         }
       }
     }
@@ -26,17 +25,22 @@ export const useSiteMetadata = () => {
 	return data.site.siteMetadata
 }
 
+/**
+ * Formats an ISO date string to a human-readable format (e.g., "Dec 21, 2025").
+ * Returns "Unknown" if the date string is invalid.
+ * Note: new Date() doesn't throw for invalid strings - it returns Invalid Date,
+ * so we check validity using isNaN(date.getTime()).
+ */
 export const formatBuildDate = (isoString: string): string => {
-	try {
-		const date = new Date(isoString)
-		return date.toLocaleDateString("en-US", {
-			year: "numeric",
-			month: "short",
-			day: "numeric"
-		})
-	} catch {
+	const date = new Date(isoString)
+	if (isNaN(date.getTime())) {
 		return "Unknown"
 	}
+	return date.toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "short",
+		day: "numeric"
+	})
 }
 
 export const usePage = (title: string) => {

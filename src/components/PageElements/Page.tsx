@@ -22,7 +22,7 @@ interface PageProps {
 }
 
 const PageFooter = () => {
-	const { buildTime, commitSha, version } = useSiteMetadata()
+	const { buildTime, commitSha } = useSiteMetadata()
 	const formattedDate = formatBuildDate(buildTime)
 
 	return (
@@ -31,7 +31,8 @@ const PageFooter = () => {
 			sx={{
 				textAlign: "center",
 				py: 2,
-				mt: 4,
+				mt: "auto",
+				pt: 4,
 				opacity: 0.6,
 			}}
 		>
@@ -43,7 +44,7 @@ const PageFooter = () => {
 						"&:hover": { opacity: 0.8 }
 					}}
 				>
-					Last updated {formattedDate} · v{version}
+					Last updated {formattedDate}
 				</Typography>
 			</Tooltip>
 		</Box>
@@ -88,27 +89,30 @@ const Page = (props: PageProps) => {
 		<ResponsiveTopBar page={props.pageProps}/>
 
 		<Provider store={store}>
-			<Container component={Stack} spacing={2}
-					   sx={{
-						   paddingBottom: 3,
-						   opacity      : 0.99,
-						   marginTop    : "75px"
-					   }}>
-				{props.pageProps.sections && <PageBreadcrumbs page={props.pageProps}/>}
-				{props.pageProps.notes && <SlideNotes notesArray={props.pageProps.notes}/>}
+			<Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+				<Container component={Stack} spacing={2}
+						   sx={{
+							   paddingBottom: 3,
+							   opacity      : 0.99,
+							   marginTop    : "75px",
+							   flexGrow: 1,
+						   }}>
+					{props.pageProps.sections && <PageBreadcrumbs page={props.pageProps}/>}
+					{props.pageProps.notes && <SlideNotes notesArray={props.pageProps.notes}/>}
 
-				<Fade in={transitionDone}
-					  timeout={Theme.transitionDuration.page}>
-					<Box>
-						{props.pageProps.sections && props.pageProps.sections.map((section, index) => {
-							return <PageSectionResponsive key={index} props={section}></PageSectionResponsive>
-						})}
-						{props.children}
-					</Box>
-				</Fade>
-				<FloatingActionButton pageProps={props.pageProps}/>
+					<Fade in={transitionDone}
+						  timeout={Theme.transitionDuration.page}>
+						<Box>
+							{props.pageProps.sections && props.pageProps.sections.map((section, index) => {
+								return <PageSectionResponsive key={index} props={section}></PageSectionResponsive>
+							})}
+							{props.children}
+						</Box>
+					</Fade>
+					<FloatingActionButton pageProps={props.pageProps}/>
+				</Container>
 				<PageFooter />
-			</Container>
+			</Box>
 			<PopupCard/>
 		</Provider>
 	</ThemeProvider>)

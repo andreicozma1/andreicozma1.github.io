@@ -56,7 +56,6 @@ jobs:
           CI: true
           GATSBY_BUILD_TIME: ${{ github.event.head_commit.timestamp }}
           GATSBY_COMMIT_SHA: ${{ github.sha }}
-          GATSBY_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
