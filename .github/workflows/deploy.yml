@@ -50,6 +50,32 @@ jobs:
         env:
           CI: true
 
+      - name: Generate build stats for comparison
+        run: |
+          mkdir -p .build-stats
+          echo "{
+            \"total_bytes\": $(du -sb public | cut -f1),
+            \"js_bytes\": $(find public -name '*.js' -exec du -cb {} + 2>/dev/null | tail -1 | cut -f1 || echo 0),
+            \"css_bytes\": $(find public -name '*.css' -exec du -cb {} + 2>/dev/null | tail -1 | cut -f1 || echo 0),
+            \"html_count\": $(find public -name '*.html' | wc -l),
+            \"img_count\": $(find public \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.gif' -o -name '*.svg' -o -name '*.webp' \) 2>/dev/null | wc -l),
+            \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
+            \"commit\": \"${{ github.sha }}\"
+          }" > .build-stats/base-stats.json
+          cat .build-stats/base-stats.json
+
+      - name: Cache build stats for PR comparison
+        uses: actions/cache/save@v4
+        with:
+          path: .build-stats
+          key: build-stats-${{ github.ref_name }}-${{ github.sha }}
+
+      - name: Update latest build stats cache
+        uses: actions/cache/save@v4
+        with:
+          path: .build-stats
+          key: build-stats-${{ github.ref_name }}-latest
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

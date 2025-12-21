@@ -1,0 +1,24 @@
+name: Cleanup Preview
+
+on:
+  pull_request:
+    types: [closed]
+    branches: ["source"]
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Teardown Surge preview
+        continue-on-error: true
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          if [ -z "$SURGE_TOKEN" ]; then
+            echo "SURGE_TOKEN not set, skipping teardown"
+            exit 0
+          fi
+
+          PREVIEW_URL="pr-${{ github.event.pull_request.number }}-andreicozma1.surge.sh"
+          npx surge teardown "${PREVIEW_URL}" --token "$SURGE_TOKEN"
+          echo "🧹 Preview torn down: ${PREVIEW_URL}"

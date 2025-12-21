@@ -23,6 +23,13 @@ jobs:
         env:
           SFC: ${{ secrets.SECRETS_FILE_CONTENTS }}
 
+      - name: Restore base branch build stats
+        id: base-stats
+        uses: actions/cache/restore@v4
+        with:
+          path: .build-stats
+          key: build-stats-source-latest
+
       - name: Restore Gatsby cache
         uses: actions/cache@v4
         with:
@@ -80,17 +87,45 @@ jobs:
           echo "## Build Statistics" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Calculate sizes (in bytes for comparison, human readable for display)
+          # Calculate current sizes
           TOTAL_SIZE=$(du -sh public | cut -f1)
           TOTAL_BYTES=$(du -sb public | cut -f1)
           HTML_COUNT=$(find public -name "*.html" | wc -l)
           JS_SIZE=$(find public -name "*.js" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
           JS_BYTES=$(find public -name "*.js" -exec du -cb {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
           CSS_SIZE=$(find public -name "*.css" -exec du -ch {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
+          CSS_BYTES=$(find public -name "*.css" -exec du -cb {} + 2>/dev/null | tail -1 | cut -f1 || echo "0")
           IMG_COUNT=$(find public \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" -o -name "*.webp" \) 2>/dev/null | wc -l)
 
           # Get top 5 largest JS files
           TOP_JS=$(find public -name "*.js" -exec du -h {} \; 2>/dev/null | sort -rh | head -5)
+
+          # Check for base stats
+          HAS_BASE_STATS="false"
+          if [ -f ".build-stats/base-stats.json" ]; then
+            HAS_BASE_STATS="true"
+            BASE_TOTAL=$(jq -r '.total_bytes' .build-stats/base-stats.json)
+            BASE_JS=$(jq -r '.js_bytes' .build-stats/base-stats.json)
+            BASE_CSS=$(jq -r '.css_bytes' .build-stats/base-stats.json)
+            BASE_HTML=$(jq -r '.html_count' .build-stats/base-stats.json)
+            BASE_IMG=$(jq -r '.img_count' .build-stats/base-stats.json)
+
+            # Calculate deltas
+            DELTA_TOTAL=$((TOTAL_BYTES - BASE_TOTAL))
+            DELTA_JS=$((JS_BYTES - BASE_JS))
+            DELTA_CSS=$((CSS_BYTES - BASE_CSS))
+            DELTA_HTML=$((HTML_COUNT - BASE_HTML))
+            DELTA_IMG=$((IMG_COUNT - BASE_IMG))
+
+            echo "has_base_stats=true" >> $GITHUB_OUTPUT
+            echo "delta_total=${DELTA_TOTAL}" >> $GITHUB_OUTPUT
+            echo "delta_js=${DELTA_JS}" >> $GITHUB_OUTPUT
+            echo "delta_css=${DELTA_CSS}" >> $GITHUB_OUTPUT
+            echo "delta_html=${DELTA_HTML}" >> $GITHUB_OUTPUT
+            echo "delta_img=${DELTA_IMG}" >> $GITHUB_OUTPUT
+          else
+            echo "has_base_stats=false" >> $GITHUB_OUTPUT
+          fi
 
           echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
@@ -108,9 +143,10 @@ jobs:
           echo "js_size=${JS_SIZE}" >> $GITHUB_OUTPUT
           echo "js_bytes=${JS_BYTES}" >> $GITHUB_OUTPUT
           echo "css_size=${CSS_SIZE}" >> $GITHUB_OUTPUT
+          echo "css_bytes=${CSS_BYTES}" >> $GITHUB_OUTPUT
           echo "img_count=${IMG_COUNT}" >> $GITHUB_OUTPUT
 
-          # Save top JS files (escape for JSON)
+          # Save top JS files
           echo "top_js<<EOF" >> $GITHUB_OUTPUT
           echo "$TOP_JS" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -143,16 +179,47 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            // Helper to format bytes
+            const formatBytes = (bytes) => {
+              const abs = Math.abs(bytes);
+              if (abs >= 1048576) return (bytes / 1048576).toFixed(2) + 'M';
+              if (abs >= 1024) return (bytes / 1024).toFixed(1) + 'K';
+              return bytes + 'B';
+            };
+
+            // Helper to format delta with icon
+            const formatDelta = (delta, inverse = false) => {
+              if (delta === 0) return '-';
+              const isPositive = delta > 0;
+              const icon = isPositive ? (inverse ? '✅' : '📈') : (inverse ? '📈' : '✅');
+              const sign = isPositive ? '+' : '';
+              return `${sign}${formatBytes(delta)} ${icon}`;
+            };
+
             // Get build stats
             const totalSize = '${{ steps.stats.outputs.total_size }}';
-            const htmlCount = '${{ steps.stats.outputs.html_count }}';
+            const totalBytes = parseInt('${{ steps.stats.outputs.total_bytes }}') || 0;
+            const htmlCount = parseInt('${{ steps.stats.outputs.html_count }}') || 0;
             const jsSize = '${{ steps.stats.outputs.js_size }}';
+            const jsBytes = parseInt('${{ steps.stats.outputs.js_bytes }}') || 0;
             const cssSize = '${{ steps.stats.outputs.css_size }}';
-            const imgCount = '${{ steps.stats.outputs.img_count }}';
+            const cssBytes = parseInt('${{ steps.stats.outputs.css_bytes }}') || 0;
+            const imgCount = parseInt('${{ steps.stats.outputs.img_count }}') || 0;
             const buildTime = '${{ steps.build.outputs.build_time }}';
             const hasLargeBundles = '${{ steps.bundles.outputs.has_large }}' === 'true';
             const largeCount = '${{ steps.bundles.outputs.large_count }}';
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+
+            // Check for base stats comparison
+            const hasBaseStats = '${{ steps.stats.outputs.has_base_stats }}' === 'true';
+            let deltaTotal = 0, deltaJs = 0, deltaCss = 0, deltaHtml = 0, deltaImg = 0;
+            if (hasBaseStats) {
+              deltaTotal = parseInt('${{ steps.stats.outputs.delta_total }}') || 0;
+              deltaJs = parseInt('${{ steps.stats.outputs.delta_js }}') || 0;
+              deltaCss = parseInt('${{ steps.stats.outputs.delta_css }}') || 0;
+              deltaHtml = parseInt('${{ steps.stats.outputs.delta_html }}') || 0;
+              deltaImg = parseInt('${{ steps.stats.outputs.delta_img }}') || 0;
+            }
 
             // Build status indicator
             const bundleStatus = hasLargeBundles
@@ -171,9 +238,19 @@ jobs:
               return '';
             }).filter(Boolean).join('\n') : '| No JS files | - |';
 
-            const body = `## 📊 Build Report
-
-            | Metric | Value |
+            // Build the comparison table
+            let statsTable;
+            if (hasBaseStats) {
+              statsTable = `| Metric | Value | Δ vs base |
+            |:-------|------:|----------:|
+            | ⏱️ Build Time | **${buildTime}s** | - |
+            | 📦 Total Size | **${totalSize}** | ${formatDelta(deltaTotal)} |
+            | 📄 HTML Pages | ${htmlCount} | ${deltaHtml !== 0 ? (deltaHtml > 0 ? '+' : '') + deltaHtml : '-'} |
+            | 📜 JavaScript | ${jsSize} | ${formatDelta(deltaJs)} |
+            | 🎨 CSS | ${cssSize} | ${formatDelta(deltaCss)} |
+            | 🖼️ Images | ${imgCount} | ${deltaImg !== 0 ? (deltaImg > 0 ? '+' : '') + deltaImg : '-'} |`;
+            } else {
+              statsTable = `| Metric | Value |
             |:-------|------:|
             | ⏱️ Build Time | **${buildTime}s** |
             | 📦 Total Size | **${totalSize}** |
@@ -181,6 +258,13 @@ jobs:
             | 📜 JavaScript | ${jsSize} |
             | 🎨 CSS | ${cssSize} |
             | 🖼️ Images | ${imgCount} |
+
+            > ℹ️ _Base branch stats not available yet. Comparison will show after first merge to source._`;
+            }
+
+            const body = `## 📊 Build Report
+
+            ${statsTable}
 
             ### Bundle Status
             ${bundleStatus}
@@ -231,3 +315,55 @@ jobs:
               console.error('Failed to post PR comment:', error);
               // Don't fail the workflow if comment posting fails
             }
+
+      - name: Deploy preview to Surge
+        id: surge
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          if [ -z "$SURGE_TOKEN" ]; then
+            echo "SURGE_TOKEN not set, skipping preview deployment"
+            echo "deployed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          PREVIEW_URL="pr-${{ github.event.pull_request.number }}-andreicozma1.surge.sh"
+          npx surge ./public "${PREVIEW_URL}" --token "$SURGE_TOKEN"
+          echo "url=https://${PREVIEW_URL}" >> $GITHUB_OUTPUT
+          echo "deployed=true" >> $GITHUB_OUTPUT
+          echo "🚀 Preview deployed to https://${PREVIEW_URL}"
+
+      - name: Update PR comment with preview URL
+        if: github.event_name == 'pull_request' && steps.surge.outputs.deployed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const previewUrl = '${{ steps.surge.outputs.url }}';
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.login === 'github-actions[bot]' &&
+              comment.body.includes('📊 Build Report')
+            );
+
+            if (botComment && !botComment.body.includes('🚀 Preview')) {
+              const updatedBody = botComment.body.replace(
+                '---\n            ✅ All checks passed!',
+                `### 🚀 Preview\n            [View Preview](${previewUrl})\n\n            ---\n            ✅ All checks passed!`
+              );
+
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: updatedBody
+              });
+            }
+
