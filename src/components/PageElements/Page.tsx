@@ -1,4 +1,4 @@
-import { Box, Container, Fade, Stack, ThemeProvider, useMediaQuery } from "@mui/material"
+import { Box, Container, Fade, Stack, ThemeProvider, Tooltip, Typography, useMediaQuery } from "@mui/material"
 import ResponsiveTopBar from "../Navigation/TopBar"
 import * as React from "react"
 import { ReactNode, useEffect, useState } from "react"
@@ -14,10 +14,41 @@ import PopupCard from "../UIElement/PopupCard"
 import Theme from "../../config/Theme"
 import { store } from "../../config/Main"
 import { TemplatePageProps } from "../TemplatedDataProps"
+import { formatBuildDate, useSiteMetadata } from "../../Utils"
 
 interface PageProps {
 	pageProps: TemplatePageProps,
 	children?: ReactNode
+}
+
+const PageFooter = () => {
+	const { buildTime, commitSha } = useSiteMetadata()
+	const formattedDate = formatBuildDate(buildTime)
+
+	return (
+		<Box
+			component="footer"
+			sx={{
+				textAlign: "center",
+				py: 2,
+				mt: "auto",
+				pt: 4,
+				opacity: 0.6,
+			}}
+		>
+			<Tooltip title={`Commit: ${commitSha}`} arrow>
+				<Typography
+					variant="caption"
+					sx={{
+						cursor: "default",
+						"&:hover": { opacity: 0.8 }
+					}}
+				>
+					Last updated {formattedDate}
+				</Typography>
+			</Tooltip>
+		</Box>
+	)
 }
 
 const Page = (props: PageProps) => {
@@ -58,26 +89,30 @@ const Page = (props: PageProps) => {
 		<ResponsiveTopBar page={props.pageProps}/>
 
 		<Provider store={store}>
-			<Container component={Stack} spacing={2}
-					   sx={{
-						   paddingBottom: 3,
-						   opacity      : 0.99,
-						   marginTop    : "75px"
-					   }}>
-				{props.pageProps.sections && <PageBreadcrumbs page={props.pageProps}/>}
-				{props.pageProps.notes && <SlideNotes notesArray={props.pageProps.notes}/>}
+			<Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+				<Container component={Stack} spacing={2}
+						   sx={{
+							   paddingBottom: 3,
+							   opacity      : 0.99,
+							   marginTop    : "75px",
+							   flexGrow: 1,
+						   }}>
+					{props.pageProps.sections && <PageBreadcrumbs page={props.pageProps}/>}
+					{props.pageProps.notes && <SlideNotes notesArray={props.pageProps.notes}/>}
 
-				<Fade in={transitionDone}
-					  timeout={Theme.transitionDuration.page}>
-					<Box>
-						{props.pageProps.sections && props.pageProps.sections.map((section, index) => {
-							return <PageSectionResponsive key={index} props={section}></PageSectionResponsive>
-						})}
-						{props.children}
-					</Box>
-				</Fade>
-				<FloatingActionButton pageProps={props.pageProps}/>
-			</Container>
+					<Fade in={transitionDone}
+						  timeout={Theme.transitionDuration.page}>
+						<Box>
+							{props.pageProps.sections && props.pageProps.sections.map((section, index) => {
+								return <PageSectionResponsive key={index} props={section}></PageSectionResponsive>
+							})}
+							{props.children}
+						</Box>
+					</Fade>
+					<FloatingActionButton pageProps={props.pageProps}/>
+				</Container>
+				<PageFooter />
+			</Box>
 			<PopupCard/>
 		</Provider>
 	</ThemeProvider>)

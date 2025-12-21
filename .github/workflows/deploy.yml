@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: "Deploy: Production"
 
 on:
   push:
@@ -54,6 +54,8 @@ jobs:
         run: npm run build
         env:
           CI: true
+          GATSBY_BUILD_TIME: ${{ github.event.head_commit.timestamp }}
+          GATSBY_COMMIT_SHA: ${{ github.sha }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

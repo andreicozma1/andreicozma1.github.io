@@ -1,4 +1,4 @@
-name: CI
+name: "PR: Validate & Preview"
 
 on:
   pull_request:
@@ -238,6 +238,15 @@ jobs:
 
           echo "::remove-matcher owner=tsc::"
 
+      - name: Get PR head commit timestamp
+        id: pr-commit
+        run: |
+          # Get the timestamp of the actual PR head commit (not the merge commit)
+          COMMIT_TIMESTAMP=$(git log -1 --format=%cI ${{ github.event.pull_request.head.sha }})
+          echo "timestamp=${COMMIT_TIMESTAMP}" >> $GITHUB_OUTPUT
+          echo "PR head commit: ${{ github.event.pull_request.head.sha }}"
+          echo "Commit timestamp: ${COMMIT_TIMESTAMP}"
+
       - name: Build PR branch
         id: build
         run: |
@@ -250,6 +259,9 @@ jobs:
           echo "build_time=${BUILD_TIME}" >> $GITHUB_OUTPUT
         env:
           CI: true
+          # Use PR head commit info, not the merge commit that GitHub creates for PR checks
+          GATSBY_BUILD_TIME: ${{ steps.pr-commit.outputs.timestamp }}
+          GATSBY_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
 
       - name: Generate build stats and compare
         id: stats
