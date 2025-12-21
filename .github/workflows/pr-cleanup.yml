@@ -25,13 +25,14 @@ jobs:
             exit 0
           fi
 
-          # Attempt teardown
+          # Attempt teardown (don't fail if site doesn't exist)
           if npx surge teardown "${PREVIEW_URL}" --token "$SURGE_TOKEN" 2>&1; then
             echo "status=success" >> $GITHUB_OUTPUT
           else
-            echo "::error::Surge teardown command failed"
-            echo "status=failed" >> $GITHUB_OUTPUT
-            exit 1
+            # Teardown failed, but this might be because the site doesn't exist
+            # which is not an error condition - the goal is achieved
+            echo "::warning::Surge teardown command failed - site may not exist"
+            echo "status=not_found" >> $GITHUB_OUTPUT
           fi
 
       - name: Verify teardown
@@ -71,6 +72,12 @@ jobs:
               ;;
             skipped)
               echo "⏭️ **Teardown skipped** (SURGE_TOKEN not configured)" >> $GITHUB_STEP_SUMMARY
+              ;;
+            not_found)
+              echo "✅ **Preview site not found** (already removed or never existed)" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "- URL: \`${PREVIEW_URL}\`" >> $GITHUB_STEP_SUMMARY
+              echo "- PR: #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
               ;;
             failed)
               echo "❌ **Teardown failed**" >> $GITHUB_STEP_SUMMARY

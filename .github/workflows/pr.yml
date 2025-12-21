@@ -55,13 +55,13 @@ jobs:
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
             const body = `<!-- build-report -->
-## CI Report<!-- preview-marker -->
+            ## CI Report<!-- preview-marker -->
 
-⏳ Types · ⏳ Build · ⏳ Deploy
+            ⏳ Types · ⏳ Build · ⏳ Deploy
 
-_Starting..._
+            _Starting..._
 
-\`${commitSha}\` · ${runUrl} · _${timestamp}_`;
+            \`${commitSha}\` · ${runUrl} · _${timestamp}_`;
 
             try {
               const { data: comments } = await github.rest.issues.listComments({
@@ -338,13 +338,13 @@ _Starting..._
 
               if (botComment) {
                 const body = `<!-- build-report -->
-## CI Report<!-- preview-marker -->
+                ## CI Report<!-- preview-marker -->
 
-${typeIcon} Types · ⏳ Build · ⏳ Deploy
+                ${typeIcon} Types · ⏳ Build · ⏳ Deploy
 
-_Building..._
+                _Building..._
 
-\`${commitSha}\` · ${runUrl} · _${timestamp}_`;
+                \`${commitSha}\` · ${runUrl} · _${timestamp}_`;
 
                 await github.rest.issues.updateComment({
                   owner: context.repo.owner,
@@ -626,12 +626,12 @@ _Building..._
             let statsTable;
             if (hasComparison) {
               statsTable = `| Metric | Base | PR | Δ |
-            |:-------|-----:|---:|--:|
-            | 📦 Total Size | ${baseTotalSize} | **${totalSize}** | ${formatDelta(deltaTotal)} |
-            | 📜 JavaScript | ${baseJsSize} | **${jsSize}** | ${formatDelta(deltaJs)} |
-            | 🎨 CSS | ${baseCssSize} | **${cssSize}** | ${formatDelta(deltaCss)} |
-            | 📄 HTML Pages | ${baseHtml} | **${htmlCount}** | ${formatCountDelta(deltaHtml)} |
-            | 🖼️ Images | ${baseImg} | **${imgCount}** | ${formatCountDelta(deltaImg)} |`;
+              |:-------|-----:|---:|--:|
+              | 📦 Total Size | ${baseTotalSize} | **${totalSize}** | ${formatDelta(deltaTotal)} |
+              | 📜 JavaScript | ${baseJsSize} | **${jsSize}** | ${formatDelta(deltaJs)} |
+              | 🎨 CSS | ${baseCssSize} | **${cssSize}** | ${formatDelta(deltaCss)} |
+              | 📄 HTML Pages | ${baseHtml} | **${htmlCount}** | ${formatCountDelta(deltaHtml)} |
+              | 🖼️ Images | ${baseImg} | **${imgCount}** | ${formatCountDelta(deltaImg)} |`;
             } else {
               // Get error from env (safe for multiline content)
               const baseError = (process.env.BASE_BUILD_ERROR || '').trim();
@@ -640,26 +640,26 @@ _Building..._
                 : '';
 
               statsTable = `| Metric | Value |
-            |:-------|------:|
-            | 📦 Total Size | **${totalSize}** |
-            | 📜 JavaScript | **${jsSize}** |
-            | 🎨 CSS | **${cssSize}** |
-            | 📄 HTML Pages | **${htmlCount}** |
-            | 🖼️ Images | **${imgCount}** |
+              |:-------|------:|
+              | 📦 Total Size | **${totalSize}** |
+              | 📜 JavaScript | **${jsSize}** |
+              | 🎨 CSS | **${cssSize}** |
+              | 📄 HTML Pages | **${htmlCount}** |
+              | 🖼️ Images | **${imgCount}** |
 
-            > ⚠️ _Base branch (\`${baseBranch}\`) build failed - comparison not available._${errorNote}`;
+              > ⚠️ _Base branch (\`${baseBranch}\`) build failed - comparison not available._${errorNote}`;
             }
 
             // Build large bundles section (only if there are large bundles)
             let bundleSection = '';
             if (hasLargeBundles && topJsFormatted) {
               bundleSection = `
-            **${largeCount} bundle(s) exceed 200KB:**
+              **${largeCount} bundle(s) exceed 200KB:**
 
-            | File | Size |
-            |:-----|-----:|
-            ${topJsFormatted}
-            `;
+              | File | Size |
+              |:-----|-----:|
+              ${topJsFormatted}
+              `;
             }
 
             // Check if preview deployment is configured
@@ -676,13 +676,13 @@ _Building..._
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
             const body = `<!-- build-report -->
-            ## CI Report${previewPlaceholder}
+              ## CI Report${previewPlaceholder}
 
-            ${statusLine}
+              ${statusLine}
 
-            ${statsTable}
-            ${bundleSection}
-            \`${commitSha}\`${baseRef} · ${runUrl} · _${timestamp}_`;
+              ${statsTable}
+              ${bundleSection}
+              \`${commitSha}\`${baseRef} · ${runUrl} · _${timestamp}_`;
 
             // Find existing comment and post/update
             try {
