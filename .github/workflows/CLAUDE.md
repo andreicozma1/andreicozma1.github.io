@@ -122,6 +122,39 @@ const updated = body.replace(
 );
 ```
 
+### Incremental Comment Updates
+
+Update PR comments as workflow progresses to show current status:
+
+```yaml
+# 1. Post initial placeholder early
+- name: Post initial PR comment
+  if: github.event_name == 'pull_request'
+  uses: actions/github-script@v7
+  # Shows: ⏳ Types · ⏳ Build · ⏳ Stats
+
+# 2. Update after each major step
+- name: Update PR comment after typecheck
+  if: github.event_name == 'pull_request' && always()
+  # Shows: ✅ Types · ⏳ Build · ⏳ Stats
+
+# 3. Final update with all stats
+- name: Post PR comment with build stats
+  # Shows: ✅ Types · ✅ Build · 📊 +2.1K
+```
+
+**Status indicators:**
+- `⏳` - Pending/in progress
+- `✅` - Success
+- `❌` - Failed
+- `⏸️` - Skipped
+
+**Benefits:**
+- Shows current status immediately when PR updates
+- Clear what stage the workflow is at
+- Failed steps visible without waiting for full workflow
+- Timestamp shows when comment was last updated
+
 ## Anti-Patterns
 
 | Anti-Pattern | Problem | Solution |

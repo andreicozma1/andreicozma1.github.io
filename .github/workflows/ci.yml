@@ -19,6 +19,55 @@ jobs:
           node-version: "20"
           cache: "npm"
 
+      - name: Post initial PR comment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+            const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
+            const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+
+            const body = `<!-- build-report -->
+## CI Report<!-- preview-marker -->
+
+⏳ Types · ⏳ Build · ⏳ Stats
+
+_Running..._
+
+\`${commitSha}\` · ${runUrl} · _${timestamp}_`;
+
+            try {
+              const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+              });
+
+              const botComment = comments.find(comment =>
+                comment.user.login === 'github-actions[bot]' &&
+                comment.body.includes('<!-- build-report -->')
+              );
+
+              if (botComment) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: botComment.id,
+                  body: body
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: body
+                });
+              }
+            } catch (error) {
+              console.error('Failed to post initial PR comment:', error);
+            }
+
       - name: Setup environment
         run: |
           if [ -z "${SFC:-}" ]; then
@@ -237,6 +286,50 @@ jobs:
           fi
 
           echo "::remove-matcher owner=tsc::"
+
+      - name: Update PR comment after typecheck
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const typecheckStatus = '${{ steps.typecheck.outputs.status }}';
+            const typeIcon = typecheckStatus === 'success' ? '✅' : (typecheckStatus === 'failure' ? '❌' : '⏳');
+            const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+            const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
+
+            try {
+              const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+              });
+
+              const botComment = comments.find(comment =>
+                comment.user.login === 'github-actions[bot]' &&
+                comment.body.includes('<!-- build-report -->')
+              );
+
+              if (botComment) {
+                const body = `<!-- build-report -->
+## CI Report<!-- preview-marker -->
+
+${typeIcon} Types · ⏳ Build · ⏳ Stats
+
+_Building..._
+
+\`${commitSha}\` · ${runUrl} · _${timestamp}_`;
+
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: botComment.id,
+                  body: body
+                });
+              }
+            } catch (error) {
+              console.error('Failed to update PR comment:', error);
+            }
 
       - name: Get PR head commit timestamp
         id: pr-commit
@@ -544,11 +637,12 @@ jobs:
             const hasSurgeToken = '${{ secrets.SURGE_TOKEN }}' !== '';
             const previewPlaceholder = hasSurgeToken ? ' · 🚀 _deploying..._<!-- preview-marker -->' : '<!-- preview-marker -->';
 
-            // Build footer with base comparison info
+            // Build footer with base comparison info and timestamp
             const baseSha = '${{ steps.base-sha.outputs.short_sha }}';
             const fromCache = '${{ steps.base-stats.outputs.from_cache }}' === 'true';
             const cacheIndicator = fromCache ? ' 📦' : '';
             const baseRef = hasComparison ? ` · vs \`${baseBranch}@${baseSha}\`${cacheIndicator}` : '';
+            const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
             const body = `<!-- build-report -->
             ## CI Report${previewPlaceholder}
@@ -557,7 +651,7 @@ jobs:
 
             ${statsTable}
             ${bundleSection}
-            \`${commitSha}\`${baseRef} · ${runUrl}`;
+            \`${commitSha}\`${baseRef} · ${runUrl} · _${timestamp}_`;
 
             // Find existing comment and post/update
             try {
