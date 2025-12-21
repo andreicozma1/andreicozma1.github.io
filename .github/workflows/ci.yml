@@ -42,8 +42,10 @@ jobs:
           rm -rf public .cache node_modules
           npm ci
 
-          # Try to build base branch
-          if npm run build 2>&1; then
+          # Try to build base branch and capture output
+          build_output=$(npm run build 2>&1) && build_success=true || build_success=false
+
+          if [ "$build_success" = "true" ]; then
             echo "base_build_success=true" >> $GITHUB_OUTPUT
 
             # Collect base stats
@@ -78,6 +80,14 @@ jobs:
           else
             echo "::warning::Base branch build failed - comparison will be skipped."
             echo "base_build_success=false" >> $GITHUB_OUTPUT
+
+            # Extract key error info (last 5 lines of error, truncated)
+            error_summary=$(echo "$build_output" | grep -i "error" | tail -3 | head -c 200)
+            if [ -n "$error_summary" ]; then
+              # Escape for GitHub Output (replace newlines, special chars)
+              error_escaped=$(echo "$error_summary" | tr '\n' ' ' | sed 's/"/\\"/g')
+              echo "base_build_error=${error_escaped}" >> $GITHUB_OUTPUT
+            fi
           fi
 
           # Clean up and return to PR
@@ -221,7 +231,19 @@ jobs:
             echo "| CSS | ${css_size} |" >> $GITHUB_STEP_SUMMARY
             echo "| Images | ${img_count} |" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "> ⚠️ _Base branch build failed - comparison not available for this PR._" >> $GITHUB_STEP_SUMMARY
+            echo "> ⚠️ _Base branch (\`${{ github.base_ref }}\`) build failed - comparison not available._" >> $GITHUB_STEP_SUMMARY
+
+            # Show error if captured
+            base_error="${{ steps.base-build.outputs.base_build_error }}"
+            if [ -n "$base_error" ]; then
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "<details><summary>Build error</summary>" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              echo "$base_error" >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              echo "</details>" >> $GITHUB_STEP_SUMMARY
+            fi
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
 
@@ -334,6 +356,11 @@ jobs:
             | 🎨 CSS | ${cssSize} | ${formatDelta(deltaCss)} |
             | 🖼️ Images | ${imgCount} | ${deltaImg !== 0 ? (deltaImg > 0 ? '+' : '') + deltaImg : '-'} |`;
             } else {
+              const baseError = `${{ steps.base-build.outputs.base_build_error }}`.trim();
+              const errorNote = baseError
+                ? `\n\n<details>\n<summary>Build error</summary>\n\n\`\`\`\n${baseError}\n\`\`\`\n</details>`
+                : '';
+
               statsTable = `| Metric | Value |
             |:-------|------:|
             | ⏱️ Build Time | **${buildTime}s** |
@@ -343,7 +370,7 @@ jobs:
             | 🎨 CSS | ${cssSize} |
             | 🖼️ Images | ${imgCount} |
 
-            > ⚠️ _Base branch build failed - comparison not available. This can happen when a PR changes the build system._`;
+            > ⚠️ _Base branch (\`${{ github.base_ref }}\`) build failed - comparison not available._${errorNote}`;
             }
 
             const body = `## 📊 Build Report
