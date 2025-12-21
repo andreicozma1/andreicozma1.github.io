@@ -69,13 +69,30 @@ jobs:
               base_html=$(find public -name '*.html' -type f 2>/dev/null | wc -l | tr -d ' ')
               base_img=$(find public \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.gif' -o -name '*.svg' -o -name '*.webp' \) -type f 2>/dev/null | wc -l | tr -d ' ')
 
+              # Output raw bytes for arithmetic
               echo "base_total=${base_total}" >> $GITHUB_OUTPUT
               echo "base_js=${base_js}" >> $GITHUB_OUTPUT
               echo "base_css=${base_css}" >> $GITHUB_OUTPUT
               echo "base_html=${base_html}" >> $GITHUB_OUTPUT
               echo "base_img=${base_img}" >> $GITHUB_OUTPUT
 
-              echo "Base build stats: total=${base_total}, js=${base_js}, css=${base_css}, html=${base_html}, img=${base_img}"
+              # Output human-readable sizes for display
+              base_total_size=$(du -sh public | cut -f1)
+              if [ -n "$js_files" ]; then
+                base_js_size=$(echo "$js_files" | xargs du -ch | tail -1 | cut -f1)
+              else
+                base_js_size="0"
+              fi
+              if [ -n "$css_files" ]; then
+                base_css_size=$(echo "$css_files" | xargs du -ch | tail -1 | cut -f1)
+              else
+                base_css_size="0"
+              fi
+              echo "base_total_size=${base_total_size}" >> $GITHUB_OUTPUT
+              echo "base_js_size=${base_js_size}" >> $GITHUB_OUTPUT
+              echo "base_css_size=${base_css_size}" >> $GITHUB_OUTPUT
+
+              echo "Base build stats: total=${base_total_size}, js=${base_js_size}, css=${base_css_size}, html=${base_html}, img=${base_img}"
             fi
           else
             echo "::warning::Base branch build failed - comparison will be skipped."
@@ -215,14 +232,19 @@ jobs:
             echo "delta_html=${delta_html}" >> $GITHUB_OUTPUT
             echo "delta_img=${delta_img}" >> $GITHUB_OUTPUT
 
-            # Write to step summary with comparison
-            echo "| Metric | Value | Δ vs base |" >> $GITHUB_STEP_SUMMARY
-            echo "|--------|------:|----------:|" >> $GITHUB_STEP_SUMMARY
-            echo "| Total Size | ${total_size} | ${delta_total} bytes |" >> $GITHUB_STEP_SUMMARY
-            echo "| HTML Pages | ${html_count} | ${delta_html} |" >> $GITHUB_STEP_SUMMARY
-            echo "| JavaScript | ${js_size} | ${delta_js} bytes |" >> $GITHUB_STEP_SUMMARY
-            echo "| CSS | ${css_size} | ${delta_css} bytes |" >> $GITHUB_STEP_SUMMARY
-            echo "| Images | ${img_count} | ${delta_img} |" >> $GITHUB_STEP_SUMMARY
+            # Get human-readable base sizes
+            base_total_size="${{ steps.base-build.outputs.base_total_size }}"
+            base_js_size="${{ steps.base-build.outputs.base_js_size }}"
+            base_css_size="${{ steps.base-build.outputs.base_css_size }}"
+
+            # Write to step summary with comparison (Base | PR | Delta)
+            echo "| Metric | Base | PR | Δ |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-----:|---:|--:|" >> $GITHUB_STEP_SUMMARY
+            echo "| Total Size | ${base_total_size} | ${total_size} | ${delta_total} bytes |" >> $GITHUB_STEP_SUMMARY
+            echo "| JavaScript | ${base_js_size} | ${js_size} | ${delta_js} bytes |" >> $GITHUB_STEP_SUMMARY
+            echo "| CSS | ${base_css_size} | ${css_size} | ${delta_css} bytes |" >> $GITHUB_STEP_SUMMARY
+            echo "| HTML Pages | ${base_html} | ${html_count} | ${delta_html} |" >> $GITHUB_STEP_SUMMARY
+            echo "| Images | ${base_img} | ${img_count} | ${delta_img} |" >> $GITHUB_STEP_SUMMARY
           else
             echo "has_comparison=false" >> $GITHUB_OUTPUT
 
@@ -330,9 +352,15 @@ jobs:
             // Check if comparison is available
             const hasComparison = '${{ steps.stats.outputs.has_comparison }}' === 'true';
 
-            // Get deltas (only if comparison available)
+            // Get base stats and deltas (only if comparison available)
+            let baseTotalSize = '', baseJsSize = '', baseCssSize = '', baseHtml = 0, baseImg = 0;
             let deltaTotal = 0, deltaJs = 0, deltaCss = 0, deltaHtml = 0, deltaImg = 0;
             if (hasComparison) {
+              baseTotalSize = '${{ steps.base-build.outputs.base_total_size }}';
+              baseJsSize = '${{ steps.base-build.outputs.base_js_size }}';
+              baseCssSize = '${{ steps.base-build.outputs.base_css_size }}';
+              baseHtml = parseInt('${{ steps.base-build.outputs.base_html }}') || 0;
+              baseImg = parseInt('${{ steps.base-build.outputs.base_img }}') || 0;
               deltaTotal = parseInt('${{ steps.stats.outputs.delta_total }}') || 0;
               deltaJs = parseInt('${{ steps.stats.outputs.delta_js }}') || 0;
               deltaCss = parseInt('${{ steps.stats.outputs.delta_css }}') || 0;
@@ -357,17 +385,24 @@ jobs:
               return '';
             }).filter(Boolean).join('\n') : '| _No JS files found_ | - |';
 
+            // Helper for formatting count deltas
+            const formatCountDelta = (delta) => {
+              if (delta === 0) return '-';
+              return (delta > 0 ? '+' : '') + delta;
+            };
+
             // Build the stats table (with or without comparison)
             let statsTable;
             if (hasComparison) {
-              statsTable = `| Metric | Value | Δ vs base |
-            |:-------|------:|----------:|
-            | ⏱️ Build Time | **${buildTime}s** | - |
-            | 📦 Total Size | **${totalSize}** | ${formatDelta(deltaTotal)} |
-            | 📄 HTML Pages | ${htmlCount} | ${deltaHtml !== 0 ? (deltaHtml > 0 ? '+' : '') + deltaHtml : '-'} |
-            | 📜 JavaScript | ${jsSize} | ${formatDelta(deltaJs)} |
-            | 🎨 CSS | ${cssSize} | ${formatDelta(deltaCss)} |
-            | 🖼️ Images | ${imgCount} | ${deltaImg !== 0 ? (deltaImg > 0 ? '+' : '') + deltaImg : '-'} |`;
+              statsTable = `| Metric | Base | PR | Δ |
+            |:-------|-----:|---:|--:|
+            | 📦 Total Size | ${baseTotalSize} | **${totalSize}** | ${formatDelta(deltaTotal)} |
+            | 📜 JavaScript | ${baseJsSize} | **${jsSize}** | ${formatDelta(deltaJs)} |
+            | 🎨 CSS | ${baseCssSize} | **${cssSize}** | ${formatDelta(deltaCss)} |
+            | 📄 HTML Pages | ${baseHtml} | **${htmlCount}** | ${formatCountDelta(deltaHtml)} |
+            | 🖼️ Images | ${baseImg} | **${imgCount}** | ${formatCountDelta(deltaImg)} |
+
+            ⏱️ Build time: **${buildTime}s**`;
             } else {
               // Get error from env (safe for multiline content)
               const baseError = (process.env.BASE_BUILD_ERROR || '').trim();
@@ -377,12 +412,13 @@ jobs:
 
               statsTable = `| Metric | Value |
             |:-------|------:|
-            | ⏱️ Build Time | **${buildTime}s** |
             | 📦 Total Size | **${totalSize}** |
-            | 📄 HTML Pages | ${htmlCount} |
-            | 📜 JavaScript | ${jsSize} |
-            | 🎨 CSS | ${cssSize} |
-            | 🖼️ Images | ${imgCount} |
+            | 📜 JavaScript | **${jsSize}** |
+            | 🎨 CSS | **${cssSize}** |
+            | 📄 HTML Pages | **${htmlCount}** |
+            | 🖼️ Images | **${imgCount}** |
+
+            ⏱️ Build time: **${buildTime}s**
 
             > ⚠️ _Base branch (\`${baseBranch}\`) build failed - comparison not available._${errorNote}`;
             }
