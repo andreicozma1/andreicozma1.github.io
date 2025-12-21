@@ -436,10 +436,12 @@ jobs:
             `;
             }
 
-            const body = `## 📊 Build Report
+            const body = `<!-- build-report -->
+            ## 📊 Build Report
 
             ${statsTable}
             ${bundleSection}
+            <!-- footer -->
             ⏱️ ${buildTime}s · ${runUrl}`;
 
             // Find existing comment and post/update
@@ -452,7 +454,7 @@ jobs:
 
               const botComment = comments.find(comment =>
                 comment.user.login === 'github-actions[bot]' &&
-                comment.body.includes('📊 Build Report')
+                comment.body.includes('<!-- build-report -->')
               );
 
               if (botComment) {
@@ -515,13 +517,13 @@ jobs:
 
               const botComment = comments.find(comment =>
                 comment.user.login === 'github-actions[bot]' &&
-                comment.body.includes('📊 Build Report')
+                comment.body.includes('<!-- build-report -->')
               );
 
-              if (botComment && !botComment.body.includes('🚀')) {
+              if (botComment && !botComment.body.includes('<!-- preview-url -->')) {
                 const updatedBody = botComment.body.replace(
-                  /⏱️/,
-                  `🚀 ${previewUrl}\n\n⏱️`
+                  /<!-- footer -->/,
+                  `<!-- preview-url -->\n🚀 ${previewUrl}\n\n<!-- footer -->`
                 );
 
                 await github.rest.issues.updateComment({
