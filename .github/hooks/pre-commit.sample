@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# Pre-commit hook to validate GitHub Actions workflow files
+#
+# To enable this hook:
+#   1. Copy to .git/hooks/pre-commit
+#   2. Make executable: chmod +x .git/hooks/pre-commit
+#
+# Or use git config:
+#   git config core.hooksPath .github/hooks
+#   chmod +x .github/hooks/pre-commit.sample
+#   mv .github/hooks/pre-commit.sample .github/hooks/pre-commit
+
+set -e
+
+# Get list of staged workflow files
+STAGED_WORKFLOWS=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^.github/workflows/.*\.ya?ml$' || true)
+
+if [ -z "$STAGED_WORKFLOWS" ]; then
+  # No workflow files staged, skip validation
+  exit 0
+fi
+
+echo "🔍 Validating workflow files..."
+echo ""
+
+# Check if actionlint exists
+if [ ! -f ".github/scripts/actionlint" ]; then
+  echo "❌ Error: actionlint not found at .github/scripts/actionlint"
+  echo "Please run: bash <(curl -s https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)"
+  exit 1
+fi
+
+# Validate each staged workflow file
+VALIDATION_FAILED=0
+for file in $STAGED_WORKFLOWS; do
+  echo "Validating: $file"
+  if ! .github/scripts/actionlint "$file"; then
+    VALIDATION_FAILED=1
+  fi
+done
+
+if [ $VALIDATION_FAILED -eq 1 ]; then
+  echo ""
+  echo "❌ Workflow validation failed!"
+  echo "Please fix the errors above before committing."
+  echo ""
+  echo "To skip this check (not recommended):"
+  echo "  git commit --no-verify"
+  exit 1
+fi
+
+echo ""
+echo "✅ All workflow files are valid"
+exit 0

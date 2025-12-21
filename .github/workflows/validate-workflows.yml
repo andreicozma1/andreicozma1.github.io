@@ -1,0 +1,49 @@
+name: "Validate Workflows"
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**/*.yml"
+      - ".github/workflows/**/*.yaml"
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**/*.yml"
+      - ".github/workflows/**/*.yaml"
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate workflow files with actionlint
+        run: |
+          echo "## 🔍 Workflow Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Run actionlint on all workflow files
+          if .github/scripts/actionlint .github/workflows/*.yml 2>&1 | tee actionlint-output.txt; then
+            echo "✅ **All workflow files are valid**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Validated files:" >> $GITHUB_STEP_SUMMARY
+            for file in .github/workflows/*.yml; do
+              echo "- \`$(basename "$file")\`" >> $GITHUB_STEP_SUMMARY
+            done
+            exit 0
+          else
+            echo "❌ **Workflow validation failed**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat actionlint-output.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Please fix the errors above and commit the changes." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi

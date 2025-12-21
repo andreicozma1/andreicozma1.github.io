@@ -4,17 +4,27 @@ applyTo: "**/*.yml,**/*.yaml"
 
 # YAML & GitHub Actions Workflow Validation
 
-## Validation Order (Most to Least Important)
+## Validation Tools Priority
 
-1. **actionlint** - GitHub Actions-specific validation (primary tool)
-2. **PyYAML** - Basic YAML syntax verification (fallback)
-3. **yamllint** - Style and formatting checks (optional)
+1. **actionlint** - Comprehensive GitHub Actions validation (always use)
+2. **PyYAML** - Quick YAML syntax check (optional fallback)
+3. **yamllint** - Style/formatting enforcement (optional)
 
 ## Core Principles
 
-### Always Validate Before Committing
+### Mandatory Validation (Enforced)
 
-Run validation after any YAML modifications. Syntax errors prevent workflows from running.
+**CRITICAL**: All workflow files MUST pass actionlint validation before committing.
+- Automated validation runs on every PR that modifies workflows
+- Pre-commit hook available to catch errors early
+- Validation failures block merging
+
+**Setup pre-commit validation:**
+```bash
+git config core.hooksPath .github/hooks
+chmod +x .github/hooks/pre-commit.sample
+mv .github/hooks/pre-commit.sample .github/hooks/pre-commit
+```
 
 ### Indentation Rules for GitHub Actions
 
@@ -47,33 +57,26 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 
 ## Validation Tools
 
-### actionlint (.github/scripts/actionlint)
+### actionlint (.github/scripts/actionlint) - Primary Tool
 
 **Purpose**: Comprehensive GitHub Actions workflow validation
-**Use for**: Expression validation, type checking, deprecated action detection, shell script validation
-**Why**: Catches GitHub Actions-specific issues that generic YAML validators miss
-**When**: Before every commit, in CI pipelines
+**Validates**: YAML syntax, expressions, types, deprecated actions, shell scripts, workflow structure
+**Why**: Only tool that validates GitHub Actions-specific semantics
+**When**: Always - before every commit, in CI pipelines
 
-### validate_workflows.py (.github/scripts/validate_workflows.py)
-
-**Purpose**: Basic YAML syntax and structure verification
-**Use for**: Quick validation when actionlint unavailable, lightweight CI checks
-**Why**: Portable, dependency-free fallback validation
-**When**: As secondary check or in constrained environments
-
-### PyYAML (python yaml.safe_load)
+### PyYAML - Quick Syntax Check
 
 **Purpose**: Verify YAML can be parsed without errors
-**Use for**: Basic syntax checking, ensuring no parser errors
-**Why**: Quick confirmation of valid YAML structure
-**When**: Minimal validation needs, automated checks
+**Command**: `python3 -c "import yaml; yaml.safe_load(open('file.yml'))"`
+**Why**: Built into Python, zero additional dependencies
+**When**: Quick manual checks when actionlint unavailable
 
-### yamllint
+### yamllint - Style Enforcement (Optional)
 
 **Purpose**: YAML style and formatting consistency
-**Use for**: Code style enforcement, team consistency
-**Why**: Identifies style issues (line length, document markers)
-**When**: Pre-commit hooks, style enforcement (generates many warnings on valid YAML)
+**Why**: Enforces team coding standards
+**When**: Pre-commit hooks, style CI checks
+**Note**: Generates many warnings on valid YAML (line length, etc.) - use selectively
 
 ## Common Issues & Patterns
 
@@ -94,14 +97,41 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 **Pattern**: Non-existent resources (cleanup already done) should not fail workflows
 **Implementation**: Set appropriate status codes, use warnings instead of errors
 
-## Testing Changes
+## Optimized Workflow Development Cycle
 
-1. Run actionlint first (fastest, most comprehensive feedback)
-2. Fix any reported issues
-3. Run PyYAML validation to confirm parse success
-4. Commit only after both pass
+### Before Editing
+1. Ensure actionlint is available: `.github/scripts/actionlint`
+2. Enable pre-commit hook (one-time setup):
+   ```bash
+   git config core.hooksPath .github/hooks && \
+   chmod +x .github/hooks/pre-commit.sample && \
+   mv .github/hooks/pre-commit.sample .github/hooks/pre-commit
+   ```
+
+### During Development
+1. Edit workflow file
+2. Run actionlint immediately: `.github/scripts/actionlint .github/workflows/your-file.yml`
+3. Fix issues in real-time (faster iteration)
+4. Repeat until actionlint passes
+
+### Before Commit
+1. Pre-commit hook automatically validates staged workflows
+2. Fix any errors before commit completes
+3. Commit only after passing validation
+
+### CI Validation
+- All workflow changes automatically validated on PR
+- Blocks merge if validation fails
+- Provides detailed error messages in PR checks
+
+## Tool Selection Guide
+
+**Need comprehensive validation?** → Use actionlint (always)
+**Need quick syntax check?** → Use PyYAML command
+**Need style enforcement?** → Add yamllint (optional)
 
 ## Reference
 
-Tools location: `.github/scripts/`
-Documentation: `.github/scripts/README.md`
+- Tools: `.github/scripts/`
+- Documentation: `.github/scripts/README.md`
+- Tool comparison matrix in README
