@@ -477,25 +477,49 @@ jobs:
       - name: Deploy preview to Surge
         id: surge
         if: github.event_name == 'pull_request'
-        continue-on-error: true
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
+          set -uo pipefail
+
+          PREVIEW_URL="pr-${{ github.event.pull_request.number }}-andreicozma1.surge.sh"
+          FULL_URL="https://${PREVIEW_URL}"
+          echo "preview_url=${PREVIEW_URL}" >> $GITHUB_OUTPUT
+          echo "url=${FULL_URL}" >> $GITHUB_OUTPUT
+
           if [ -z "${SURGE_TOKEN:-}" ]; then
-            echo "SURGE_TOKEN not configured - skipping preview deployment"
+            echo "::notice::SURGE_TOKEN not configured - skipping preview deployment"
+            echo "status=skipped" >> $GITHUB_OUTPUT
             echo "deployed=false" >> $GITHUB_OUTPUT
             exit 0
           fi
 
-          PREVIEW_URL="pr-${{ github.event.pull_request.number }}-andreicozma1.surge.sh"
-
-          if npx surge ./public "${PREVIEW_URL}" --token "$SURGE_TOKEN"; then
-            echo "url=https://${PREVIEW_URL}" >> $GITHUB_OUTPUT
-            echo "deployed=true" >> $GITHUB_OUTPUT
-            echo "🚀 Preview deployed to https://${PREVIEW_URL}"
-          else
-            echo "Surge deployment failed"
+          # Deploy to Surge
+          echo "Deploying to ${FULL_URL}..."
+          if ! npx surge ./public "${PREVIEW_URL}" --token "$SURGE_TOKEN" 2>&1; then
+            echo "::error::Surge deployment command failed"
+            echo "status=deploy_failed" >> $GITHUB_OUTPUT
             echo "deployed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+          # Verify deployment is accessible
+          echo "Verifying deployment..."
+          sleep 3
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${FULL_URL}" --max-time 15 || echo "000")
+
+          if [ "$HTTP_STATUS" = "200" ]; then
+            echo "✅ Preview deployed and verified: ${FULL_URL}"
+            echo "status=success" >> $GITHUB_OUTPUT
+            echo "deployed=true" >> $GITHUB_OUTPUT
+          elif [ "$HTTP_STATUS" = "000" ]; then
+            echo "::warning::Deployment completed but site unreachable (timeout)"
+            echo "status=unverified" >> $GITHUB_OUTPUT
+            echo "deployed=true" >> $GITHUB_OUTPUT
+          else
+            echo "::warning::Deployment completed but unexpected status: HTTP ${HTTP_STATUS}"
+            echo "status=unverified" >> $GITHUB_OUTPUT
+            echo "deployed=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Update PR comment with preview URL
@@ -504,6 +528,10 @@ jobs:
         with:
           script: |
             const previewUrl = '${{ steps.surge.outputs.url }}';
+            const status = '${{ steps.surge.outputs.status }}';
+
+            // Add status indicator if not fully verified
+            const statusSuffix = status === 'success' ? '' : ' ⚠️';
 
             try {
               const { data: comments } = await github.rest.issues.listComments({
@@ -520,7 +548,7 @@ jobs:
               if (botComment && !botComment.body.includes('<!-- preview-url -->')) {
                 const updatedBody = botComment.body.replace(
                   /<!-- preview-marker -->/,
-                  ` · 🚀 ${previewUrl}<!-- preview-url -->`
+                  ` · 🚀 ${previewUrl}${statusSuffix}<!-- preview-url -->`
                 );
 
                 await github.rest.issues.updateComment({
@@ -529,7 +557,13 @@ jobs:
                   comment_id: botComment.id,
                   body: updatedBody
                 });
+                console.log(`Updated PR comment with preview URL (status: ${status})`);
+              } else if (!botComment) {
+                console.log('No build report comment found to update');
+              } else {
+                console.log('Preview URL already present in comment');
               }
             } catch (error) {
               console.error('Failed to update PR comment with preview URL:', error);
+              core.warning(`Failed to update PR comment: ${error.message}`);
             }

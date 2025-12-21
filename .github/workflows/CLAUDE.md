@@ -173,6 +173,77 @@ Build time: **45s**
 Updated: 2024-01-15T10:30:00Z
 ```
 
+## Reliability
+
+Reliability must be built into the core of every workflow, not bolted on.
+
+### Verify, Don't Assume
+
+**Anti-pattern:**
+```yaml
+- run: npx surge ./public "$URL"
+  continue-on-error: true  # Silently swallows failures
+```
+
+**Pattern:**
+```yaml
+- run: |
+    # Deploy
+    if ! npx surge ./public "$URL" 2>&1; then
+      echo "::error::Deployment failed"
+      exit 1
+    fi
+
+    # Verify it actually worked
+    HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://$URL")
+    if [ "$HTTP_STATUS" != "200" ]; then
+      echo "::warning::Deployed but verification failed (HTTP $HTTP_STATUS)"
+    fi
+```
+
+### Status Tracking
+
+Every step that can fail should output explicit status:
+```bash
+echo "status=success" >> $GITHUB_OUTPUT   # or failed, skipped, unverified
+echo "deployed=true" >> $GITHUB_OUTPUT    # boolean for conditionals
+```
+
+Use status in downstream steps:
+```yaml
+if: steps.deploy.outputs.status == 'success'
+```
+
+### Job Summaries for Visibility
+
+Always write a summary so outcomes are discoverable:
+```bash
+echo "## 🧹 Preview Cleanup" >> $GITHUB_STEP_SUMMARY
+case "$STATUS" in
+  success) echo "✅ **Teardown successful**" ;;
+  failed)  echo "❌ **Teardown failed**" ;;
+  skipped) echo "⏭️ **Skipped** (token not configured)" ;;
+esac >> $GITHUB_STEP_SUMMARY
+```
+
+### GitHub Annotations
+
+Use annotations for visibility in the Actions UI:
+```bash
+echo "::notice::Informational message"
+echo "::warning::Something unexpected but not fatal"
+echo "::error::Something failed"
+```
+
+### Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|--------------|---------|----------|
+| `continue-on-error: true` | Silently swallows failures | Explicit error handling with status output |
+| No verification after deploy | Can't know if it worked | curl/wget to verify accessibility |
+| Silent success | Hard to audit what happened | Job summary with clear outcomes |
+| Logging only to console | Not discoverable | Use `::warning::` and `::error::` annotations |
+
 ## General Principles
 
 1. **Validate early** - Check inputs/directories exist before using
@@ -183,3 +254,5 @@ Updated: 2024-01-15T10:30:00Z
 6. **Use invisible markers** - HTML comments for reliable matching
 7. **Minimize noise** - Only show warnings when actionable
 8. **Prefer raw values** - URLs, counts, sizes without extra formatting
+9. **Verify, don't assume** - Check that actions actually succeeded
+10. **Make outcomes discoverable** - Job summaries, annotations, status outputs

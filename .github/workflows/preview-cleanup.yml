@@ -10,15 +10,75 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Teardown Surge preview
-        continue-on-error: true
+        id: teardown
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
-          if [ -z "$SURGE_TOKEN" ]; then
-            echo "SURGE_TOKEN not set, skipping teardown"
+          set -uo pipefail
+
+          PREVIEW_URL="pr-${{ github.event.pull_request.number }}-andreicozma1.surge.sh"
+          echo "preview_url=${PREVIEW_URL}" >> $GITHUB_OUTPUT
+
+          if [ -z "${SURGE_TOKEN:-}" ]; then
+            echo "::warning::SURGE_TOKEN not set, skipping teardown"
+            echo "status=skipped" >> $GITHUB_OUTPUT
             exit 0
           fi
 
-          PREVIEW_URL="pr-${{ github.event.pull_request.number }}-andreicozma1.surge.sh"
-          npx surge teardown "${PREVIEW_URL}" --token "$SURGE_TOKEN"
-          echo "🧹 Preview torn down: ${PREVIEW_URL}"
+          # Attempt teardown
+          if npx surge teardown "${PREVIEW_URL}" --token "$SURGE_TOKEN" 2>&1; then
+            echo "status=success" >> $GITHUB_OUTPUT
+          else
+            echo "::error::Surge teardown command failed"
+            echo "status=failed" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Verify teardown
+        if: steps.teardown.outputs.status == 'success'
+        run: |
+          PREVIEW_URL="${{ steps.teardown.outputs.preview_url }}"
+
+          # Wait briefly for teardown to propagate
+          sleep 5
+
+          # Verify site is no longer accessible (expect 4xx or connection failure)
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://${PREVIEW_URL}" --max-time 10 || echo "000")
+
+          if [ "$HTTP_STATUS" = "000" ] || [ "$HTTP_STATUS" -ge 400 ]; then
+            echo "✅ Verified: Preview site is no longer accessible (HTTP $HTTP_STATUS)"
+            echo "verified=true" >> $GITHUB_OUTPUT
+          else
+            echo "::warning::Preview site may still be accessible (HTTP $HTTP_STATUS)"
+            echo "verified=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Job summary
+        if: always()
+        run: |
+          STATUS="${{ steps.teardown.outputs.status }}"
+          PREVIEW_URL="${{ steps.teardown.outputs.preview_url }}"
+
+          echo "## 🧹 Preview Cleanup" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          case "$STATUS" in
+            success)
+              echo "✅ **Teardown successful**" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "- URL: \`${PREVIEW_URL}\`" >> $GITHUB_STEP_SUMMARY
+              echo "- PR: #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
+              ;;
+            skipped)
+              echo "⏭️ **Teardown skipped** (SURGE_TOKEN not configured)" >> $GITHUB_STEP_SUMMARY
+              ;;
+            failed)
+              echo "❌ **Teardown failed**" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "- URL: \`${PREVIEW_URL}\`" >> $GITHUB_STEP_SUMMARY
+              echo "- Check logs for details" >> $GITHUB_STEP_SUMMARY
+              ;;
+            *)
+              echo "⚠️ **Unknown status**: ${STATUS:-none}" >> $GITHUB_STEP_SUMMARY
+              ;;
+          esac
