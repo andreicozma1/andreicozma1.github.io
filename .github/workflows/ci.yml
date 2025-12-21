@@ -21,7 +21,13 @@ jobs:
 
       - name: Setup environment
         run: |
-          echo "$SFC" | base64 -d > ./.env
+          if [ -z "${SFC:-}" ]; then
+            echo "::warning::SECRETS_FILE_CONTENTS not configured - .env will be empty"
+            touch ./.env
+          else
+            echo "$SFC" | base64 -d > ./.env
+            echo "Environment configured ($(wc -l < ./.env) lines)"
+          fi
         env:
           SFC: ${{ secrets.SECRETS_FILE_CONTENTS }}
 
