@@ -250,6 +250,9 @@ jobs:
           echo "build_time=${BUILD_TIME}" >> $GITHUB_OUTPUT
         env:
           CI: true
+          # Use PR head commit, not the merge commit that GitHub creates for PR checks
+          GATSBY_BUILD_TIME: ${{ github.event.pull_request.updated_at }}
+          GATSBY_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
 
       - name: Generate build stats and compare
         id: stats
