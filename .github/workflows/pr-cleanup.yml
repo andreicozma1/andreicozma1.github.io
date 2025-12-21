@@ -36,20 +36,25 @@ jobs:
           if [ $TEARDOWN_EXIT_CODE -eq 0 ]; then
             echo "status=success" >> $GITHUB_OUTPUT
           else
-            # Teardown failed - check if it's because domain doesn't exist
-            # Surge returns "Aborted - unable to remove" for various errors
-            # We need to check the actual error message
-            if echo "$TEARDOWN_OUTPUT" | grep -qi "not found\|does not exist\|could not find"; then
-              echo "::notice::Domain not found (already removed or never existed)"
-              echo "status=not_found" >> $GITHUB_OUTPUT
-            else
-              # Unknown error - this should be treated as a real failure
-              echo "::error::Surge teardown failed with unexpected error"
-              echo "::error::Exit code: $TEARDOWN_EXIT_CODE"
-              echo "::error::Output: $TEARDOWN_OUTPUT"
-              echo "status=failed" >> $GITHUB_OUTPUT
-              exit 1
-            fi
+            # Teardown failed - Surge doesn't differentiate between error types in exit codes
+            # All failures return exit code 1 with message: "Aborted - unable to remove <domain>"
+            # This could mean: domain doesn't exist, auth failure, network error, etc.
+            #
+            # Unfortunately, Surge CLI provides no way to distinguish these cases:
+            # - No JSON output flag
+            # - No verbose mode
+            # - No specific exit codes
+            # - Generic error message for all failures
+            #
+            # Since we cannot reliably detect "domain doesn't exist" vs real errors,
+            # we must treat all teardown failures as actual errors to avoid hiding
+            # real problems (auth failures, network issues, etc.)
+
+            echo "::error::Surge teardown failed"
+            echo "::error::Exit code: $TEARDOWN_EXIT_CODE"
+            echo "::error::Output: $TEARDOWN_OUTPUT"
+            echo "status=failed" >> $GITHUB_OUTPUT
+            exit 1
           fi
 
       - name: Verify teardown
@@ -89,12 +94,6 @@ jobs:
               ;;
             skipped)
               echo "⏭️ **Teardown skipped** (SURGE_TOKEN not configured)" >> $GITHUB_STEP_SUMMARY
-              ;;
-            not_found)
-              echo "✅ **Preview site not found** (already removed or never existed)" >> $GITHUB_STEP_SUMMARY
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "- URL: \`${PREVIEW_URL}\`" >> $GITHUB_STEP_SUMMARY
-              echo "- PR: #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
               ;;
             failed)
               echo "❌ **Teardown failed**" >> $GITHUB_STEP_SUMMARY
