@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for base branch comparison
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -23,52 +25,72 @@ jobs:
         env:
           SFC: ${{ secrets.SECRETS_FILE_CONTENTS }}
 
-      - name: Restore base branch build stats
-        id: base-stats-cache
-        uses: actions/cache/restore@v4
-        with:
-          path: .build-stats
-          key: build-stats-source-latest
-          # No restore-keys - we want exact match only
-
-      - name: Validate base stats
-        id: base-stats
-        run: |
-          if [ "${{ steps.base-stats-cache.outputs.cache-hit }}" != "true" ]; then
-            echo "No cached base stats found - this is expected for first PR or after cache expiry"
-            echo "available=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          if [ ! -f ".build-stats/base-stats.json" ]; then
-            echo "Cache restored but base-stats.json not found"
-            echo "available=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          # Validate JSON structure
-          if ! jq -e '.total_bytes and .js_bytes and .css_bytes and .html_count and .img_count' .build-stats/base-stats.json > /dev/null 2>&1; then
-            echo "base-stats.json exists but has invalid structure"
-            echo "available=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          echo "Base stats validated successfully"
-          echo "available=true" >> $GITHUB_OUTPUT
-
-      - name: Restore Gatsby cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            public
-            .cache
-          key: gatsby-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
-          restore-keys: |
-            gatsby-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
-            gatsby-${{ runner.os }}-
-
       - name: Install dependencies
         run: npm ci
+
+      - name: Build base branch for comparison
+        id: base-build
+        run: |
+          set -euo pipefail
+
+          echo "Building base branch (${{ github.base_ref }}) for comparison..."
+
+          # Save current HEAD
+          PR_HEAD=$(git rev-parse HEAD)
+
+          # Checkout base branch
+          git checkout origin/${{ github.base_ref }}
+
+          # Clean any previous build artifacts
+          rm -rf public .cache
+
+          # Build base branch
+          npm run build
+
+          # Collect base stats
+          if [ -d "public" ]; then
+            base_total=$(du -sb public | cut -f1)
+
+            js_files=$(find public -name '*.js' -type f 2>/dev/null)
+            if [ -n "$js_files" ]; then
+              base_js=$(echo "$js_files" | xargs du -cb | tail -1 | cut -f1)
+            else
+              base_js=0
+            fi
+
+            css_files=$(find public -name '*.css' -type f 2>/dev/null)
+            if [ -n "$css_files" ]; then
+              base_css=$(echo "$css_files" | xargs du -cb | tail -1 | cut -f1)
+            else
+              base_css=0
+            fi
+
+            base_html=$(find public -name '*.html' -type f 2>/dev/null | wc -l | tr -d ' ')
+            base_img=$(find public \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.gif' -o -name '*.svg' -o -name '*.webp' \) -type f 2>/dev/null | wc -l | tr -d ' ')
+
+            echo "base_total=${base_total}" >> $GITHUB_OUTPUT
+            echo "base_js=${base_js}" >> $GITHUB_OUTPUT
+            echo "base_css=${base_css}" >> $GITHUB_OUTPUT
+            echo "base_html=${base_html}" >> $GITHUB_OUTPUT
+            echo "base_img=${base_img}" >> $GITHUB_OUTPUT
+
+            echo "Base build stats: total=${base_total}, js=${base_js}, css=${base_css}, html=${base_html}, img=${base_img}"
+          else
+            echo "Warning: Base branch build did not produce public directory"
+            echo "base_total=0" >> $GITHUB_OUTPUT
+            echo "base_js=0" >> $GITHUB_OUTPUT
+            echo "base_css=0" >> $GITHUB_OUTPUT
+            echo "base_html=0" >> $GITHUB_OUTPUT
+            echo "base_img=0" >> $GITHUB_OUTPUT
+          fi
+
+          # Clean up and return to PR
+          rm -rf public .cache
+          git checkout $PR_HEAD
+
+          echo "Returned to PR branch"
+        env:
+          CI: true
 
       - name: Type check
         id: typecheck
@@ -93,7 +115,7 @@ jobs:
 
           echo "::remove-matcher owner=tsc::"
 
-      - name: Build
+      - name: Build PR branch
         id: build
         run: |
           echo "## Build" >> $GITHUB_STEP_SUMMARY
@@ -106,7 +128,7 @@ jobs:
         env:
           CI: true
 
-      - name: Generate build stats
+      - name: Generate build stats and compare
         id: stats
         run: |
           set -euo pipefail
@@ -121,11 +143,10 @@ jobs:
             exit 1
           fi
 
-          # Calculate current sizes
+          # Calculate PR build sizes
           total_bytes=$(du -sb public | cut -f1)
           total_size=$(du -sh public | cut -f1)
 
-          # Count JS files and size
           js_files=$(find public -name '*.js' -type f 2>/dev/null)
           if [ -n "$js_files" ]; then
             js_bytes=$(echo "$js_files" | xargs du -cb | tail -1 | cut -f1)
@@ -135,7 +156,6 @@ jobs:
             js_size="0"
           fi
 
-          # Count CSS files and size
           css_files=$(find public -name '*.css' -type f 2>/dev/null)
           if [ -n "$css_files" ]; then
             css_bytes=$(echo "$css_files" | xargs du -cb | tail -1 | cut -f1)
@@ -151,38 +171,28 @@ jobs:
           # Get top 5 largest JS files
           TOP_JS=$(find public -name "*.js" -type f -exec du -h {} \; 2>/dev/null | sort -rh | head -5)
 
-          # Calculate deltas if base stats available
-          if [ "${{ steps.base-stats.outputs.available }}" = "true" ]; then
-            base_total=$(jq -r '.total_bytes // 0' .build-stats/base-stats.json)
-            base_js=$(jq -r '.js_bytes // 0' .build-stats/base-stats.json)
-            base_css=$(jq -r '.css_bytes // 0' .build-stats/base-stats.json)
-            base_html=$(jq -r '.html_count // 0' .build-stats/base-stats.json)
-            base_img=$(jq -r '.img_count // 0' .build-stats/base-stats.json)
+          # Get base stats from previous step
+          base_total=${{ steps.base-build.outputs.base_total }}
+          base_js=${{ steps.base-build.outputs.base_js }}
+          base_css=${{ steps.base-build.outputs.base_css }}
+          base_html=${{ steps.base-build.outputs.base_html }}
+          base_img=${{ steps.base-build.outputs.base_img }}
 
-            delta_total=$((total_bytes - base_total))
-            delta_js=$((js_bytes - base_js))
-            delta_css=$((css_bytes - base_css))
-            delta_html=$((html_count - base_html))
-            delta_img=$((img_count - base_img))
-
-            echo "has_base_stats=true" >> $GITHUB_OUTPUT
-            echo "delta_total=${delta_total}" >> $GITHUB_OUTPUT
-            echo "delta_js=${delta_js}" >> $GITHUB_OUTPUT
-            echo "delta_css=${delta_css}" >> $GITHUB_OUTPUT
-            echo "delta_html=${delta_html}" >> $GITHUB_OUTPUT
-            echo "delta_img=${delta_img}" >> $GITHUB_OUTPUT
-          else
-            echo "has_base_stats=false" >> $GITHUB_OUTPUT
-          fi
+          # Calculate deltas
+          delta_total=$((total_bytes - base_total))
+          delta_js=$((js_bytes - base_js))
+          delta_css=$((css_bytes - base_css))
+          delta_html=$((html_count - base_html))
+          delta_img=$((img_count - base_img))
 
           # Write to step summary
-          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Total Size | ${total_size} |" >> $GITHUB_STEP_SUMMARY
-          echo "| HTML Pages | ${html_count} |" >> $GITHUB_STEP_SUMMARY
-          echo "| JavaScript | ${js_size} |" >> $GITHUB_STEP_SUMMARY
-          echo "| CSS | ${css_size} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Images | ${img_count} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value | Δ vs base |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|------:|----------:|" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Size | ${total_size} | ${delta_total} bytes |" >> $GITHUB_STEP_SUMMARY
+          echo "| HTML Pages | ${html_count} | ${delta_html} |" >> $GITHUB_STEP_SUMMARY
+          echo "| JavaScript | ${js_size} | ${delta_js} bytes |" >> $GITHUB_STEP_SUMMARY
+          echo "| CSS | ${css_size} | ${delta_css} bytes |" >> $GITHUB_STEP_SUMMARY
+          echo "| Images | ${img_count} | ${delta_img} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Store outputs for PR comment
@@ -194,6 +204,12 @@ jobs:
           echo "css_size=${css_size}" >> $GITHUB_OUTPUT
           echo "css_bytes=${css_bytes}" >> $GITHUB_OUTPUT
           echo "img_count=${img_count}" >> $GITHUB_OUTPUT
+
+          echo "delta_total=${delta_total}" >> $GITHUB_OUTPUT
+          echo "delta_js=${delta_js}" >> $GITHUB_OUTPUT
+          echo "delta_css=${delta_css}" >> $GITHUB_OUTPUT
+          echo "delta_html=${delta_html}" >> $GITHUB_OUTPUT
+          echo "delta_img=${delta_img}" >> $GITHUB_OUTPUT
 
           # Save top JS files using heredoc
           {
@@ -262,16 +278,12 @@ jobs:
             const largeCount = '${{ steps.bundles.outputs.large_count }}';
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
 
-            // Check for base stats comparison
-            const hasBaseStats = '${{ steps.stats.outputs.has_base_stats }}' === 'true';
-            let deltaTotal = 0, deltaJs = 0, deltaCss = 0, deltaHtml = 0, deltaImg = 0;
-            if (hasBaseStats) {
-              deltaTotal = parseInt('${{ steps.stats.outputs.delta_total }}') || 0;
-              deltaJs = parseInt('${{ steps.stats.outputs.delta_js }}') || 0;
-              deltaCss = parseInt('${{ steps.stats.outputs.delta_css }}') || 0;
-              deltaHtml = parseInt('${{ steps.stats.outputs.delta_html }}') || 0;
-              deltaImg = parseInt('${{ steps.stats.outputs.delta_img }}') || 0;
-            }
+            // Get deltas
+            const deltaTotal = parseInt('${{ steps.stats.outputs.delta_total }}') || 0;
+            const deltaJs = parseInt('${{ steps.stats.outputs.delta_js }}') || 0;
+            const deltaCss = parseInt('${{ steps.stats.outputs.delta_css }}') || 0;
+            const deltaHtml = parseInt('${{ steps.stats.outputs.delta_html }}') || 0;
+            const deltaImg = parseInt('${{ steps.stats.outputs.delta_img }}') || 0;
 
             // Build status indicator
             const bundleStatus = hasLargeBundles
@@ -291,9 +303,7 @@ jobs:
             }).filter(Boolean).join('\n') : '| _No JS files found_ | - |';
 
             // Build the comparison table
-            let statsTable;
-            if (hasBaseStats) {
-              statsTable = `| Metric | Value | Δ vs base |
+            const statsTable = `| Metric | Value | Δ vs base |
             |:-------|------:|----------:|
             | ⏱️ Build Time | **${buildTime}s** | - |
             | 📦 Total Size | **${totalSize}** | ${formatDelta(deltaTotal)} |
@@ -301,18 +311,6 @@ jobs:
             | 📜 JavaScript | ${jsSize} | ${formatDelta(deltaJs)} |
             | 🎨 CSS | ${cssSize} | ${formatDelta(deltaCss)} |
             | 🖼️ Images | ${imgCount} | ${deltaImg !== 0 ? (deltaImg > 0 ? '+' : '') + deltaImg : '-'} |`;
-            } else {
-              statsTable = `| Metric | Value |
-            |:-------|------:|
-            | ⏱️ Build Time | **${buildTime}s** |
-            | 📦 Total Size | **${totalSize}** |
-            | 📄 HTML Pages | ${htmlCount} |
-            | 📜 JavaScript | ${jsSize} |
-            | 🎨 CSS | ${cssSize} |
-            | 🖼️ Images | ${imgCount} |
-
-            > ℹ️ _Size comparison will be available after the base branch (\`source\`) has been deployed at least once._`;
-            }
 
             const body = `## 📊 Build Report
 
