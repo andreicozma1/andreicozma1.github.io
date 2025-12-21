@@ -3,7 +3,7 @@ name: "PR: Cleanup Preview"
 on:
   pull_request:
     types: [closed]
-    branches: ["source"]
+    branches: ["main"]
 
 jobs:
   cleanup:
