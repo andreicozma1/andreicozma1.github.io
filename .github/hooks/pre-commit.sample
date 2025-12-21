@@ -1,12 +1,11 @@
 #!/bin/bash
 #
-# Pre-commit hook to validate GitHub Actions workflow files
+# OPTIONAL Pre-commit hook to validate GitHub Actions workflow files locally
 #
-# To enable this hook:
-#   1. Copy to .git/hooks/pre-commit
-#   2. Make executable: chmod +x .git/hooks/pre-commit
+# NOTE: This is OPTIONAL for faster local feedback.
+#       Validation is MANDATORY via CI - no local setup required.
 #
-# Or use git config:
+# To enable this hook (one-time per developer):
 #   git config core.hooksPath .github/hooks
 #   chmod +x .github/hooks/pre-commit.sample
 #   mv .github/hooks/pre-commit.sample .github/hooks/pre-commit

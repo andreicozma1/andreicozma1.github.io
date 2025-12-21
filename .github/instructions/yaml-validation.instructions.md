@@ -12,19 +12,23 @@ applyTo: "**/*.yml,**/*.yaml"
 
 ## Core Principles
 
-### Mandatory Validation (Enforced)
+### Mandatory Validation (Enforced Automatically)
 
-**CRITICAL**: All workflow files MUST pass actionlint validation before committing.
-- Automated validation runs on every PR that modifies workflows
-- Pre-commit hook available to catch errors early
+**CRITICAL**: All workflow files MUST pass actionlint validation.
+
+**Automatic enforcement via CI (no setup required):**
+- GitHub Actions workflow validates all workflow changes on PR
 - Validation failures block merging
+- No local configuration needed - runs automatically
 
-**Setup pre-commit validation:**
+**Optional: Local pre-commit validation (faster feedback):**
+Git hooks require manual setup per developer (not automatic):
 ```bash
 git config core.hooksPath .github/hooks
 chmod +x .github/hooks/pre-commit.sample
 mv .github/hooks/pre-commit.sample .github/hooks/pre-commit
 ```
+This catches errors before pushing, but CI is the mandatory enforcement layer.
 
 ### Indentation Rules for GitHub Actions
 
@@ -99,30 +103,23 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 
 ## Optimized Workflow Development Cycle
 
-### Before Editing
-1. Ensure actionlint is available: `.github/scripts/actionlint`
-2. Enable pre-commit hook (one-time setup):
-   ```bash
-   git config core.hooksPath .github/hooks && \
-   chmod +x .github/hooks/pre-commit.sample && \
-   mv .github/hooks/pre-commit.sample .github/hooks/pre-commit
-   ```
-
-### During Development
+### During Development (Fastest Feedback)
 1. Edit workflow file
 2. Run actionlint immediately: `.github/scripts/actionlint .github/workflows/your-file.yml`
-3. Fix issues in real-time (faster iteration)
-4. Repeat until actionlint passes
+3. Fix issues in real-time
+4. Repeat until passing
 
-### Before Commit
-1. Pre-commit hook automatically validates staged workflows
-2. Fix any errors before commit completes
-3. Commit only after passing validation
+### Before Push
+1. Validate manually: `.github/scripts/actionlint .github/workflows/*.yml`
+2. Or enable pre-commit hook for automatic local validation (optional)
 
-### CI Validation
-- All workflow changes automatically validated on PR
+### Automatic CI Validation (Mandatory)
+- Runs on every PR that modifies workflows
 - Blocks merge if validation fails
+- No local setup required - enforced server-side
 - Provides detailed error messages in PR checks
+
+**Best practice**: Run actionlint locally during development for immediate feedback, rely on CI as mandatory gate.
 
 ## Tool Selection Guide
 

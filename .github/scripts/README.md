@@ -9,10 +9,10 @@ This directory contains **actionlint** - the official GitHub Actions validation 
 .github/scripts/actionlint .github/workflows/*.yml
 ```
 
-## Automated Validation
+## Mandatory Validation
 
-- ✅ **CI**: Automatic validation on all PRs (mandatory)
-- ✅ **Pre-commit hook**: Available at `.github/hooks/pre-commit.sample`
+- ✅ **CI validation**: Automatic on all PRs (no setup required)
+- ⚪ **Pre-commit hook**: Optional local speedup (requires `git config` setup)
 
 ## Complete Documentation
 
