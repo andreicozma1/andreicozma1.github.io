@@ -400,9 +400,7 @@ jobs:
             | 📜 JavaScript | ${baseJsSize} | **${jsSize}** | ${formatDelta(deltaJs)} |
             | 🎨 CSS | ${baseCssSize} | **${cssSize}** | ${formatDelta(deltaCss)} |
             | 📄 HTML Pages | ${baseHtml} | **${htmlCount}** | ${formatCountDelta(deltaHtml)} |
-            | 🖼️ Images | ${baseImg} | **${imgCount}** | ${formatCountDelta(deltaImg)} |
-
-            ⏱️ Build time: **${buildTime}s**`;
+            | 🖼️ Images | ${baseImg} | **${imgCount}** | ${formatCountDelta(deltaImg)} |`;
             } else {
               // Get error from env (safe for multiline content)
               const baseError = (process.env.BASE_BUILD_ERROR || '').trim();
@@ -418,31 +416,31 @@ jobs:
             | 📄 HTML Pages | **${htmlCount}** |
             | 🖼️ Images | **${imgCount}** |
 
-            ⏱️ Build time: **${buildTime}s**
-
             > ⚠️ _Base branch (\`${baseBranch}\`) build failed - comparison not available._${errorNote}`;
             }
 
-            const body = `## 📊 Build Report
-
-            ${statsTable}
-
-            ### Bundle Status
-            ${bundleStatus}
+            // Build large bundles section (only if there are large bundles)
+            let bundleSection = '';
+            if (hasLargeBundles) {
+              bundleSection = `
+            > ⚠️ **${largeCount} bundle(s) exceed 200KB**
 
             <details>
-            <summary>📁 Top 5 Largest JS Files</summary>
+            <summary>📦 Large files</summary>
 
             | File | Size |
             |:-----|-----:|
             ${topJsFormatted}
 
             </details>
+            `;
+            }
 
-            ---
-            ✅ All checks passed! [View full details](${runUrl})
+            const body = `## 📊 Build Report
 
-            <sub>Updated: ${new Date().toISOString()}</sub>`;
+            ${statsTable}
+            ${bundleSection}
+            ⏱️ ${buildTime}s · ${runUrl}`;
 
             // Find existing comment and post/update
             try {
@@ -520,14 +518,10 @@ jobs:
                 comment.body.includes('📊 Build Report')
               );
 
-              if (botComment && !botComment.body.includes('🚀 Preview')) {
+              if (botComment && !botComment.body.includes('🚀')) {
                 const updatedBody = botComment.body.replace(
-                  /---\s*\n\s*✅ All checks passed!/,
-                  `### 🚀 Preview
-            [View Preview](${previewUrl})
-
-            ---
-            ✅ All checks passed!`
+                  /⏱️/,
+                  `🚀 ${previewUrl}\n\n⏱️`
                 );
 
                 await github.rest.issues.updateComment({
