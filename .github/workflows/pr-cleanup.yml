@@ -25,14 +25,31 @@ jobs:
             exit 0
           fi
 
-          # Attempt teardown (don't fail if site doesn't exist)
-          if npx surge teardown "${PREVIEW_URL}" --token "$SURGE_TOKEN" 2>&1; then
+          # Attempt teardown and capture output
+          set +e  # Don't exit on error
+          TEARDOWN_OUTPUT=$(npx surge teardown "${PREVIEW_URL}" --token "$SURGE_TOKEN" 2>&1)
+          TEARDOWN_EXIT_CODE=$?
+          set -e  # Re-enable exit on error
+
+          echo "$TEARDOWN_OUTPUT"
+
+          if [ $TEARDOWN_EXIT_CODE -eq 0 ]; then
             echo "status=success" >> $GITHUB_OUTPUT
           else
-            # Teardown failed, but this might be because the site doesn't exist
-            # which is not an error condition - the goal is achieved
-            echo "::warning::Surge teardown command failed - site may not exist"
-            echo "status=not_found" >> $GITHUB_OUTPUT
+            # Teardown failed - check if it's because domain doesn't exist
+            # Surge returns "Aborted - unable to remove" for various errors
+            # We need to check the actual error message
+            if echo "$TEARDOWN_OUTPUT" | grep -qi "not found\|does not exist\|could not find"; then
+              echo "::notice::Domain not found (already removed or never existed)"
+              echo "status=not_found" >> $GITHUB_OUTPUT
+            else
+              # Unknown error - this should be treated as a real failure
+              echo "::error::Surge teardown failed with unexpected error"
+              echo "::error::Exit code: $TEARDOWN_EXIT_CODE"
+              echo "::error::Output: $TEARDOWN_OUTPUT"
+              echo "status=failed" >> $GITHUB_OUTPUT
+              exit 1
+            fi
           fi
 
       - name: Verify teardown
