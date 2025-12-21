@@ -1,4 +1,4 @@
-name: CI
+name: "PR: Validate & Preview"
 
 on:
   pull_request:
