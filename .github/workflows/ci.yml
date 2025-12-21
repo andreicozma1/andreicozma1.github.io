@@ -25,13 +25,10 @@ jobs:
         env:
           SFC: ${{ secrets.SECRETS_FILE_CONTENTS }}
 
-      - name: Install dependencies
-        run: npm ci
-
       - name: Build base branch for comparison
         id: base-build
         run: |
-          set -euo pipefail
+          set -uo pipefail  # Note: no -e, we handle errors manually
 
           echo "Building base branch (${{ github.base_ref }}) for comparison..."
 
@@ -41,56 +38,58 @@ jobs:
           # Checkout base branch
           git checkout origin/${{ github.base_ref }}
 
-          # Clean any previous build artifacts
-          rm -rf public .cache
+          # Clean any previous build artifacts and install base branch dependencies
+          rm -rf public .cache node_modules
+          npm ci
 
-          # Build base branch
-          npm run build
+          # Try to build base branch
+          if npm run build 2>&1; then
+            echo "base_build_success=true" >> $GITHUB_OUTPUT
 
-          # Collect base stats
-          if [ -d "public" ]; then
-            base_total=$(du -sb public | cut -f1)
+            # Collect base stats
+            if [ -d "public" ]; then
+              base_total=$(du -sb public | cut -f1)
 
-            js_files=$(find public -name '*.js' -type f 2>/dev/null)
-            if [ -n "$js_files" ]; then
-              base_js=$(echo "$js_files" | xargs du -cb | tail -1 | cut -f1)
-            else
-              base_js=0
+              js_files=$(find public -name '*.js' -type f 2>/dev/null)
+              if [ -n "$js_files" ]; then
+                base_js=$(echo "$js_files" | xargs du -cb | tail -1 | cut -f1)
+              else
+                base_js=0
+              fi
+
+              css_files=$(find public -name '*.css' -type f 2>/dev/null)
+              if [ -n "$css_files" ]; then
+                base_css=$(echo "$css_files" | xargs du -cb | tail -1 | cut -f1)
+              else
+                base_css=0
+              fi
+
+              base_html=$(find public -name '*.html' -type f 2>/dev/null | wc -l | tr -d ' ')
+              base_img=$(find public \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.gif' -o -name '*.svg' -o -name '*.webp' \) -type f 2>/dev/null | wc -l | tr -d ' ')
+
+              echo "base_total=${base_total}" >> $GITHUB_OUTPUT
+              echo "base_js=${base_js}" >> $GITHUB_OUTPUT
+              echo "base_css=${base_css}" >> $GITHUB_OUTPUT
+              echo "base_html=${base_html}" >> $GITHUB_OUTPUT
+              echo "base_img=${base_img}" >> $GITHUB_OUTPUT
+
+              echo "Base build stats: total=${base_total}, js=${base_js}, css=${base_css}, html=${base_html}, img=${base_img}"
             fi
-
-            css_files=$(find public -name '*.css' -type f 2>/dev/null)
-            if [ -n "$css_files" ]; then
-              base_css=$(echo "$css_files" | xargs du -cb | tail -1 | cut -f1)
-            else
-              base_css=0
-            fi
-
-            base_html=$(find public -name '*.html' -type f 2>/dev/null | wc -l | tr -d ' ')
-            base_img=$(find public \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.gif' -o -name '*.svg' -o -name '*.webp' \) -type f 2>/dev/null | wc -l | tr -d ' ')
-
-            echo "base_total=${base_total}" >> $GITHUB_OUTPUT
-            echo "base_js=${base_js}" >> $GITHUB_OUTPUT
-            echo "base_css=${base_css}" >> $GITHUB_OUTPUT
-            echo "base_html=${base_html}" >> $GITHUB_OUTPUT
-            echo "base_img=${base_img}" >> $GITHUB_OUTPUT
-
-            echo "Base build stats: total=${base_total}, js=${base_js}, css=${base_css}, html=${base_html}, img=${base_img}"
           else
-            echo "Warning: Base branch build did not produce public directory"
-            echo "base_total=0" >> $GITHUB_OUTPUT
-            echo "base_js=0" >> $GITHUB_OUTPUT
-            echo "base_css=0" >> $GITHUB_OUTPUT
-            echo "base_html=0" >> $GITHUB_OUTPUT
-            echo "base_img=0" >> $GITHUB_OUTPUT
+            echo "::warning::Base branch build failed - comparison will be skipped."
+            echo "base_build_success=false" >> $GITHUB_OUTPUT
           fi
 
           # Clean up and return to PR
-          rm -rf public .cache
+          rm -rf public .cache node_modules
           git checkout $PR_HEAD
 
           echo "Returned to PR branch"
         env:
           CI: true
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Type check
         id: typecheck
@@ -171,30 +170,6 @@ jobs:
           # Get top 5 largest JS files
           TOP_JS=$(find public -name "*.js" -type f -exec du -h {} \; 2>/dev/null | sort -rh | head -5)
 
-          # Get base stats from previous step
-          base_total=${{ steps.base-build.outputs.base_total }}
-          base_js=${{ steps.base-build.outputs.base_js }}
-          base_css=${{ steps.base-build.outputs.base_css }}
-          base_html=${{ steps.base-build.outputs.base_html }}
-          base_img=${{ steps.base-build.outputs.base_img }}
-
-          # Calculate deltas
-          delta_total=$((total_bytes - base_total))
-          delta_js=$((js_bytes - base_js))
-          delta_css=$((css_bytes - base_css))
-          delta_html=$((html_count - base_html))
-          delta_img=$((img_count - base_img))
-
-          # Write to step summary
-          echo "| Metric | Value | Δ vs base |" >> $GITHUB_STEP_SUMMARY
-          echo "|--------|------:|----------:|" >> $GITHUB_STEP_SUMMARY
-          echo "| Total Size | ${total_size} | ${delta_total} bytes |" >> $GITHUB_STEP_SUMMARY
-          echo "| HTML Pages | ${html_count} | ${delta_html} |" >> $GITHUB_STEP_SUMMARY
-          echo "| JavaScript | ${js_size} | ${delta_js} bytes |" >> $GITHUB_STEP_SUMMARY
-          echo "| CSS | ${css_size} | ${delta_css} bytes |" >> $GITHUB_STEP_SUMMARY
-          echo "| Images | ${img_count} | ${delta_img} |" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
           # Store outputs for PR comment
           echo "total_size=${total_size}" >> $GITHUB_OUTPUT
           echo "total_bytes=${total_bytes}" >> $GITHUB_OUTPUT
@@ -205,11 +180,50 @@ jobs:
           echo "css_bytes=${css_bytes}" >> $GITHUB_OUTPUT
           echo "img_count=${img_count}" >> $GITHUB_OUTPUT
 
-          echo "delta_total=${delta_total}" >> $GITHUB_OUTPUT
-          echo "delta_js=${delta_js}" >> $GITHUB_OUTPUT
-          echo "delta_css=${delta_css}" >> $GITHUB_OUTPUT
-          echo "delta_html=${delta_html}" >> $GITHUB_OUTPUT
-          echo "delta_img=${delta_img}" >> $GITHUB_OUTPUT
+          # Check if base build succeeded for comparison
+          if [ "${{ steps.base-build.outputs.base_build_success }}" = "true" ]; then
+            base_total=${{ steps.base-build.outputs.base_total }}
+            base_js=${{ steps.base-build.outputs.base_js }}
+            base_css=${{ steps.base-build.outputs.base_css }}
+            base_html=${{ steps.base-build.outputs.base_html }}
+            base_img=${{ steps.base-build.outputs.base_img }}
+
+            delta_total=$((total_bytes - base_total))
+            delta_js=$((js_bytes - base_js))
+            delta_css=$((css_bytes - base_css))
+            delta_html=$((html_count - base_html))
+            delta_img=$((img_count - base_img))
+
+            echo "has_comparison=true" >> $GITHUB_OUTPUT
+            echo "delta_total=${delta_total}" >> $GITHUB_OUTPUT
+            echo "delta_js=${delta_js}" >> $GITHUB_OUTPUT
+            echo "delta_css=${delta_css}" >> $GITHUB_OUTPUT
+            echo "delta_html=${delta_html}" >> $GITHUB_OUTPUT
+            echo "delta_img=${delta_img}" >> $GITHUB_OUTPUT
+
+            # Write to step summary with comparison
+            echo "| Metric | Value | Δ vs base |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|------:|----------:|" >> $GITHUB_STEP_SUMMARY
+            echo "| Total Size | ${total_size} | ${delta_total} bytes |" >> $GITHUB_STEP_SUMMARY
+            echo "| HTML Pages | ${html_count} | ${delta_html} |" >> $GITHUB_STEP_SUMMARY
+            echo "| JavaScript | ${js_size} | ${delta_js} bytes |" >> $GITHUB_STEP_SUMMARY
+            echo "| CSS | ${css_size} | ${delta_css} bytes |" >> $GITHUB_STEP_SUMMARY
+            echo "| Images | ${img_count} | ${delta_img} |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "has_comparison=false" >> $GITHUB_OUTPUT
+
+            # Write to step summary without comparison
+            echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|------:|" >> $GITHUB_STEP_SUMMARY
+            echo "| Total Size | ${total_size} |" >> $GITHUB_STEP_SUMMARY
+            echo "| HTML Pages | ${html_count} |" >> $GITHUB_STEP_SUMMARY
+            echo "| JavaScript | ${js_size} |" >> $GITHUB_STEP_SUMMARY
+            echo "| CSS | ${css_size} |" >> $GITHUB_STEP_SUMMARY
+            echo "| Images | ${img_count} |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "> ⚠️ _Base branch build failed - comparison not available for this PR._" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
 
           # Save top JS files using heredoc
           {
@@ -278,12 +292,18 @@ jobs:
             const largeCount = '${{ steps.bundles.outputs.large_count }}';
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
 
-            // Get deltas
-            const deltaTotal = parseInt('${{ steps.stats.outputs.delta_total }}') || 0;
-            const deltaJs = parseInt('${{ steps.stats.outputs.delta_js }}') || 0;
-            const deltaCss = parseInt('${{ steps.stats.outputs.delta_css }}') || 0;
-            const deltaHtml = parseInt('${{ steps.stats.outputs.delta_html }}') || 0;
-            const deltaImg = parseInt('${{ steps.stats.outputs.delta_img }}') || 0;
+            // Check if comparison is available
+            const hasComparison = '${{ steps.stats.outputs.has_comparison }}' === 'true';
+
+            // Get deltas (only if comparison available)
+            let deltaTotal = 0, deltaJs = 0, deltaCss = 0, deltaHtml = 0, deltaImg = 0;
+            if (hasComparison) {
+              deltaTotal = parseInt('${{ steps.stats.outputs.delta_total }}') || 0;
+              deltaJs = parseInt('${{ steps.stats.outputs.delta_js }}') || 0;
+              deltaCss = parseInt('${{ steps.stats.outputs.delta_css }}') || 0;
+              deltaHtml = parseInt('${{ steps.stats.outputs.delta_html }}') || 0;
+              deltaImg = parseInt('${{ steps.stats.outputs.delta_img }}') || 0;
+            }
 
             // Build status indicator
             const bundleStatus = hasLargeBundles
@@ -302,8 +322,10 @@ jobs:
               return '';
             }).filter(Boolean).join('\n') : '| _No JS files found_ | - |';
 
-            // Build the comparison table
-            const statsTable = `| Metric | Value | Δ vs base |
+            // Build the stats table (with or without comparison)
+            let statsTable;
+            if (hasComparison) {
+              statsTable = `| Metric | Value | Δ vs base |
             |:-------|------:|----------:|
             | ⏱️ Build Time | **${buildTime}s** | - |
             | 📦 Total Size | **${totalSize}** | ${formatDelta(deltaTotal)} |
@@ -311,6 +333,18 @@ jobs:
             | 📜 JavaScript | ${jsSize} | ${formatDelta(deltaJs)} |
             | 🎨 CSS | ${cssSize} | ${formatDelta(deltaCss)} |
             | 🖼️ Images | ${imgCount} | ${deltaImg !== 0 ? (deltaImg > 0 ? '+' : '') + deltaImg : '-'} |`;
+            } else {
+              statsTable = `| Metric | Value |
+            |:-------|------:|
+            | ⏱️ Build Time | **${buildTime}s** |
+            | 📦 Total Size | **${totalSize}** |
+            | 📄 HTML Pages | ${htmlCount} |
+            | 📜 JavaScript | ${jsSize} |
+            | 🎨 CSS | ${cssSize} |
+            | 🖼️ Images | ${imgCount} |
+
+            > ⚠️ _Base branch build failed - comparison not available. This can happen when a PR changes the build system._`;
+            }
 
             const body = `## 📊 Build Report
 
