@@ -4,9 +4,7 @@ A personal portfolio built with Gatsby, React, and MaterialUI.
 
 ## Branch Structure
 
-- **Source Branch:** The `source` branch contains the full source code required for building and developing the project. It includes all the necessary files and resources for development.
-
-- **Main Branch:** The `main` branch is used for deployment. It holds the static files generated from the `source` branch and is what gets published on GitHub Pages.
+All development happens on the `main` branch. GitHub Actions automatically builds and deploys to GitHub Pages when changes are pushed.
 
 ## Dependencies
 
@@ -24,11 +22,13 @@ npm run develop
 
 ## Deployment
 
-Deploying to GitHub Pages (`main` branch)
+Deployment is automatic via GitHub Actions when you push to `main`. The workflow:
 
-```
-npm run deploy
-```
+1. Runs type checking
+2. Builds the Gatsby site
+3. Deploys to GitHub Pages using `actions/deploy-pages`
+
+No manual deployment steps are required.
 
 ## Usage Rights
 

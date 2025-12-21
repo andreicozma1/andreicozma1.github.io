@@ -2,7 +2,7 @@ name: "PR: Validate & Preview"
 
 on:
   pull_request:
-    branches: ["source"]
+    branches: ["main"]
 
 jobs:
   validate:
