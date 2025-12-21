@@ -1,4 +1,4 @@
-import { Box, Container, Fade, Stack, ThemeProvider, useMediaQuery } from "@mui/material"
+import { Box, Container, Fade, Stack, ThemeProvider, Tooltip, Typography, useMediaQuery } from "@mui/material"
 import ResponsiveTopBar from "../Navigation/TopBar"
 import * as React from "react"
 import { ReactNode, useEffect, useState } from "react"
@@ -14,10 +14,40 @@ import PopupCard from "../UIElement/PopupCard"
 import Theme from "../../config/Theme"
 import { store } from "../../config/Main"
 import { TemplatePageProps } from "../TemplatedDataProps"
+import { formatBuildDate, useSiteMetadata } from "../../Utils"
 
 interface PageProps {
 	pageProps: TemplatePageProps,
 	children?: ReactNode
+}
+
+const PageFooter = () => {
+	const { buildTime, commitSha, version } = useSiteMetadata()
+	const formattedDate = formatBuildDate(buildTime)
+
+	return (
+		<Box
+			component="footer"
+			sx={{
+				textAlign: "center",
+				py: 2,
+				mt: 4,
+				opacity: 0.6,
+			}}
+		>
+			<Tooltip title={`Commit: ${commitSha}`} arrow>
+				<Typography
+					variant="caption"
+					sx={{
+						cursor: "default",
+						"&:hover": { opacity: 0.8 }
+					}}
+				>
+					Last updated {formattedDate} · v{version}
+				</Typography>
+			</Tooltip>
+		</Box>
+	)
 }
 
 const Page = (props: PageProps) => {
@@ -77,6 +107,7 @@ const Page = (props: PageProps) => {
 					</Box>
 				</Fade>
 				<FloatingActionButton pageProps={props.pageProps}/>
+				<PageFooter />
 			</Container>
 			<PopupCard/>
 		</Provider>

@@ -15,12 +15,28 @@ export const useSiteMetadata = () => {
           image
           title
           description
+          buildTime
+          commitSha
+          version
         }
       }
     }
   `)
 
 	return data.site.siteMetadata
+}
+
+export const formatBuildDate = (isoString: string): string => {
+	try {
+		const date = new Date(isoString)
+		return date.toLocaleDateString("en-US", {
+			year: "numeric",
+			month: "short",
+			day: "numeric"
+		})
+	} catch {
+		return "Unknown"
+	}
 }
 
 export const usePage = (title: string) => {
