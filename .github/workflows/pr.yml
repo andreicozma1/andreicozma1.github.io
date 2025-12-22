@@ -846,18 +846,31 @@ jobs:
           fi
 
           # List static files to verify they were copied
+          # Note: PDFs listed here are uploaded to Surge but will return 404 on Surge Student plan
+          # Surge requires Professional plan ($30/mo) for PDF support - this is acceptable for PR previews
           echo "Static files in public directory:"
           find public -name "*.pdf" -type f -exec ls -lh {} \; || echo "No PDFs found"
           echo "Total files: $(find public -type f | wc -l)"
 
           # Remove CNAME file (it's for GitHub Pages, conflicts with Surge)
+          # CNAME contains the custom domain and causes Surge to try routing with that domain
+          # instead of the surge.sh subdomain, breaking preview URLs
           if [ -f "public/CNAME" ]; then
             rm public/CNAME
             echo "Removed CNAME file (GitHub Pages config conflicts with Surge)"
           fi
 
-          # Note: NOT creating 200.html - Gatsby handles routing internally via page-data.json
-          # Adding 200.html can cause Surge to serve the app for ALL requests, breaking static files
+          # Note: NOT creating 200.html for the following reasons:
+          # 1. Gatsby handles client-side routing internally via page-data.json
+          # 2. Adding 200.html would cause Surge to route ALL requests through the React app,
+          #    potentially breaking static file serving
+          # 3. Surge has its own 404 handling that works with Gatsby's 404.html page
+          #
+          # Surge Student Plan Limitations (as of 2025):
+          # - Does NOT support serving .pdf files (requires Professional plan $30/mo)
+          # - Does NOT support ROUTER file for custom routing rules
+          # - PDFs uploaded successfully but return 404 when accessed
+          # - This is acceptable for PR previews; production deployment uses GitHub Pages which supports PDFs
 
           # Deploy to Surge
           echo "Deploying to ${FULL_URL}..."
