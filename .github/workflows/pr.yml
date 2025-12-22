@@ -660,14 +660,23 @@ jobs:
               return '';
             }).filter(Boolean).join('\n') : '';
 
-            // Build status line - consistent format: Types · Build · Deploy
+            // Build status sections with H3 headings
             const typeIcon = typecheckStatus ? '✅' : '❌';
+            const typeStatus = typecheckStatus ? 'Passed' : 'Failed';
             const buildIcon = hasLargeBundles ? '⚠️' : '✅';
+            const buildSizeInfo = hasComparison ? ` (${formatBytes(totalBytes)}, ${formatDelta(deltaTotal)} from base)` : ` (${formatBytes(totalBytes)})`;
+            const buildStatus = hasLargeBundles ? `Completed${buildSizeInfo}` : `Completed${buildSizeInfo}`;
             const surgeConfigured = '${{ secrets.SURGE_TOKEN }}' !== '';
             const deployIcon = surgeConfigured ? '⏳' : '⏸️';
-            const deployLabel = surgeConfigured ? 'Deploy' : 'Preview';
-            const deltaDisplay = hasComparison ? ` (${formatDelta(deltaTotal)})` : '';
-            const statusLine = `${typeIcon} Types · ${buildIcon} Build${deltaDisplay} · ${deployIcon} ${deployLabel} · ⏱️ ${buildTime}s`;
+            const deployStatus = surgeConfigured ? 'Deploying...' : 'Not configured';
+
+            const statusSection = dedent(`
+              ### Status Summary
+              - ${typeIcon} **Type Check**: ${typeStatus}
+              - ${buildIcon} **Build**: ${buildStatus}
+              - ${deployIcon} **Deploy**: ${deployStatus}
+              - ⏱️ **Build Time**: ${buildTime}s
+            `);
 
             // Helper for formatting count deltas
             const formatCountDelta = (delta) => {
@@ -716,8 +725,8 @@ jobs:
             let bundleSection = '';
             if (hasLargeBundles && topJsFormatted) {
               bundleSection = dedent(`
-
-                **${largeCount} bundle(s) exceed 200KB:**
+                ### Large Bundles
+                ⚠️ **${largeCount} bundle(s) exceed 200KB:**
 
                 | File | Size |
                 |:-----|-----:|
@@ -735,18 +744,28 @@ jobs:
             const baseSha = '${{ steps.base-sha.outputs.short_sha }}';
             const fromCache = '${{ steps.base-stats.outputs.from_cache }}' === 'true';
             const cacheIndicator = fromCache ? ' 📦' : '';
-            const baseRef = hasComparison ? ` · vs \`${baseBranch}@${baseSha}\`${cacheIndicator}` : '';
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+
+            // Build multi-line footer
+            const footerLines = [
+              `**Commit** \`${commitSha}\``,
+              hasComparison ? `**Base** \`${baseBranch}@${baseSha}\`${cacheIndicator}` : null,
+              `**Workflow** ${runUrl}`,
+              `**Built** ${timestamp}`
+            ].filter(Boolean).join('  \n');
 
             const body = dedent(`
               <!-- build-report -->
               ## CI Report${previewPlaceholder}
 
-              ${statusLine}
+              ${statusSection}
+
+              ### Build Metrics
 
               ${statsTable}
               ${bundleSection}
-              \`${commitSha}\`${baseRef} · ${runUrl} · _${timestamp}_
+              ---
+              ${footerLines}
             `);
 
             // Find existing comment and post/update
@@ -800,6 +819,26 @@ jobs:
             echo "status=skipped" >> "$GITHUB_OUTPUT"
             echo "deployed=false" >> "$GITHUB_OUTPUT"
             exit 0
+          fi
+
+          # Verify build output before deploying
+          echo "Verifying build output..."
+          if [ ! -d "public" ]; then
+            echo "::error::public directory not found"
+            echo "status=deploy_failed" >> "$GITHUB_OUTPUT"
+            echo "deployed=false" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+          # List static files to verify they were copied
+          echo "Static files in public directory:"
+          find public -name "*.pdf" -type f -exec ls -lh {} \; || echo "No PDFs found"
+          echo "Total files: $(find public -type f | wc -l)"
+
+          # Create 200.html for SPA fallback (if index.html exists but 200.html doesn't)
+          if [ -f "public/index.html" ] && [ ! -f "public/200.html" ]; then
+            cp public/index.html public/200.html
+            echo "Created 200.html for Surge SPA routing"
           fi
 
           # Deploy to Surge
@@ -856,18 +895,19 @@ jobs:
               if (botComment && !botComment.body.includes('<!-- preview-url -->')) {
                 // Update deploy status and preview URL
                 const deployStatus = status === 'success' ? '✅' : '⚠️';
+                const deployText = status === 'success' ? `Live · ${previewUrl}` : `Deployed (unverified) · ${previewUrl}`;
                 let updatedBody = botComment.body
-                  // Update deploy status in status line
-                  .replace(/⏳ Deploy/, `${deployStatus} Deploy`)
-                  // Replace preview placeholder with actual URL
+                  // Update deploy status in status section (bulleted list format)
+                  .replace(/- ⏳ \*\*Deploy\*\*: Deploying\.\.\./, `- ${deployStatus} **Deploy**: ${deployText}`)
+                  // Replace preview placeholder with actual URL (for header)
                   .replace(
                     / · 🚀 _deploying\.\.\._<!-- preview-marker -->|<!-- preview-marker -->/,
                     ` · 🚀 ${previewUrl}${statusSuffix}<!-- preview-url -->`
                   )
-                  // Update timestamp
+                  // Update timestamp in footer
                   .replace(
-                    /_\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC_/,
-                    `_${new Date().toISOString().replace('T', ' ').substring(0, 19)} UTC_`
+                    /\*\*Built\*\* \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC/,
+                    `**Built** ${new Date().toISOString().replace('T', ' ').substring(0, 19)} UTC`
                   );
 
                 await github.rest.issues.updateComment({
