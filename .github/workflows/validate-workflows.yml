@@ -37,14 +37,14 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
           # Run actionlint on all workflow files
-          if actionlint .github/workflows/*.yml 2>&1 | tee actionlint-output.txt; then
+          if actionlint .github/workflows/*.{yml,yaml} 2>&1 | tee actionlint-output.txt; then
             {
               echo "✅ **All workflow files are valid**"
               echo ""
               echo "Validated files:"
             } >> "$GITHUB_STEP_SUMMARY"
 
-            for file in .github/workflows/*.yml; do
+            for file in .github/workflows/*.{yml,yaml}; do
               echo "- \`$(basename "$file")\`" >> "$GITHUB_STEP_SUMMARY"
             done
             exit 0
