@@ -8,20 +8,18 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 import cosc530 from '../academics-shared/COSC530-ComputerSystems'
 import cosc562 from '../academics-shared/COSC562-OperatingSystems'
 import cosc581 from '../academics-shared/COSC581-Algorithms'
-import ece511 from '../academics-shared/ECE511-LinearSystems'
 
 export default {
 	title: "Systems & Algorithms",
 	variant: "grid6",
 	notes: [
 		{
-			text: "Graduate-level coursework in operating systems, computer architecture, algorithms, and control theory."
+			text: "Graduate-level coursework in operating systems, computer architecture, and algorithms."
 		},
 	],
 	items: [
 		cosc562,
 		cosc530,
 		cosc581,
-		ece511,
 	]
 }

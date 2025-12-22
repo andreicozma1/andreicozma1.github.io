@@ -55,37 +55,6 @@ export default {
 				"avatar": "star"
 		},
 		{
-				"title": "COSC 420 - Biologically-Inspired Computation",
-				"subtitle": "Recent developments in computational methods inspired by nature, including the use of biologically inspired algorithms to solve problems.",
-				"chips": {
-						"contentChips": [
-								"Artificial Neural Networks",
-								"Genetic Algorithms",
-								"Swarm Intelligence",
-								"Multi-Agent Systems"
-						],
-						"languages": [
-								"Python"
-						],
-						"libraries": [
-								"NumPy",
-								"Matplotlib"
-						],
-						"tools": [
-								"Jupyter Notebook",
-								"Git & GitHub"
-						]
-				},
-				"actions": [
-						{
-								"text": "Project GitHub",
-								"href": "https://github.com/andreicozma1/COSC420-FinalProject",
-								"target": "_blank"
-						}
-				],
-				"avatar": "biotech"
-		},
-		{
 				"title": "COSC 493 - Advanced Automata Theory",
 				"subtitle": "Development of a Turing Machine simulator as educational aid, with focus on automata theory and theoretical computer science.",
 				"chips": {

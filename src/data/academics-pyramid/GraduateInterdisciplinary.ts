@@ -5,19 +5,17 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 
 // Import shared course definitions
-import cosc559 from '../academics-shared/COSC559-HCI'
 import psyc410 from '../academics-shared/PSYC410-Perception'
 
 export default {
-	title: "Interdisciplinary Studies",
+	title: "Cognitive Science & Perception",
 	variant: "grid6",
 	notes: [
 		{
-			text: "Graduate coursework bridging computer science with human factors, neuroscience, and AI security."
+			text: "Interdisciplinary coursework in human perception, attention, and cognitive neuroscience."
 		},
 	],
 	items: [
-		cosc559,
 		psyc410,
 	]
 }
