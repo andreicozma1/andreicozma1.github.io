@@ -28,7 +28,7 @@ fi
 HAS_TS_CHANGES=$(echo "$ALL_CHANGES" | grep -E '\.(ts|tsx)$' || true)
 HAS_JSON_CHANGES=$(echo "$ALL_CHANGES" | grep -E '\.json$' || true)
 HAS_COMPONENT_CHANGES=$(echo "$ALL_CHANGES" | grep -E 'src/components/' || true)
-HAS_CONFIG_CHANGES=$(echo "$ALL_CHANGES" | grep -E '(package\.json|tsconfig\.json|gatsby-config)' || true)
+HAS_CONFIG_CHANGES=$(echo "$ALL_CHANGES" | grep -E '(package\.json|tsconfig\.json|gatsby-config|eslint\.config)' || true)
 
 # Determine validation level
 VALIDATION_LEVEL="none"
@@ -58,7 +58,7 @@ fi
 # Install dependencies if needed and not installed
 if [ "$NEEDS_DEPS" = true ] && [ "$DEPS_INSTALLED" = false ]; then
     echo "📦 Installing dependencies (one-time setup)..."
-    npm install --quiet
+    npm install --quiet --legacy-peer-deps
     DEPS_INSTALLED=true
 fi
 
@@ -96,6 +96,25 @@ case $VALIDATION_LEVEL in
         else
             echo "  ✅ JSON OK"
         fi
+
+        if [ "$DEPS_INSTALLED" = true ]; then
+            echo "  3️⃣  Linting..."
+            LINT_OUTPUT=$(npm run lint 2>&1 || true)
+            LINT_ERRORS=$(echo "$LINT_OUTPUT" | grep -E "^.*error " || true)
+
+            if [ -n "$LINT_ERRORS" ]; then
+                LINT_ERROR_COUNT=$(echo "$LINT_ERRORS" | wc -l)
+                echo "⚠️  Lint errors found ($LINT_ERROR_COUNT issues):"
+                echo "$LINT_ERRORS" | head -10 | sed 's/^/     /'
+                if [ "$LINT_ERROR_COUNT" -gt 10 ]; then
+                    echo "     ... and $((LINT_ERROR_COUNT - 10)) more"
+                fi
+                echo "     💡 Run 'npm run lint:fix' to auto-fix some issues"
+                # Don't exit - linting is advisory for now
+            else
+                echo "  ✅ Lint OK"
+            fi
+        fi
         ;;
 
     "typescript")
@@ -115,8 +134,29 @@ case $VALIDATION_LEVEL in
             echo "  ✅ TypeScript OK"
         fi
 
+        if [ "$DEPS_INSTALLED" = true ]; then
+            echo "  2️⃣  Linting..."
+            LINT_OUTPUT=$(npm run lint 2>&1 || true)
+            LINT_ERRORS=$(echo "$LINT_OUTPUT" | grep -E "^.*error " || true)
+
+            if [ -n "$LINT_ERRORS" ]; then
+                LINT_ERROR_COUNT=$(echo "$LINT_ERRORS" | wc -l)
+                echo "⚠️  Lint errors found ($LINT_ERROR_COUNT issues):"
+                echo "$LINT_ERRORS" | head -10 | sed 's/^/     /'
+                if [ "$LINT_ERROR_COUNT" -gt 10 ]; then
+                    echo "     ... and $((LINT_ERROR_COUNT - 10)) more"
+                fi
+                echo "     💡 Run 'npm run lint:fix' to auto-fix some issues"
+                # Don't exit - linting is advisory for now
+            else
+                echo "  ✅ Lint OK"
+            fi
+        fi
+
         if [ -n "$HAS_JSON_CHANGES" ]; then
-            echo "  2️⃣  JSON syntax..."
+            STEP_NUM="3"
+            [ "$DEPS_INSTALLED" = false ] && STEP_NUM="2"
+            echo "  ${STEP_NUM}️⃣  JSON syntax..."
             JSON_ERRORS=""
             for json_file in $(find src/data -name "*.json" 2>/dev/null); do
                 if ! python -m json.tool < "$json_file" > /dev/null 2>&1; then

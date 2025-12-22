@@ -363,9 +363,9 @@ grep -B1 '"avatar":' src/data/**/*.json | grep -B1 '"chips":'
 | Work Type | Example Changes | Dependencies Needed? | Validation Approach |
 |-----------|----------------|---------------------|---------------------|
 | **JSON-only** | Course data, section files | ❌ No | JSON syntax + TypeScript check |
-| **TypeScript** | Components, utils, types | ✅ Yes (recommended) | Full TypeScript check |
-| **Config** | package.json, gatsby-config | ✅ Yes (required) | Full build |
-| **Major refactor** | Multiple file types | ✅ Yes (required) | Full build + tests |
+| **TypeScript** | Components, utils, types | ✅ Yes (recommended) | TypeScript check + ESLint |
+| **Config** | package.json, gatsby-config, eslint.config | ✅ Yes (required) | Full build + ESLint |
+| **Major refactor** | Multiple file types | ✅ Yes (required) | Full build + ESLint + tests |
 
 ### Optimized Workflows
 
@@ -413,8 +413,9 @@ Risk: Low (everything validated)
 **Features:**
 - Auto-detects changed files (with --verbose flag to show them)
 - Runs appropriate validation for work type
-- Installs dependencies only when needed
+- Installs dependencies only when needed (with --legacy-peer-deps)
 - Shows actual error messages for debugging
+- Includes ESLint linting for TypeScript changes (advisory warnings)
 - Provides context-specific recommendations
 
 **Usage:**
@@ -426,9 +427,9 @@ Risk: Low (everything validated)
 ./scripts/smart-validate.sh --verbose
 
 # It will:
-# - Detect JSON-only → Quick validation
-# - Detect TypeScript → Type check only
-# - Detect config → Full build (with dependency install)
+# - Detect JSON-only → JSON syntax + TypeScript type check
+# - Detect TypeScript → Type check + ESLint (if deps installed)
+# - Detect config → Full validation + ESLint + JSON
 ```
 
 ---
@@ -442,10 +443,12 @@ Risk: Low (everything validated)
 ./scripts/smart-validate.sh --verbose  # Show changed files
 
 # Manual dependency setup (one-time per session when needed)
-npm install
+npm install --legacy-peer-deps
 
-# Manual validation (TypeScript only)
-npx tsc --noEmit
+# Manual validation commands
+npx tsc --noEmit        # TypeScript check only
+npm run lint            # ESLint check
+npm run lint:fix        # ESLint auto-fix
 ```
 
 ### Search & Discovery
@@ -468,10 +471,12 @@ npx tsc --noEmit
 # JSON syntax check
 find src/data -name "*.json" -exec python -m json.tool {} \; > /dev/null
 
+# Linting (deps required - ESLint 9 with flat config)
+npm run lint           # Check for issues
+npm run lint:fix       # Auto-fix issues
+
 # Full build (deps required)
 npm run build
-
-# Note: No linting configured (no ESLint setup in project)
 ```
 
 ### Editing
