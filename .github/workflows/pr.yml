@@ -835,6 +835,12 @@ jobs:
           find public -name "*.pdf" -type f -exec ls -lh {} \; || echo "No PDFs found"
           echo "Total files: $(find public -type f | wc -l)"
 
+          # Remove CNAME file (it's for GitHub Pages, conflicts with Surge)
+          if [ -f "public/CNAME" ]; then
+            rm public/CNAME
+            echo "Removed CNAME file (GitHub Pages config conflicts with Surge)"
+          fi
+
           # Create 200.html for SPA fallback (if index.html exists but 200.html doesn't)
           if [ -f "public/index.html" ] && [ ! -f "public/200.html" ]; then
             cp public/index.html public/200.html
