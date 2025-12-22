@@ -1,0 +1,150 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+// Import shared course definitions
+import ece517 from '../academics-shared/ECE517-ReinforcementLearning.json'
+import cosc524 from '../academics-shared/COSC524-NLP.json'
+
+export default {
+	title: "Tier 2: Intelligent Systems & Machine Learning",
+	variant: "grid6",
+	notes: [
+		{
+			text: "Core graduate expertise in machine learning, artificial intelligence, and intelligent systems."
+		}
+	],
+	items: [
+		// COSC 522 - No shared file yet, inline definition
+		{
+			title: "COSC 522 - Machine Learning",
+			subtitle: "Theoretical and practical aspects of machine learning techniques related to pattern recognition, including both supervised and unsupervised learning methods for classification and regression.",
+			chips: {
+				contentChips: [
+					"Loss and Optimization",
+					"Linear & Logistic Regression",
+					"Feature Selection",
+					"Regularization",
+					"Cross Validation",
+					"Model Selection",
+					"Evaluation",
+					"Support Vector Machines",
+					"Decision Trees",
+					"Boosting",
+					"Neural Networks"
+				],
+				languages: [
+					"Python"
+				],
+				libraries: [
+					"NumPy",
+					"Matplotlib"
+				],
+				tools: [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
+			},
+			actions: [
+				{
+					text: "Project GitHub",
+					href: "https://github.com/andreicozma1/CS522-TeamProject/",
+					target: "_blank"
+				},
+				{
+					text: "Project Paper",
+					href: "https://github.com/andreicozma1/CS522-TeamProject/blob/main/submission/CS522_FinalTeamProject_Report.pdf",
+					target: "_blank"
+				}
+			],
+			avatar: "scatter_plot"
+		},
+		// COSC 523 - No shared file yet, inline definition
+		{
+			title: "COSC 523 - Artificial Intelligence",
+			subtitle: "Theoretical and applied aspects of artificial intelligence, including search, learning, decision-making, and reasoning.",
+			chips: {
+				contentChips: [
+					"Uninformed and Informed Search",
+					"Adversarial Search",
+					"Constraint Satisfaction",
+					"Planning",
+					"Knowledge Representation & Reasoning",
+					"Decision-Making",
+					"Multi-Agent Systems"
+				],
+				languages: [
+					"Python"
+				],
+				libraries: [
+					"TensorFlow",
+					"Scikit-Learn",
+					"NumPy",
+					"Matplotlib"
+				],
+				tools: [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
+			},
+			actions: [
+				{
+					text: "Project GitHub",
+					href: "https://github.com/andreicozma1/CS523-TeamProject",
+					target: "_blank"
+				},
+				{
+					text: "Project Report",
+					href: "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_FinalReport.pdf",
+					target: "_blank"
+				}
+			],
+			avatar: "psychology"
+		},
+		// COSC 525 - No shared file yet, inline definition
+		{
+			title: "COSC 525 - Deep Learning",
+			subtitle: "Theoretical and practical aspects of how to build deep networks for representations of high-dimensional data.",
+			chips: {
+				contentChips: [
+					"Loss and Optimization",
+					"Gradient Descent",
+					"Back-Propagation",
+					"Artificial Neural Network",
+					"Convolutional Neural Network",
+					"Auto-Encoders",
+					"Generative Adversarial Network",
+					"RNN",
+					"LSTM",
+					"Transformer"
+				],
+				languages: [
+					"Python"
+				],
+				libraries: [
+					"TensorFlow",
+					"NumPy",
+					"Matplotlib"
+				],
+				tools: [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
+			},
+			actions: [
+				{
+					text: "Project GitHub",
+					href: "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/",
+					target: "_blank"
+				}
+			],
+			avatar: "share"
+		},
+		// ECE 517 - Import from shared (no overrides needed for pyramid view)
+		ece517,
+		// COSC 524 - Import from shared
+		cosc524
+	]
+}
