@@ -624,11 +624,17 @@ jobs:
 
             // Get base stats and deltas (only if comparison available)
             let baseTotalSize = '', baseJsSize = '', baseCssSize = '', baseHtml = 0, baseImg = 0;
+            let baseTotalBytes = 0, baseJsBytes = 0, baseCssBytes = 0;
             let deltaTotal = 0, deltaJs = 0, deltaCss = 0, deltaHtml = 0, deltaImg = 0;
             if (hasComparison) {
-              baseTotalSize = '${{ steps.base-stats.outputs.base_total_size }}';
-              baseJsSize = '${{ steps.base-stats.outputs.base_js_size }}';
-              baseCssSize = '${{ steps.base-stats.outputs.base_css_size }}';
+              // Get raw byte values for consistent formatting
+              baseTotalBytes = parseInt('${{ steps.base-stats.outputs.base_total }}') || 0;
+              baseJsBytes = parseInt('${{ steps.base-stats.outputs.base_js }}') || 0;
+              baseCssBytes = parseInt('${{ steps.base-stats.outputs.base_css }}') || 0;
+              // Format using the same function as deltas for consistency
+              baseTotalSize = formatBytes(baseTotalBytes);
+              baseJsSize = formatBytes(baseJsBytes);
+              baseCssSize = formatBytes(baseCssBytes);
               baseHtml = parseInt('${{ steps.base-stats.outputs.base_html }}') || 0;
               baseImg = parseInt('${{ steps.base-stats.outputs.base_img }}') || 0;
               deltaTotal = parseInt('${{ steps.stats.outputs.delta_total }}') || 0;
@@ -672,12 +678,17 @@ jobs:
             // Build the stats table (with or without comparison)
             let statsTable;
             if (hasComparison) {
+              // Format PR sizes using raw bytes for consistency with delta column
+              const prTotalFormatted = formatBytes(totalBytes);
+              const prJsFormatted = formatBytes(jsBytes);
+              const prCssFormatted = formatBytes(cssBytes);
+
               statsTable = dedent(`
                 | Metric | Base | PR | Δ |
                 |:-------|-----:|---:|--:|
-                | 📦 Total Size | ${baseTotalSize} | **${totalSize}** | ${formatDelta(deltaTotal)} |
-                | 📜 JavaScript | ${baseJsSize} | **${jsSize}** | ${formatDelta(deltaJs)} |
-                | 🎨 CSS | ${baseCssSize} | **${cssSize}** | ${formatDelta(deltaCss)} |
+                | 📦 Total Size | ${baseTotalSize} | **${prTotalFormatted}** | ${formatDelta(deltaTotal)} |
+                | 📜 JavaScript | ${baseJsSize} | **${prJsFormatted}** | ${formatDelta(deltaJs)} |
+                | 🎨 CSS | ${baseCssSize} | **${prCssFormatted}** | ${formatDelta(deltaCss)} |
                 | 📄 HTML Pages | ${baseHtml} | **${htmlCount}** | ${formatCountDelta(deltaHtml)} |
                 | 🖼️ Images | ${baseImg} | **${imgCount}** | ${formatCountDelta(deltaImg)} |
               `);
