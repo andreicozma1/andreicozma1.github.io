@@ -3,8 +3,7 @@
 	"variant": "grid6",
 	"notes": [
 		{
-			"text": "Mathematical foundations including statistics, theoretical computer science, and algorithm analysis.",
-			"severity": "info"
+			"text": "Mathematical foundations including statistics, theoretical computer science, and algorithm analysis."
 		}
 	],
 	"items": [
@@ -27,9 +26,15 @@
 					"Metropolis-Hastings Algorithm",
 					"Gibbs Samplers"
 				],
-				"languages": ["MATLAB"],
-				"libraries": ["MATLAB Statistics Toolbox"],
-				"tools": ["MATLAB"]
+				"languages": [
+					"MATLAB"
+				],
+				"libraries": [
+					"MATLAB Statistics Toolbox"
+				],
+				"tools": [
+					"MATLAB"
+				]
 			},
 			"avatar": "analytics"
 		},
@@ -49,10 +54,24 @@
 					"Model Selection",
 					"Statistical Computing"
 				],
-				"date": ["Spring 2026 (In Progress)"],
-				"languages": ["R", "Python"],
-				"libraries": ["NumPy", "SciPy", "Pandas", "Statsmodels", "PyMC3"],
-				"tools": ["RStudio", "Jupyter Notebook"]
+				"date": [
+					"Spring 2026 (In Progress)"
+				],
+				"languages": [
+					"R",
+					"Python"
+				],
+				"libraries": [
+					"NumPy",
+					"SciPy",
+					"Pandas",
+					"Statsmodels",
+					"PyMC3"
+				],
+				"tools": [
+					"RStudio",
+					"Jupyter Notebook"
+				]
 			},
 			"avatar": "query_stats"
 		},
@@ -71,8 +90,12 @@
 					"Equivalence Relations",
 					"Partial Orderings"
 				],
-				"languages": ["Python"],
-				"tools": ["Git & GitHub"]
+				"languages": [
+					"Python"
+				],
+				"tools": [
+					"Git & GitHub"
+				]
 			},
 			"avatar": "lan"
 		},
@@ -92,8 +115,12 @@
 					"Reducibility",
 					"Complexity"
 				],
-				"languages": ["Python"],
-				"tools": ["Git & GitHub"]
+				"languages": [
+					"Python"
+				],
+				"tools": [
+					"Git & GitHub"
+				]
 			},
 			"avatar": "lan"
 		},
@@ -101,10 +128,20 @@
 			"title": "COSC 493 - Advanced Automata Theory",
 			"subtitle": "Working on the development of a Turing Machine to be used as educational aid to students. The pre-existing version of the simulator was written in Java and various improvements, additions, and modifications were made to it in order to make it more user-friendly and efficient.",
 			"chips": {
-				"contentChips": ["Turing Machine Simulator", "Automata Theory"],
-				"languages": ["Java"],
-				"libraries": ["JavaFX"],
-				"tools": ["Git & GitHub", "Maven"]
+				"contentChips": [
+					"Turing Machine Simulator",
+					"Automata Theory"
+				],
+				"languages": [
+					"Java"
+				],
+				"libraries": [
+					"JavaFX"
+				],
+				"tools": [
+					"Git & GitHub",
+					"Maven"
+				]
 			},
 			"avatar": "extension"
 		}

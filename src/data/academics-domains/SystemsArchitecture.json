@@ -3,8 +3,7 @@
 	"variant": "grid6",
 	"notes": [
 		{
-			"text": "Comprehensive systems education spanning operating systems, computer architecture, and software engineering.",
-			"severity": "info"
+			"text": "Comprehensive systems education spanning operating systems, computer architecture, and software engineering."
 		}
 	],
 	"items": [
@@ -24,8 +23,17 @@
 					"Synchronization",
 					"Deadlock Handling"
 				],
-				"languages": ["C/C++", "Rust"],
-				"tools": ["Linux", "QEMU", "Docker", "SLURM", "Git & GitHub"]
+				"languages": [
+					"C/C++",
+					"Rust"
+				],
+				"tools": [
+					"Linux",
+					"QEMU",
+					"Docker",
+					"SLURM",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "settings_system_daydream"
 		},
@@ -45,9 +53,17 @@
 					"Multiprocessor Systems",
 					"Performance Analysis"
 				],
-				"languages": ["C/C++", "Assembly"],
-				"libraries": ["Simulation Tools"],
-				"tools": ["Architecture Simulators", "Git & GitHub"]
+				"languages": [
+					"C/C++",
+					"Assembly"
+				],
+				"libraries": [
+					"Simulation Tools"
+				],
+				"tools": [
+					"Architecture Simulators",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "memory"
 		},
@@ -67,9 +83,16 @@
 					"Approximation Algorithms",
 					"Randomized Algorithms"
 				],
-				"languages": ["Python", "C/C++"],
-				"libraries": ["Numpy"],
-				"tools": ["Git & GitHub"]
+				"languages": [
+					"Python",
+					"C/C++"
+				],
+				"libraries": [
+					"Numpy"
+				],
+				"tools": [
+					"Git & GitHub"
+				]
 			},
 			"avatar": "account_tree"
 		},
@@ -89,9 +112,19 @@
 					"Linear Algebra",
 					"System Analysis"
 				],
-				"languages": ["Python", "MATLAB"],
-				"libraries": ["Numpy", "SciPy", "Control Systems Library"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
+				"languages": [
+					"Python",
+					"MATLAB"
+				],
+				"libraries": [
+					"Numpy",
+					"SciPy",
+					"Control Systems Library"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "functions"
 		},
@@ -110,8 +143,14 @@
 					"IO Systems",
 					"Security"
 				],
-				"languages": ["C/C++"],
-				"tools": ["Unix", "Linux", "Git & GitHub"]
+				"languages": [
+					"C/C++"
+				],
+				"tools": [
+					"Unix",
+					"Linux",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "system_update_alt"
 		},
@@ -133,8 +172,13 @@
 					"Metadata",
 					"Stack Frames"
 				],
-				"languages": ["C/C++", "X86 Assembly"],
-				"tools": ["Git & GitHub"]
+				"languages": [
+					"C/C++",
+					"X86 Assembly"
+				],
+				"tools": [
+					"Git & GitHub"
+				]
 			},
 			"avatar": "system_update_alt"
 		},
@@ -142,9 +186,28 @@
 			"title": "COSC 401/402 - Senior Design",
 			"subtitle": "A design course that focuses the student's attention on professional practice, ethics, accumulated background of curricular components, and recent developments in the field. The focus is on teaching both the design process and design principles that allow students to utilize all of the above elements to effectively create designs for major design projects.",
 			"chips": {
-				"languages": ["JavaScript", "TypeScript", "HTML", "CSS", "Python", "Bash Scripting"],
-				"libraries": ["React.JS", "Redux", "Node.JS", "Flask", "Material-UI"],
-				"tools": ["Docker", "Git & GitHub", "GitHub Actions", "Atlassian Jira", "AWS"]
+				"languages": [
+					"JavaScript",
+					"TypeScript",
+					"HTML",
+					"CSS",
+					"Python",
+					"Bash Scripting"
+				],
+				"libraries": [
+					"React.JS",
+					"Redux",
+					"Node.JS",
+					"Flask",
+					"Material-UI"
+				],
+				"tools": [
+					"Docker",
+					"Git & GitHub",
+					"GitHub Actions",
+					"Atlassian Jira",
+					"AWS"
+				]
 			},
 			"actions": [
 				{

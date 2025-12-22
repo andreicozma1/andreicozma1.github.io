@@ -3,8 +3,7 @@
 	"variant": "grid6",
 	"notes": [
 		{
-			"text": "Graduate-level coursework in operating systems, computer architecture, algorithms, and control theory.",
-			"severity": "info"
+			"text": "Graduate-level coursework in operating systems, computer architecture, algorithms, and control theory."
 		}
 	],
 	"items": [
@@ -12,9 +11,26 @@
 			"title": "COSC 562 - Operating Systems: Design and Implementation",
 			"subtitle": "Advanced operating system concepts focusing on design and implementation of file systems, memory management, process management, and system-level programming.",
 			"chips": {
-				"contentChips": ["Operating System Structures", "Process Management", "Virtual Memory", "File Systems", "Memory Management", "System Calls", "Synchronization"],
-				"languages": ["C/C++", "Rust"],
-				"tools": ["Linux", "QEMU", "Docker", "SLURM", "Git & GitHub"]
+				"contentChips": [
+					"Operating System Structures",
+					"Process Management",
+					"Virtual Memory",
+					"File Systems",
+					"Memory Management",
+					"System Calls",
+					"Synchronization"
+				],
+				"languages": [
+					"C/C++",
+					"Rust"
+				],
+				"tools": [
+					"Linux",
+					"QEMU",
+					"Docker",
+					"SLURM",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "settings_system_daydream"
 		},
@@ -22,9 +38,22 @@
 			"title": "COSC 530 - Computer Systems Organization",
 			"subtitle": "Exploration of central issues in computer architecture: instruction set design, memory hierarchies, pipelining, instruction-level parallelism, and multiprocessor systems.",
 			"chips": {
-				"contentChips": ["Instruction Set Architecture", "Memory Hierarchy", "Cache Design", "Pipelining", "Instruction-Level Parallelism", "Multiprocessor Systems"],
-				"languages": ["C/C++", "Assembly"],
-				"tools": ["Architecture Simulators", "Git & GitHub"]
+				"contentChips": [
+					"Instruction Set Architecture",
+					"Memory Hierarchy",
+					"Cache Design",
+					"Pipelining",
+					"Instruction-Level Parallelism",
+					"Multiprocessor Systems"
+				],
+				"languages": [
+					"C/C++",
+					"Assembly"
+				],
+				"tools": [
+					"Architecture Simulators",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "memory"
 		},
@@ -32,9 +61,22 @@
 			"title": "COSC 581 - Algorithms",
 			"subtitle": "Advanced design and analysis of algorithms with focus on asymptotics, relative efficiencies, and implementation strategies.",
 			"chips": {
-				"contentChips": ["Algorithm Design", "Asymptotic Analysis", "Divide and Conquer", "Dynamic Programming", "Graph Algorithms", "NP-Completeness", "Approximation Algorithms"],
-				"languages": ["Python", "C/C++"],
-				"tools": ["Git & GitHub"]
+				"contentChips": [
+					"Algorithm Design",
+					"Asymptotic Analysis",
+					"Divide and Conquer",
+					"Dynamic Programming",
+					"Graph Algorithms",
+					"NP-Completeness",
+					"Approximation Algorithms"
+				],
+				"languages": [
+					"Python",
+					"C/C++"
+				],
+				"tools": [
+					"Git & GitHub"
+				]
 			},
 			"avatar": "account_tree"
 		},
@@ -42,10 +84,27 @@
 			"title": "ECE 511 - Linear Systems Theory",
 			"subtitle": "State space models of linear dynamical systems, covering controllability, observability, realization theory, and stability analysis.",
 			"chips": {
-				"contentChips": ["State Space Models", "Linear Dynamical Systems", "Controllability", "Observability", "Stability Theory", "System Analysis"],
-				"languages": ["Python", "MATLAB"],
-				"libraries": ["Numpy", "SciPy", "Control Systems Library"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
+				"contentChips": [
+					"State Space Models",
+					"Linear Dynamical Systems",
+					"Controllability",
+					"Observability",
+					"Stability Theory",
+					"System Analysis"
+				],
+				"languages": [
+					"Python",
+					"MATLAB"
+				],
+				"libraries": [
+					"Numpy",
+					"SciPy",
+					"Control Systems Library"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "functions"
 		}

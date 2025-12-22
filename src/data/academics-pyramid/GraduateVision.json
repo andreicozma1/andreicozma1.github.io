@@ -3,8 +3,7 @@
 	"variant": "grid6",
 	"notes": [
 		{
-			"text": "Graduate-level coursework in computer vision, image processing, and signal processing.",
-			"severity": "info"
+			"text": "Graduate-level coursework in computer vision, image processing, and signal processing."
 		}
 	],
 	"items": [
@@ -24,9 +23,20 @@
 					"Scene Understanding",
 					"Multi-View Geometry"
 				],
-				"languages": ["Python"],
-				"libraries": ["PyTorch", "TensorFlow", "OpenCV", "Numpy"],
-				"tools": ["Jupyter Notebook", "Git & GitHub", "CUDA"]
+				"languages": [
+					"Python"
+				],
+				"libraries": [
+					"PyTorch",
+					"TensorFlow",
+					"OpenCV",
+					"Numpy"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub",
+					"CUDA"
+				]
 			},
 			"avatar": "visibility"
 		},
@@ -46,9 +56,20 @@
 					"Feature Extraction",
 					"Color Image Processing"
 				],
-				"languages": ["Python", "MATLAB"],
-				"libraries": ["OpenCV", "Numpy", "Matplotlib", "Pillow"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
+				"languages": [
+					"Python",
+					"MATLAB"
+				],
+				"libraries": [
+					"OpenCV",
+					"Numpy",
+					"Matplotlib",
+					"Pillow"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "image"
 		},
@@ -68,9 +89,19 @@
 					"Sampling Theory",
 					"DSP Applications"
 				],
-				"languages": ["Python", "MATLAB"],
-				"libraries": ["NumPy", "SciPy", "Matplotlib"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
+				"languages": [
+					"Python",
+					"MATLAB"
+				],
+				"libraries": [
+					"NumPy",
+					"SciPy",
+					"Matplotlib"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "graphic_eq"
 		}

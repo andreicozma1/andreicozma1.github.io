@@ -3,8 +3,7 @@
 	"variant": "grid6",
 	"notes": [
 		{
-			"text": "Core graduate expertise in machine learning, artificial intelligence, and intelligent systems.",
-			"severity": "info"
+			"text": "Core graduate expertise in machine learning, artificial intelligence, and intelligent systems."
 		}
 	],
 	"items": [
@@ -12,14 +11,42 @@
 			"title": "COSC 522 - Machine Learning",
 			"subtitle": "Theoretical and practical aspects of machine learning techniques related to pattern recognition, including both supervised and unsupervised learning methods for classification and regression.",
 			"chips": {
-				"contentChips": ["Loss and Optimization", "Linear & Logistic Regression", "Feature Selection", "Regularization", "Cross Validation", "Model Selection", "Evaluation", "Support Vector Machines", "Decision Trees", "Boosting", "Neural Networks"],
-				"languages": ["Python"],
-				"libraries": ["Numpy", "Matplotlib"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
+				"contentChips": [
+					"Loss and Optimization",
+					"Linear & Logistic Regression",
+					"Feature Selection",
+					"Regularization",
+					"Cross Validation",
+					"Model Selection",
+					"Evaluation",
+					"Support Vector Machines",
+					"Decision Trees",
+					"Boosting",
+					"Neural Networks"
+				],
+				"languages": [
+					"Python"
+				],
+				"libraries": [
+					"Numpy",
+					"Matplotlib"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
 			},
 			"actions": [
-				{"text": "Project GitHub", "href": "https://github.com/andreicozma1/CS522-TeamProject/", "target": "_blank"},
-				{"text": "Project Paper", "href": "https://github.com/andreicozma1/CS522-TeamProject/blob/main/submission/CS522_FinalTeamProject_Report.pdf", "target": "_blank"}
+				{
+					"text": "Project GitHub",
+					"href": "https://github.com/andreicozma1/CS522-TeamProject/",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Paper",
+					"href": "https://github.com/andreicozma1/CS522-TeamProject/blob/main/submission/CS522_FinalTeamProject_Report.pdf",
+					"target": "_blank"
+				}
 			],
 			"avatar": "scatter_plot"
 		},
@@ -27,14 +54,40 @@
 			"title": "COSC 523 - Artificial Intelligence",
 			"subtitle": "Theoretical and applied aspects of artificial intelligence, including search, learning, decision-making, and reasoning.",
 			"chips": {
-				"contentChips": ["Uninformed and Informed Search", "Adversarial Search", "Constraint Satisfaction", "Planning", "Knowledge Representation & Reasoning", "Decision-Making", "Multi-Agent Systems"],
-				"languages": ["Python"],
-				"libraries": ["TensorFlow", "Scikit-Learn", "Numpy", "Matplotlib"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
+				"contentChips": [
+					"Uninformed and Informed Search",
+					"Adversarial Search",
+					"Constraint Satisfaction",
+					"Planning",
+					"Knowledge Representation & Reasoning",
+					"Decision-Making",
+					"Multi-Agent Systems"
+				],
+				"languages": [
+					"Python"
+				],
+				"libraries": [
+					"TensorFlow",
+					"Scikit-Learn",
+					"Numpy",
+					"Matplotlib"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
 			},
 			"actions": [
-				{"text": "Project GitHub", "href": "https://github.com/andreicozma1/CS523-TeamProject", "target": "_blank"},
-				{"text": "Project Report", "href": "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_FinalReport.pdf", "target": "_blank"}
+				{
+					"text": "Project GitHub",
+					"href": "https://github.com/andreicozma1/CS523-TeamProject",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Report",
+					"href": "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_FinalReport.pdf",
+					"target": "_blank"
+				}
 			],
 			"avatar": "psychology"
 		},
@@ -42,13 +95,37 @@
 			"title": "COSC 525 - Deep Learning",
 			"subtitle": "Theoretical and practical aspects of how to build deep networks for representations of high-dimensional data.",
 			"chips": {
-				"contentChips": ["Loss and Optimization", "Gradient Descent", "Back-Propagation", "Artificial Neural Network", "Convolutional Neural Network", "Auto-Encoders", "Generative Adversarial Network", "RNN", "LSTM", "Transformer"],
-				"languages": ["Python"],
-				"libraries": ["TensorFlow", "Numpy", "Matplotlib"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
+				"contentChips": [
+					"Loss and Optimization",
+					"Gradient Descent",
+					"Back-Propagation",
+					"Artificial Neural Network",
+					"Convolutional Neural Network",
+					"Auto-Encoders",
+					"Generative Adversarial Network",
+					"RNN",
+					"LSTM",
+					"Transformer"
+				],
+				"languages": [
+					"Python"
+				],
+				"libraries": [
+					"TensorFlow",
+					"Numpy",
+					"Matplotlib"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
 			},
 			"actions": [
-				{"text": "Project GitHub", "href": "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/", "target": "_blank"}
+				{
+					"text": "Project GitHub",
+					"href": "https://github.com/hunterprice04/Implementation-Of-A-Lightweight-Transformer-And-Analysis-Of-Text-Generation-Sampling-Techniques/",
+					"target": "_blank"
+				}
 			],
 			"avatar": "share"
 		},
@@ -56,10 +133,36 @@
 			"title": "ECE 517 - Reinforcement Learning",
 			"subtitle": "Principles and methods for reinforcement learning and sequential stochastic control; Markov decision problems; dynamic programming; temporal difference learning.",
 			"chips": {
-				"contentChips": ["Markov Decision Processes", "Dynamic Programming", "Temporal Difference Learning", "Q-Learning", "Policy Gradient Methods", "Actor-Critic Methods", "Model-Based RL", "Model-Free RL", "Value Function Approximation", "Deep Reinforcement Learning"],
-				"languages": ["Python"],
-				"libraries": ["OpenAI Gym", "PyTorch", "TensorFlow", "Numpy", "Ray", "Hydra", "MPI4Py"],
-				"tools": ["Jupyter Notebook", "Git & GitHub", "SLURM", "Docker"]
+				"contentChips": [
+					"Markov Decision Processes",
+					"Dynamic Programming",
+					"Temporal Difference Learning",
+					"Q-Learning",
+					"Policy Gradient Methods",
+					"Actor-Critic Methods",
+					"Model-Based RL",
+					"Model-Free RL",
+					"Value Function Approximation",
+					"Deep Reinforcement Learning"
+				],
+				"languages": [
+					"Python"
+				],
+				"libraries": [
+					"OpenAI Gym",
+					"PyTorch",
+					"TensorFlow",
+					"Numpy",
+					"Ray",
+					"Hydra",
+					"MPI4Py"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub",
+					"SLURM",
+					"Docker"
+				]
 			},
 			"avatar": "smart_toy"
 		},
@@ -67,10 +170,29 @@
 			"title": "COSC 524 - Natural Language Processing",
 			"subtitle": "Overview of natural language processing theory and applications, covering major NLP algorithms and exploring how computational systems process text.",
 			"chips": {
-				"contentChips": ["Text Processing", "Language Models", "Word Embeddings", "Named Entity Recognition", "Sentiment Analysis", "Machine Translation", "Attention Mechanisms", "Transformers"],
-				"languages": ["Python"],
-				"libraries": ["NLTK", "spaCy", "Hugging Face Transformers", "PyTorch"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
+				"contentChips": [
+					"Text Processing",
+					"Language Models",
+					"Word Embeddings",
+					"Named Entity Recognition",
+					"Sentiment Analysis",
+					"Machine Translation",
+					"Attention Mechanisms",
+					"Transformers"
+				],
+				"languages": [
+					"Python"
+				],
+				"libraries": [
+					"NLTK",
+					"spaCy",
+					"Hugging Face Transformers",
+					"PyTorch"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "translate"
 		}

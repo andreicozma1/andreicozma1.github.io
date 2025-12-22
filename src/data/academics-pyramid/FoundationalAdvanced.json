@@ -3,8 +3,7 @@
 	"variant": "grid6",
 	"notes": [
 		{
-			"text": "Upper-level undergraduate courses representing advanced specialized topics.",
-			"severity": "info"
+			"text": "Upper-level undergraduate courses representing advanced specialized topics."
 		}
 	],
 	"items": [
@@ -12,9 +11,28 @@
 			"title": "COSC 401/402 - Senior Design",
 			"subtitle": "A design course that focuses the student's attention on professional practice, ethics, accumulated background of curricular components, and recent developments in the field.",
 			"chips": {
-				"languages": ["JavaScript", "TypeScript", "HTML", "CSS", "Python", "Bash Scripting"],
-				"libraries": ["React.JS", "Redux", "Node.JS", "Flask", "Material-UI"],
-				"tools": ["Docker", "Git & GitHub", "GitHub Actions", "Atlassian Jira", "AWS"]
+				"languages": [
+					"JavaScript",
+					"TypeScript",
+					"HTML",
+					"CSS",
+					"Python",
+					"Bash Scripting"
+				],
+				"libraries": [
+					"React.JS",
+					"Redux",
+					"Node.JS",
+					"Flask",
+					"Material-UI"
+				],
+				"tools": [
+					"Docker",
+					"Git & GitHub",
+					"GitHub Actions",
+					"Atlassian Jira",
+					"AWS"
+				]
 			},
 			"actions": [
 				{
@@ -40,9 +58,17 @@
 					"Swarm Intelligence",
 					"Multi-Agent Systems"
 				],
-				"languages": ["Python"],
-				"libraries": ["Numpy", "Matplotlib"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
+				"languages": [
+					"Python"
+				],
+				"libraries": [
+					"Numpy",
+					"Matplotlib"
+				],
+				"tools": [
+					"Jupyter Notebook",
+					"Git & GitHub"
+				]
 			},
 			"actions": [
 				{
@@ -57,10 +83,20 @@
 			"title": "COSC 493 - Advanced Automata Theory",
 			"subtitle": "Development of a Turing Machine simulator as educational aid, with focus on automata theory and theoretical computer science.",
 			"chips": {
-				"contentChips": ["Turing Machine Simulator", "Automata Theory"],
-				"languages": ["Java"],
-				"libraries": ["JavaFX"],
-				"tools": ["Git & GitHub", "Maven"]
+				"contentChips": [
+					"Turing Machine Simulator",
+					"Automata Theory"
+				],
+				"languages": [
+					"Java"
+				],
+				"libraries": [
+					"JavaFX"
+				],
+				"tools": [
+					"Git & GitHub",
+					"Maven"
+				]
 			},
 			"avatar": "extension"
 		},
@@ -74,9 +110,22 @@
 					"Entity-Relationship Diagrams",
 					"Web Databases"
 				],
-				"languages": ["HTML", "CSS", "JavaScript", "PHP", "SQL"],
-				"libraries": ["Node.JS", "JQuery"],
-				"tools": ["MongoDB", "MySQL", "Git & GitHub"]
+				"languages": [
+					"HTML",
+					"CSS",
+					"JavaScript",
+					"PHP",
+					"SQL"
+				],
+				"libraries": [
+					"Node.JS",
+					"JQuery"
+				],
+				"tools": [
+					"MongoDB",
+					"MySQL",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "table_rows"
 		}

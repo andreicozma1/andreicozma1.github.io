@@ -3,8 +3,7 @@
 	"variant": "grid6",
 	"notes": [
 		{
-			"text": "Coursework bridging computer science with human factors, neuroscience, security, and software engineering.",
-			"severity": "info"
+			"text": "Coursework bridging computer science with human factors, neuroscience, security, and software engineering."
 		}
 	],
 	"items": [
@@ -24,9 +23,18 @@
 					"Cognitive Psychology",
 					"Design Patterns"
 				],
-				"languages": ["JavaScript", "Python"],
-				"libraries": ["React.JS", "D3.js"],
-				"tools": ["Figma", "Git & GitHub"]
+				"languages": [
+					"JavaScript",
+					"Python"
+				],
+				"libraries": [
+					"React.JS",
+					"D3.js"
+				],
+				"tools": [
+					"Figma",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "touch_app"
 		},
@@ -45,9 +53,16 @@
 					"Object Recognition",
 					"Cognitive Neuroscience"
 				],
-				"languages": ["Python"],
-				"libraries": ["PsychoPy", "Numpy"],
-				"tools": ["Jupyter Notebook"]
+				"languages": [
+					"Python"
+				],
+				"libraries": [
+					"PsychoPy",
+					"Numpy"
+				],
+				"tools": [
+					"Jupyter Notebook"
+				]
 			},
 			"avatar": "psychology"
 		},
@@ -62,9 +77,22 @@
 					"Entity-Relationship Diagrams",
 					"Web Databases"
 				],
-				"languages": ["HTML", "CSS", "JavaScript", "PHP", "SQL"],
-				"libraries": ["Node.JS", "JQuery"],
-				"tools": ["MongoDB", "MySQL", "Git & GitHub"]
+				"languages": [
+					"HTML",
+					"CSS",
+					"JavaScript",
+					"PHP",
+					"SQL"
+				],
+				"libraries": [
+					"Node.JS",
+					"JQuery"
+				],
+				"tools": [
+					"MongoDB",
+					"MySQL",
+					"Git & GitHub"
+				]
 			},
 			"avatar": "table_rows"
 		},
@@ -79,9 +107,16 @@
 					"Scientific Computing Environments",
 					"High Performance Software Packages"
 				],
-				"languages": ["Python"],
-				"libraries": ["Numpy", "Matplotlib"],
-				"tools": ["Git & GitHub"]
+				"languages": [
+					"Python"
+				],
+				"libraries": [
+					"Numpy",
+					"Matplotlib"
+				],
+				"tools": [
+					"Git & GitHub"
+				]
 			},
 			"avatar": "science"
 		},
@@ -101,9 +136,22 @@
 					"Inter-Process Communication",
 					"Scheduling"
 				],
-				"languages": ["Java", "Python", "JavaScript", "HTML", "CSS", "PHP", "SQL"],
-				"libraries": ["Node.JS", "JQuery"],
-				"tools": ["Git & GitHub"]
+				"languages": [
+					"Java",
+					"Python",
+					"JavaScript",
+					"HTML",
+					"CSS",
+					"PHP",
+					"SQL"
+				],
+				"libraries": [
+					"Node.JS",
+					"JQuery"
+				],
+				"tools": [
+					"Git & GitHub"
+				]
 			},
 			"avatar": "code"
 		}

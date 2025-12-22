@@ -3,8 +3,7 @@
 	"variant": "grid6",
 	"notes": [
 		{
-			"text": "Graduate-level mathematics and statistics coursework supporting machine learning research.",
-			"severity": "info"
+			"text": "Graduate-level mathematics and statistics coursework supporting machine learning research."
 		}
 	],
 	"items": [
@@ -12,10 +11,30 @@
 			"title": "MATH 525 - Statistics I",
 			"subtitle": "Essentials of statistics with emphasis on data science, covering statistical modeling, Bayesian inference and computation, and approaches used in machine learning and data analysis.",
 			"chips": {
-				"contentChips": ["Random Variables", "Likelihood-Based Analysis", "Statistical Modeling", "Generative Models", "Graphical Models", "Exponential Family", "Bayesian Inference", "Laplace Approximations", "Monte Carlo Methods", "Importance Sampling", "Markov Chain Monte Carlo", "Metropolis-Hastings Algorithm", "Gibbs Samplers"],
-				"languages": ["MATLAB"],
-				"libraries": ["MATLAB Statistics Toolbox"],
-				"tools": ["MATLAB"]
+				"contentChips": [
+					"Random Variables",
+					"Likelihood-Based Analysis",
+					"Statistical Modeling",
+					"Generative Models",
+					"Graphical Models",
+					"Exponential Family",
+					"Bayesian Inference",
+					"Laplace Approximations",
+					"Monte Carlo Methods",
+					"Importance Sampling",
+					"Markov Chain Monte Carlo",
+					"Metropolis-Hastings Algorithm",
+					"Gibbs Samplers"
+				],
+				"languages": [
+					"MATLAB"
+				],
+				"libraries": [
+					"MATLAB Statistics Toolbox"
+				],
+				"tools": [
+					"MATLAB"
+				]
 			},
 			"avatar": "analytics"
 		},
@@ -23,11 +42,36 @@
 			"title": "MATH 526 - Statistics II",
 			"subtitle": "Advanced statistical methods building on Statistics I, covering multivariate analysis, experimental design, nonparametric methods, and advanced regression techniques.",
 			"chips": {
-				"contentChips": ["Multivariate Analysis", "Experimental Design", "Nonparametric Methods", "Multiple Regression", "Logistic Regression", "Time Series Analysis", "Bayesian Statistics", "Maximum Likelihood Estimation", "Model Selection", "Statistical Computing"],
-				"date": ["Spring 2026 (In Progress)"],
-				"languages": ["R", "Python"],
-				"libraries": ["NumPy", "SciPy", "Pandas", "Statsmodels", "PyMC3"],
-				"tools": ["RStudio", "Jupyter Notebook"]
+				"contentChips": [
+					"Multivariate Analysis",
+					"Experimental Design",
+					"Nonparametric Methods",
+					"Multiple Regression",
+					"Logistic Regression",
+					"Time Series Analysis",
+					"Bayesian Statistics",
+					"Maximum Likelihood Estimation",
+					"Model Selection",
+					"Statistical Computing"
+				],
+				"date": [
+					"Spring 2026 (In Progress)"
+				],
+				"languages": [
+					"R",
+					"Python"
+				],
+				"libraries": [
+					"NumPy",
+					"SciPy",
+					"Pandas",
+					"Statsmodels",
+					"PyMC3"
+				],
+				"tools": [
+					"RStudio",
+					"Jupyter Notebook"
+				]
 			},
 			"avatar": "query_stats"
 		}
