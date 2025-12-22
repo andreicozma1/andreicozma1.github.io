@@ -1,11 +1,17 @@
-{
-	"title"  : "General",
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
+	"title": "General",
 	"variant": "grid6",
-	"items"  : [
+	"items": [
 		{
-			"title"   : "COSC 401/402 - Senior Design",
-			"subtitle": "A design course that focuses the student’s attention on professional practice, ethics, accumulated background of curricular components, and recent developments in the field. The focus is on teaching both the design process and design principles that allow students to utilize all of the above elements to effectively create designs for major design projects.",
-			"chips"   : {
+			"title": "COSC 401/402 - Senior Design",
+			"subtitle": "A design course that focuses the student\u2019s attention on professional practice, ethics, accumulated background of curricular components, and recent developments in the field. The focus is on teaching both the design process and design principles that allow students to utilize all of the above elements to effectively create designs for major design projects.",
+			"chips": {
 				"languages": [
 					"JavaScript",
 					"TypeScript",
@@ -21,7 +27,7 @@
 					"Flask",
 					"Material-UI"
 				],
-				"tools"    : [
+				"tools": [
 					"Docker",
 					"Git & GitHub",
 					"GitHub",
@@ -30,51 +36,51 @@
 					"AWS"
 				]
 			},
-			"actions" : [
+			"actions": [
 				{
-					"text"  : "Project GitHub",
-					"href"  : "https://github.com/CS401-Team-Project/Smart-Ledger/",
+					"text": "Project GitHub",
+					"href": "https://github.com/CS401-Team-Project/Smart-Ledger/",
 					"target": "_blank"
 				},
 				{
-					"text"  : "Project Report",
-					"href"  : "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Report.pdf",
+					"text": "Project Report",
+					"href": "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Report.pdf",
 					"target": "_blank"
 				},
 				{
-					"text"  : "Project Presentation",
-					"href"  : "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Presentation.pdf",
+					"text": "Project Presentation",
+					"href": "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Presentation.pdf",
 					"target": "_blank"
 				}
 			],
-			"avatar"  : "star"
+			"avatar": "star"
 		},
 		{
-			"title"   : "COSC 493 - Advanced Automata Theory",
-			"avatar"  : "extension",
+			"title": "COSC 493 - Advanced Automata Theory",
+			"avatar": "extension",
 			"subtitle": "Working on the development of a Turing Machine to be used as educational aid to students. The pre-existing version of the simulator was written in Java and various improvements, additions, and modifications were made to it in order to make it more user-friendly and efficient. The goal of this project was to help students understand the basics of automata theory and Turing Machines by providing them with a tool that would allow them to experiment with different configurations in real-time.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Turing Machine Simulator",
 					"Automata Theory"
 				],
-				"languages"   : [
+				"languages": [
 					"Java"
 				],
-				"libraries"   : [
+				"libraries": [
 					"JavaFX"
 				],
-				"tools"       : [
+				"tools": [
 					"Git & GitHub",
 					"Maven"
 				]
 			}
 		},
 		{
-			"title"   : "COSC 465 - Databases and Scripting Languages",
-			"avatar"  : "table_rows",
+			"title": "COSC 465 - Databases and Scripting Languages",
+			"avatar": "table_rows",
 			"subtitle": "In-depth focus on developing a strong understanding of the basics of databases and their usage in web applications as well as an introduction to various scripting languages.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Relational Algebra",
 					"Database Design",
@@ -82,18 +88,18 @@
 					"Entity-Relationship Diagrams",
 					"Web Databases"
 				],
-				"languages"   : [
+				"languages": [
 					"HTML",
 					"CSS",
 					"JavaScript",
 					"PHP",
 					"SQL"
 				],
-				"libraries"   : [
+				"libraries": [
 					"Node.JS",
 					"JQuery"
 				],
-				"tools"       : [
+				"tools": [
 					"MongoDB",
 					"MySQL",
 					"Git & GitHub"
@@ -101,10 +107,10 @@
 			}
 		},
 		{
-			"title"   : "COSC 370 - Introduction to Scientific Computing",
+			"title": "COSC 370 - Introduction to Scientific Computing",
 			"subtitle": "An in-depth focus on the implementation, analysis, and design of numerical algorithms with the Python programming language in order to solve problems in science and engineering.",
-			"avatar"  : "science",
-			"chips"   : {
+			"avatar": "science",
+			"chips": {
 				"contentChips": [
 					"Program Design",
 					"Data Structures",
@@ -112,23 +118,23 @@
 					"Scientific Computing Environments",
 					"High Performance Software Packages"
 				],
-				"languages"   : [
+				"languages": [
 					"Python"
 				],
-				"libraries"   : [
+				"libraries": [
 					"NumPy",
 					"Matplotlib"
 				],
-				"tools"       : [
+				"tools": [
 					"Git & GitHub"
 				]
 			}
 		},
 		{
-			"title"   : "COSC 367 - Honors Systems Programming",
-			"avatar"  : "system_update_alt",
+			"title": "COSC 367 - Honors Systems Programming",
+			"avatar": "system_update_alt",
 			"subtitle": "An in-depth introduction to the C programming language and its use in systems programming, covering the methodologies of operating systems.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Operating Systems Design",
 					"Computer Architectures",
@@ -143,20 +149,20 @@
 					"Metadata",
 					"Stack Frames"
 				],
-				"languages"   : [
+				"languages": [
 					"C/C++",
 					"X86 Assembly"
 				],
-				"tools"       : [
+				"tools": [
 					"Git & GitHub"
 				]
 			}
 		},
 		{
-			"title"   : "COSC 365 - Programming Languages and Systems",
-			"avatar"  : "code",
+			"title": "COSC 365 - Programming Languages and Systems",
+			"avatar": "code",
 			"subtitle": "An in-depth study of the design, implementation, and application of programming languages as well as an introduction to the basics of operating systems.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Language Paradigms",
 					"Memory Management",
@@ -169,7 +175,7 @@
 					"Inter-Process Communication",
 					"Scheduling"
 				],
-				"languages"   : [
+				"languages": [
 					"Java",
 					"Python",
 					"JavaScript",
@@ -178,20 +184,20 @@
 					"PHP",
 					"SQL"
 				],
-				"libraries"   : [
+				"libraries": [
 					"Node.JS",
 					"JQuery"
 				],
-				"tools"       : [
+				"tools": [
 					"Git & GitHub"
 				]
 			}
 		},
 		{
-			"title"   : "COSC 361 - Operating Systems",
-			"avatar"  : "system_update_alt",
+			"title": "COSC 361 - Operating Systems",
+			"avatar": "system_update_alt",
 			"subtitle": "In-depth study of the design, implementation, and performance of modern operating systems with a focus on Unix and a modern re-implementation of 6th edition Unix called XV6.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Process Management",
 					"CPU Scheduling",
@@ -203,10 +209,10 @@
 					"IO Systems",
 					"Security"
 				],
-				"languages"   : [
+				"languages": [
 					"C/C++"
 				],
-				"tools"       : [
+				"tools": [
 					"Unix",
 					"Linux",
 					"Git & GitHub"
@@ -214,10 +220,10 @@
 			}
 		},
 		{
-			"title"   : "COSC 340 - Software Engineering",
-			"avatar"  : "engineering",
+			"title": "COSC 340 - Software Engineering",
+			"avatar": "engineering",
 			"subtitle": "A strong focus on the application of a systematic, disciplined, quantifiable approach to the design, development, operation, and maintenance of software, and the study of these approaches.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Software Requirements",
 					"Software Design",
@@ -228,10 +234,10 @@
 					"Software Management",
 					"Software Models and Methods"
 				],
-				"languages"   : [
+				"languages": [
 					"Python"
 				],
-				"tools"       : [
+				"tools": [
 					"Git & GitHub",
 					"GitHub",
 					"GitHub Actions"
@@ -239,10 +245,10 @@
 			}
 		},
 		{
-			"title"   : "COSC 317 - Honors Discrete Structures",
-			"avatar"  : "lan",
+			"title": "COSC 317 - Honors Discrete Structures",
+			"avatar": "lan",
 			"subtitle": "Introduction to Set Theory, Graph Theory, and Logic & Proof strategies as the principles of software programming and design. Application of proof techniques to prove correctness of algorithms.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Set Theory",
 					"Graph Theory",
@@ -254,19 +260,19 @@
 					"Equivalence Relations",
 					"Partial Orderings"
 				],
-				"languages"   : [
+				"languages": [
 					"Python"
 				],
-				"tools"       : [
+				"tools": [
 					"Git & GitHub"
 				]
 			}
 		},
 		{
-			"title"   : "COSC 312 - Algorithm Analysis and Automata",
-			"avatar"  : "lan",
+			"title": "COSC 312 - Algorithm Analysis and Automata",
+			"avatar": "lan",
 			"subtitle": "This course is an introduction to the Theory of Computation, the logic of computation with respect to machines as well as the implications related to current computing challenges and limits.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Finite Automata",
 					"Regular Grammars & Languages",
@@ -279,19 +285,19 @@
 					"Reducibility",
 					"Complexity"
 				],
-				"languages"   : [
+				"languages": [
 					"Python"
 				],
-				"tools"       : [
+				"tools": [
 					"Git & GitHub"
 				]
 			}
 		},
 		{
-			"title"   : "COSC 307 - Honors Data Structures and Algorithms II",
-			"avatar"  : "data_object",
+			"title": "COSC 307 - Honors Data Structures and Algorithms II",
+			"avatar": "data_object",
 			"subtitle": "This course focuses on the application of fundamental data structures and associated algorithms most commonly used in software development and design.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Object-Oriented Programming",
 					"Sorting Algorithms",
@@ -305,10 +311,10 @@
 					"Network Flow",
 					"Dynamic Programming"
 				],
-				"languages"   : [
+				"languages": [
 					"C/C++"
 				],
-				"tools"       : [
+				"tools": [
 					"Git & GitHub",
 					"GitHub",
 					"GitHub Actions",
@@ -317,10 +323,10 @@
 			}
 		},
 		{
-			"title"   : "COSC 140 - Data Structures and Algorithms I",
-			"avatar"  : "data_object",
+			"title": "COSC 140 - Data Structures and Algorithms I",
+			"avatar": "data_object",
 			"subtitle": "Development and application of a multitude of data structures and algorithms which are prominently used in software design together with problem-solving techniques.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Data Structures and Algorithms",
 					"Problem Solving",
@@ -334,16 +340,16 @@
 					"Hash Tables",
 					"Files"
 				],
-				"languages"   : [
+				"languages": [
 					"C/C++"
 				]
 			}
 		},
 		{
-			"title"   : "COSC 130 - Computer Organization & Architecture",
-			"avatar"  : "architecture",
+			"title": "COSC 130 - Computer Organization & Architecture",
+			"avatar": "architecture",
 			"subtitle": "Hands-on experience with applying computer organization and architecture techniques while developing software with C++ and RISC-V Assembly.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Number Systems",
 					"Binary Arithmetic",
@@ -360,17 +366,17 @@
 					"Memory Management",
 					"Computer System Organization"
 				],
-				"languages"   : [
+				"languages": [
 					"C/C++",
 					"RISC-V Assembly"
 				]
 			}
 		},
 		{
-			"title"   : "COSC 102 - Introduction to Computer Science",
-			"avatar"  : "code",
+			"title": "COSC 102 - Introduction to Computer Science",
+			"avatar": "code",
 			"subtitle": "Introduction and hands-on experience with the basics of programming languages, problem-solving, and algorithm development. Emphasis on organization and characteristics of modern digital computers.",
-			"chips"   : {
+			"chips": {
 				"contentChips": [
 					"Variables and Assignments",
 					"Branches",
@@ -386,7 +392,7 @@
 					"Abstractions",
 					"Procedures"
 				],
-				"languages"   : [
+				"languages": [
 					"C/C++"
 				]
 			}

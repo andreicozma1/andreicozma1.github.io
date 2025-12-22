@@ -1,7 +1,13 @@
-{
-	"title": "Cybersecurity",
-	"variant": "grid6",
-	"items": [
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
+	title: "Cybersecurity",
+	variant: "grid6",
+	items: [
 		{
 			"title": "COSC 466 - Software Security",
 			"subtitle": "An in-depth introduction to software security. The focus is on identifying vulnerabilities in software, exploiting vulnerabilities in software, and software development best-practices for avoiding vulnerabilities during the design, implementation, testing, and deployment of software.",
