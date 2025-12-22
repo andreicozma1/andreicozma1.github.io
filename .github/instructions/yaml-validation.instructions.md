@@ -82,6 +82,44 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 **Cause**: Content in JavaScript template literals not indented within YAML block scalars
 **Fix**: Indent all lines within template literals to match or exceed parent indentation
 
+**Example of the error** (from this PR):
+```yaml
+script: |
+  const body = `
+## This causes YAML parse error
+⏳ Status line with emoji
+  `;
+```
+
+**Correct fix**:
+```yaml
+script: |
+  const body = `
+    ## All content indented
+    ⏳ Status line with emoji
+  `;
+```
+
+**Root cause**: YAML parser treats unindented lines as new YAML keys, not as part of the string content.
+
+### Shell Variable Quoting
+
+**Symptom**: shellcheck warnings SC2086 about globbing and word splitting
+**Cause**: Unquoted variables in shell scripts
+**Fix**: Always quote variables, especially `$GITHUB_OUTPUT` and `$GITHUB_STEP_SUMMARY`
+
+**Wrong**:
+```bash
+echo "value" >> $GITHUB_OUTPUT  # Unquoted - shellcheck warning
+```
+
+**Correct**:
+```bash
+echo "value" >> "$GITHUB_OUTPUT"  # Quoted - no warning
+```
+
+**Why**: Unquoted variables can cause unexpected behavior with spaces, special characters, or globbing.
+
 ### Multiline String Handling
 
 **Pattern**: Use heredoc for complex multiline content in shell scripts
@@ -92,6 +130,13 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 **Principle**: Distinguish between hard failures and acceptable outcomes
 **Pattern**: Non-existent resources (cleanup already done) should not fail workflows
 **Implementation**: Set appropriate status codes, use warnings instead of errors
+
+**Critical lesson**: External CLI tools may not provide reliable error differentiation
+- Example: Surge CLI returns exit code 1 for ALL errors (domain not found, auth failure, network error)
+- No JSON output, no verbose mode, no specific exit codes
+- String matching on error messages is unreliable (messages change between versions)
+- **Solution**: Treat all failures as errors unless the tool provides structured error reporting
+- **Don't assume**: Always verify actual exit codes and error messages from documentation/source code
 
 ## Optimized Workflow Development Cycle
 
@@ -151,3 +196,41 @@ actionlint .github/workflows/pr.yml
 **Resources:**
 - [actionlint documentation](https://github.com/rhysd/actionlint)
 - [GitHub Actions syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)
+- [shellcheck wiki](https://www.shellcheck.net/wiki/)
+
+## Lessons Learned (from PR #16)
+
+### 1. Never Assume - Always Verify
+- Don't speculate about exit codes or error messages
+- Check actual source code and documentation
+- Test behavior when possible
+- Document findings for future reference
+
+### 2. YAML Indentation is Critical
+- Block scalars (`|`) require consistent indentation
+- Content in template literals must be indented
+- YAML parser interprets unindented lines as new keys
+- Use actionlint to catch these early
+
+### 3. Shell Script Best Practices
+- Quote all variables (`"$VAR"` not `$VAR`)
+- Use command grouping `{ cmd1; cmd2; } >> file` instead of multiple redirects
+- Enable shellcheck in actionlint for automated checking
+- Exit codes: 0=success, non-zero=failure (convention, but verify tool-specific behavior)
+
+### 4. Error Handling Requires Understanding
+- Not all CLI tools provide structured error output
+- Exit code 1 doesn't always mean "not found"
+- String matching on errors is fragile (messages change)
+- When in doubt, fail loudly rather than hide real errors
+
+### 5. Tool Selection: Committed vs Download-on-Demand
+**Committed binaries**: Reliable, fast, works offline, consistent versions
+**Download-on-demand**: Smaller repo, platform-agnostic, always latest version
+**Decision**: Depends on priorities (reliability vs repo size vs latest features)
+
+### 6. Documentation Consolidation
+- Single source of truth prevents sync issues
+- Instructions file for Copilot, minimal READMEs for humans
+- GitHub Copilot instructions apply automatically when editing matching files
+- Keep documentation close to what it describes
