@@ -13,11 +13,11 @@
 
 **Why:** GitHub CI/CD is not a substitute for local validation. Broken pushes waste time and create unnecessary commits.
 
-**How:**
-- Run type checker: `npx tsc --noEmit`
-- Run build if possible: `npm run build`
-- Check git diff before committing
-- Verify JSON syntax for data file changes
+**How (Smart Validation):**
+- **Automated:** `./scripts/smart-validate.sh` - Detects work type, runs appropriate checks
+- **Manual TypeScript:** `npx tsc --noEmit | grep -v "Cannot find module"`
+- **Manual JSON:** `find src/data -name "*.json" -exec python -m json.tool {} \; > /dev/null`
+- **Git diff review:** Always before committing
 
 ### 2. **Read Before Write (RBW)**
 **Always read files before editing them.** The Edit tool requires prior Read.
@@ -352,7 +352,97 @@ grep -B1 '"avatar":' src/data/**/*.json | grep -B1 '"chips":'
 
 ---
 
+## Smart Workflow Optimization
+
+### **Principle: Install Dependencies Intelligently**
+
+**Don't avoid `npm install` - use it strategically based on work type.**
+
+### Decision Matrix
+
+| Work Type | Example Changes | Dependencies Needed? | Validation Approach |
+|-----------|----------------|---------------------|---------------------|
+| **JSON-only** | Course data, section files | ❌ No | JSON syntax + TypeScript check |
+| **TypeScript** | Components, utils, types | ✅ Yes (recommended) | Full TypeScript + Lint |
+| **Config** | package.json, gatsby-config | ✅ Yes (required) | Full build |
+| **Major refactor** | Multiple file types | ✅ Yes (required) | Full build + tests |
+
+### Optimized Workflows
+
+#### **Workflow A: JSON Data Changes** (Current Session)
+```bash
+# No dependencies needed
+1. Edit JSON files
+2. Validate: ./scripts/smart-validate.sh
+3. Or manually: npx tsc --noEmit | grep -v "Cannot find module"
+4. Commit and push
+
+Time: ~10 seconds
+Risk: Low
+```
+
+#### **Workflow B: Component/TypeScript Changes**
+```bash
+# Install dependencies once per session
+1. ./scripts/setup-deps.sh  # One-time (2-5 min)
+2. Edit TypeScript files
+3. Validate: ./scripts/smart-validate.sh
+4. Optional: npm run lint
+5. Commit and push
+
+Time: First run ~5 min, subsequent ~15 sec
+Risk: Medium (caught locally)
+```
+
+#### **Workflow C: Config/Major Changes**
+```bash
+# Full validation required
+1. ./scripts/setup-deps.sh  # One-time
+2. Make changes
+3. npm run build  # Full build
+4. Fix any errors
+5. Commit and push
+
+Time: First run ~5 min, build ~1-3 min
+Risk: Low (everything validated)
+```
+
+### Smart Validation Script
+
+**Location:** `scripts/smart-validate.sh`
+
+**Features:**
+- Auto-detects changed files
+- Runs appropriate validation for work type
+- Installs dependencies only when needed
+- Provides context-specific recommendations
+
+**Usage:**
+```bash
+# Before any commit
+./scripts/smart-validate.sh
+
+# It will:
+# - Detect JSON-only → Quick validation
+# - Detect TypeScript → Type check + lint
+# - Detect config → Full build
+```
+
+---
+
 ## Tools Reference
+
+### Development Scripts
+```bash
+# Smart validation (recommended)
+./scripts/smart-validate.sh
+
+# Setup dependencies (one-time per session)
+./scripts/setup-deps.sh
+
+# Manual validation
+npx tsc --noEmit | grep -v "Cannot find module"
+```
 
 ### Search & Discovery
 ```bash
@@ -366,16 +456,19 @@ Grep: pattern="course name" path="src/data"
 Read: file_path="/full/path"
 ```
 
-### Validation
+### Validation Commands
 ```bash
-# TypeScript check
+# TypeScript check (no deps needed)
 npx tsc --noEmit
 
 # JSON syntax check
-cat file.json | python -m json.tool
+find src/data -name "*.json" -exec python -m json.tool {} \; > /dev/null
 
-# Check for trailing whitespace
-grep -n ' $' file.json
+# Full build (deps required)
+npm run build
+
+# Linting (deps required)
+npm run lint
 ```
 
 ### Editing
