@@ -21,7 +21,7 @@
 			"OpenAI Gym",
 			"PyTorch",
 			"TensorFlow",
-			"Numpy",
+			"NumPy",
 			"Ray",
 			"Hydra",
 			"MPI4Py"

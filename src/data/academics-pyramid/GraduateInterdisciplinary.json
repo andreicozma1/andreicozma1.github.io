@@ -52,7 +52,7 @@
 				],
 				"libraries": [
 					"PsychoPy",
-					"Numpy"
+					"NumPy"
 				],
 				"tools": [
 					"Jupyter Notebook"

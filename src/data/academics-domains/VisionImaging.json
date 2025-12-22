@@ -30,7 +30,7 @@
 					"PyTorch",
 					"TensorFlow",
 					"OpenCV",
-					"Numpy"
+					"NumPy"
 				],
 				"tools": [
 					"Jupyter Notebook",
@@ -62,7 +62,7 @@
 				],
 				"libraries": [
 					"OpenCV",
-					"Numpy",
+					"NumPy",
 					"Matplotlib",
 					"Pillow"
 				],

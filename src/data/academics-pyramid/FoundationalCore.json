@@ -97,7 +97,7 @@
 					"Python"
 				],
 				"libraries": [
-					"Numpy",
+					"NumPy",
 					"Matplotlib"
 				],
 				"tools": [

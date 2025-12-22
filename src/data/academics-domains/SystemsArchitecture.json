@@ -88,7 +88,7 @@
 					"C/C++"
 				],
 				"libraries": [
-					"Numpy"
+					"NumPy"
 				],
 				"tools": [
 					"Git & GitHub"
@@ -117,7 +117,7 @@
 					"MATLAB"
 				],
 				"libraries": [
-					"Numpy",
+					"NumPy",
 					"SciPy",
 					"Control Systems Library"
 				],

@@ -58,7 +58,7 @@
 				],
 				"libraries": [
 					"PsychoPy",
-					"Numpy"
+					"NumPy"
 				],
 				"tools": [
 					"Jupyter Notebook"
@@ -111,7 +111,7 @@
 					"Python"
 				],
 				"libraries": [
-					"Numpy",
+					"NumPy",
 					"Matplotlib"
 				],
 				"tools": [

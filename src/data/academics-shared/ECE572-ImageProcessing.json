@@ -20,7 +20,7 @@
 		],
 		"libraries": [
 			"OpenCV",
-			"Numpy",
+			"NumPy",
 			"Matplotlib",
 			"Pillow"
 		],

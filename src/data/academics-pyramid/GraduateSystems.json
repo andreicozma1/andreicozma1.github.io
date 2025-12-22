@@ -97,7 +97,7 @@
 					"MATLAB"
 				],
 				"libraries": [
-					"Numpy",
+					"NumPy",
 					"SciPy",
 					"Control Systems Library"
 				],

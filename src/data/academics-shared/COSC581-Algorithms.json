@@ -19,7 +19,7 @@
 			"C/C++"
 		],
 		"libraries": [
-			"Numpy"
+			"NumPy"
 		],
 		"tools": [
 			"Git & GitHub"

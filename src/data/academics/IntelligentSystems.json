@@ -23,7 +23,7 @@
 				],
 				"libraries"   : [
 					"TensorFlow",
-					"Numpy",
+					"NumPy",
 					"Matplotlib"
 				],
 				"tools"       : [
@@ -70,7 +70,7 @@
 				"libraries"   : [
 					"TensorFlow",
 					"Scikit-Learn",
-					"Numpy",
+					"NumPy",
 					"Matplotlib"
 				],
 				"tools"       : [
@@ -118,7 +118,7 @@
 					"Python"
 				],
 				"libraries"   : [
-					"Numpy",
+					"NumPy",
 					"Matplotlib"
 				],
 				"tools"       : [
@@ -166,7 +166,7 @@
 					"Python"
 				],
 				"libraries"   : [
-					"Numpy",
+					"NumPy",
 					"Matplotlib"
 				],
 				"tools"       : [
