@@ -31,25 +31,32 @@ jobs:
 
       - name: Validate workflow files
         run: |
-          echo "## 🔍 Workflow Validation" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          {
+            echo "## 🔍 Workflow Validation"
+            echo ""
+          } >> "$GITHUB_STEP_SUMMARY"
 
           # Run actionlint on all workflow files
           if actionlint .github/workflows/*.yml 2>&1 | tee actionlint-output.txt; then
-            echo "✅ **All workflow files are valid**" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "Validated files:" >> $GITHUB_STEP_SUMMARY
+            {
+              echo "✅ **All workflow files are valid**"
+              echo ""
+              echo "Validated files:"
+            } >> "$GITHUB_STEP_SUMMARY"
+
             for file in .github/workflows/*.yml; do
-              echo "- \`$(basename "$file")\`" >> $GITHUB_STEP_SUMMARY
+              echo "- \`$(basename "$file")\`" >> "$GITHUB_STEP_SUMMARY"
             done
             exit 0
           else
-            echo "❌ **Workflow validation failed**" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            cat actionlint-output.txt >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "Please fix the errors above and commit the changes." >> $GITHUB_STEP_SUMMARY
+            {
+              echo "❌ **Workflow validation failed**"
+              echo ""
+              echo '```'
+              cat actionlint-output.txt
+              echo '```'
+              echo ""
+              echo "Please fix the errors above and commit the changes."
+            } >> "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
