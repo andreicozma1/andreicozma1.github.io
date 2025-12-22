@@ -10,7 +10,7 @@ import ece572 from '../academics-shared/ECE572-ImageProcessing'
 import ece692 from '../academics-shared/ECE692-ComputerVision'
 
 export default {
-	title: "Tier 2: Computer Vision & Signal Processing",
+	title: "Computer Vision & Signal Processing",
 	variant: "grid6",
 	notes: [
 		{

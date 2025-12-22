@@ -9,7 +9,7 @@ import math525 from '../academics-shared/MATH525-Statistics'
 import math526 from '../academics-shared/MATH526-Statistics2'
 
 export default {
-	title: "Tier 2: Mathematics & Statistics",
+	title: "Mathematics & Statistics",
 	variant: "grid6",
 	notes: [
 		{

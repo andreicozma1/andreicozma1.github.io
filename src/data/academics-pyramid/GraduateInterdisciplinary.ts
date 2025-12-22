@@ -9,7 +9,7 @@ import cosc559 from '../academics-shared/COSC559-HCI'
 import psyc410 from '../academics-shared/PSYC410-Perception'
 
 export default {
-	title: "Tier 2: Interdisciplinary Studies",
+	title: "Interdisciplinary Studies",
 	variant: "grid6",
 	notes: [
 		{

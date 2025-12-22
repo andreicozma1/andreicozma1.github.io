@@ -12,7 +12,7 @@ import ece517 from '../academics-shared/ECE517-ReinforcementLearning'
 import cosc524 from '../academics-shared/COSC524-NLP'
 
 export default {
-	title: "Tier 2: Intelligent Systems & Machine Learning",
+	title: "Intelligent Systems & Machine Learning",
 	variant: "grid6",
 	notes: [
 		{

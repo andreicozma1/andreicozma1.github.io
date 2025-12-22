@@ -11,7 +11,7 @@ import cosc581 from '../academics-shared/COSC581-Algorithms'
 import ece511 from '../academics-shared/ECE511-LinearSystems'
 
 export default {
-	title: "Tier 2: Systems & Algorithms",
+	title: "Systems & Algorithms",
 	variant: "grid6",
 	notes: [
 		{

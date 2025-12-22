@@ -5,7 +5,7 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 
 export default {
-	title: "Tier 3: Cybersecurity Minor",
+	title: "Cybersecurity Minor",
 	variant: "grid6",
 	notes: [
 		{
