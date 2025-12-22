@@ -22,6 +22,7 @@ import GraduateSpecialized from "../data/academics-pyramid/GraduateSpecialized"
 import FoundationalAdvanced from "../data/academics-pyramid/FoundationalAdvanced"
 import FoundationalCybersecurity from "../data/academics-pyramid/FoundationalCybersecurity"
 import FoundationalCore from "../data/academics-pyramid/FoundationalCore"
+import FoundationalMath from "../data/academics-pyramid/FoundationalMath"
 // Option 2: Research-First Domains
 import IntelligentSystemsML from "../data/academics-domains/IntelligentSystemsML"
 import VisionImaging from "../data/academics-domains/VisionImaging"
@@ -109,7 +110,8 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 			GraduateSpecialized,
 			FoundationalAdvanced,
 			FoundationalCybersecurity,
-			FoundationalCore
+			FoundationalCore,
+			FoundationalMath
 		],
 		hidden: true
 	},
