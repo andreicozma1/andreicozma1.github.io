@@ -1,0 +1,65 @@
+name: "CI: Validate Workflows"
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**/*.yml"
+      - ".github/workflows/**/*.yaml"
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**/*.yml"
+      - ".github/workflows/**/*.yaml"
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install actionlint
+        run: |
+          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          sudo mv actionlint /usr/local/bin/
+          echo "Installed actionlint $(actionlint --version)"
+
+      - name: Validate workflow files
+        run: |
+          {
+            echo "## 🔍 Workflow Validation"
+            echo ""
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          # Run actionlint on all workflow files (use pattern that works even if .yaml doesn't exist)
+          shopt -s nullglob  # Ignore patterns that don't match any files
+          if actionlint .github/workflows/*.yml .github/workflows/*.yaml 2>&1 | tee actionlint-output.txt; then
+            {
+              echo "✅ **All workflow files are valid**"
+              echo ""
+              echo "Validated files:"
+            } >> "$GITHUB_STEP_SUMMARY"
+
+            for file in .github/workflows/*.yml .github/workflows/*.yaml; do
+              # Skip if the glob didn't match any files
+              [ -e "$file" ] || continue
+              echo "- \`$(basename "$file")\`" >> "$GITHUB_STEP_SUMMARY"
+            done
+            exit 0
+          else
+            {
+              echo "❌ **Workflow validation failed**"
+              echo ""
+              echo '```'
+              cat actionlint-output.txt
+              echo '```'
+              echo ""
+              echo "Please fix the errors above and commit the changes."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi

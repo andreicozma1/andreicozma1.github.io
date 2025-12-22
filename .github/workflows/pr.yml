@@ -27,13 +27,17 @@ jobs:
         id: detect-package-manager
         run: |
           if [ -f "${{ github.workspace }}/yarn.lock" ]; then
-            echo "manager=yarn" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "cache=yarn" >> $GITHUB_OUTPUT
+            {
+              echo "manager=yarn"
+              echo "command=install"
+              echo "cache=yarn"
+            } >> "$GITHUB_OUTPUT"
           elif [ -f "${{ github.workspace }}/package-lock.json" ]; then
-            echo "manager=npm" >> $GITHUB_OUTPUT
-            echo "command=ci" >> $GITHUB_OUTPUT
-            echo "cache=npm" >> $GITHUB_OUTPUT
+            {
+              echo "manager=npm"
+              echo "command=ci"
+              echo "cache=npm"
+            } >> "$GITHUB_OUTPUT"
           else
             echo "Unable to determine package manager"
             exit 1
@@ -50,18 +54,23 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            // Helper to remove indentation from multiline strings (for YAML compatibility)
+            const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
+
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
-            const body = `<!-- build-report -->
-## CI Report<!-- preview-marker -->
+            const body = dedent(`
+              <!-- build-report -->
+              ## CI Report<!-- preview-marker -->
 
-⏳ Types · ⏳ Build · ⏳ Deploy
+              ⏳ Types · ⏳ Build · ⏳ Deploy
 
-_Starting..._
+              _Starting..._
 
-\`${commitSha}\` · ${runUrl} · _${timestamp}_`;
+              \`${commitSha}\` · ${runUrl} · _${timestamp}_
+            `);
 
             try {
               const { data: comments } = await github.rest.issues.listComments({
@@ -110,8 +119,8 @@ _Starting..._
         id: base-sha
         run: |
           BASE_SHA=$(git rev-parse origin/${{ github.base_ref }})
-          echo "sha=${BASE_SHA}" >> $GITHUB_OUTPUT
-          echo "short_sha=${BASE_SHA:0:7}" >> $GITHUB_OUTPUT
+          echo "sha=${BASE_SHA}" >> "$GITHUB_OUTPUT"
+          echo "short_sha=${BASE_SHA:0:7}" >> "$GITHUB_OUTPUT"
           echo "Base branch ${{ github.base_ref }} is at ${BASE_SHA:0:7}"
 
       - name: Check base stats cache
@@ -131,15 +140,17 @@ _Starting..._
           cat .base-stats.json
 
           # Export to outputs
-          echo "base_build_success=true" >> $GITHUB_OUTPUT
-          echo "base_total=$(jq -r '.base_total' .base-stats.json)" >> $GITHUB_OUTPUT
-          echo "base_js=$(jq -r '.base_js' .base-stats.json)" >> $GITHUB_OUTPUT
-          echo "base_css=$(jq -r '.base_css' .base-stats.json)" >> $GITHUB_OUTPUT
-          echo "base_html=$(jq -r '.base_html' .base-stats.json)" >> $GITHUB_OUTPUT
-          echo "base_img=$(jq -r '.base_img' .base-stats.json)" >> $GITHUB_OUTPUT
-          echo "base_total_size=$(jq -r '.base_total_size' .base-stats.json)" >> $GITHUB_OUTPUT
-          echo "base_js_size=$(jq -r '.base_js_size' .base-stats.json)" >> $GITHUB_OUTPUT
-          echo "base_css_size=$(jq -r '.base_css_size' .base-stats.json)" >> $GITHUB_OUTPUT
+          {
+            echo "base_build_success=true"
+            echo "base_total=$(jq -r '.base_total' .base-stats.json)"
+            echo "base_js=$(jq -r '.base_js' .base-stats.json)"
+            echo "base_css=$(jq -r '.base_css' .base-stats.json)"
+            echo "base_html=$(jq -r '.base_html' .base-stats.json)"
+            echo "base_img=$(jq -r '.base_img' .base-stats.json)"
+            echo "base_total_size=$(jq -r '.base_total_size' .base-stats.json)"
+            echo "base_js_size=$(jq -r '.base_js_size' .base-stats.json)"
+            echo "base_css_size=$(jq -r '.base_css_size' .base-stats.json)"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Build base branch for comparison
         id: base-build
@@ -163,7 +174,7 @@ _Starting..._
           build_output=$(${{ steps.detect-package-manager.outputs.manager }} run build 2>&1) && build_success=true || build_success=false
 
           if [ "$build_success" = "true" ]; then
-            echo "base_build_success=true" >> $GITHUB_OUTPUT
+            echo "base_build_success=true" >> "$GITHUB_OUTPUT"
 
             # Collect base stats
             if [ -d "public" ]; then
@@ -200,14 +211,16 @@ _Starting..._
               fi
 
               # Output to GITHUB_OUTPUT
-              echo "base_total=${base_total}" >> $GITHUB_OUTPUT
-              echo "base_js=${base_js}" >> $GITHUB_OUTPUT
-              echo "base_css=${base_css}" >> $GITHUB_OUTPUT
-              echo "base_html=${base_html}" >> $GITHUB_OUTPUT
-              echo "base_img=${base_img}" >> $GITHUB_OUTPUT
-              echo "base_total_size=${base_total_size}" >> $GITHUB_OUTPUT
-              echo "base_js_size=${base_js_size}" >> $GITHUB_OUTPUT
-              echo "base_css_size=${base_css_size}" >> $GITHUB_OUTPUT
+              {
+                echo "base_total=${base_total}"
+                echo "base_js=${base_js}"
+                echo "base_css=${base_css}"
+                echo "base_html=${base_html}"
+                echo "base_img=${base_img}"
+                echo "base_total_size=${base_total_size}"
+                echo "base_js_size=${base_js_size}"
+                echo "base_css_size=${base_css_size}"
+              } >> "$GITHUB_OUTPUT"
 
               # Save to JSON for caching (will be saved by cache action post-job)
               jq -n \
@@ -226,7 +239,7 @@ _Starting..._
             fi
           else
             echo "::warning::Base branch build failed - comparison will be skipped."
-            echo "base_build_success=false" >> $GITHUB_OUTPUT
+            echo "base_build_success=false" >> "$GITHUB_OUTPUT"
 
             # Extract last few lines of build output (more reliable than grep)
             error_summary=$(echo "$build_output" | tail -10)
@@ -236,13 +249,13 @@ _Starting..._
                 echo "base_build_error<<ERROR_EOF"
                 echo "$error_summary"
                 echo "ERROR_EOF"
-              } >> $GITHUB_OUTPUT
+              } >> "$GITHUB_OUTPUT"
             fi
           fi
 
           # Clean up and return to PR
           rm -rf public .cache node_modules
-          git checkout $PR_HEAD
+          git checkout "$PR_HEAD"
 
           echo "Returned to PR branch"
         env:
@@ -255,35 +268,39 @@ _Starting..._
           # Use cached stats if available, otherwise use build stats
           if [ "${{ steps.base-cache.outputs.cache-hit }}" = "true" ]; then
             echo "Using cached base stats"
-            echo "from_cache=true" >> $GITHUB_OUTPUT
-            echo "base_build_success=${{ steps.cached-stats.outputs.base_build_success }}" >> $GITHUB_OUTPUT
-            echo "base_total=${{ steps.cached-stats.outputs.base_total }}" >> $GITHUB_OUTPUT
-            echo "base_js=${{ steps.cached-stats.outputs.base_js }}" >> $GITHUB_OUTPUT
-            echo "base_css=${{ steps.cached-stats.outputs.base_css }}" >> $GITHUB_OUTPUT
-            echo "base_html=${{ steps.cached-stats.outputs.base_html }}" >> $GITHUB_OUTPUT
-            echo "base_img=${{ steps.cached-stats.outputs.base_img }}" >> $GITHUB_OUTPUT
-            echo "base_total_size=${{ steps.cached-stats.outputs.base_total_size }}" >> $GITHUB_OUTPUT
-            echo "base_js_size=${{ steps.cached-stats.outputs.base_js_size }}" >> $GITHUB_OUTPUT
-            echo "base_css_size=${{ steps.cached-stats.outputs.base_css_size }}" >> $GITHUB_OUTPUT
+            {
+              echo "from_cache=true"
+              echo "base_build_success=${{ steps.cached-stats.outputs.base_build_success }}"
+              echo "base_total=${{ steps.cached-stats.outputs.base_total }}"
+              echo "base_js=${{ steps.cached-stats.outputs.base_js }}"
+              echo "base_css=${{ steps.cached-stats.outputs.base_css }}"
+              echo "base_html=${{ steps.cached-stats.outputs.base_html }}"
+              echo "base_img=${{ steps.cached-stats.outputs.base_img }}"
+              echo "base_total_size=${{ steps.cached-stats.outputs.base_total_size }}"
+              echo "base_js_size=${{ steps.cached-stats.outputs.base_js_size }}"
+              echo "base_css_size=${{ steps.cached-stats.outputs.base_css_size }}"
+            } >> "$GITHUB_OUTPUT"
           else
             echo "Using freshly built base stats"
-            echo "from_cache=false" >> $GITHUB_OUTPUT
-            echo "base_build_success=${{ steps.base-build.outputs.base_build_success }}" >> $GITHUB_OUTPUT
-            echo "base_total=${{ steps.base-build.outputs.base_total }}" >> $GITHUB_OUTPUT
-            echo "base_js=${{ steps.base-build.outputs.base_js }}" >> $GITHUB_OUTPUT
-            echo "base_css=${{ steps.base-build.outputs.base_css }}" >> $GITHUB_OUTPUT
-            echo "base_html=${{ steps.base-build.outputs.base_html }}" >> $GITHUB_OUTPUT
-            echo "base_img=${{ steps.base-build.outputs.base_img }}" >> $GITHUB_OUTPUT
-            echo "base_total_size=${{ steps.base-build.outputs.base_total_size }}" >> $GITHUB_OUTPUT
-            echo "base_js_size=${{ steps.base-build.outputs.base_js_size }}" >> $GITHUB_OUTPUT
-            echo "base_css_size=${{ steps.base-build.outputs.base_css_size }}" >> $GITHUB_OUTPUT
+            {
+              echo "from_cache=false"
+              echo "base_build_success=${{ steps.base-build.outputs.base_build_success }}"
+              echo "base_total=${{ steps.base-build.outputs.base_total }}"
+              echo "base_js=${{ steps.base-build.outputs.base_js }}"
+              echo "base_css=${{ steps.base-build.outputs.base_css }}"
+              echo "base_html=${{ steps.base-build.outputs.base_html }}"
+              echo "base_img=${{ steps.base-build.outputs.base_img }}"
+              echo "base_total_size=${{ steps.base-build.outputs.base_total_size }}"
+              echo "base_js_size=${{ steps.base-build.outputs.base_js_size }}"
+              echo "base_css_size=${{ steps.base-build.outputs.base_css_size }}"
+            } >> "$GITHUB_OUTPUT"
             # Also forward error if present
             if [ -n "${{ steps.base-build.outputs.base_build_error }}" ]; then
               {
                 echo "base_build_error<<ERROR_EOF"
                 echo "${{ steps.base-build.outputs.base_build_error }}"
                 echo "ERROR_EOF"
-              } >> $GITHUB_OUTPUT
+              } >> "$GITHUB_OUTPUT"
             fi
           fi
 
@@ -296,16 +313,18 @@ _Starting..._
           # Enable TypeScript problem matcher for inline annotations
           echo "::add-matcher::.github/matchers/typescript.json"
 
-          echo "## TypeScript Check" >> $GITHUB_STEP_SUMMARY
+          echo "## TypeScript Check" >> "$GITHUB_STEP_SUMMARY"
           if ${{ steps.detect-package-manager.outputs.manager }} run typecheck 2>&1 | tee typecheck-output.txt; then
-            echo "✅ No type errors found" >> $GITHUB_STEP_SUMMARY
-            echo "status=success" >> $GITHUB_OUTPUT
+            echo "✅ No type errors found" >> "$GITHUB_STEP_SUMMARY"
+            echo "status=success" >> "$GITHUB_OUTPUT"
           else
-            echo "❌ Type errors detected:" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            cat typecheck-output.txt >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "status=failure" >> $GITHUB_OUTPUT
+            {
+              echo "❌ Type errors detected:"
+              echo '```'
+              cat typecheck-output.txt
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "status=failure" >> "$GITHUB_OUTPUT"
             # Output errors again for the matcher to pick up
             cat typecheck-output.txt
             exit 1
@@ -318,6 +337,9 @@ _Starting..._
         uses: actions/github-script@v7
         with:
           script: |
+            // Helper to remove indentation from multiline strings (for YAML compatibility)
+            const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
+
             const typecheckStatus = '${{ steps.typecheck.outputs.status }}';
             const typeIcon = typecheckStatus === 'success' ? '✅' : (typecheckStatus === 'failure' ? '❌' : '⏳');
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
@@ -337,14 +359,16 @@ _Starting..._
               );
 
               if (botComment) {
-                const body = `<!-- build-report -->
-## CI Report<!-- preview-marker -->
+                const body = dedent(`
+                  <!-- build-report -->
+                  ## CI Report<!-- preview-marker -->
 
-${typeIcon} Types · ⏳ Build · ⏳ Deploy
+                  ${typeIcon} Types · ⏳ Build · ⏳ Deploy
 
-_Building..._
+                  _Building..._
 
-\`${commitSha}\` · ${runUrl} · _${timestamp}_`;
+                  \`${commitSha}\` · ${runUrl} · _${timestamp}_
+                `);
 
                 await github.rest.issues.updateComment({
                   owner: context.repo.owner,
@@ -362,20 +386,20 @@ _Building..._
         run: |
           # Get the timestamp of the actual PR head commit (not the merge commit)
           COMMIT_TIMESTAMP=$(git log -1 --format=%cI ${{ github.event.pull_request.head.sha }})
-          echo "timestamp=${COMMIT_TIMESTAMP}" >> $GITHUB_OUTPUT
+          echo "timestamp=${COMMIT_TIMESTAMP}" >> "$GITHUB_OUTPUT"
           echo "PR head commit: ${{ github.event.pull_request.head.sha }}"
           echo "Commit timestamp: ${COMMIT_TIMESTAMP}"
 
       - name: Build PR branch
         id: build
         run: |
-          echo "## Build" >> $GITHUB_STEP_SUMMARY
+          echo "## Build" >> "$GITHUB_STEP_SUMMARY"
           BUILD_START=$(date +%s)
           ${{ steps.detect-package-manager.outputs.manager }} run build
           BUILD_END=$(date +%s)
           BUILD_TIME=$((BUILD_END - BUILD_START))
-          echo "✅ Build completed in ${BUILD_TIME}s" >> $GITHUB_STEP_SUMMARY
-          echo "build_time=${BUILD_TIME}" >> $GITHUB_OUTPUT
+          echo "✅ Build completed in ${BUILD_TIME}s" >> "$GITHUB_STEP_SUMMARY"
+          echo "build_time=${BUILD_TIME}" >> "$GITHUB_OUTPUT"
         env:
           CI: true
           # Use PR head commit info, not the merge commit that GitHub creates for PR checks
@@ -389,9 +413,11 @@ _Building..._
         run: |
           set -euo pipefail
 
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Build Statistics" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          {
+            echo ""
+            echo "## Build Statistics"
+            echo ""
+          } >> "$GITHUB_STEP_SUMMARY"
 
           # Verify public directory exists
           if [ ! -d "public" ]; then
@@ -428,14 +454,16 @@ _Building..._
           TOP_JS=$(find public -name "*.js" -type f -exec du -h {} \; 2>/dev/null | sort -rh | head -5)
 
           # Store outputs for PR comment
-          echo "total_size=${total_size}" >> $GITHUB_OUTPUT
-          echo "total_bytes=${total_bytes}" >> $GITHUB_OUTPUT
-          echo "html_count=${html_count}" >> $GITHUB_OUTPUT
-          echo "js_size=${js_size}" >> $GITHUB_OUTPUT
-          echo "js_bytes=${js_bytes}" >> $GITHUB_OUTPUT
-          echo "css_size=${css_size}" >> $GITHUB_OUTPUT
-          echo "css_bytes=${css_bytes}" >> $GITHUB_OUTPUT
-          echo "img_count=${img_count}" >> $GITHUB_OUTPUT
+          {
+            echo "total_size=${total_size}"
+            echo "total_bytes=${total_bytes}"
+            echo "html_count=${html_count}"
+            echo "js_size=${js_size}"
+            echo "js_bytes=${js_bytes}"
+            echo "css_size=${css_size}"
+            echo "css_bytes=${css_bytes}"
+            echo "img_count=${img_count}"
+          } >> "$GITHUB_OUTPUT"
 
           # Check if base build succeeded for comparison
           if [ "${{ steps.base-stats.outputs.base_build_success }}" = "true" ]; then
@@ -452,12 +480,14 @@ _Building..._
             delta_html=$((html_count - ${base_html:-0}))
             delta_img=$((img_count - ${base_img:-0}))
 
-            echo "has_comparison=true" >> $GITHUB_OUTPUT
-            echo "delta_total=${delta_total}" >> $GITHUB_OUTPUT
-            echo "delta_js=${delta_js}" >> $GITHUB_OUTPUT
-            echo "delta_css=${delta_css}" >> $GITHUB_OUTPUT
-            echo "delta_html=${delta_html}" >> $GITHUB_OUTPUT
-            echo "delta_img=${delta_img}" >> $GITHUB_OUTPUT
+            {
+              echo "has_comparison=true"
+              echo "delta_total=${delta_total}"
+              echo "delta_js=${delta_js}"
+              echo "delta_css=${delta_css}"
+              echo "delta_html=${delta_html}"
+              echo "delta_img=${delta_img}"
+            } >> "$GITHUB_OUTPUT"
 
             # Get human-readable base sizes
             base_total_size="${{ steps.base-stats.outputs.base_total_size }}"
@@ -465,71 +495,85 @@ _Building..._
             base_css_size="${{ steps.base-stats.outputs.base_css_size }}"
 
             # Write to step summary with comparison (Base | PR | Delta)
-            echo "| Metric | Base | PR | Δ |" >> $GITHUB_STEP_SUMMARY
-            echo "|--------|-----:|---:|--:|" >> $GITHUB_STEP_SUMMARY
-            echo "| Total Size | ${base_total_size} | ${total_size} | ${delta_total} bytes |" >> $GITHUB_STEP_SUMMARY
-            echo "| JavaScript | ${base_js_size} | ${js_size} | ${delta_js} bytes |" >> $GITHUB_STEP_SUMMARY
-            echo "| CSS | ${base_css_size} | ${css_size} | ${delta_css} bytes |" >> $GITHUB_STEP_SUMMARY
-            echo "| HTML Pages | ${base_html} | ${html_count} | ${delta_html} |" >> $GITHUB_STEP_SUMMARY
-            echo "| Images | ${base_img} | ${img_count} | ${delta_img} |" >> $GITHUB_STEP_SUMMARY
+            {
+              echo "| Metric | Base | PR | Δ |"
+              echo "|--------|-----:|---:|--:|"
+              echo "| Total Size | ${base_total_size} | ${total_size} | ${delta_total} bytes |"
+              echo "| JavaScript | ${base_js_size} | ${js_size} | ${delta_js} bytes |"
+              echo "| CSS | ${base_css_size} | ${css_size} | ${delta_css} bytes |"
+              echo "| HTML Pages | ${base_html} | ${html_count} | ${delta_html} |"
+              echo "| Images | ${base_img} | ${img_count} | ${delta_img} |"
+            } >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "has_comparison=false" >> $GITHUB_OUTPUT
+            echo "has_comparison=false" >> "$GITHUB_OUTPUT"
 
             # Write to step summary without comparison
-            echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
-            echo "|--------|------:|" >> $GITHUB_STEP_SUMMARY
-            echo "| Total Size | ${total_size} |" >> $GITHUB_STEP_SUMMARY
-            echo "| HTML Pages | ${html_count} |" >> $GITHUB_STEP_SUMMARY
-            echo "| JavaScript | ${js_size} |" >> $GITHUB_STEP_SUMMARY
-            echo "| CSS | ${css_size} |" >> $GITHUB_STEP_SUMMARY
-            echo "| Images | ${img_count} |" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "> ⚠️ _Base branch (\`${{ github.base_ref }}\`) build failed - comparison not available._" >> $GITHUB_STEP_SUMMARY
+            {
+              echo "| Metric | Value |"
+              echo "|--------|------:|"
+              echo "| Total Size | ${total_size} |"
+              echo "| HTML Pages | ${html_count} |"
+              echo "| JavaScript | ${js_size} |"
+              echo "| CSS | ${css_size} |"
+              echo "| Images | ${img_count} |"
+              echo ""
+              echo "> ⚠️ _Base branch (\`${{ github.base_ref }}\`) build failed - comparison not available._"
+            } >> "$GITHUB_STEP_SUMMARY"
 
             # Show error if captured (passed via env for safe multiline handling)
             base_error=$(echo "$BASE_BUILD_ERROR" | sed '/^[[:space:]]*$/d')
             if [ -n "$base_error" ]; then
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "<details><summary>Build error</summary>" >> $GITHUB_STEP_SUMMARY
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo '```' >> $GITHUB_STEP_SUMMARY
-              echo "$base_error" >> $GITHUB_STEP_SUMMARY
-              echo '```' >> $GITHUB_STEP_SUMMARY
-              echo "</details>" >> $GITHUB_STEP_SUMMARY
+              {
+                echo ""
+                echo "<details><summary>Build error</summary>"
+                echo ""
+                echo '```'
+                echo "$base_error"
+                echo '```'
+                echo "</details>"
+              } >> "$GITHUB_STEP_SUMMARY"
             fi
           fi
-          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "" >> "$GITHUB_STEP_SUMMARY"
 
           # Save top JS files using heredoc
           {
             echo "top_js<<TOPJS_EOF"
             echo "$TOP_JS"
             echo "TOPJS_EOF"
-          } >> $GITHUB_OUTPUT
+          } >> "$GITHUB_OUTPUT"
 
       - name: Check for large bundles
         id: bundles
         run: |
           set -euo pipefail
 
-          echo "## Bundle Analysis" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          {
+            echo "## Bundle Analysis"
+            echo ""
+          } >> "$GITHUB_STEP_SUMMARY"
 
           # Find JS files larger than 200KB
           large_files=$(find public -name "*.js" -type f -size +200k 2>/dev/null || true)
 
           if [ -n "$large_files" ]; then
             large_count=$(echo "$large_files" | wc -l | tr -d ' ')
-            echo "large_count=${large_count}" >> $GITHUB_OUTPUT
-            echo "⚠️ **Large JavaScript files (>200KB): ${large_count}**" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "$large_files" | xargs du -h | sort -rh >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "has_large=true" >> $GITHUB_OUTPUT
+            {
+              echo "large_count=${large_count}"
+              echo "has_large=true"
+            } >> "$GITHUB_OUTPUT"
+            {
+              echo "⚠️ **Large JavaScript files (>200KB): ${large_count}**"
+              echo '```'
+              echo "$large_files" | xargs du -h | sort -rh
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "large_count=0" >> $GITHUB_OUTPUT
-            echo "✅ No JavaScript files exceed 200KB" >> $GITHUB_STEP_SUMMARY
-            echo "has_large=false" >> $GITHUB_OUTPUT
+            {
+              echo "large_count=0"
+              echo "has_large=false"
+            } >> "$GITHUB_OUTPUT"
+            echo "✅ No JavaScript files exceed 200KB" >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Post PR comment with build stats
@@ -541,6 +585,9 @@ _Building..._
           BASE_BUILD_ERROR: ${{ steps.base-stats.outputs.base_build_error }}
         with:
           script: |
+            // Helper to remove indentation from multiline strings (for YAML compatibility)
+            const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
+
             // Helper to format bytes
             const formatBytes = (bytes) => {
               const abs = Math.abs(bytes);
@@ -625,13 +672,15 @@ _Building..._
             // Build the stats table (with or without comparison)
             let statsTable;
             if (hasComparison) {
-              statsTable = `| Metric | Base | PR | Δ |
-            |:-------|-----:|---:|--:|
-            | 📦 Total Size | ${baseTotalSize} | **${totalSize}** | ${formatDelta(deltaTotal)} |
-            | 📜 JavaScript | ${baseJsSize} | **${jsSize}** | ${formatDelta(deltaJs)} |
-            | 🎨 CSS | ${baseCssSize} | **${cssSize}** | ${formatDelta(deltaCss)} |
-            | 📄 HTML Pages | ${baseHtml} | **${htmlCount}** | ${formatCountDelta(deltaHtml)} |
-            | 🖼️ Images | ${baseImg} | **${imgCount}** | ${formatCountDelta(deltaImg)} |`;
+              statsTable = dedent(`
+                | Metric | Base | PR | Δ |
+                |:-------|-----:|---:|--:|
+                | 📦 Total Size | ${baseTotalSize} | **${totalSize}** | ${formatDelta(deltaTotal)} |
+                | 📜 JavaScript | ${baseJsSize} | **${jsSize}** | ${formatDelta(deltaJs)} |
+                | 🎨 CSS | ${baseCssSize} | **${cssSize}** | ${formatDelta(deltaCss)} |
+                | 📄 HTML Pages | ${baseHtml} | **${htmlCount}** | ${formatCountDelta(deltaHtml)} |
+                | 🖼️ Images | ${baseImg} | **${imgCount}** | ${formatCountDelta(deltaImg)} |
+              `);
             } else {
               // Get error from env (safe for multiline content)
               const baseError = (process.env.BASE_BUILD_ERROR || '').trim();
@@ -639,27 +688,30 @@ _Building..._
                 ? `\n\n<details>\n<summary>Build error</summary>\n\n\`\`\`\n${baseError}\n\`\`\`\n</details>`
                 : '';
 
-              statsTable = `| Metric | Value |
-            |:-------|------:|
-            | 📦 Total Size | **${totalSize}** |
-            | 📜 JavaScript | **${jsSize}** |
-            | 🎨 CSS | **${cssSize}** |
-            | 📄 HTML Pages | **${htmlCount}** |
-            | 🖼️ Images | **${imgCount}** |
+              statsTable = dedent(`
+                | Metric | Value |
+                |:-------|------:|
+                | 📦 Total Size | **${totalSize}** |
+                | 📜 JavaScript | **${jsSize}** |
+                | 🎨 CSS | **${cssSize}** |
+                | 📄 HTML Pages | **${htmlCount}** |
+                | 🖼️ Images | **${imgCount}** |
 
-            > ⚠️ _Base branch (\`${baseBranch}\`) build failed - comparison not available._${errorNote}`;
+                > ⚠️ _Base branch (\`${baseBranch}\`) build failed - comparison not available._${errorNote}
+              `);
             }
 
             // Build large bundles section (only if there are large bundles)
             let bundleSection = '';
             if (hasLargeBundles && topJsFormatted) {
-              bundleSection = `
-            **${largeCount} bundle(s) exceed 200KB:**
+              bundleSection = dedent(`
 
-            | File | Size |
-            |:-----|-----:|
-            ${topJsFormatted}
-            `;
+                **${largeCount} bundle(s) exceed 200KB:**
+
+                | File | Size |
+                |:-----|-----:|
+                ${topJsFormatted}
+              `) + '\n';
             }
 
             // Check if preview deployment is configured
@@ -675,14 +727,16 @@ _Building..._
             const baseRef = hasComparison ? ` · vs \`${baseBranch}@${baseSha}\`${cacheIndicator}` : '';
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
-            const body = `<!-- build-report -->
-            ## CI Report${previewPlaceholder}
+            const body = dedent(`
+              <!-- build-report -->
+              ## CI Report${previewPlaceholder}
 
-            ${statusLine}
+              ${statusLine}
 
-            ${statsTable}
-            ${bundleSection}
-            \`${commitSha}\`${baseRef} · ${runUrl} · _${timestamp}_`;
+              ${statsTable}
+              ${bundleSection}
+              \`${commitSha}\`${baseRef} · ${runUrl} · _${timestamp}_
+            `);
 
             // Find existing comment and post/update
             try {
@@ -727,13 +781,13 @@ _Building..._
 
           PREVIEW_URL="pr-${{ github.event.pull_request.number }}-andreicozma1.surge.sh"
           FULL_URL="https://${PREVIEW_URL}"
-          echo "preview_url=${PREVIEW_URL}" >> $GITHUB_OUTPUT
-          echo "url=${FULL_URL}" >> $GITHUB_OUTPUT
+          echo "preview_url=${PREVIEW_URL}" >> "$GITHUB_OUTPUT"
+          echo "url=${FULL_URL}" >> "$GITHUB_OUTPUT"
 
           if [ -z "${SURGE_TOKEN:-}" ]; then
             echo "::notice::SURGE_TOKEN not configured - skipping preview deployment"
-            echo "status=skipped" >> $GITHUB_OUTPUT
-            echo "deployed=false" >> $GITHUB_OUTPUT
+            echo "status=skipped" >> "$GITHUB_OUTPUT"
+            echo "deployed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -741,8 +795,8 @@ _Building..._
           echo "Deploying to ${FULL_URL}..."
           if ! npx surge ./public "${PREVIEW_URL}" --token "$SURGE_TOKEN" 2>&1; then
             echo "::error::Surge deployment command failed"
-            echo "status=deploy_failed" >> $GITHUB_OUTPUT
-            echo "deployed=false" >> $GITHUB_OUTPUT
+            echo "status=deploy_failed" >> "$GITHUB_OUTPUT"
+            echo "deployed=false" >> "$GITHUB_OUTPUT"
             exit 1
           fi
 
@@ -753,16 +807,16 @@ _Building..._
 
           if [ "$HTTP_STATUS" = "200" ]; then
             echo "✅ Preview deployed and verified: ${FULL_URL}"
-            echo "status=success" >> $GITHUB_OUTPUT
-            echo "deployed=true" >> $GITHUB_OUTPUT
+            echo "status=success" >> "$GITHUB_OUTPUT"
+            echo "deployed=true" >> "$GITHUB_OUTPUT"
           elif [ "$HTTP_STATUS" = "000" ]; then
             echo "::warning::Deployment completed but site unreachable (timeout)"
-            echo "status=unverified" >> $GITHUB_OUTPUT
-            echo "deployed=true" >> $GITHUB_OUTPUT
+            echo "status=unverified" >> "$GITHUB_OUTPUT"
+            echo "deployed=true" >> "$GITHUB_OUTPUT"
           else
             echo "::warning::Deployment completed but unexpected status: HTTP ${HTTP_STATUS}"
-            echo "status=unverified" >> $GITHUB_OUTPUT
-            echo "deployed=true" >> $GITHUB_OUTPUT
+            echo "status=unverified" >> "$GITHUB_OUTPUT"
+            echo "deployed=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Update PR comment with preview URL

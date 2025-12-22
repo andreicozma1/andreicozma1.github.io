@@ -17,20 +17,43 @@ jobs:
           set -uo pipefail
 
           PREVIEW_URL="pr-${{ github.event.pull_request.number }}-andreicozma1.surge.sh"
-          echo "preview_url=${PREVIEW_URL}" >> $GITHUB_OUTPUT
+          echo "preview_url=${PREVIEW_URL}" >> "$GITHUB_OUTPUT"
 
           if [ -z "${SURGE_TOKEN:-}" ]; then
             echo "::warning::SURGE_TOKEN not set, skipping teardown"
-            echo "status=skipped" >> $GITHUB_OUTPUT
+            echo "status=skipped" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          # Attempt teardown
-          if npx surge teardown "${PREVIEW_URL}" --token "$SURGE_TOKEN" 2>&1; then
-            echo "status=success" >> $GITHUB_OUTPUT
+          # Attempt teardown and capture output
+          set +e  # Don't exit on error
+          TEARDOWN_OUTPUT=$(npx surge teardown "${PREVIEW_URL}" --token "$SURGE_TOKEN" 2>&1)
+          TEARDOWN_EXIT_CODE=$?
+          set -e  # Re-enable exit on error
+
+          echo "$TEARDOWN_OUTPUT"
+
+          if [ $TEARDOWN_EXIT_CODE -eq 0 ]; then
+            echo "status=success" >> "$GITHUB_OUTPUT"
           else
-            echo "::error::Surge teardown command failed"
-            echo "status=failed" >> $GITHUB_OUTPUT
+            # Teardown failed - Surge doesn't differentiate between error types in exit codes
+            # All failures return exit code 1 with message: "Aborted - unable to remove <domain>"
+            # This could mean: domain doesn't exist, auth failure, network error, etc.
+            #
+            # Unfortunately, Surge CLI provides no way to distinguish these cases:
+            # - No JSON output flag
+            # - No verbose mode
+            # - No specific exit codes
+            # - Generic error message for all failures
+            #
+            # Since we cannot reliably detect "domain doesn't exist" vs real errors,
+            # we must treat all teardown failures as actual errors to avoid hiding
+            # real problems (auth failures, network issues, etc.)
+
+            echo "::error::Surge teardown failed"
+            echo "::error::Exit code: $TEARDOWN_EXIT_CODE"
+            echo "::error::Output: $TEARDOWN_OUTPUT"
+            echo "status=failed" >> "$GITHUB_OUTPUT"
             exit 1
           fi
 
@@ -47,10 +70,10 @@ jobs:
 
           if [ "$HTTP_STATUS" = "000" ] || [ "$HTTP_STATUS" -ge 400 ]; then
             echo "✅ Verified: Preview site is no longer accessible (HTTP $HTTP_STATUS)"
-            echo "verified=true" >> $GITHUB_OUTPUT
+            echo "verified=true" >> "$GITHUB_OUTPUT"
           else
             echo "::warning::Preview site may still be accessible (HTTP $HTTP_STATUS)"
-            echo "verified=false" >> $GITHUB_OUTPUT
+            echo "verified=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Job summary
@@ -59,26 +82,26 @@ jobs:
           STATUS="${{ steps.teardown.outputs.status }}"
           PREVIEW_URL="${{ steps.teardown.outputs.preview_url }}"
 
-          echo "## 🧹 Preview Cleanup" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🧹 Preview Cleanup" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
 
           case "$STATUS" in
             success)
-              echo "✅ **Teardown successful**" >> $GITHUB_STEP_SUMMARY
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "- URL: \`${PREVIEW_URL}\`" >> $GITHUB_STEP_SUMMARY
-              echo "- PR: #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
+              echo "✅ **Teardown successful**" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "- URL: \`${PREVIEW_URL}\`" >> "$GITHUB_STEP_SUMMARY"
+              echo "- PR: #${{ github.event.pull_request.number }}" >> "$GITHUB_STEP_SUMMARY"
               ;;
             skipped)
-              echo "⏭️ **Teardown skipped** (SURGE_TOKEN not configured)" >> $GITHUB_STEP_SUMMARY
+              echo "⏭️ **Teardown skipped** (SURGE_TOKEN not configured)" >> "$GITHUB_STEP_SUMMARY"
               ;;
             failed)
-              echo "❌ **Teardown failed**" >> $GITHUB_STEP_SUMMARY
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "- URL: \`${PREVIEW_URL}\`" >> $GITHUB_STEP_SUMMARY
-              echo "- Check logs for details" >> $GITHUB_STEP_SUMMARY
+              echo "❌ **Teardown failed**" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "- URL: \`${PREVIEW_URL}\`" >> "$GITHUB_STEP_SUMMARY"
+              echo "- Check logs for details" >> "$GITHUB_STEP_SUMMARY"
               ;;
             *)
-              echo "⚠️ **Unknown status**: ${STATUS:-none}" >> $GITHUB_STEP_SUMMARY
+              echo "⚠️ **Unknown status**: ${STATUS:-none}" >> "$GITHUB_STEP_SUMMARY"
               ;;
           esac
