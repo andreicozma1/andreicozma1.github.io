@@ -868,10 +868,6 @@ jobs:
             exit 1
           fi
 
-          # Verify what files Surge actually received
-          echo "Verifying deployed files..."
-          npx surge files "${PREVIEW_URL}" --token "$SURGE_TOKEN" | grep -i "\.pdf" || echo "⚠️ Warning: No PDF files found in Surge deployment"
-
           # Verify deployment is accessible
           echo "Verifying deployment..."
           sleep 3
