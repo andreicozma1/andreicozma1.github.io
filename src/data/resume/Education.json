@@ -39,7 +39,14 @@
 				"Concentration: Intelligent Systems & Machine Learning",
 				"Thesis: \"KIPPO - Koopman-Inspired Proximal Policy Optimization\""
 			],
-			"contentAlign": "center"
+			"contentAlign": "center",
+			"actions": [
+				{
+					"text": "View Diploma",
+					"href": "/utk-diploma-MS_CeD.24AM-10I2-AOA4.pdf",
+					"target": "_blank"
+				}
+			]
 		},
 		{
 			"title": "Computer Science B.S.",
@@ -68,7 +75,7 @@
 			"actions": [
 				{
 					"text": "View Diploma",
-					"href": "/diploma.pdf",
+					"href": "/utk-diploma-BS_CeD.22BI-G03J-AHA6.pdf",
 					"target": "_blank"
 				}
 			]

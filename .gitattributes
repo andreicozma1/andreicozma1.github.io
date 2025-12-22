@@ -1,0 +1,20 @@
+# Ensure binary files are not modified by line ending conversion
+# Without this, Git might treat binary files as text and corrupt them during
+# checkout/clone operations (especially on Windows with autocrlf enabled)
+# This prevents issues like corrupted PDFs, images, fonts, etc.
+*.pdf binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.ico binary
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.zip binary
+*.gz binary

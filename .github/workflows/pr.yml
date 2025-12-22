@@ -65,11 +65,18 @@ jobs:
               <!-- build-report -->
               ## CI Report<!-- preview-marker -->
 
-              ⏳ Types · ⏳ Build · ⏳ Deploy
+              ### Status Summary
+              - ⏳ **Type Check**: Running...
+              - ⏳ **Build**: Waiting...
+              - ⏳ **Deploy**: Waiting...
+              - ⏱️ **Build Time**: -
 
-              _Starting..._
+              _Starting CI checks..._
 
-              \`${commitSha}\` · ${runUrl} · _${timestamp}_
+              ---
+              **Commit** \`${commitSha}\`
+              **Workflow** ${runUrl}
+              **Built** ${timestamp}
             `);
 
             try {
@@ -342,6 +349,7 @@ jobs:
 
             const typecheckStatus = '${{ steps.typecheck.outputs.status }}';
             const typeIcon = typecheckStatus === 'success' ? '✅' : (typecheckStatus === 'failure' ? '❌' : '⏳');
+            const typeStatus = typecheckStatus === 'success' ? 'Passed' : (typecheckStatus === 'failure' ? 'Failed' : 'Running...');
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
@@ -363,11 +371,18 @@ jobs:
                   <!-- build-report -->
                   ## CI Report<!-- preview-marker -->
 
-                  ${typeIcon} Types · ⏳ Build · ⏳ Deploy
+                  ### Status Summary
+                  - ${typeIcon} **Type Check**: ${typeStatus}
+                  - ⏳ **Build**: Running...
+                  - ⏳ **Deploy**: Waiting...
+                  - ⏱️ **Build Time**: -
 
-                  _Building..._
+                  _Building project..._
 
-                  \`${commitSha}\` · ${runUrl} · _${timestamp}_
+                  ---
+                  **Commit** \`${commitSha}\`
+                  **Workflow** ${runUrl}
+                  **Built** ${timestamp}
                 `);
 
                 await github.rest.issues.updateComment({
@@ -588,12 +603,12 @@ jobs:
             // Helper to remove indentation from multiline strings (for YAML compatibility)
             const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
 
-            // Helper to format bytes
+            // Helper to format bytes (minimum unit: KB to avoid confusing "B" notation)
             const formatBytes = (bytes) => {
               const abs = Math.abs(bytes);
               if (abs >= 1048576) return (bytes / 1048576).toFixed(2) + 'M';
-              if (abs >= 1024) return (bytes / 1024).toFixed(1) + 'K';
-              return bytes + 'B';
+              // Always use KB as minimum unit (0.1 KB instead of 140B)
+              return (bytes / 1024).toFixed(2) + 'K';
             };
 
             // Helper to format delta with icon
@@ -624,11 +639,17 @@ jobs:
 
             // Get base stats and deltas (only if comparison available)
             let baseTotalSize = '', baseJsSize = '', baseCssSize = '', baseHtml = 0, baseImg = 0;
+            let baseTotalBytes = 0, baseJsBytes = 0, baseCssBytes = 0;
             let deltaTotal = 0, deltaJs = 0, deltaCss = 0, deltaHtml = 0, deltaImg = 0;
             if (hasComparison) {
-              baseTotalSize = '${{ steps.base-stats.outputs.base_total_size }}';
-              baseJsSize = '${{ steps.base-stats.outputs.base_js_size }}';
-              baseCssSize = '${{ steps.base-stats.outputs.base_css_size }}';
+              // Get raw byte values for consistent formatting
+              baseTotalBytes = parseInt('${{ steps.base-stats.outputs.base_total }}') || 0;
+              baseJsBytes = parseInt('${{ steps.base-stats.outputs.base_js }}') || 0;
+              baseCssBytes = parseInt('${{ steps.base-stats.outputs.base_css }}') || 0;
+              // Format using the same function as deltas for consistency
+              baseTotalSize = formatBytes(baseTotalBytes);
+              baseJsSize = formatBytes(baseJsBytes);
+              baseCssSize = formatBytes(baseCssBytes);
               baseHtml = parseInt('${{ steps.base-stats.outputs.base_html }}') || 0;
               baseImg = parseInt('${{ steps.base-stats.outputs.base_img }}') || 0;
               deltaTotal = parseInt('${{ steps.stats.outputs.delta_total }}') || 0;
@@ -654,14 +675,23 @@ jobs:
               return '';
             }).filter(Boolean).join('\n') : '';
 
-            // Build status line - consistent format: Types · Build · Deploy
+            // Build status sections with H3 headings
             const typeIcon = typecheckStatus ? '✅' : '❌';
+            const typeStatus = typecheckStatus ? 'Passed' : 'Failed';
             const buildIcon = hasLargeBundles ? '⚠️' : '✅';
+            const buildSizeInfo = hasComparison ? ` (${formatBytes(totalBytes)}, ${formatDelta(deltaTotal)} from base)` : ` (${formatBytes(totalBytes)})`;
+            const buildStatus = hasLargeBundles ? `Completed${buildSizeInfo}` : `Completed${buildSizeInfo}`;
             const surgeConfigured = '${{ secrets.SURGE_TOKEN }}' !== '';
             const deployIcon = surgeConfigured ? '⏳' : '⏸️';
-            const deployLabel = surgeConfigured ? 'Deploy' : 'Preview';
-            const deltaDisplay = hasComparison ? ` (${formatDelta(deltaTotal)})` : '';
-            const statusLine = `${typeIcon} Types · ${buildIcon} Build${deltaDisplay} · ${deployIcon} ${deployLabel} · ⏱️ ${buildTime}s`;
+            const deployStatus = surgeConfigured ? 'Deploying...' : 'Not configured';
+
+            const statusSection = dedent(`
+              ### Status Summary
+              - ${typeIcon} **Type Check**: ${typeStatus}
+              - ${buildIcon} **Build**: ${buildStatus}
+              - ${deployIcon} **Deploy**: ${deployStatus}
+              - ⏱️ **Build Time**: ${buildTime}s
+            `);
 
             // Helper for formatting count deltas
             const formatCountDelta = (delta) => {
@@ -672,12 +702,17 @@ jobs:
             // Build the stats table (with or without comparison)
             let statsTable;
             if (hasComparison) {
+              // Format PR sizes using raw bytes for consistency with delta column
+              const prTotalFormatted = formatBytes(totalBytes);
+              const prJsFormatted = formatBytes(jsBytes);
+              const prCssFormatted = formatBytes(cssBytes);
+
               statsTable = dedent(`
                 | Metric | Base | PR | Δ |
                 |:-------|-----:|---:|--:|
-                | 📦 Total Size | ${baseTotalSize} | **${totalSize}** | ${formatDelta(deltaTotal)} |
-                | 📜 JavaScript | ${baseJsSize} | **${jsSize}** | ${formatDelta(deltaJs)} |
-                | 🎨 CSS | ${baseCssSize} | **${cssSize}** | ${formatDelta(deltaCss)} |
+                | 📦 Total Size | ${baseTotalSize} | **${prTotalFormatted}** | ${formatDelta(deltaTotal)} |
+                | 📜 JavaScript | ${baseJsSize} | **${prJsFormatted}** | ${formatDelta(deltaJs)} |
+                | 🎨 CSS | ${baseCssSize} | **${prCssFormatted}** | ${formatDelta(deltaCss)} |
                 | 📄 HTML Pages | ${baseHtml} | **${htmlCount}** | ${formatCountDelta(deltaHtml)} |
                 | 🖼️ Images | ${baseImg} | **${imgCount}** | ${formatCountDelta(deltaImg)} |
               `);
@@ -705,8 +740,8 @@ jobs:
             let bundleSection = '';
             if (hasLargeBundles && topJsFormatted) {
               bundleSection = dedent(`
-
-                **${largeCount} bundle(s) exceed 200KB:**
+                ### Large Bundles
+                ⚠️ **${largeCount} bundle(s) exceed 200KB:**
 
                 | File | Size |
                 |:-----|-----:|
@@ -724,18 +759,28 @@ jobs:
             const baseSha = '${{ steps.base-sha.outputs.short_sha }}';
             const fromCache = '${{ steps.base-stats.outputs.from_cache }}' === 'true';
             const cacheIndicator = fromCache ? ' 📦' : '';
-            const baseRef = hasComparison ? ` · vs \`${baseBranch}@${baseSha}\`${cacheIndicator}` : '';
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+
+            // Build multi-line footer
+            const footerLines = [
+              `**Commit** \`${commitSha}\``,
+              hasComparison ? `**Base** \`${baseBranch}@${baseSha}\`${cacheIndicator}` : null,
+              `**Workflow** ${runUrl}`,
+              `**Built** ${timestamp}`
+            ].filter(Boolean).join('  \n');
 
             const body = dedent(`
               <!-- build-report -->
               ## CI Report${previewPlaceholder}
 
-              ${statusLine}
+              ${statusSection}
+
+              ### Build Metrics
 
               ${statsTable}
               ${bundleSection}
-              \`${commitSha}\`${baseRef} · ${runUrl} · _${timestamp}_
+              ---
+              ${footerLines}
             `);
 
             // Find existing comment and post/update
@@ -791,6 +836,42 @@ jobs:
             exit 0
           fi
 
+          # Verify build output before deploying
+          echo "Verifying build output..."
+          if [ ! -d "public" ]; then
+            echo "::error::public directory not found"
+            echo "status=deploy_failed" >> "$GITHUB_OUTPUT"
+            echo "deployed=false" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+          # List static files to verify they were copied
+          # Note: PDFs listed here are uploaded to Surge but will return 404 on Surge Student plan
+          # Surge requires Professional plan ($30/mo) for PDF support - this is acceptable for PR previews
+          echo "Static files in public directory:"
+          find public -name "*.pdf" -type f -exec ls -lh {} \; || echo "No PDFs found"
+          echo "Total files: $(find public -type f | wc -l)"
+
+          # Remove CNAME file (it's for GitHub Pages, conflicts with Surge)
+          # CNAME contains the custom domain and causes Surge to try routing with that domain
+          # instead of the surge.sh subdomain, breaking preview URLs
+          if [ -f "public/CNAME" ]; then
+            rm public/CNAME
+            echo "Removed CNAME file (GitHub Pages config conflicts with Surge)"
+          fi
+
+          # Note: NOT creating 200.html for the following reasons:
+          # 1. Gatsby handles client-side routing internally via page-data.json
+          # 2. Adding 200.html would cause Surge to route ALL requests through the React app,
+          #    potentially breaking static file serving
+          # 3. Surge has its own 404 handling that works with Gatsby's 404.html page
+          #
+          # Surge Student Plan Limitations (as of 2025):
+          # - Does NOT support serving .pdf files (requires Professional plan $30/mo)
+          # - Does NOT support ROUTER file for custom routing rules
+          # - PDFs uploaded successfully but return 404 when accessed
+          # - This is acceptable for PR previews; production deployment uses GitHub Pages which supports PDFs
+
           # Deploy to Surge
           echo "Deploying to ${FULL_URL}..."
           if ! npx surge ./public "${PREVIEW_URL}" --token "$SURGE_TOKEN" 2>&1; then
@@ -845,18 +926,19 @@ jobs:
               if (botComment && !botComment.body.includes('<!-- preview-url -->')) {
                 // Update deploy status and preview URL
                 const deployStatus = status === 'success' ? '✅' : '⚠️';
+                const deployText = status === 'success' ? `Live · ${previewUrl}` : `Deployed (unverified) · ${previewUrl}`;
                 let updatedBody = botComment.body
-                  // Update deploy status in status line
-                  .replace(/⏳ Deploy/, `${deployStatus} Deploy`)
-                  // Replace preview placeholder with actual URL
+                  // Update deploy status in status section (bulleted list format)
+                  .replace(/- ⏳ \*\*Deploy\*\*: Deploying\.\.\./, `- ${deployStatus} **Deploy**: ${deployText}`)
+                  // Replace preview placeholder with actual URL (for header)
                   .replace(
                     / · 🚀 _deploying\.\.\._<!-- preview-marker -->|<!-- preview-marker -->/,
                     ` · 🚀 ${previewUrl}${statusSuffix}<!-- preview-url -->`
                   )
-                  // Update timestamp
+                  // Update timestamp in footer
                   .replace(
-                    /_\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC_/,
-                    `_${new Date().toISOString().replace('T', ' ').substring(0, 19)} UTC_`
+                    /\*\*Built\*\* \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC/,
+                    `**Built** ${new Date().toISOString().replace('T', ' ').substring(0, 19)} UTC`
                   );
 
                 await github.rest.issues.updateComment({
