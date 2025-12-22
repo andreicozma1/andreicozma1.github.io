@@ -44,7 +44,9 @@ jobs:
               echo "Validated files:"
             } >> "$GITHUB_STEP_SUMMARY"
 
-            for file in .github/workflows/*.{yml,yaml}; do
+            for file in .github/workflows/*.yml .github/workflows/*.yaml; do
+              # Skip if the glob didn't match any files
+              [ -e "$file" ] || continue
               echo "- \`$(basename "$file")\`" >> "$GITHUB_STEP_SUMMARY"
             done
             exit 0
