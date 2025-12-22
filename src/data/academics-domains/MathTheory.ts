@@ -7,18 +7,22 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 // Import shared course definitions
 import math525 from '../academics-shared/MATH525-Statistics'
 import math526 from '../academics-shared/MATH526-Statistics2'
+import ece505 from '../academics-shared/ECE505-DSP'
+import ece511 from '../academics-shared/ECE511-LinearSystems'
 
 export default {
 	title: "Mathematics, Theory & Algorithms",
 	variant: "grid6",
 	notes: [
 		{
-			text: "Mathematical foundations including statistics, theoretical computer science, and algorithm analysis."
+			text: "Mathematical foundations including statistics, signal processing, theoretical computer science, and algorithm analysis."
 		},
 	],
 	items: [
 		math525,
 		math526,
+		ece505,
+		ece511,
 		{
 				"title": "COSC 317 - Honors Discrete Structures",
 				"subtitle": "Introduction to Set Theory, Graph Theory, and Logic & Proof strategies as the principles of software programming and design. Application of proof techniques to prove correctness of algorithms.",

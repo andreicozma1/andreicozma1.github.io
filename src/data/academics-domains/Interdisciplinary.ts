@@ -9,11 +9,11 @@ import cosc559 from '../academics-shared/COSC559-HCI'
 import psyc410 from '../academics-shared/PSYC410-Perception'
 
 export default {
-	title: "Interdisciplinary & Specialized Topics",
+	title: "Specialized Topics",
 	variant: "grid6",
 	notes: [
 		{
-			text: "Coursework bridging computer science with human factors, neuroscience, security, and software engineering."
+			text: "Graduate coursework in specialized and interdisciplinary areas including human-computer interaction, cognitive science, and software engineering."
 		},
 	],
 	items: [
