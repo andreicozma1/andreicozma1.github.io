@@ -18,7 +18,6 @@ import GraduateML from "../data/academics-pyramid/GraduateML"
 import GraduateVision from "../data/academics-pyramid/GraduateVision"
 import GraduateSystems from "../data/academics-pyramid/GraduateSystems"
 import GraduateMath from "../data/academics-pyramid/GraduateMath"
-import GraduateInterdisciplinary from "../data/academics-pyramid/GraduateInterdisciplinary"
 import FoundationalAdvanced from "../data/academics-pyramid/FoundationalAdvanced"
 import FoundationalCybersecurity from "../data/academics-pyramid/FoundationalCybersecurity"
 import FoundationalCore from "../data/academics-pyramid/FoundationalCore"
@@ -106,7 +105,6 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 			GraduateVision,
 			GraduateSystems,
 			GraduateMath,
-			GraduateInterdisciplinary,
 			FoundationalAdvanced,
 			FoundationalCybersecurity,
 			FoundationalCore
