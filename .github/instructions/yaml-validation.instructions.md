@@ -80,9 +80,9 @@ The `on:` trigger key becomes `True` when parsed by YAML libraries (expected beh
 
 **Symptom**: `could not find expected ':'` or `while scanning a simple key`
 **Cause**: Content in JavaScript template literals not indented within YAML block scalars
-**Fix**: Indent all lines within template literals to match or exceed parent indentation
+**Root cause**: YAML parser treats unindented lines as new YAML keys, not as part of the string content
 
-**Example of the error** (from this PR):
+**Problem example** (causes YAML parse error):
 ```yaml
 script: |
   const body = `
@@ -91,7 +91,9 @@ script: |
   `;
 ```
 
-**Correct fix**:
+**Solutions (from worst to best):**
+
+1. **❌ Naive indentation** - Breaks markdown rendering:
 ```yaml
 script: |
   const body = `
@@ -99,8 +101,35 @@ script: |
     ⏳ Status line with emoji
   `;
 ```
+Indentation becomes part of the string → renders as code block in markdown
 
-**Root cause**: YAML parser treats unindented lines as new YAML keys, not as part of the string content.
+2. **⚠️ String concatenation** - Works but verbose:
+```yaml
+script: |
+  const body = '## Title\n' +
+    '\n' +
+    '⏳ Status line\n';
+```
+Satisfies YAML and markdown, but hard to read and maintain
+
+3. **✅ Dedent function** - Best approach (currently used):
+```yaml
+script: |
+  // Define once at top of script
+  const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
+
+  // Use for all multiline strings
+  const body = dedent(`
+    ## Title
+
+    ⏳ Status line
+  `);
+```
+**Benefits:**
+- Readable multiline template literals (satisfies YAML)
+- Indentation stripped at runtime (satisfies markdown)
+- DRY - define function once, use everywhere
+- Maintainable - easy to see structure at a glance
 
 ### Shell Variable Quoting
 
@@ -211,6 +240,10 @@ actionlint .github/workflows/pr.yml
 - Content in template literals must be indented
 - YAML parser interprets unindented lines as new keys
 - Use actionlint to catch these early
+- **Best solution**: Use `dedent()` helper function to strip indentation at runtime
+  - Satisfies YAML parser (content is indented)
+  - Satisfies markdown rendering (indentation removed before posting)
+  - More readable and maintainable than string concatenation
 
 ### 3. Shell Script Best Practices
 - Quote all variables (`"$VAR"` not `$VAR`)
