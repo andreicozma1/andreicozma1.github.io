@@ -11,10 +11,11 @@ import WorkExperience from "../data/resume/WorkExperience.json"
 import AchievementsLicensesCertifications from "../data/resume/AchievementsLicensesCertifications.json"
 import ActivitiesSocieties from "../data/resume/ActivitiesSocieties.json"
 import IntelligentSystems from "../data/academics/IntelligentSystems"
+import GraduateCore from "../data/academics/GraduateCore"
 import GraduateOther from "../data/academics/GraduateOther"
+import Mathematics from "../data/academics/Mathematics"
 import Cybersecurity from "../data/academics/Cybersecurity"
 import General from "../data/academics/General"
-import Mathematics from "../data/academics/Mathematics"
 // Option 1: 4-Tier Pyramid
 import GraduateML from "../data/academics-pyramid/GraduateML"
 import GraduateVision from "../data/academics-pyramid/GraduateVision"
@@ -62,10 +63,11 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 		icon    : "ic_academics",
 		sections: [
 			IntelligentSystems,
+			GraduateCore,
 			GraduateOther,
+			Mathematics,
 			Cybersecurity,
-			General,
-			Mathematics
+			General
 		]
 	},
 	"Seminars" : {

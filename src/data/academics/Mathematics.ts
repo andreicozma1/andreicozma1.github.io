@@ -4,15 +4,21 @@ Website: https://andreicozma.com
 Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 
+// Import shared course definitions
+import math525 from '../academics-shared/MATH525-Statistics'
+import math526 from '../academics-shared/MATH526-Statistics2'
+
 export default {
-	title: "Mathematics",
+	title: "Mathematics & Statistics",
 	variant: "grid6",
 	notes: [
 		{
-			text: "Foundational undergraduate mathematics coursework."
+			text: "Mathematics and statistics coursework from foundational undergraduate calculus and linear algebra through graduate-level statistical modeling."
 		}
 	],
 	items: [
+		math525,
+		math526,
 		{
 			"title": "MATH 142 - Calculus II",
 			"subtitle": "Continuation of single-variable calculus including techniques of integration, applications of integration, sequences and series, and parametric equations.",
