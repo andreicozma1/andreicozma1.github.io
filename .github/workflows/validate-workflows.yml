@@ -1,4 +1,4 @@
-name: "Validate Workflows"
+name: "CI: Validate Workflows"
 
 on:
   pull_request:
@@ -36,8 +36,9 @@ jobs:
             echo ""
           } >> "$GITHUB_STEP_SUMMARY"
 
-          # Run actionlint on all workflow files
-          if actionlint .github/workflows/*.{yml,yaml} 2>&1 | tee actionlint-output.txt; then
+          # Run actionlint on all workflow files (use pattern that works even if .yaml doesn't exist)
+          shopt -s nullglob  # Ignore patterns that don't match any files
+          if actionlint .github/workflows/*.yml .github/workflows/*.yaml 2>&1 | tee actionlint-output.txt; then
             {
               echo "✅ **All workflow files are valid**"
               echo ""
