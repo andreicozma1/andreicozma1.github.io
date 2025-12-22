@@ -52,28 +52,6 @@
 			"avatar": "psychology"
 		},
 		{
-			"title": "ECE 598 - Robust, Secure and AI Trustworthy",
-			"subtitle": "Study of robustness, security, and trustworthiness in AI systems, covering adversarial attacks, defense mechanisms, fairness, interpretability, and reliable AI deployment.",
-			"chips": {
-				"contentChips": [
-					"Adversarial Attacks",
-					"Adversarial Defense",
-					"Model Robustness",
-					"AI Security",
-					"Fairness in AI",
-					"Model Interpretability",
-					"Explainable AI",
-					"AI Ethics",
-					"Certified Robustness",
-					"Trustworthy ML"
-				],
-				"languages": ["Python"],
-				"libraries": ["PyTorch", "TensorFlow", "Cleverhans", "ART"],
-				"tools": ["Jupyter Notebook", "Git & GitHub"]
-			},
-			"avatar": "verified_user"
-		},
-		{
 			"title": "COSC 465 - Databases and Scripting Languages",
 			"subtitle": "In-depth focus on developing a strong understanding of the basics of databases and their usage in web applications as well as an introduction to various scripting languages.",
 			"chips": {

@@ -4,7 +4,7 @@
 	"items": [
 		{
 			"title": "COSC 466 - Software Security",
-			"subtitle": "An in-depth introduction to software security. The focus is on identifying vulnerabilities in software, exploiting vulnerabilities in software, and software development best-practices for avoiding vulnerabilities during the design, implementation, testing, and deployment of software. ",
+			"subtitle": "An in-depth introduction to software security. The focus is on identifying vulnerabilities in software, exploiting vulnerabilities in software, and software development best-practices for avoiding vulnerabilities during the design, implementation, testing, and deployment of software.",
 			"chips": {
 				"contentChips": [
 					"Threat Modeling",

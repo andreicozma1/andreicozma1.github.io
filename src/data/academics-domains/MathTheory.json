@@ -23,8 +23,8 @@
 					"Laplace Approximations",
 					"Monte Carlo Methods",
 					"Importance Sampling",
-					"MCMC",
-					"Metropolis-Hastings",
+					"Markov Chain Monte Carlo",
+					"Metropolis-Hastings Algorithm",
 					"Gibbs Samplers"
 				],
 				"languages": ["MATLAB"],
