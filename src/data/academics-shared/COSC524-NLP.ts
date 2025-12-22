@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "COSC 524 - Natural Language Processing",
 	"subtitle": "Overview of natural language processing theory and applications, covering major NLP algorithms and exploring how computational systems process text.",
 	"chips": {

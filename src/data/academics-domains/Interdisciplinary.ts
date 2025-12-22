@@ -5,8 +5,8 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 
 // Import shared course definitions
-import cosc559 from '../academics-shared/COSC559-HCI.json'
-import psyc410 from '../academics-shared/PSYC410-Perception.json'
+import cosc559 from '../academics-shared/COSC559-HCI'
+import psyc410 from '../academics-shared/PSYC410-Perception'
 
 export default {
 	title: "Interdisciplinary & Specialized Topics",

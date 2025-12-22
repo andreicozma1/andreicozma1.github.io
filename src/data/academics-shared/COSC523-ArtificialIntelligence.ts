@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "COSC 523 - Artificial Intelligence",
 	"subtitle": "Theoretical and applied aspects of artificial intelligence, including search, learning, decision-making, and reasoning.",
 	"chips": {

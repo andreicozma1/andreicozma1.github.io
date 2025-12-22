@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "MATH 526 - Statistics II",
 	"subtitle": "Advanced statistical methods building on Statistics I, covering multivariate analysis, experimental design, nonparametric methods, and advanced regression techniques.",
 	"chips": {

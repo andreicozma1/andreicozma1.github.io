@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "COSC 420 - Biologically-Inspired Computation",
 	"subtitle": "Recent developments in computational methods inspired by nature, including the use of biologically inspired algorithms to solve problems.",
 	"chips": {

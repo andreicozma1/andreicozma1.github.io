@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "COSC 525 - Deep Learning",
 	"subtitle": "Theoretical and practical aspects of how to build deep networks for representations of high-dimensional data.",
 	"chips": {

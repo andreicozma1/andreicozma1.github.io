@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "COSC 530 - Computer Systems Organization",
 	"subtitle": "Exploration of central issues in computer architecture: instruction set design, memory hierarchies, pipelining, instruction-level parallelism, RISC/CISC architectures, and multiprocessor systems.",
 	"chips": {

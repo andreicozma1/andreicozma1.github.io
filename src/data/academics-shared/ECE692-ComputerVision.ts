@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "ECE 692 - Computer Vision",
 	"subtitle": "Advanced topics in computer vision covering state-of-the-art methods for visual recognition, scene understanding, and 3D reconstruction.",
 	"chips": {

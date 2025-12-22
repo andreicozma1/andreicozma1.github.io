@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "PSYC 410 - Sensory Processes and Perception",
 	"subtitle": "Exploration of how sensory systems process information and how perception emerges from neural mechanisms, with relevance to computational neuroscience and cognitive science.",
 	"chips": {

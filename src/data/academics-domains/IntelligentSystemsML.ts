@@ -5,12 +5,12 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 
 // Import shared course definitions
-import cosc522 from '../academics-shared/COSC522-MachineLearning.json'
-import cosc523 from '../academics-shared/COSC523-ArtificialIntelligence.json'
-import cosc525 from '../academics-shared/COSC525-DeepLearning.json'
-import ece517 from '../academics-shared/ECE517-ReinforcementLearning.json'
-import cosc524 from '../academics-shared/COSC524-NLP.json'
-import cosc420 from '../academics-shared/COSC420-BiologicallyInspired.json'
+import cosc522 from '../academics-shared/COSC522-MachineLearning'
+import cosc523 from '../academics-shared/COSC523-ArtificialIntelligence'
+import cosc525 from '../academics-shared/COSC525-DeepLearning'
+import ece517 from '../academics-shared/ECE517-ReinforcementLearning'
+import cosc524 from '../academics-shared/COSC524-NLP'
+import cosc420 from '../academics-shared/COSC420-BiologicallyInspired'
 
 export default {
 	title: "Intelligent Systems & Machine Learning",

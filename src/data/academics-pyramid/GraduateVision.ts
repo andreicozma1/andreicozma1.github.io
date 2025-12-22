@@ -5,9 +5,9 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 
 // Import shared course definitions
-import ece505 from '../academics-shared/ECE505-DSP.json'
-import ece572 from '../academics-shared/ECE572-ImageProcessing.json'
-import ece692 from '../academics-shared/ECE692-ComputerVision.json'
+import ece505 from '../academics-shared/ECE505-DSP'
+import ece572 from '../academics-shared/ECE572-ImageProcessing'
+import ece692 from '../academics-shared/ECE692-ComputerVision'
 
 export default {
 	title: "Tier 2: Computer Vision & Signal Processing",

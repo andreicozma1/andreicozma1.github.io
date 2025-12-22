@@ -14,7 +14,7 @@ import IntelligentSystems from "../data/academics/IntelligentSystems"
 import Cybersecurity from "../data/academics/Cybersecurity"
 import General from "../data/academics/General"
 // Option 1: 4-Tier Pyramid
-import ResearchOverview from "../data/academics-shared/ResearchOverview.json"
+import ResearchOverview from "../data/academics-shared/ResearchOverview"
 import GraduateML from "../data/academics-pyramid/GraduateML"
 import GraduateVision from "../data/academics-pyramid/GraduateVision"
 import GraduateSystems from "../data/academics-pyramid/GraduateSystems"

@@ -5,8 +5,8 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 */
 
 // Import shared course definitions
-import math525 from '../academics-shared/MATH525-Statistics.json'
-import math526 from '../academics-shared/MATH526-Statistics2.json'
+import math525 from '../academics-shared/MATH525-Statistics'
+import math526 from '../academics-shared/MATH526-Statistics2'
 
 export default {
 	title: "Mathematics, Theory & Algorithms",

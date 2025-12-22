@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "ECE 505 - Digital Signal Processing",
 	"subtitle": "Analysis and design of digital signal processing systems, covering discrete-time signals, Z-transforms, digital filters, FFT algorithms, and DSP applications.",
 	"chips": {

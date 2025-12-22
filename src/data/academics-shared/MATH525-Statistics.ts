@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "MATH 525 - Statistics I",
 	"subtitle": "Essentials of statistics with emphasis on data science, covering statistical modeling, Bayesian inference and computation, and approaches used in machine learning and data analysis.",
 	"chips": {

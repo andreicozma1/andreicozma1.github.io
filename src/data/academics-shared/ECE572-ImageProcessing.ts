@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "ECE 572 - Digital Image Processing",
 	"subtitle": "Comprehensive study of digital image processing techniques including image acquisition, enhancement, restoration, compression, morphological processing, segmentation, and analysis.",
 	"chips": {

@@ -1,4 +1,10 @@
-{
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
 	"title": "COSC 562 - Operating Systems: Design and Implementation",
 	"subtitle": "Advanced operating system concepts focusing on design and implementation of file systems, memory management, process management, and system-level programming.",
 	"chips": {
