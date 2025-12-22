@@ -1,32 +1,30 @@
 {
 	"title": "MATH 525 - Statistics I",
-	"subtitle": "Graduate-level statistical methods including sampling theory, central limit theorem, hypothesis testing, confidence intervals, and statistical inference.",
+	"subtitle": "Essentials of statistics with emphasis on data science, covering statistical modeling, Bayesian inference and computation, and approaches used in machine learning and data analysis.",
 	"chips": {
 		"contentChips": [
-			"Probability Theory",
 			"Random Variables",
-			"Sampling Distributions",
-			"Central Limit Theorem",
-			"Hypothesis Testing",
-			"Confidence Intervals",
-			"Statistical Inference",
-			"T-tests",
-			"ANOVA",
-			"Regression Analysis"
+			"Likelihood-Based Analysis",
+			"Statistical Modeling",
+			"Generative Models",
+			"Graphical Models",
+			"Exponential Family",
+			"Bayesian Inference",
+			"Laplace Approximations",
+			"Monte Carlo Methods",
+			"Importance Sampling",
+			"Markov Chain Monte Carlo",
+			"Metropolis-Hastings Algorithm",
+			"Gibbs Samplers"
 		],
 		"languages": [
-			"R",
-			"Python"
+			"MATLAB"
 		],
 		"libraries": [
-			"NumPy",
-			"SciPy",
-			"Pandas",
-			"Statsmodels"
+			"MATLAB Statistics Toolbox"
 		],
 		"tools": [
-			"RStudio",
-			"Jupyter Notebook"
+			"MATLAB"
 		]
 	},
 	"avatar": "analytics"
