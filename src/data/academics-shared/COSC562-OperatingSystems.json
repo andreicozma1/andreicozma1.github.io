@@ -21,6 +21,8 @@
 		"tools": [
 			"Linux",
 			"QEMU",
+			"Docker",
+			"SLURM",
 			"Git & GitHub"
 		]
 	},

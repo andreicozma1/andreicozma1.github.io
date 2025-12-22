@@ -8,32 +8,39 @@
 			"avatar": "school",
 			"chips": {
 				"date": [
-					"2024 - Present"
+					"August 2024 - Present"
 				],
 				"positions": [
-					"Research Assistant"
+					"Research Assistant",
+					"AICIP Lab"
 				]
 			},
 			"content": [
 				"Concentration: Intelligent Systems & Machine Learning",
 				"Advisor: Dr. Hairong Qi",
-				"Research Focus: Machine learning, reinforcement learning, and control systems"
+				"Research Framework: Intelligent systems integrating perception, representation, and decision-making",
+				"Focus Areas: Computer Vision, Reinforcement Learning, Federated Learning, Self-Supervised Learning",
+				"Current Status: Year 2, Semester 4 (Spring 2026)",
+				"4 publications (IJCAI 2025, SC25, NeurIPS 2023, ICRA 2025)"
 			],
 			"contentAlign": "center"
 		},
 		{
 			"title": "Master of Science (MS) Thesis",
-			"subtitle": "KIPPO - Koopman-Inspired Proximal Policy Optimization",
+			"subtitle": "KIPPO: Koopman-Inspired Proximal Policy Optimization",
 			"avatar": "auto_stories",
 			"chips": {
 				"date": [
-					"2024"
+					"Completed August 2024"
+				],
+				"awards": [
+					"Published: IJCAI 2025"
 				]
 			},
 			"content": [
 				"Major Professor: Dr. Hairong Qi",
-				"Developed novel reinforcement learning algorithm combining Koopman operator theory with PPO",
-				"Applications in robotics and control systems"
+				"First-author publication at IJCAI 2025",
+				"Novel reinforcement learning approach combining Koopman operator theory with policy optimization"
 			],
 			"contentAlign": "center"
 		}

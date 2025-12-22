@@ -14,7 +14,7 @@
 			"chips": {
 				"contentChips": ["Operating System Structures", "Process Management", "Virtual Memory", "File Systems", "Memory Management", "System Calls", "Synchronization"],
 				"languages": ["C/C++", "Rust"],
-				"tools": ["Linux", "QEMU", "Git & GitHub"]
+				"tools": ["Linux", "QEMU", "Docker", "SLURM", "Git & GitHub"]
 			},
 			"avatar": "settings_system_daydream"
 		},

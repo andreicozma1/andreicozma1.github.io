@@ -25,7 +25,7 @@
 					"Deadlock Handling"
 				],
 				"languages": ["C/C++", "Rust"],
-				"tools": ["Linux", "QEMU", "Git & GitHub"]
+				"tools": ["Linux", "QEMU", "Docker", "SLURM", "Git & GitHub"]
 			},
 			"avatar": "settings_system_daydream"
 		},

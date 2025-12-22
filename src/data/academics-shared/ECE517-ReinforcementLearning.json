@@ -21,11 +21,16 @@
 			"OpenAI Gym",
 			"PyTorch",
 			"TensorFlow",
-			"Numpy"
+			"Numpy",
+			"Ray",
+			"Hydra",
+			"MPI4Py"
 		],
 		"tools": [
 			"Jupyter Notebook",
-			"Git & GitHub"
+			"Git & GitHub",
+			"SLURM",
+			"Docker"
 		]
 	},
 	"avatar": "smart_toy"
