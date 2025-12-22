@@ -1,0 +1,133 @@
+{
+	"title": "Interdisciplinary & Specialized Topics",
+	"variant": "grid6",
+	"notes": [
+		{
+			"text": "Coursework bridging computer science with human factors, neuroscience, security, and software engineering.",
+			"severity": "info"
+		}
+	],
+	"items": [
+		{
+			"title": "COSC 559 - Human-Computer Interaction",
+			"subtitle": "Fundamentals of HCI examining how human factors affect interface design and usability, covering perception, cognition, and user-centered design methodologies.",
+			"chips": {
+				"contentChips": [
+					"User-Centered Design",
+					"Usability Testing",
+					"Interface Design",
+					"Interaction Design",
+					"User Research",
+					"Prototyping",
+					"Heuristic Evaluation",
+					"Accessibility",
+					"Cognitive Psychology",
+					"Design Patterns"
+				],
+				"languages": ["JavaScript", "Python"],
+				"libraries": ["React.JS", "D3.js"],
+				"tools": ["Figma", "Git & GitHub"]
+			},
+			"avatar": "touch_app"
+		},
+		{
+			"title": "PSYC 410 - Sensory Processes and Perception",
+			"subtitle": "Exploration of how sensory systems process information and how perception emerges from neural mechanisms, with relevance to computational neuroscience and cognitive science.",
+			"chips": {
+				"contentChips": [
+					"Visual Perception",
+					"Auditory Processing",
+					"Sensory Systems",
+					"Neural Mechanisms",
+					"Psychophysics",
+					"Perceptual Organization",
+					"Attention",
+					"Object Recognition",
+					"Cognitive Neuroscience"
+				],
+				"languages": ["Python"],
+				"libraries": ["PsychoPy", "Numpy"],
+				"tools": ["Jupyter Notebook"]
+			},
+			"avatar": "psychology"
+		},
+		{
+			"title": "ECE 598 - Robust, Secure and AI Trustworthy",
+			"subtitle": "Study of robustness, security, and trustworthiness in AI systems, covering adversarial attacks, defense mechanisms, fairness, interpretability, and reliable AI deployment.",
+			"chips": {
+				"contentChips": [
+					"Adversarial Attacks",
+					"Adversarial Defense",
+					"Model Robustness",
+					"AI Security",
+					"Fairness in AI",
+					"Model Interpretability",
+					"Explainable AI",
+					"AI Ethics",
+					"Certified Robustness",
+					"Trustworthy ML"
+				],
+				"languages": ["Python"],
+				"libraries": ["PyTorch", "TensorFlow", "Cleverhans", "ART"],
+				"tools": ["Jupyter Notebook", "Git & GitHub"]
+			},
+			"avatar": "verified_user"
+		},
+		{
+			"title": "COSC 465 - Databases and Scripting Languages",
+			"subtitle": "In-depth focus on developing a strong understanding of the basics of databases and their usage in web applications as well as an introduction to various scripting languages.",
+			"chips": {
+				"contentChips": [
+					"Relational Algebra",
+					"Database Design",
+					"Data Models",
+					"Entity-Relationship Diagrams",
+					"Web Databases"
+				],
+				"languages": ["HTML", "CSS", "JavaScript", "PHP", "SQL"],
+				"libraries": ["Node.JS", "JQuery"],
+				"tools": ["MongoDB", "MySQL", "Git & GitHub"]
+			},
+			"avatar": "table_rows"
+		},
+		{
+			"title": "COSC 370 - Introduction to Scientific Computing",
+			"subtitle": "An in-depth focus on the implementation, analysis, and design of numerical algorithms with the Python programming language in order to solve problems in science and engineering.",
+			"chips": {
+				"contentChips": [
+					"Program Design",
+					"Data Structures",
+					"Computational Complexity",
+					"Scientific Computing Environments",
+					"High Performance Software Packages"
+				],
+				"languages": ["Python"],
+				"libraries": ["Numpy", "Matplotlib"],
+				"tools": ["Git & GitHub"]
+			},
+			"avatar": "science"
+		},
+		{
+			"title": "COSC 365 - Programming Languages and Systems",
+			"subtitle": "An in-depth study of the design, implementation, and application of programming languages as well as an introduction to the basics of operating systems.",
+			"chips": {
+				"contentChips": [
+					"Language Paradigms",
+					"Memory Management",
+					"Exception Handling",
+					"Objects",
+					"Inheritance",
+					"Polymorphism",
+					"Concurrency",
+					"Processes & Threads",
+					"Inter-Process Communication",
+					"Scheduling"
+				],
+				"languages": ["Java", "Python", "JavaScript", "HTML", "CSS", "PHP", "SQL"],
+				"libraries": ["Node.JS", "JQuery"],
+				"tools": ["Git & GitHub"]
+			},
+			"avatar": "code"
+		}
+	]
+}

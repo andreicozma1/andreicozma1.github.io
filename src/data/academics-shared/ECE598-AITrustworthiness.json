@@ -1,0 +1,32 @@
+{
+	"title": "ECE 598 - Robust, Secure and AI Trustworthy",
+	"subtitle": "Study of robustness, security, and trustworthiness in AI systems, covering adversarial attacks, defense mechanisms, fairness, interpretability, and reliable AI deployment.",
+	"chips": {
+		"contentChips": [
+			"Adversarial Attacks",
+			"Adversarial Defense",
+			"Model Robustness",
+			"AI Security",
+			"Fairness in AI",
+			"Model Interpretability",
+			"Explainable AI",
+			"AI Ethics",
+			"Certified Robustness",
+			"Trustworthy ML"
+		],
+		"languages": [
+			"Python"
+		],
+		"libraries": [
+			"PyTorch",
+			"TensorFlow",
+			"Cleverhans",
+			"ART"
+		],
+		"tools": [
+			"Jupyter Notebook",
+			"Git & GitHub"
+		]
+	},
+	"avatar": "verified_user"
+}

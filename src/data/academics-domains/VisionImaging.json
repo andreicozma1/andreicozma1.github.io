@@ -1,0 +1,79 @@
+{
+	"title": "Computer Vision & Image Processing",
+	"variant": "grid6",
+	"notes": [
+		{
+			"text": "Graduate-level coursework in computer vision, image processing, and signal processing.",
+			"severity": "info"
+		}
+	],
+	"items": [
+		{
+			"title": "ECE 692 - Computer Vision",
+			"subtitle": "Advanced topics in computer vision covering state-of-the-art methods for visual recognition, scene understanding, and 3D reconstruction.",
+			"chips": {
+				"contentChips": [
+					"Image Classification",
+					"Object Detection",
+					"Semantic Segmentation",
+					"Instance Segmentation",
+					"Convolutional Neural Networks",
+					"Vision Transformers",
+					"3D Vision",
+					"Visual Recognition",
+					"Scene Understanding",
+					"Multi-View Geometry"
+				],
+				"languages": ["Python"],
+				"libraries": ["PyTorch", "TensorFlow", "OpenCV", "Numpy"],
+				"tools": ["Jupyter Notebook", "Git & GitHub", "CUDA"]
+			},
+			"avatar": "visibility"
+		},
+		{
+			"title": "ECE 572 - Digital Image Processing",
+			"subtitle": "Comprehensive study of digital image processing techniques including image acquisition, enhancement, restoration, compression, morphological processing, segmentation, and analysis.",
+			"chips": {
+				"contentChips": [
+					"Image Acquisition",
+					"Spatial Filtering",
+					"Frequency Domain Processing",
+					"Image Enhancement",
+					"Image Restoration",
+					"Image Compression",
+					"Morphological Processing",
+					"Image Segmentation",
+					"Feature Extraction",
+					"Color Image Processing"
+				],
+				"languages": ["Python", "MATLAB"],
+				"libraries": ["OpenCV", "Numpy", "Matplotlib", "Pillow"],
+				"tools": ["Jupyter Notebook", "Git & GitHub"]
+			},
+			"avatar": "image"
+		},
+		{
+			"title": "ECE 505 - Digital Signal Processing",
+			"subtitle": "Analysis and design of digital signal processing systems, covering discrete-time signals, Z-transforms, digital filters, FFT algorithms, and DSP applications.",
+			"chips": {
+				"contentChips": [
+					"Discrete-Time Signals",
+					"Z-Transform",
+					"Digital Filters",
+					"FIR Filters",
+					"IIR Filters",
+					"FFT Algorithms",
+					"Filter Design",
+					"Spectral Analysis",
+					"Sampling Theory",
+					"DSP Applications"
+				],
+				"date": ["In Progress"],
+				"languages": ["Python", "MATLAB"],
+				"libraries": ["NumPy", "SciPy", "Matplotlib"],
+				"tools": ["Jupyter Notebook", "Git & GitHub"]
+			},
+			"avatar": "graphic_eq"
+		}
+	]
+}

@@ -1,0 +1,33 @@
+{
+	"title": "ECE 692 - Computer Vision",
+	"subtitle": "Advanced topics in computer vision covering state-of-the-art methods for visual recognition, scene understanding, and 3D reconstruction.",
+	"chips": {
+		"contentChips": [
+			"Image Classification",
+			"Object Detection",
+			"Semantic Segmentation",
+			"Instance Segmentation",
+			"Convolutional Neural Networks",
+			"Vision Transformers",
+			"3D Vision",
+			"Visual Recognition",
+			"Scene Understanding",
+			"Multi-View Geometry"
+		],
+		"languages": [
+			"Python"
+		],
+		"libraries": [
+			"PyTorch",
+			"TensorFlow",
+			"OpenCV",
+			"Numpy"
+		],
+		"tools": [
+			"Jupyter Notebook",
+			"Git & GitHub",
+			"CUDA"
+		]
+	},
+	"avatar": "visibility"
+}

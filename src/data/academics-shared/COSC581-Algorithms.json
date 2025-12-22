@@ -1,0 +1,29 @@
+{
+	"title": "COSC 581 - Algorithms",
+	"subtitle": "Advanced design and analysis of algorithms with focus on asymptotics, relative efficiencies, and implementation strategies. Covers algorithm design techniques, computational complexity, and selected advanced topics.",
+	"chips": {
+		"contentChips": [
+			"Algorithm Design",
+			"Asymptotic Analysis",
+			"Divide and Conquer",
+			"Dynamic Programming",
+			"Greedy Algorithms",
+			"Graph Algorithms",
+			"Network Flow",
+			"NP-Completeness",
+			"Approximation Algorithms",
+			"Randomized Algorithms"
+		],
+		"languages": [
+			"Python",
+			"C/C++"
+		],
+		"libraries": [
+			"Numpy"
+		],
+		"tools": [
+			"Git & GitHub"
+		]
+	},
+	"avatar": "account_tree"
+}

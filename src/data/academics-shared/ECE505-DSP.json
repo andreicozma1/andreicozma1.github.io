@@ -1,0 +1,32 @@
+{
+	"title": "ECE 505 - Digital Signal Processing",
+	"subtitle": "Analysis and design of digital signal processing systems, covering discrete-time signals, Z-transforms, digital filters, FFT algorithms, and DSP applications.",
+	"chips": {
+		"contentChips": [
+			"Discrete-Time Signals",
+			"Z-Transform",
+			"Digital Filters",
+			"FIR Filters",
+			"IIR Filters",
+			"FFT Algorithms",
+			"Filter Design",
+			"Spectral Analysis",
+			"Sampling Theory",
+			"DSP Applications"
+		],
+		"languages": [
+			"Python",
+			"MATLAB"
+		],
+		"libraries": [
+			"NumPy",
+			"SciPy",
+			"Matplotlib"
+		],
+		"tools": [
+			"Jupyter Notebook",
+			"Git & GitHub"
+		]
+	},
+	"avatar": "graphic_eq"
+}

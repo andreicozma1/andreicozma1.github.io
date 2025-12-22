@@ -1,0 +1,35 @@
+{
+	"title": "Tier 2: Mathematics & Statistics",
+	"variant": "grid6",
+	"notes": [
+		{
+			"text": "Graduate-level mathematics and statistics coursework supporting machine learning research.",
+			"severity": "info"
+		}
+	],
+	"items": [
+		{
+			"title": "MATH 525 - Statistics I",
+			"subtitle": "Graduate-level statistical methods including sampling theory, central limit theorem, hypothesis testing, confidence intervals, and statistical inference.",
+			"chips": {
+				"contentChips": ["Probability Theory", "Random Variables", "Sampling Distributions", "Central Limit Theorem", "Hypothesis Testing", "Confidence Intervals", "Statistical Inference", "ANOVA", "Regression Analysis"],
+				"languages": ["R", "Python"],
+				"libraries": ["NumPy", "SciPy", "Pandas", "Statsmodels"],
+				"tools": ["RStudio", "Jupyter Notebook"]
+			},
+			"avatar": "analytics"
+		},
+		{
+			"title": "MATH 526 - Statistics II",
+			"subtitle": "Advanced statistical methods building on Statistics I, covering multivariate analysis, experimental design, nonparametric methods, and advanced regression techniques.",
+			"chips": {
+				"contentChips": ["Multivariate Analysis", "Experimental Design", "Nonparametric Methods", "Multiple Regression", "Logistic Regression", "Time Series Analysis", "Bayesian Statistics", "Model Selection"],
+				"date": ["In Progress"],
+				"languages": ["R", "Python"],
+				"libraries": ["NumPy", "SciPy", "Pandas", "Statsmodels", "PyMC3"],
+				"tools": ["RStudio", "Jupyter Notebook"]
+			},
+			"avatar": "query_stats"
+		}
+	]
+}

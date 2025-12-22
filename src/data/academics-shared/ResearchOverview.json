@@ -1,0 +1,44 @@
+{
+	"title": "Research & Academic Status",
+	"variant": "timeline",
+	"items": [
+		{
+			"title": "Doctor of Philosophy (PhD) in Computer Science",
+			"subtitle": "University of Tennessee, Knoxville",
+			"avatar": "school",
+			"chips": {
+				"date": [
+					"2024 - Present"
+				],
+				"positions": [
+					"Research Assistant"
+				]
+			},
+			"content": [
+				"Concentration: Intelligent Systems & Machine Learning",
+				"Advisor: Dr. Hairong Qi",
+				"Research Focus: Machine learning, reinforcement learning, and control systems"
+			],
+			"contentAlign": "center"
+		},
+		{
+			"title": "Master of Science (MS) Thesis",
+			"subtitle": "KIPPO - Koopman-Inspired Proximal Policy Optimization",
+			"avatar": "auto_stories",
+			"chips": {
+				"date": [
+					"2024"
+				],
+				"awards": [
+					"Pass with Distinction"
+				]
+			},
+			"content": [
+				"Major Professor: Dr. Hairong Qi",
+				"Developed novel reinforcement learning algorithm combining Koopman operator theory with PPO",
+				"Applications in robotics and control systems"
+			],
+			"contentAlign": "center"
+		}
+	]
+}

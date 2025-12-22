@@ -1,0 +1,169 @@
+{
+	"title": "Systems Architecture & Design",
+	"variant": "grid6",
+	"notes": [
+		{
+			"text": "Comprehensive systems education spanning operating systems, computer architecture, and software engineering.",
+			"severity": "info"
+		}
+	],
+	"items": [
+		{
+			"title": "COSC 562 - Operating Systems: Design and Implementation",
+			"subtitle": "Advanced operating system concepts focusing on design and implementation of file systems, memory management, process management, and system-level programming.",
+			"chips": {
+				"contentChips": [
+					"Operating System Structures",
+					"Process Management",
+					"Virtual Memory",
+					"File Systems",
+					"Memory Management",
+					"System Calls",
+					"Interrupts and Exceptions",
+					"Device Drivers",
+					"Synchronization",
+					"Deadlock Handling"
+				],
+				"languages": ["C/C++", "Rust"],
+				"tools": ["Linux", "QEMU", "Git & GitHub"]
+			},
+			"avatar": "settings_system_daydream"
+		},
+		{
+			"title": "COSC 530 - Computer Systems Organization",
+			"subtitle": "Exploration of central issues in computer architecture: instruction set design, memory hierarchies, pipelining, instruction-level parallelism, RISC/CISC architectures, and multiprocessor systems.",
+			"chips": {
+				"contentChips": [
+					"Instruction Set Architecture",
+					"Memory Hierarchy",
+					"Cache Design",
+					"Virtual Memory",
+					"Pipelining",
+					"Instruction-Level Parallelism",
+					"RISC Architecture",
+					"CISC Architecture",
+					"Multiprocessor Systems",
+					"Performance Analysis"
+				],
+				"languages": ["C/C++", "Assembly"],
+				"libraries": ["Simulation Tools"],
+				"tools": ["Architecture Simulators", "Git & GitHub"]
+			},
+			"avatar": "memory"
+		},
+		{
+			"title": "COSC 581 - Algorithms",
+			"subtitle": "Advanced design and analysis of algorithms with focus on asymptotics, relative efficiencies, and implementation strategies. Covers algorithm design techniques, computational complexity, and selected advanced topics.",
+			"chips": {
+				"contentChips": [
+					"Algorithm Design",
+					"Asymptotic Analysis",
+					"Divide and Conquer",
+					"Dynamic Programming",
+					"Greedy Algorithms",
+					"Graph Algorithms",
+					"Network Flow",
+					"NP-Completeness",
+					"Approximation Algorithms",
+					"Randomized Algorithms"
+				],
+				"languages": ["Python", "C/C++"],
+				"libraries": ["Numpy"],
+				"tools": ["Git & GitHub"]
+			},
+			"avatar": "account_tree"
+		},
+		{
+			"title": "ECE 511 - Linear Systems Theory",
+			"subtitle": "State space models of linear dynamical systems, covering linear algebra, state transition, controllability, observability, realization theory, and stability analysis.",
+			"chips": {
+				"contentChips": [
+					"State Space Models",
+					"Linear Dynamical Systems",
+					"Matrix Exponential",
+					"State Transition",
+					"Controllability",
+					"Observability",
+					"Realization Theory",
+					"Stability Theory",
+					"Linear Algebra",
+					"System Analysis"
+				],
+				"languages": ["Python", "MATLAB"],
+				"libraries": ["Numpy", "SciPy", "Control Systems Library"],
+				"tools": ["Jupyter Notebook", "Git & GitHub"]
+			},
+			"avatar": "functions"
+		},
+		{
+			"title": "COSC 361 - Operating Systems",
+			"subtitle": "In-depth study of the design, implementation, and performance of modern operating systems with a focus on Unix and a modern re-implementation of 6th edition Unix called XV6.",
+			"chips": {
+				"contentChips": [
+					"Process Management",
+					"CPU Scheduling",
+					"Process Synchronization",
+					"Deadlocks",
+					"Memory Management",
+					"Virtual Memory",
+					"File Systems",
+					"IO Systems",
+					"Security"
+				],
+				"languages": ["C/C++"],
+				"tools": ["Unix", "Linux", "Git & GitHub"]
+			},
+			"avatar": "system_update_alt"
+		},
+		{
+			"title": "COSC 367 - Honors Systems Programming",
+			"subtitle": "An in-depth introduction to the C programming language and its use in systems programming, covering the methodologies of operating systems.",
+			"chips": {
+				"contentChips": [
+					"Operating Systems Design",
+					"Computer Architectures",
+					"Memory Management",
+					"Process Management",
+					"System Calls",
+					"Buffering",
+					"Interprocess Communication",
+					"File Systems",
+					"File IO",
+					"Directory Management",
+					"Metadata",
+					"Stack Frames"
+				],
+				"languages": ["C/C++", "X86 Assembly"],
+				"tools": ["Git & GitHub"]
+			},
+			"avatar": "system_update_alt"
+		},
+		{
+			"title": "COSC 401/402 - Senior Design",
+			"subtitle": "A design course that focuses the student's attention on professional practice, ethics, accumulated background of curricular components, and recent developments in the field. The focus is on teaching both the design process and design principles that allow students to utilize all of the above elements to effectively create designs for major design projects.",
+			"chips": {
+				"languages": ["JavaScript", "TypeScript", "HTML", "CSS", "Python", "Bash Scripting"],
+				"libraries": ["React.JS", "Redux", "Node.JS", "Flask", "Material-UI"],
+				"tools": ["Docker", "Git & GitHub", "GitHub Actions", "Atlassian Jira", "AWS"]
+			},
+			"actions": [
+				{
+					"text": "Project GitHub",
+					"href": "https://github.com/CS401-Team-Project/Smart-Ledger/",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Report",
+					"href": "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Report.pdf",
+					"target": "_blank"
+				},
+				{
+					"text": "Project Presentation",
+					"href": "https://github.com/CS401-Team-Project/Smart-Ledger/blob/main/Documents/CS402_FinalProject_Presentation.pdf",
+					"target": "_blank"
+				}
+			],
+			"avatar": "star"
+		}
+	]
+}

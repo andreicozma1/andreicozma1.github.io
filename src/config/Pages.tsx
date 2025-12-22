@@ -14,6 +14,23 @@ import Current from "../data/academics/Current.json"
 import IntelligentSystems from "../data/academics/IntelligentSystems.json"
 import Cybersecurity from "../data/academics/Cybersecurity.json"
 import General from "../data/academics/General.json"
+// Option 1: 4-Tier Pyramid
+import ResearchOverview from "../data/academics-shared/ResearchOverview.json"
+import GraduateML from "../data/academics-pyramid/GraduateML.json"
+import GraduateVision from "../data/academics-pyramid/GraduateVision.json"
+import GraduateSystems from "../data/academics-pyramid/GraduateSystems.json"
+import GraduateMath from "../data/academics-pyramid/GraduateMath.json"
+import GraduateInterdisciplinary from "../data/academics-pyramid/GraduateInterdisciplinary.json"
+import FoundationalAdvanced from "../data/academics-pyramid/FoundationalAdvanced.json"
+import FoundationalCybersecurity from "../data/academics-pyramid/FoundationalCybersecurity.json"
+import FoundationalCore from "../data/academics-pyramid/FoundationalCore.json"
+// Option 2: Research-First Domains
+import IntelligentSystemsML from "../data/academics-domains/IntelligentSystemsML.json"
+import VisionImaging from "../data/academics-domains/VisionImaging.json"
+import SystemsArchitecture from "../data/academics-domains/SystemsArchitecture.json"
+import CybersecurityDomains from "../data/academics-domains/Cybersecurity.json"
+import MathTheory from "../data/academics-domains/MathTheory.json"
+import Interdisciplinary from "../data/academics-domains/Interdisciplinary.json"
 import Spring2022 from "../data/seminars/Spring2022.json"
 import Fall2021 from "../data/seminars/Fall2021.json"
 import Spring2021 from "../data/seminars/Spring2021.json"
@@ -75,6 +92,68 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 	"Labs"   : {
 		href: "/labs",
 		icon: "ic_photos",
+		hidden: true
+	},
+	"AcademicsPyramid": {
+		href: "/academics-pyramid",
+		icon: "ic_academics",
+		notes: [
+			{
+				text: "Option 1: 4-Tier Pyramid - Hierarchical structure with research at the apex, graduate competencies, foundational expertise, and skills.",
+				severity: "info"
+			}
+		],
+		sections: [
+			ResearchOverview,
+			GraduateML,
+			GraduateVision,
+			GraduateSystems,
+			GraduateMath,
+			GraduateInterdisciplinary,
+			FoundationalAdvanced,
+			FoundationalCybersecurity,
+			FoundationalCore
+		],
+		hidden: true
+	},
+	"AcademicsDomains": {
+		href: "/academics-domains",
+		icon: "ic_academics",
+		notes: [
+			{
+				text: "Option 2: Research-First Domain Expertise - Organized by thematic areas with research credentials prominently featured.",
+				severity: "info"
+			}
+		],
+		sections: [
+			ResearchOverview,
+			IntelligentSystemsML,
+			VisionImaging,
+			SystemsArchitecture,
+			CybersecurityDomains,
+			MathTheory,
+			Interdisciplinary
+		],
+		hidden: true
+	},
+	"AcademicsMatrix": {
+		href: "/academics-matrix",
+		icon: "ic_academics",
+		notes: [
+			{
+				text: "Option 4: Progressive Expertise Matrix - Shows skill development from foundational to advanced levels within each domain, demonstrating comprehensive growth trajectory.",
+				severity: "info"
+			}
+		],
+		sections: [
+			ResearchOverview,
+			IntelligentSystemsML,
+			VisionImaging,
+			SystemsArchitecture,
+			CybersecurityDomains,
+			MathTheory,
+			Interdisciplinary
+		],
 		hidden: true
 	},
 }

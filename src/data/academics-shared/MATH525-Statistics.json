@@ -1,0 +1,33 @@
+{
+	"title": "MATH 525 - Statistics I",
+	"subtitle": "Graduate-level statistical methods including sampling theory, central limit theorem, hypothesis testing, confidence intervals, and statistical inference.",
+	"chips": {
+		"contentChips": [
+			"Probability Theory",
+			"Random Variables",
+			"Sampling Distributions",
+			"Central Limit Theorem",
+			"Hypothesis Testing",
+			"Confidence Intervals",
+			"Statistical Inference",
+			"T-tests",
+			"ANOVA",
+			"Regression Analysis"
+		],
+		"languages": [
+			"R",
+			"Python"
+		],
+		"libraries": [
+			"NumPy",
+			"SciPy",
+			"Pandas",
+			"Statsmodels"
+		],
+		"tools": [
+			"RStudio",
+			"Jupyter Notebook"
+		]
+	},
+	"avatar": "analytics"
+}

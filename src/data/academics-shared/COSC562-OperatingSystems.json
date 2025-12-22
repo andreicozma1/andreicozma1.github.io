@@ -1,0 +1,28 @@
+{
+	"title": "COSC 562 - Operating Systems: Design and Implementation",
+	"subtitle": "Advanced operating system concepts focusing on design and implementation of file systems, memory management, process management, and system-level programming.",
+	"chips": {
+		"contentChips": [
+			"Operating System Structures",
+			"Process Management",
+			"Virtual Memory",
+			"File Systems",
+			"Memory Management",
+			"System Calls",
+			"Interrupts and Exceptions",
+			"Device Drivers",
+			"Synchronization",
+			"Deadlock Handling"
+		],
+		"languages": [
+			"C/C++",
+			"Rust"
+		],
+		"tools": [
+			"Linux",
+			"QEMU",
+			"Git & GitHub"
+		]
+	},
+	"avatar": "settings_system_daydream"
+}
