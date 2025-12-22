@@ -60,12 +60,12 @@
 					"Python",
 					"MATLAB"
 				],
-				"libraries": [
-					"OpenCV",
-					"Numpy",
-					"Matplotlib",
-					"Pillow"
-				],
+			"libraries": [
+				"OpenCV",
+				"NumPy",
+				"Matplotlib",
+				"Pillow"
+			],
 				"tools": [
 					"Jupyter Notebook",
 					"Git & GitHub"
