@@ -68,7 +68,6 @@
 					"Sampling Theory",
 					"DSP Applications"
 				],
-				"date": ["In Progress"],
 				"languages": ["Python", "MATLAB"],
 				"libraries": ["NumPy", "SciPy", "Matplotlib"],
 				"tools": ["Jupyter Notebook", "Git & GitHub"]
