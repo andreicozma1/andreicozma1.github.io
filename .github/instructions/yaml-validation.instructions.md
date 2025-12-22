@@ -149,6 +149,40 @@ echo "value" >> "$GITHUB_OUTPUT"  # Quoted - no warning
 
 **Why**: Unquoted variables can cause unexpected behavior with spaces, special characters, or globbing.
 
+### Command Grouping for Multiple Redirects
+
+**Symptom**: shellcheck warnings SC2129 about individual redirects
+**Cause**: Multiple echo commands redirecting to the same file
+**Fix**: Use command grouping `{ cmd1; cmd2; } >> file` for better performance and style
+
+**Wrong** (generates SC2129 warnings):
+```bash
+echo "value1" >> "$GITHUB_OUTPUT"
+echo "value2" >> "$GITHUB_OUTPUT"
+echo "value3" >> "$GITHUB_OUTPUT"
+```
+
+**Correct** (no warnings):
+```bash
+{
+  echo "value1"
+  echo "value2"
+  echo "value3"
+} >> "$GITHUB_OUTPUT"
+```
+
+**Why**:
+- More efficient - file is opened once instead of multiple times
+- Cleaner code - redirect target is clear
+- Shellcheck best practice (SC2129)
+- Applies to both `$GITHUB_OUTPUT` and `$GITHUB_STEP_SUMMARY`
+
+**Common patterns to group:**
+- Package manager detection outputs (manager, command, cache)
+- Build statistics outputs (multiple metrics)
+- Step summary sections (headers, tables, footers)
+- Base stats consolidation (multiple stat values)
+
 ### Multiline String Handling
 
 **Pattern**: Use heredoc for complex multiline content in shell scripts
@@ -246,10 +280,15 @@ actionlint .github/workflows/pr.yml
   - More readable and maintainable than string concatenation
 
 ### 3. Shell Script Best Practices
-- Quote all variables (`"$VAR"` not `$VAR`)
-- Use command grouping `{ cmd1; cmd2; } >> file` instead of multiple redirects
+- Quote all variables (`"$VAR"` not `$VAR`) to prevent SC2086 warnings
+- Use command grouping `{ cmd1; cmd2; } >> file` instead of multiple redirects to prevent SC2129 warnings
 - Enable shellcheck in actionlint for automated checking
 - Exit codes: 0=success, non-zero=failure (convention, but verify tool-specific behavior)
+- **Critical**: Apply command grouping consistently across ALL workflows
+  - Package manager detection (manager, command, cache outputs)
+  - Build stats collection (size, count outputs)
+  - Step summaries (markdown tables and sections)
+  - Any time you have 2+ redirects to the same file
 
 ### 4. Error Handling Requires Understanding
 - Not all CLI tools provide structured error output
