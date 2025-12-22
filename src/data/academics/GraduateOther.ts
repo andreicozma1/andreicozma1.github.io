@@ -11,17 +11,17 @@ import cosc559 from '../academics-shared/COSC559-HCI'
 import psyc410 from '../academics-shared/PSYC410-Perception'
 
 export default {
-	title: "Graduate: Specialized Topics",
+	title: "Specialized Topics",
 	variant: "grid6",
 	notes: [
 		{
-			text: "Graduate coursework in signal processing, control systems, human-computer interaction, and cognitive science."
+			text: "Graduate coursework in signal processing, control systems, cognitive science, and human-computer interaction."
 		}
 	],
 	items: [
 		ece505,
 		ece511,
-		cosc559,
-		psyc410
+		psyc410,
+		cosc559
 	]
 }

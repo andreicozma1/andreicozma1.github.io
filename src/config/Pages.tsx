@@ -63,8 +63,8 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 		icon    : "ic_academics",
 		sections: [
 			IntelligentSystems,
-			GraduateCore,
 			GraduateOther,
+			GraduateCore,
 			Mathematics,
 			Cybersecurity,
 			General
