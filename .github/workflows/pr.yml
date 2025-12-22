@@ -65,11 +65,18 @@ jobs:
               <!-- build-report -->
               ## CI Report<!-- preview-marker -->
 
-              ⏳ Types · ⏳ Build · ⏳ Deploy
+              ### Status Summary
+              - ⏳ **Type Check**: Running...
+              - ⏳ **Build**: Waiting...
+              - ⏳ **Deploy**: Waiting...
+              - ⏱️ **Build Time**: -
 
-              _Starting..._
+              _Starting CI checks..._
 
-              \`${commitSha}\` · ${runUrl} · _${timestamp}_
+              ---
+              **Commit** \`${commitSha}\`
+              **Workflow** ${runUrl}
+              **Built** ${timestamp}
             `);
 
             try {
@@ -342,6 +349,7 @@ jobs:
 
             const typecheckStatus = '${{ steps.typecheck.outputs.status }}';
             const typeIcon = typecheckStatus === 'success' ? '✅' : (typecheckStatus === 'failure' ? '❌' : '⏳');
+            const typeStatus = typecheckStatus === 'success' ? 'Passed' : (typecheckStatus === 'failure' ? 'Failed' : 'Running...');
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
@@ -363,11 +371,18 @@ jobs:
                   <!-- build-report -->
                   ## CI Report<!-- preview-marker -->
 
-                  ${typeIcon} Types · ⏳ Build · ⏳ Deploy
+                  ### Status Summary
+                  - ${typeIcon} **Type Check**: ${typeStatus}
+                  - ⏳ **Build**: Running...
+                  - ⏳ **Deploy**: Waiting...
+                  - ⏱️ **Build Time**: -
 
-                  _Building..._
+                  _Building project..._
 
-                  \`${commitSha}\` · ${runUrl} · _${timestamp}_
+                  ---
+                  **Commit** \`${commitSha}\`
+                  **Workflow** ${runUrl}
+                  **Built** ${timestamp}
                 `);
 
                 await github.rest.issues.updateComment({
