@@ -1,0 +1,21 @@
+# Surge ROUTER configuration
+# Serve static files directly, only fallback to index.html for HTML routes
+
+# Serve all static assets directly (don't route through app)
+/*.pdf   200
+/*.jpg   200
+/*.jpeg  200
+/*.png   200
+/*.gif   200
+/*.webp  200
+/*.svg   200
+/*.js    200
+/*.css   200
+/*.json  200
+/*.woff  200
+/*.woff2 200
+/*.ttf   200
+/*.eot   200
+
+# SPA routes - serve index.html for paths without extensions
+/*       /index.html   200
