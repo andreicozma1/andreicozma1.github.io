@@ -1,0 +1,47 @@
+{
+	"title": "COSC 523 - Artificial Intelligence",
+	"subtitle": "Theoretical and applied aspects of artificial intelligence, including search, learning, decision-making, and reasoning.",
+	"chips": {
+		"contentChips": [
+			"Uninformed and Informed Search",
+			"Search Engines",
+			"Adversarial Search",
+			"Constraint Satisfaction",
+			"Planning",
+			"Knowledge Representation & Reasoning",
+			"Decision-Making",
+			"Multi-Agent Systems"
+		],
+		"languages": [
+			"Python"
+		],
+		"libraries": [
+			"TensorFlow",
+			"Scikit-Learn",
+			"NumPy",
+			"Matplotlib"
+		],
+		"tools": [
+			"Jupyter Notebook",
+			"Git & GitHub"
+		]
+	},
+	"actions": [
+		{
+			"text": "Project GitHub",
+			"href": "https://github.com/andreicozma1/CS523-TeamProject",
+			"target": "_blank"
+		},
+		{
+			"text": "Project Report",
+			"href": "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_FinalReport.pdf",
+			"target": "_blank"
+		},
+		{
+			"text": "Project Proposal",
+			"href": "https://github.com/andreicozma1/CS523-TeamProject/blob/main/submission/CS523_AppliedAI_ProjectProposal.pdf",
+			"target": "_blank"
+		}
+	],
+	"avatar": "psychology"
+}
