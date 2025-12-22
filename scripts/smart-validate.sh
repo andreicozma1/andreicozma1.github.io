@@ -1,8 +1,13 @@
 #!/bin/bash
 # Smart validation script - detects work type and runs appropriate checks
-# Usage: ./scripts/smart-validate.sh
+# Usage: ./scripts/smart-validate.sh [--verbose]
 
 set -e
+
+VERBOSE=false
+if [[ "$1" == "--verbose" || "$1" == "-v" ]]; then
+    VERBOSE=true
+fi
 
 echo "🔍 Smart Validation - Detecting changes..."
 
@@ -10,6 +15,14 @@ echo "🔍 Smart Validation - Detecting changes..."
 CHANGED_FILES=$(git diff --name-only HEAD 2>/dev/null || echo "")
 STAGED_FILES=$(git diff --cached --name-only 2>/dev/null || echo "")
 ALL_CHANGES="$CHANGED_FILES $STAGED_FILES"
+
+# Show changed files in verbose mode
+if [ "$VERBOSE" = true ] && [ -n "$ALL_CHANGES" ]; then
+    echo ""
+    echo "Changed files:"
+    echo "$ALL_CHANGES" | tr ' ' '\n' | sed 's/^/  - /'
+    echo ""
+fi
 
 # Detect work type
 HAS_TS_CHANGES=$(echo "$ALL_CHANGES" | grep -E '\.(ts|tsx)$' || true)
@@ -55,17 +68,33 @@ case $VALIDATION_LEVEL in
         echo ""
         echo "🔍 Running full validation..."
         echo "  1️⃣  TypeScript check..."
-        npx tsc --noEmit 2>&1 | grep -v "Cannot find module" | grep "error TS" && {
-            echo "❌ TypeScript errors found!"
+
+        # Capture full TypeScript output
+        TS_OUTPUT=$(npx tsc --noEmit 2>&1 || true)
+        TS_ERRORS=$(echo "$TS_OUTPUT" | grep "error TS" | grep -v "Cannot find module" || true)
+
+        if [ -n "$TS_ERRORS" ]; then
+            echo "❌ TypeScript errors found:"
+            echo "$TS_ERRORS" | sed 's/^/     /'
             exit 1
-        } || echo "  ✅ TypeScript OK"
+        else
+            echo "  ✅ TypeScript OK"
+        fi
 
         echo "  2️⃣  JSON syntax..."
-        find src/data -name "*.json" -exec sh -c 'python -m json.tool < {} > /dev/null || { echo "❌ Invalid JSON: {}"; exit 1; }' \; && echo "  ✅ JSON OK"
+        JSON_ERRORS=""
+        for json_file in $(find src/data -name "*.json" 2>/dev/null); do
+            if ! python -m json.tool < "$json_file" > /dev/null 2>&1; then
+                JSON_ERRORS="${JSON_ERRORS}\n     Invalid JSON: $json_file"
+            fi
+        done
 
-        if [ "$DEPS_INSTALLED" = true ]; then
-            echo "  3️⃣  Linting..."
-            npm run lint --silent 2>/dev/null && echo "  ✅ Lint OK" || echo "  ⚠️  Lint warnings (non-blocking)"
+        if [ -n "$JSON_ERRORS" ]; then
+            echo "❌ JSON syntax errors:"
+            echo -e "$JSON_ERRORS"
+            exit 1
+        else
+            echo "  ✅ JSON OK"
         fi
         ;;
 
@@ -73,14 +102,35 @@ case $VALIDATION_LEVEL in
         echo ""
         echo "🔍 Running TypeScript validation..."
         echo "  1️⃣  TypeScript check..."
-        npx tsc --noEmit 2>&1 | grep -v "Cannot find module" | grep "error TS" && {
-            echo "❌ TypeScript errors found!"
+
+        # Capture full TypeScript output
+        TS_OUTPUT=$(npx tsc --noEmit 2>&1 || true)
+        TS_ERRORS=$(echo "$TS_OUTPUT" | grep "error TS" | grep -v "Cannot find module" || true)
+
+        if [ -n "$TS_ERRORS" ]; then
+            echo "❌ TypeScript errors found:"
+            echo "$TS_ERRORS" | sed 's/^/     /'
             exit 1
-        } || echo "  ✅ TypeScript OK"
+        else
+            echo "  ✅ TypeScript OK"
+        fi
 
         if [ -n "$HAS_JSON_CHANGES" ]; then
             echo "  2️⃣  JSON syntax..."
-            find src/data -name "*.json" -exec sh -c 'python -m json.tool < {} > /dev/null || { echo "❌ Invalid JSON: {}"; exit 1; }' \; && echo "  ✅ JSON OK"
+            JSON_ERRORS=""
+            for json_file in $(find src/data -name "*.json" 2>/dev/null); do
+                if ! python -m json.tool < "$json_file" > /dev/null 2>&1; then
+                    JSON_ERRORS="${JSON_ERRORS}\n     Invalid JSON: $json_file"
+                fi
+            done
+
+            if [ -n "$JSON_ERRORS" ]; then
+                echo "❌ JSON syntax errors:"
+                echo -e "$JSON_ERRORS"
+                exit 1
+            else
+                echo "  ✅ JSON OK"
+            fi
         fi
         ;;
 
@@ -88,13 +138,35 @@ case $VALIDATION_LEVEL in
         echo ""
         echo "🔍 Running JSON validation..."
         echo "  1️⃣  JSON syntax..."
-        find src/data -name "*.json" -exec sh -c 'python -m json.tool < {} > /dev/null || { echo "❌ Invalid JSON: {}"; exit 1; }' \; && echo "  ✅ JSON OK"
+
+        JSON_ERRORS=""
+        for json_file in $(find src/data -name "*.json" 2>/dev/null); do
+            if ! python -m json.tool < "$json_file" > /dev/null 2>&1; then
+                JSON_ERRORS="${JSON_ERRORS}\n     Invalid JSON: $json_file"
+            fi
+        done
+
+        if [ -n "$JSON_ERRORS" ]; then
+            echo "❌ JSON syntax errors:"
+            echo -e "$JSON_ERRORS"
+            exit 1
+        else
+            echo "  ✅ JSON OK"
+        fi
 
         echo "  2️⃣  TypeScript check (quick)..."
-        npx tsc --noEmit 2>&1 | grep -v "Cannot find module" | grep "error TS" && {
-            echo "❌ TypeScript errors found (likely from JSON changes)!"
+
+        # Capture full TypeScript output
+        TS_OUTPUT=$(npx tsc --noEmit 2>&1 || true)
+        TS_ERRORS=$(echo "$TS_OUTPUT" | grep "error TS" | grep -v "Cannot find module" || true)
+
+        if [ -n "$TS_ERRORS" ]; then
+            echo "❌ TypeScript errors found (likely from JSON changes):"
+            echo "$TS_ERRORS" | sed 's/^/     /'
             exit 1
-        } || echo "  ✅ TypeScript OK"
+        else
+            echo "  ✅ TypeScript OK"
+        fi
         ;;
 esac
 

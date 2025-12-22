@@ -363,7 +363,7 @@ grep -B1 '"avatar":' src/data/**/*.json | grep -B1 '"chips":'
 | Work Type | Example Changes | Dependencies Needed? | Validation Approach |
 |-----------|----------------|---------------------|---------------------|
 | **JSON-only** | Course data, section files | ❌ No | JSON syntax + TypeScript check |
-| **TypeScript** | Components, utils, types | ✅ Yes (recommended) | Full TypeScript + Lint |
+| **TypeScript** | Components, utils, types | ✅ Yes (recommended) | Full TypeScript check |
 | **Config** | package.json, gatsby-config | ✅ Yes (required) | Full build |
 | **Major refactor** | Multiple file types | ✅ Yes (required) | Full build + tests |
 
@@ -384,11 +384,10 @@ Risk: Low
 #### **Workflow B: Component/TypeScript Changes**
 ```bash
 # Install dependencies once per session
-1. ./scripts/setup-deps.sh  # One-time (2-5 min)
+1. npm install  # One-time (2-5 min)
 2. Edit TypeScript files
 3. Validate: ./scripts/smart-validate.sh
-4. Optional: npm run lint
-5. Commit and push
+4. Commit and push
 
 Time: First run ~5 min, subsequent ~15 sec
 Risk: Medium (caught locally)
@@ -397,7 +396,7 @@ Risk: Medium (caught locally)
 #### **Workflow C: Config/Major Changes**
 ```bash
 # Full validation required
-1. ./scripts/setup-deps.sh  # One-time
+1. npm install  # One-time (if not done)
 2. Make changes
 3. npm run build  # Full build
 4. Fix any errors
@@ -412,9 +411,10 @@ Risk: Low (everything validated)
 **Location:** `scripts/smart-validate.sh`
 
 **Features:**
-- Auto-detects changed files
+- Auto-detects changed files (with --verbose flag to show them)
 - Runs appropriate validation for work type
 - Installs dependencies only when needed
+- Shows actual error messages for debugging
 - Provides context-specific recommendations
 
 **Usage:**
@@ -422,10 +422,13 @@ Risk: Low (everything validated)
 # Before any commit
 ./scripts/smart-validate.sh
 
+# Verbose mode (shows which files changed)
+./scripts/smart-validate.sh --verbose
+
 # It will:
 # - Detect JSON-only → Quick validation
-# - Detect TypeScript → Type check + lint
-# - Detect config → Full build
+# - Detect TypeScript → Type check only
+# - Detect config → Full build (with dependency install)
 ```
 
 ---
@@ -434,14 +437,15 @@ Risk: Low (everything validated)
 
 ### Development Scripts
 ```bash
-# Smart validation (recommended)
+# Smart validation (recommended - auto-detects work type)
 ./scripts/smart-validate.sh
+./scripts/smart-validate.sh --verbose  # Show changed files
 
-# Setup dependencies (one-time per session)
-./scripts/setup-deps.sh
+# Manual dependency setup (one-time per session when needed)
+npm install
 
-# Manual validation
-npx tsc --noEmit | grep -v "Cannot find module"
+# Manual validation (TypeScript only)
+npx tsc --noEmit
 ```
 
 ### Search & Discovery
@@ -458,7 +462,7 @@ Read: file_path="/full/path"
 
 ### Validation Commands
 ```bash
-# TypeScript check (no deps needed)
+# TypeScript check (no deps needed for type check)
 npx tsc --noEmit
 
 # JSON syntax check
@@ -467,8 +471,7 @@ find src/data -name "*.json" -exec python -m json.tool {} \; > /dev/null
 # Full build (deps required)
 npm run build
 
-# Linting (deps required)
-npm run lint
+# Note: No linting configured (no ESLint setup in project)
 ```
 
 ### Editing
