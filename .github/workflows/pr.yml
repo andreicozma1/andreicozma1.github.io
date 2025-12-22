@@ -603,12 +603,12 @@ jobs:
             // Helper to remove indentation from multiline strings (for YAML compatibility)
             const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
 
-            // Helper to format bytes
+            // Helper to format bytes (minimum unit: KB to avoid confusing "B" notation)
             const formatBytes = (bytes) => {
               const abs = Math.abs(bytes);
               if (abs >= 1048576) return (bytes / 1048576).toFixed(2) + 'M';
-              if (abs >= 1024) return (bytes / 1024).toFixed(1) + 'K';
-              return bytes + 'B';
+              // Always use KB as minimum unit (0.1 KB instead of 140B)
+              return (bytes / 1024).toFixed(2) + 'K';
             };
 
             // Helper to format delta with icon
@@ -856,11 +856,8 @@ jobs:
             echo "Removed CNAME file (GitHub Pages config conflicts with Surge)"
           fi
 
-          # Create 200.html for SPA fallback (if index.html exists but 200.html doesn't)
-          if [ -f "public/index.html" ] && [ ! -f "public/200.html" ]; then
-            cp public/index.html public/200.html
-            echo "Created 200.html for Surge SPA routing"
-          fi
+          # Note: NOT creating 200.html - Gatsby handles routing internally via page-data.json
+          # Adding 200.html can cause Surge to serve the app for ALL requests, breaking static files
 
           # Deploy to Surge
           echo "Deploying to ${FULL_URL}..."
