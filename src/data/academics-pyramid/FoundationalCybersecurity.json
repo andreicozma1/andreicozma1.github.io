@@ -76,7 +76,6 @@
 		{
 			"title": "COSC 366 - Introduction to Cybersecurity",
 			"subtitle": "A broad introduction to cybersecurity concepts and practices, and the current challenges in cybersecurity.",
-			"avatar": "enhanced_encryption",
 			"chips": {
 				"contentChips": [
 					"Security Goals",
@@ -95,7 +94,8 @@
 					"JavaScript",
 					"X86 Assembly"
 				]
-			}
+			},
+			"avatar": "enhanced_encryption"
 		}
 	]
 }

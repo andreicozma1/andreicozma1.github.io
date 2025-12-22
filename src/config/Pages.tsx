@@ -135,25 +135,5 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 			Interdisciplinary
 		],
 		hidden: true
-	},
-	"AcademicsMatrix": {
-		href: "/academics-matrix",
-		icon: "ic_academics",
-		notes: [
-			{
-				text: "Option 4: Progressive Expertise Matrix - Shows skill development from foundational to advanced levels within each domain, demonstrating comprehensive growth trajectory.",
-				severity: "info"
-			}
-		],
-		sections: [
-			ResearchOverview,
-			IntelligentSystemsML,
-			VisionImaging,
-			SystemsArchitecture,
-			CybersecurityDomains,
-			MathTheory,
-			Interdisciplinary
-		],
-		hidden: true
-	},
+	}
 }
