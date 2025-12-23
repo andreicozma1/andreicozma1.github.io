@@ -221,11 +221,32 @@ git push -u origin <branch-name>
 
 **Checklist:**
 - [ ] Delete shared file: `src/data/academics-shared/DEPT###-Course.json`
-- [ ] Remove from all section files (pyramid + domains)
+- [ ] Remove from all section files
 - [ ] Search for references: `grep -r "DEPT ###" src/data`
 - [ ] Remove from Pages.tsx if independently registered
 - [ ] Test build: `npx tsc --noEmit`
 - [ ] Commit with clear reason
+
+### Task: Removing a Page (Gatsby-Specific)
+
+**CRITICAL: File-Based Routing Principle**
+In frameworks with file-based routing (Gatsby, Next.js), pages are created from **both** configuration AND physical files. You must remove ALL layers.
+
+**Complete Removal Checklist:**
+- [ ] **Layer 1: Data** - Delete data directory (e.g., `src/data/academics-pyramid/`)
+- [ ] **Layer 2: Config** - Remove from `src/config/Pages.tsx` configuration
+- [ ] **Layer 3: Page Component** - Delete page file in `src/pages/` (e.g., `src/pages/academics-pyramid.tsx`)
+- [ ] **Layer 4: Search** - Grep for any remaining references: `grep -ri "pagename" src/`
+- [ ] **Layer 5: Validate** - Run type check: `npx tsc --noEmit`
+- [ ] **Layer 6: Verify** - Check git status shows all expected deletions
+- [ ] Commit with clear explanation of what was removed and why
+- [ ] Push and monitor CI build
+
+**Why This Matters:**
+Gatsby automatically creates routes from files in `src/pages/`. Even if you remove data and config, leftover page components will cause build failures with "Page not found" errors.
+
+**Generalized Principle:**
+When removing features in layered architectures, identify ALL layers where the feature exists and remove from each systematically. Missing even one layer causes runtime/build failures.
 
 ### Task: Fixing Data Duplication (PR #19 Main Issue)
 
@@ -334,6 +355,43 @@ grep -B1 '"avatar":' src/data/**/*.json | grep -B1 '"chips":'
 **Not a Problem:** These are dependency errors, not code errors
 
 **Real Problem:** Errors in your code (src/) about type mismatches
+
+---
+
+## Framework-Specific Gotchas
+
+### Gatsby: File-Based Routing
+
+**Core Principle:** Files in `src/pages/` automatically become routes, independent of configuration.
+
+**Common Mistake:** Removing page data/config but forgetting to delete the page component file
+
+**Example Failure:**
+```
+1. Delete src/data/academics-pyramid/ ✅
+2. Remove from Pages.tsx config ✅
+3. Forget src/pages/academics-pyramid.tsx ❌
+Result: CI fails with "Page AcademicsPyramid not found"
+```
+
+**Why It Fails:**
+Gatsby sees the file → creates route → tries to render → can't find data configuration → build error
+
+**Prevention:**
+- Always search for page component files: `ls src/pages/ | grep <pagename>`
+- Use complete removal checklist (see "Task: Removing a Page")
+- Verify with grep: `grep -ri "pagename" src/`
+
+**Generalized Lesson:**
+In any framework with automatic file-based behavior (routing, API endpoints, etc.), removing a feature requires deleting BOTH:
+1. The configuration/data that controls behavior
+2. The physical files that trigger the automatic behavior
+
+**Similar Patterns in Other Frameworks:**
+- **Next.js**: `pages/` directory for routing, `app/` directory for app router
+- **SvelteKit**: `routes/` directory for file-based routing
+- **Nuxt.js**: `pages/` directory for automatic routing
+- **Astro**: `pages/` directory for file-based routing
 
 ---
 
@@ -544,11 +602,28 @@ PR#19 Phase 3: Refactoring (if needed)
 - ❌ Creating 3 organizational structures when 1 would suffice
 - ❌ Trying to group unrelated courses (Vision + HCI + PSYC didn't make sense)
 - ❌ Moving courses too many times - should have consolidated earlier
+- ❌ **CI Build Failure: Incomplete Page Removal** - Deleted data and config but forgot page component files in `src/pages/`, causing build failure
+
+**What Went Wrong (Critical Incident):**
+1. ❌ Deleted data directories (`academics-pyramid/`, `academics-domains/`) ✅
+2. ❌ Removed from Pages.tsx configuration ✅
+3. ❌ **Forgot to delete page component files** (`src/pages/academics-pyramid.tsx`, `src/pages/academics-domains.tsx`) ❌
+4. Result: CI build failed with "Page AcademicsPyramid not found" error
+5. Root cause: Gatsby's file-based routing creates routes from files in `src/pages/` regardless of configuration
+
+**How It Was Fixed:**
+- Identified remaining files with `grep -ri "academics-pyramid" src/`
+- Found `src/pages/academics-pyramid.tsx` and `src/pages/academics-domains.tsx`
+- Deleted both page component files
+- Committed with clear explanation of the fix
+- CI build succeeded
 
 **Workflow Insights:**
 - Moving courses between sections: Update imports AND items array
 - Renaming sections: Update title, notes description, AND filename if needed
+- **Removing pages: Delete data, config, AND page component files (all 3 layers)**
 - Validation before push is non-negotiable: `./scripts/smart-validate.sh`
+- **After deletions: Search for remaining references before committing**
 - User feedback often reveals better organization than theoretical planning
 
 ### Session: PR #19 Revision
@@ -582,6 +657,8 @@ PR#19 Phase 3: Refactoring (if needed)
 - Commit in logical phases
 - Ask when uncertain
 - Document patterns
+- **Search for all references when deleting features** (grep before committing)
+- **Remove from ALL layers** (data, config, page components, etc.)
 
 ### DON'T ❌
 - Push without type checking
@@ -591,6 +668,8 @@ PR#19 Phase 3: Refactoring (if needed)
 - Create unnecessary files
 - Use sed for JSON manipulation
 - Skip git diff review
+- **Assume deletion is complete without verification**
+- **Forget about file-based routing in frameworks** (Gatsby, Next.js, etc.)
 
 ---
 
@@ -604,12 +683,18 @@ PR#19 Phase 3: Refactoring (if needed)
 - Added comprehensive lessons from academics reorganization session
 - Documented anti-pattern: don't over-engineer organizational structures
 - Added workflow insights for course grouping and section management
+- **Added "Removing a Page" task checklist** with 6-layer verification process
+- **Added Framework-Specific Gotchas section** covering file-based routing patterns
+- **Documented CI build failure incident** and resolution in Lessons Learned
+- **Enhanced Best Practices** with deletion verification principles
+- All guidance made generalizable to other frameworks (Next.js, SvelteKit, etc.)
 
 **Key Metrics:**
 - **Course Count:** 38 courses (17 graduate + 21 undergraduate)
 - **Duplication:** 0 (all graduate courses use shared files)
 - **Type Safety:** 100% TypeScript
-- **Character Count:** ~16,500 / 20,000 limit
+- **Character Count:** ~18,000 / 20,000 limit
+- **Critical Lessons Documented:** 3 major incidents with resolutions
 
 **Future Optimization (Per Best Practices):**
 - Consider moving detailed workflows to `docs/workflows/` for progressive disclosure
