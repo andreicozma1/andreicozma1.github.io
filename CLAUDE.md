@@ -65,25 +65,31 @@ Commit and push
 
 ## Repository Structure
 
-### Data Layer (JSON)
+### Data Layer (TypeScript)
 ```
 src/data/
-├── academics/                 # Original academics data
-│   ├── Cybersecurity.json
-│   ├── General.json
-│   └── IntelligentSystems.json
-├── academics-shared/          # Reusable course definitions (DRY)
-│   ├── ECE517-ReinforcementLearning.json
-│   └── MATH525-Statistics.json
-├── academics-pyramid/         # 4-Tier Pyramid sections
-│   ├── GraduateML.json
-│   └── GraduateMath.json
-└── academics-domains/         # Domain-centric sections
-    ├── IntelligentSystemsML.json
-    └── Cybersecurity.json
+├── academics/                 # MAIN PAGE - Primary academics structure
+│   ├── IntelligentSystems.ts  # Graduate ML/AI courses
+│   ├── GraduateCore.ts        # Graduate CS core
+│   ├── GraduateOther.ts       # Specialized topics
+│   ├── Mathematics.ts         # Math & Stats (grad + undergrad)
+│   ├── Cybersecurity.ts       # Security courses
+│   └── General.ts             # CS foundational courses
+├── academics-shared/          # DRY: Reusable course definitions (17 files)
+│   ├── COSC522-MachineLearning.ts
+│   ├── ECE517-ReinforcementLearning.ts
+│   └── MATH525-Statistics.ts
+├── academics-pyramid/         # HIDDEN: Alternative 4-tier view
+│   └── [9 TypeScript section files]
+└── academics-domains/         # HIDDEN: Alternative domain view
+    └── [6 TypeScript section files]
 ```
 
-**Principle:** academics-shared/ contains canonical course data. Section files should eventually import from shared/ (currently have duplication).
+**Principles:**
+- **Main page**: Primary structure, all graduate courses import from shared/
+- **Shared files**: 17 graduate courses, zero duplication
+- **TypeScript**: 100% migration complete (no JSON)
+- **Alternative views**: Pyramid/domains hidden but maintained for potential future use
 
 ### Config Layer (TypeScript)
 ```
@@ -296,6 +302,12 @@ grep -B1 '"avatar":' src/data/**/*.json | grep -B1 '"chips":'
 **Bad:** Creating README.md, CHANGELOG.md unprompted
 **Why:** User hasn't requested it, may not want it
 **Good:** Only create files when explicitly asked or clearly necessary
+
+### ❌ Don't Over-Engineer Organization
+**Bad:** Creating pyramid/, domains/, AND main/ structures "just in case"
+**Why:** More structures = more maintenance, harder to keep consistent
+**Good:** Start simple, add complexity only when user explicitly needs it
+**Pattern:** Consolidate to one primary structure, keep alternatives hidden if needed
 
 ---
 
@@ -515,6 +527,34 @@ PR#19 Phase 3: Refactoring (if needed)
 
 ## Lessons Learned
 
+### Session: Academics Reorganization (Dec 2024)
+
+**What Worked Extremely Well:**
+1. ✅ **TypeScript Migration** - JSON → TS eliminated all duplication issues
+2. ✅ **DRY with Shared Files** - 17 graduate courses, zero duplicates
+3. ✅ **Iterative Refinement** - User feedback → adjust → repeat worked better than trying to get it perfect initially
+4. ✅ **Smart Validation Script** - Caught all issues before pushing
+5. ✅ **Comprehensive Audits** - Final audit confirmed zero course losses
+6. ✅ **Clear Commit Messages** - Made it easy to track evolution
+
+**What We Learned:**
+1. **Simplicity Wins** - Started with pyramid/domains/main structures → consolidated to just main page
+2. **Listen to User Instincts** - "This grouping feels awkward" was always right
+3. **Course Grouping Pattern** - ML/AI together, separate specialized topics, combine grad+undergrad math
+4. **Architecture Evolution** - JSON → TypeScript → Multiple views → Consolidated main page
+5. **Hidden Pages Strategy** - Keep alternative views hidden (`hidden: true`) instead of deleting
+
+**Anti-Patterns Discovered:**
+- ❌ Creating 3 organizational structures when 1 would suffice
+- ❌ Trying to group unrelated courses (Vision + HCI + PSYC didn't make sense)
+- ❌ Moving courses too many times - should have consolidated earlier
+
+**Workflow Insights:**
+- Moving courses between sections: Update imports AND items array
+- Renaming sections: Update title, notes description, AND filename if needed
+- Validation before push is non-negotiable: `./scripts/smart-validate.sh`
+- User feedback often reveals better organization than theoretical planning
+
 ### Session: PR #19 Revision
 
 **What Went Wrong:**
@@ -560,17 +600,21 @@ PR#19 Phase 3: Refactoring (if needed)
 
 ## Maintenance Notes
 
-**Last Updated:** 2025-12-22
+**Last Updated:** 2025-12-23
 
 **Recent Changes:**
-- Added PR review workflow section
-- Documented TypeScript/JSON typing gotcha
-- Added lessons from PR #19 session
-- Emphasized validation before pushing
+- Completed TypeScript migration (100% - no JSON)
+- Updated repository structure to reflect consolidated main page
+- Added comprehensive lessons from academics reorganization session
+- Documented anti-pattern: don't over-engineer organizational structures
+- Added workflow insights for course grouping and section management
 
-**Future Additions Needed:**
-- Phase 3 refactoring patterns (when implemented)
-- Component creation workflow
-- Testing strategy for Gatsby builds
+**Key Metrics:**
+- **Course Count:** 38 courses (17 graduate + 21 undergraduate)
+- **Duplication:** 0 (all graduate courses use shared files)
+- **Type Safety:** 100% TypeScript
+- **Character Count:** ~16,500 / 20,000 limit
 
-**Character Count:** ~15,000 / 20,000 limit
+**Future Optimization (Per Best Practices):**
+- Consider moving detailed workflows to `docs/workflows/` for progressive disclosure
+- Current size is good but approaching upper limit for optimal LLM processing
