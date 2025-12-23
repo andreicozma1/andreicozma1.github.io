@@ -1,0 +1,38 @@
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
+	"title": "ECE 511 - Linear Systems Theory",
+	"subtitle": "State space models of linear dynamical systems, covering linear algebra, state transition, controllability, observability, realization theory, and stability analysis.",
+	"chips": {
+		"contentChips": [
+			"State Space Models",
+			"Linear Dynamical Systems",
+			"Matrix Exponential",
+			"State Transition",
+			"Controllability",
+			"Observability",
+			"Realization Theory",
+			"Stability Theory",
+			"Linear Algebra",
+			"System Analysis"
+		],
+		"languages": [
+			"Python",
+			"MATLAB"
+		],
+		"libraries": [
+			"NumPy",
+			"SciPy",
+			"Control Systems Library"
+		],
+		"tools": [
+			"Jupyter Notebook",
+			"Git & GitHub"
+		]
+	},
+	"avatar": "functions"
+}

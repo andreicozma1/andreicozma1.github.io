@@ -1,10 +1,16 @@
-{
-	"title": "Cybersecurity",
-	"variant": "grid6",
-	"items": [
+/*
+Author: Andrei Cozma
+Website: https://andreicozma.com
+Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
+*/
+
+export default {
+	title: "Cybersecurity",
+	variant: "grid6",
+	items: [
 		{
 			"title": "COSC 466 - Software Security",
-			"subtitle": "An in-depth introduction to software security. The focus is on identifying vulnerabilities in software, exploiting vulnerabilities in software, and software development best-practices for avoiding vulnerabilities during the design, implementation, testing, and deployment of software. ",
+			"subtitle": "An in-depth introduction to software security. The focus is on identifying vulnerabilities in software, exploiting vulnerabilities in software, and software development best-practices for avoiding vulnerabilities during the design, implementation, testing, and deployment of software.",
 			"chips": {
 				"contentChips": [
 					"Threat Modeling",
@@ -70,7 +76,6 @@
 		{
 			"title": "COSC 366 - Introduction to Cybersecurity",
 			"subtitle": "A broad introduction to cybersecurity concepts and practices, and the current challenges in cybersecurity.",
-			"avatar": "enhanced_encryption",
 			"chips": {
 				"contentChips": [
 					"Security Goals",
@@ -89,7 +94,8 @@
 					"JavaScript",
 					"X86 Assembly"
 				]
-			}
+			},
+			"avatar": "enhanced_encryption"
 		}
 	]
 }

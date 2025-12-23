@@ -10,10 +10,12 @@ import Education from "../data/resume/Education.json"
 import WorkExperience from "../data/resume/WorkExperience.json"
 import AchievementsLicensesCertifications from "../data/resume/AchievementsLicensesCertifications.json"
 import ActivitiesSocieties from "../data/resume/ActivitiesSocieties.json"
-import Current from "../data/academics/Current.json"
-import IntelligentSystems from "../data/academics/IntelligentSystems.json"
-import Cybersecurity from "../data/academics/Cybersecurity.json"
-import General from "../data/academics/General.json"
+import IntelligentSystems from "../data/academics/IntelligentSystems"
+import GraduateCore from "../data/academics/GraduateCore"
+import GraduateOther from "../data/academics/GraduateOther"
+import Mathematics from "../data/academics/Mathematics"
+import Cybersecurity from "../data/academics/Cybersecurity"
+import General from "../data/academics/General"
 import Spring2022 from "../data/seminars/Spring2022.json"
 import Fall2021 from "../data/seminars/Fall2021.json"
 import Spring2021 from "../data/seminars/Spring2021.json"
@@ -43,8 +45,12 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 		href    : "/academics",
 		icon    : "ic_academics",
 		sections: [
-			IntelligentSystems, Cybersecurity, General
-			// Current, IntelligentSystems, Cybersecurity, General
+			IntelligentSystems,
+			GraduateOther,
+			GraduateCore,
+			Mathematics,
+			Cybersecurity,
+			General
 		]
 	},
 	"Seminars" : {
@@ -76,5 +82,5 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 		href: "/labs",
 		icon: "ic_photos",
 		hidden: true
-	},
+	}
 }
