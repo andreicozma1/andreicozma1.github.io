@@ -16,23 +16,6 @@ import GraduateOther from "../data/academics/GraduateOther"
 import Mathematics from "../data/academics/Mathematics"
 import Cybersecurity from "../data/academics/Cybersecurity"
 import General from "../data/academics/General"
-// Option 1: 4-Tier Pyramid
-import GraduateML from "../data/academics-pyramid/GraduateML"
-import GraduateVision from "../data/academics-pyramid/GraduateVision"
-import GraduateSystems from "../data/academics-pyramid/GraduateSystems"
-import GraduateMath from "../data/academics-pyramid/GraduateMath"
-import GraduateSpecialized from "../data/academics-pyramid/GraduateSpecialized"
-import FoundationalAdvanced from "../data/academics-pyramid/FoundationalAdvanced"
-import FoundationalCybersecurity from "../data/academics-pyramid/FoundationalCybersecurity"
-import FoundationalCore from "../data/academics-pyramid/FoundationalCore"
-import FoundationalMath from "../data/academics-pyramid/FoundationalMath"
-// Option 2: Research-First Domains
-import IntelligentSystemsML from "../data/academics-domains/IntelligentSystemsML"
-import VisionImaging from "../data/academics-domains/VisionImaging"
-import SystemsArchitecture from "../data/academics-domains/SystemsArchitecture"
-import CybersecurityDomains from "../data/academics-domains/Cybersecurity"
-import MathTheory from "../data/academics-domains/MathTheory"
-import Interdisciplinary from "../data/academics-domains/Interdisciplinary"
 import Spring2022 from "../data/seminars/Spring2022.json"
 import Fall2021 from "../data/seminars/Fall2021.json"
 import Spring2021 from "../data/seminars/Spring2021.json"
@@ -98,47 +81,6 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 	"Labs"   : {
 		href: "/labs",
 		icon: "ic_photos",
-		hidden: true
-	},
-	"AcademicsPyramid": {
-		href: "/academics-pyramid",
-		icon: "ic_academics",
-		notes: [
-			{
-				text: "Option 1: 4-Tier Pyramid - Hierarchical structure with research at the apex, graduate competencies, foundational expertise, and skills.",
-				severity: "info"
-			}
-		],
-		sections: [
-			GraduateML,
-			GraduateVision,
-			GraduateSystems,
-			GraduateMath,
-			GraduateSpecialized,
-			FoundationalAdvanced,
-			FoundationalCybersecurity,
-			FoundationalCore,
-			FoundationalMath
-		],
-		hidden: true
-	},
-	"AcademicsDomains": {
-		href: "/academics-domains",
-		icon: "ic_academics",
-		notes: [
-			{
-				text: "Option 2: Research-First Domain Expertise - Organized by thematic areas with research credentials prominently featured.",
-				severity: "info"
-			}
-		],
-		sections: [
-			IntelligentSystemsML,
-			VisionImaging,
-			SystemsArchitecture,
-			CybersecurityDomains,
-			MathTheory,
-			Interdisciplinary
-		],
 		hidden: true
 	}
 }

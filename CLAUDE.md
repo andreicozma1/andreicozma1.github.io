@@ -68,28 +68,24 @@ Commit and push
 ### Data Layer (TypeScript)
 ```
 src/data/
-├── academics/                 # MAIN PAGE - Primary academics structure
+├── academics/                 # MAIN PAGE - Single academics structure
 │   ├── IntelligentSystems.ts  # Graduate ML/AI courses
 │   ├── GraduateCore.ts        # Graduate CS core
 │   ├── GraduateOther.ts       # Specialized topics
 │   ├── Mathematics.ts         # Math & Stats (grad + undergrad)
 │   ├── Cybersecurity.ts       # Security courses
 │   └── General.ts             # CS foundational courses
-├── academics-shared/          # DRY: Reusable course definitions (17 files)
-│   ├── COSC522-MachineLearning.ts
-│   ├── ECE517-ReinforcementLearning.ts
-│   └── MATH525-Statistics.ts
-├── academics-pyramid/         # HIDDEN: Alternative 4-tier view
-│   └── [9 TypeScript section files]
-└── academics-domains/         # HIDDEN: Alternative domain view
-    └── [6 TypeScript section files]
+└── academics-shared/          # DRY: Reusable course definitions (17 files)
+    ├── COSC522-MachineLearning.ts
+    ├── ECE517-ReinforcementLearning.ts
+    └── MATH525-Statistics.ts
 ```
 
 **Principles:**
-- **Main page**: Primary structure, all graduate courses import from shared/
+- **Single structure**: One main page, no alternative views
 - **Shared files**: 17 graduate courses, zero duplication
 - **TypeScript**: 100% migration complete (no JSON)
-- **Alternative views**: Pyramid/domains hidden but maintained for potential future use
+- **Simplicity**: Pyramid/domains removed per "don't over-engineer" principle
 
 ### Config Layer (TypeScript)
 ```
