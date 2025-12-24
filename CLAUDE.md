@@ -61,6 +61,48 @@ Commit and push
 - User provides course content → Use it verbatim, don't add topics
 - User specifies technology → Don't add related tech unless confirmed
 
+### 5. **Dependency Integrity (DI)**
+**Always keep package-lock.json in sync with package.json.** The lock file must be committed and updated properly.
+
+**Why:** Ensures reproducible builds, prevents CI/CD failures, and maintains security by locking exact versions.
+
+**Critical Facts:**
+- ✅ **DO commit package-lock.json** for applications (like this Gatsby site)
+- ✅ **Use `npm ci`** in CI/CD (requires exact lock file match)
+- ✅ **Use `npm install`** in development (auto-updates lock file)
+- ❌ **DON'T manually edit package-lock.json** (always regenerate)
+- ❌ **DON'T commit package.json changes without updating lock file**
+
+**How to Maintain Sync:**
+```bash
+# Adding/updating a package (CORRECT)
+npm install <package>        # Updates both package.json and lock file
+git add package.json package-lock.json
+git commit -m "Add <package>"
+
+# Removing a package (CORRECT)
+npm uninstall <package>      # Updates both files
+git add package.json package-lock.json
+git commit -m "Remove <package>"
+
+# If lock file gets out of sync (FIX)
+rm package-lock.json
+npm install --legacy-peer-deps
+git add package-lock.json
+git commit -m "Regenerate package-lock.json to sync with package.json"
+```
+
+**Validation:**
+- Before every commit: `./scripts/smart-validate.sh`
+- CI/CD enforces this: `npm ci` fails if out of sync ✅
+- Use `--legacy-peer-deps` flag (required due to Gatsby peer dependency conflicts)
+
+**Common Mistakes:**
+- ❌ Editing package.json manually without running `npm install`
+- ❌ Deleting package-lock.json and not committing the regenerated one
+- ❌ Using `npm install` in CI/CD instead of `npm ci`
+- ❌ Ignoring package-lock.json in .gitignore (should be committed!)
+
 ---
 
 ## Repository Structure
@@ -688,13 +730,23 @@ PR#19 Phase 3: Refactoring (if needed)
 - **Documented CI build failure incident** and resolution in Lessons Learned
 - **Enhanced Best Practices** with deletion verification principles
 - All guidance made generalizable to other frameworks (Next.js, SvelteKit, etc.)
+- **Added Core Principle #5: Dependency Integrity (DI)** - Comprehensive guide on package-lock.json management
+- **Updated GitHub Actions to latest versions** (Dec 2025):
+  - actions/checkout: v4 → v5
+  - actions/setup-node: v4 → v6 (requires runner v2.327.1+, current: v2.330.0)
+  - actions/github-script: v7 → v8
+  - actions/cache: v4 (already latest)
+  - actions/configure-pages: v5 (already latest)
+  - actions/upload-pages-artifact: v3 (latest for Pages)
+  - actions/deploy-pages: v4 (already latest)
 
 **Key Metrics:**
 - **Course Count:** 38 courses (17 graduate + 21 undergraduate)
 - **Duplication:** 0 (all graduate courses use shared files)
 - **Type Safety:** 100% TypeScript
-- **Character Count:** ~18,000 / 20,000 limit
-- **Critical Lessons Documented:** 3 major incidents with resolutions
+- **Character Count:** ~19,500 / 20,000 limit
+- **Critical Lessons Documented:** 4 major incidents with resolutions
+- **GitHub Actions:** All up-to-date as of Dec 2025
 
 **Future Optimization (Per Best Practices):**
 - Consider moving detailed workflows to `docs/workflows/` for progressive disclosure

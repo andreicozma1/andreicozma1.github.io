@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0  # Full history for base branch comparison
 
@@ -44,14 +44,14 @@ jobs:
           fi
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.cache }}
 
       - name: Post initial PR comment
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             // Helper to remove indentation from multiline strings (for YAML compatibility)
@@ -341,7 +341,7 @@ jobs:
 
       - name: Update PR comment after typecheck
         if: github.event_name == 'pull_request' && always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             // Helper to remove indentation from multiline strings (for YAML compatibility)
@@ -593,7 +593,7 @@ jobs:
 
       - name: Post PR comment with build stats
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           # Pass multiline/complex values via env to avoid template literal issues
           TOP_JS: ${{ steps.stats.outputs.top_js }}
@@ -902,7 +902,7 @@ jobs:
 
       - name: Update PR comment with preview URL
         if: github.event_name == 'pull_request' && steps.surge.outputs.deployed == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const previewUrl = '${{ steps.surge.outputs.url }}';
