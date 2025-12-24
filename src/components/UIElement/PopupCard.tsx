@@ -6,16 +6,17 @@ import DataCardResponsive from "../DataCard/DataCardResponsive"
 import { setCardData } from "../../reducers/selectedCard"
 import { TransitionProps } from "@mui/material/transitions"
 import Theme from "../../config/Theme"
+import { RootState } from "../../config/Main"
 
 const Transition = React.forwardRef(function Transition(props: TransitionProps & {
-	children: React.ReactElement<any, any>;
+	children: React.ReactElement;
 }, ref: React.Ref<unknown>) {
 	return <Grow ref={ref} {...props} children={props.children}/>
 })
 
 const PopupCard = () => {
 	const dispatch = useDispatch()
-	const backdropCard = useSelector((state: any) => state.backdropCard)
+	const backdropCard = useSelector((state: RootState) => state.backdropCard)
 	const [ open, setOpen ] = useState(false)
 
 	const handleClose = () => {

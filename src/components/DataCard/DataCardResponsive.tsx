@@ -6,17 +6,18 @@ import { setCardData } from "../../reducers/selectedCard"
 import * as React from "react"
 import { ReactNode } from "react"
 import Theme from "../../config/Theme"
+import { RootState } from "../../config/Main"
 
 interface DataCardResponsiveProps {
 	itemProps?: TemplateDataCardProps,
-	overrideProps?: any,
+	overrideProps?: Record<string, unknown>,
 	maxWidth?: string,
 	children?: ReactNode
 }
 
 const DataCardResponsive = (props: DataCardResponsiveProps) => {
 	const dispatch = useDispatch()
-	const backdropCard = useSelector((state: any) => state.backdropCard)
+	const backdropCard = useSelector((state: RootState) => state.backdropCard)
 
 	const matchesSm = useMediaQuery(Theme.breakpoints.down("sm"))
 	let headerChips = props.itemProps && props.itemProps.chips && [
