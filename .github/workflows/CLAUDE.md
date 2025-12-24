@@ -1,5 +1,65 @@
 # CI Workflow Patterns
 
+## GitHub Actions Version Management
+
+### Current Versions (Updated: 2025-12-23)
+
+**Quick Reference** - Copy-paste for workflow updates:
+```yaml
+actions/checkout: v5
+actions/setup-node: v6          # Requires runner v2.327.1+
+actions/github-script: v8        # Node 24 runtime
+actions/cache: v4
+actions/configure-pages: v5
+actions/upload-pages-artifact: v3  # Latest for Pages-specific deployment (different from upload-artifact@v4)
+actions/deploy-pages: v4
+```
+
+### When User Requests Action Updates
+
+**Process:**
+1. Search for latest versions using current year: `"actions/[name] latest version 2025"`
+2. Check release notes for breaking changes
+3. Verify runner compatibility requirements (visible in CI logs as "Current runner version: '2.xxx.x'")
+4. Update consistently across all workflow files (deploy.yml, pr.yml, validate-workflows.yml)
+5. Document versions in this file and main CLAUDE.md maintenance notes
+6. Test in PR workflow first, then update deploy workflow if successful
+
+**Common triggers:**
+- User reports CI failure mentioning deprecated actions
+- User asks to "update GitHub Actions" or "fix outdated actions"
+- GitHub deprecation notice appears in workflow logs
+
+### Version History
+
+Track all updates with rationale for future reference:
+
+- **2025-12-23**: Updated checkout v4→v5, setup-node v4→v6, github-script v7→v8
+  - Reason: Fixed package-lock.json sync issue, verified runner v2.330.0 compatibility
+  - Breaking: setup-node@v6 requires runner v2.327.1+ (we have v2.330.0 ✅)
+
+### Important Notes
+
+**Runner Compatibility:**
+- Current GitHub-hosted runner: v2.330.0 (shown in CI logs)
+- setup-node@v6 requires: v2.327.1+
+- Always check runner requirements when updating actions
+
+**Special Cases:**
+- `actions/upload-pages-artifact@v3` is Pages-specific (different from general `upload-artifact@v4`)
+- Always use `--legacy-peer-deps` with npm (Gatsby peer dependency conflicts)
+
+**Version Check Commands:**
+```bash
+# Find all action versions in workflows
+grep -r "uses: actions/" .github/workflows/ | grep -v "#"
+
+# Check current versions match this file
+grep "uses: actions/checkout@" .github/workflows/*.yml
+```
+
+---
+
 ## Shell Scripts in GitHub Actions
 
 ### Error Handling

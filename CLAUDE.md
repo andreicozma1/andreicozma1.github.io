@@ -61,6 +61,48 @@ Commit and push
 - User provides course content → Use it verbatim, don't add topics
 - User specifies technology → Don't add related tech unless confirmed
 
+### 5. **Dependency Integrity (DI)**
+**Always keep package-lock.json in sync with package.json.** The lock file must be committed and updated properly.
+
+**Why:** Ensures reproducible builds, prevents CI/CD failures, and maintains security by locking exact versions.
+
+**Critical Facts:**
+- ✅ **DO commit package-lock.json** for applications (like this Gatsby site)
+- ✅ **Use `npm ci`** in CI/CD (requires exact lock file match)
+- ✅ **Use `npm install`** in development (auto-updates lock file)
+- ❌ **DON'T manually edit package-lock.json** (always regenerate)
+- ❌ **DON'T commit package.json changes without updating lock file**
+
+**How to Maintain Sync:**
+```bash
+# Adding/updating a package (CORRECT)
+npm install <package>        # Updates both package.json and lock file
+git add package.json package-lock.json
+git commit -m "Add <package>"
+
+# Removing a package (CORRECT)
+npm uninstall <package>      # Updates both files
+git add package.json package-lock.json
+git commit -m "Remove <package>"
+
+# If lock file gets out of sync (FIX)
+rm package-lock.json
+npm install --legacy-peer-deps
+git add package-lock.json
+git commit -m "Regenerate package-lock.json to sync with package.json"
+```
+
+**Validation:**
+- Before every commit: `./scripts/smart-validate.sh`
+- CI/CD enforces this: `npm ci` fails if out of sync ✅
+- Use `--legacy-peer-deps` flag (required due to Gatsby peer dependency conflicts)
+
+**Common Mistakes:**
+- ❌ Editing package.json manually without running `npm install`
+- ❌ Deleting package-lock.json and not committing the regenerated one
+- ❌ Using `npm install` in CI/CD instead of `npm ci`
+- ❌ Ignoring package-lock.json in .gitignore (should be committed!)
+
 ---
 
 ## Repository Structure
@@ -645,6 +687,42 @@ PR#19 Phase 3: Refactoring (if needed)
 3. **Use proper tools** - Python/jq for JSON, not sed/awk
 4. **Commit logical groups** - Phases make review easier
 
+### Session: Package Lock Sync + GitHub Actions Update (Dec 2025)
+
+**What Went Wrong:**
+1. ❌ CI build failed: `npm ci can only install packages when package.json and package-lock.json are in sync`
+2. ❌ Missing dependencies: `babel-eslint@10.1.0`, `eslint-visitor-keys@1.3.0`
+3. ❌ Version conflicts: `picomatch@2.3.1` vs `picomatch@4.0.3`
+4. Root cause: Someone manually edited package.json without running `npm install`
+
+**What Went Right:**
+✅ Identified issue immediately from CI logs
+✅ Regenerated package-lock.json from scratch: `rm package-lock.json && npm install --legacy-peer-deps`
+✅ Updated all GitHub Actions to latest versions (Dec 2025)
+✅ Documented prevention strategy as Core Principle #5: Dependency Integrity
+✅ Created actionable AI documentation in `.github/workflows/CLAUDE.md`
+
+**Actions Updated:**
+- actions/checkout: v4 → v5
+- actions/setup-node: v4 → v6 (verified runner v2.330.0 compatibility)
+- actions/github-script: v7 → v8 (Node 24 runtime)
+- Confirmed cache@v4, configure-pages@v5, deploy-pages@v4 already latest
+
+**Key Takeaways:**
+1. **Package-lock.json must be committed** - It's not optional for applications
+2. **Always use `npm install <package>`** - Auto-updates both package.json and lock file
+3. **CI/CD is the safety net** - `npm ci` fails immediately if files are out of sync
+4. **Validate before push** - `./scripts/smart-validate.sh` catches sync issues
+5. **GitHub Actions need version tracking** - Document current versions and update history
+6. **AI documentation must be actionable** - No time-based triggers AI can't perform (e.g., "quarterly updates")
+7. **Runner compatibility matters** - Check runner version requirements when updating actions (setup-node@v6 needs v2.327.1+)
+
+**Prevention:**
+- Core Principle #5 added with comprehensive guide
+- Version history tracking in `.github/workflows/CLAUDE.md`
+- Clear DO/DON'T lists for package management
+- Validation enforcement already in CI/CD
+
 ---
 
 ## Best Practices Summary
@@ -688,13 +766,23 @@ PR#19 Phase 3: Refactoring (if needed)
 - **Documented CI build failure incident** and resolution in Lessons Learned
 - **Enhanced Best Practices** with deletion verification principles
 - All guidance made generalizable to other frameworks (Next.js, SvelteKit, etc.)
+- **Added Core Principle #5: Dependency Integrity (DI)** - Comprehensive guide on package-lock.json management
+- **Updated GitHub Actions to latest versions** (Dec 2025):
+  - actions/checkout: v4 → v5
+  - actions/setup-node: v4 → v6 (requires runner v2.327.1+, current: v2.330.0)
+  - actions/github-script: v7 → v8
+  - actions/cache: v4 (already latest)
+  - actions/configure-pages: v5 (already latest)
+  - actions/upload-pages-artifact: v3 (latest for Pages)
+  - actions/deploy-pages: v4 (already latest)
 
 **Key Metrics:**
 - **Course Count:** 38 courses (17 graduate + 21 undergraduate)
 - **Duplication:** 0 (all graduate courses use shared files)
 - **Type Safety:** 100% TypeScript
-- **Character Count:** ~18,000 / 20,000 limit
-- **Critical Lessons Documented:** 3 major incidents with resolutions
+- **Character Count:** ~19,500 / 20,000 limit
+- **Critical Lessons Documented:** 4 major incidents with resolutions
+- **GitHub Actions:** All up-to-date as of Dec 2025
 
 **Future Optimization (Per Best Practices):**
 - Consider moving detailed workflows to `docs/workflows/` for progressive disclosure
