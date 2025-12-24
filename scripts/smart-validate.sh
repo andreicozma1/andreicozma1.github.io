@@ -58,7 +58,7 @@ fi
 # Install dependencies if needed and not installed
 if [ "$NEEDS_DEPS" = true ] && [ "$DEPS_INSTALLED" = false ]; then
     echo "📦 Installing dependencies (one-time setup)..."
-    npm install --quiet --legacy-peer-deps
+    npm install --quiet
     DEPS_INSTALLED=true
 fi
 

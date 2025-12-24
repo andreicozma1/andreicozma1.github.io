@@ -87,7 +87,7 @@ git commit -m "Remove <package>"
 
 # If lock file gets out of sync (FIX)
 rm package-lock.json
-npm install --legacy-peer-deps
+npm install
 git add package-lock.json
 git commit -m "Regenerate package-lock.json to sync with package.json"
 ```
@@ -95,7 +95,7 @@ git commit -m "Regenerate package-lock.json to sync with package.json"
 **Validation:**
 - Before every commit: `./scripts/smart-validate.sh`
 - CI/CD enforces this: `npm ci` fails if out of sync ✅
-- Use `--legacy-peer-deps` flag (required due to Gatsby peer dependency conflicts)
+- Modern npm (v10+) properly resolves peer dependency conflicts without --legacy-peer-deps
 
 **Common Mistakes:**
 - ❌ Editing package.json manually without running `npm install`
@@ -521,7 +521,7 @@ Risk: Low (everything validated)
 **Features:**
 - Auto-detects changed files (with --verbose flag to show them)
 - Runs appropriate validation for work type
-- Installs dependencies only when needed (with --legacy-peer-deps)
+- Installs dependencies only when needed
 - Shows actual error messages for debugging
 - Includes ESLint linting for TypeScript changes (advisory warnings)
 - Provides context-specific recommendations
@@ -551,7 +551,7 @@ Risk: Low (everything validated)
 ./scripts/smart-validate.sh --verbose  # Show changed files
 
 # Manual dependency setup (one-time per session when needed)
-npm install --legacy-peer-deps
+npm install
 
 # Manual validation commands
 npx tsc --noEmit        # TypeScript check only
@@ -693,12 +693,15 @@ PR#19 Phase 3: Refactoring (if needed)
 1. ❌ CI build failed: `npm ci can only install packages when package.json and package-lock.json are in sync`
 2. ❌ Missing dependencies: `babel-eslint@10.1.0`, `eslint-visitor-keys@1.3.0`
 3. ❌ Version conflicts: `picomatch@2.3.1` vs `picomatch@4.0.3`
-4. Root cause: Someone manually edited package.json without running `npm install`
+4. ❌ Root cause: package-lock.json was generated with `--legacy-peer-deps` flag, creating incomplete lock file
+5. ❌ Initial fix used --legacy-peer-deps, but this didn't solve production deploy (only PR workflow had the flag)
 
 **What Went Right:**
 ✅ Identified issue immediately from CI logs
-✅ Regenerated package-lock.json from scratch: `rm package-lock.json && npm install --legacy-peer-deps`
+✅ Discovered modern npm (v10+) properly resolves peer conflicts WITHOUT --legacy-peer-deps
+✅ Final fix: `rm package-lock.json && npm install` (no flags needed!)
 ✅ Updated all GitHub Actions to latest versions (Dec 2025)
+✅ Removed all --legacy-peer-deps flags from workflows and scripts
 ✅ Documented prevention strategy as Core Principle #5: Dependency Integrity
 ✅ Created actionable AI documentation in `.github/workflows/CLAUDE.md`
 
@@ -713,9 +716,10 @@ PR#19 Phase 3: Refactoring (if needed)
 2. **Always use `npm install <package>`** - Auto-updates both package.json and lock file
 3. **CI/CD is the safety net** - `npm ci` fails immediately if files are out of sync
 4. **Validate before push** - `./scripts/smart-validate.sh` catches sync issues
-5. **GitHub Actions need version tracking** - Document current versions and update history
-6. **AI documentation must be actionable** - No time-based triggers AI can't perform (e.g., "quarterly updates")
-7. **Runner compatibility matters** - Check runner version requirements when updating actions (setup-node@v6 needs v2.327.1+)
+5. **Avoid --legacy-peer-deps** - Modern npm resolves conflicts properly without it; the flag creates incomplete lock files
+6. **GitHub Actions need version tracking** - Document current versions and update history
+7. **AI documentation must be actionable** - No time-based triggers AI can't perform (e.g., "quarterly updates")
+8. **Runner compatibility matters** - Check runner version requirements when updating actions (setup-node@v6 needs v2.327.1+)
 
 **Prevention:**
 - Core Principle #5 added with comprehensive guide
@@ -753,7 +757,7 @@ PR#19 Phase 3: Refactoring (if needed)
 
 ## Maintenance Notes
 
-**Last Updated:** 2025-12-23
+**Last Updated:** 2025-12-24
 
 **Recent Changes:**
 - Completed TypeScript migration (100% - no JSON)
@@ -775,6 +779,12 @@ PR#19 Phase 3: Refactoring (if needed)
   - actions/configure-pages: v5 (already latest)
   - actions/upload-pages-artifact: v3 (latest for Pages)
   - actions/deploy-pages: v4 (already latest)
+- **Removed --legacy-peer-deps dependency** (Dec 2025):
+  - Discovered modern npm (v10+) resolves peer conflicts without the flag
+  - Removed from pr.yml workflow (2 instances)
+  - Removed from scripts/smart-validate.sh
+  - Updated all documentation to reflect correct approach
+  - Fixed production deploy by regenerating package-lock.json without the flag
 
 **Key Metrics:**
 - **Course Count:** 38 courses (17 graduate + 21 undergraduate)

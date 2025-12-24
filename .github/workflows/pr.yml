@@ -175,7 +175,7 @@ jobs:
 
           # Clean any previous build artifacts and install base branch dependencies
           rm -rf public .cache node_modules
-          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --legacy-peer-deps
+          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
           # Try to build base branch and capture output
           build_output=$(${{ steps.detect-package-manager.outputs.manager }} run build 2>&1) && build_success=true || build_success=false
@@ -312,7 +312,7 @@ jobs:
           fi
 
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --legacy-peer-deps
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
       - name: Type check
         id: typecheck
