@@ -6,7 +6,7 @@
 
 **Quick Reference** - Copy-paste for workflow updates:
 ```yaml
-actions/checkout: v5
+actions/checkout: v6
 actions/setup-node: v6          # Requires runner v2.327.1+
 actions/github-script: v8        # Node 24 runtime
 actions/cache: v4
@@ -34,9 +34,11 @@ actions/deploy-pages: v4
 
 Track all updates with rationale for future reference:
 
-- **2025-12-23**: Updated checkout v4→v5, setup-node v4→v6, github-script v7→v8
-  - Reason: Fixed package-lock.json sync issue, verified runner v2.330.0 compatibility
+- **2025-12-24**: Updated checkout v4→v6, setup-node v4→v6, github-script v7→v8
+  - Reason: Fixed package-lock.json sync issue and ajv-keywords version mismatch
+  - Verified runner v2.330.0 compatibility
   - Breaking: setup-node@v6 requires runner v2.327.1+ (we have v2.330.0 ✅)
+  - Note: checkout@v6 released Nov 20, 2025 (missed in initial update)
 
 ### Important Notes
 

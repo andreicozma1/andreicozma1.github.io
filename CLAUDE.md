@@ -703,7 +703,7 @@ PR#19 Phase 3: Refactoring (if needed)
 ✅ Created actionable AI documentation in `.github/workflows/CLAUDE.md`
 
 **Actions Updated:**
-- actions/checkout: v4 → v5
+- actions/checkout: v4 → v6 (Nov 20, 2025 release)
 - actions/setup-node: v4 → v6 (verified runner v2.330.0 compatibility)
 - actions/github-script: v7 → v8 (Node 24 runtime)
 - Confirmed cache@v4, configure-pages@v5, deploy-pages@v4 already latest
@@ -768,9 +768,9 @@ PR#19 Phase 3: Refactoring (if needed)
 - All guidance made generalizable to other frameworks (Next.js, SvelteKit, etc.)
 - **Added Core Principle #5: Dependency Integrity (DI)** - Comprehensive guide on package-lock.json management
 - **Updated GitHub Actions to latest versions** (Dec 2025):
-  - actions/checkout: v4 → v5
+  - actions/checkout: v4 → v6 (Nov 20, 2025 release)
   - actions/setup-node: v4 → v6 (requires runner v2.327.1+, current: v2.330.0)
-  - actions/github-script: v7 → v8
+  - actions/github-script: v7 → v8 (Node 24 runtime)
   - actions/cache: v4 (already latest)
   - actions/configure-pages: v5 (already latest)
   - actions/upload-pages-artifact: v3 (latest for Pages)
