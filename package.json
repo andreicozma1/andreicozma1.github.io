@@ -25,6 +25,7 @@
 		"@mui/material": "^5.8.7",
 		"@mui/x-data-grid": "^5.17.2",
 		"@reduxjs/toolkit": "^1.8.3",
+		"ajv-keywords": "^3.5.2",
 		"dotenv": "^16.0.1",
 		"gatsby": "^5.14.0",
 		"gatsby-plugin-google-fonts": "^1.0.1",
