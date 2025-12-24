@@ -687,6 +687,42 @@ PR#19 Phase 3: Refactoring (if needed)
 3. **Use proper tools** - Python/jq for JSON, not sed/awk
 4. **Commit logical groups** - Phases make review easier
 
+### Session: Package Lock Sync + GitHub Actions Update (Dec 2025)
+
+**What Went Wrong:**
+1. ❌ CI build failed: `npm ci can only install packages when package.json and package-lock.json are in sync`
+2. ❌ Missing dependencies: `babel-eslint@10.1.0`, `eslint-visitor-keys@1.3.0`
+3. ❌ Version conflicts: `picomatch@2.3.1` vs `picomatch@4.0.3`
+4. Root cause: Someone manually edited package.json without running `npm install`
+
+**What Went Right:**
+✅ Identified issue immediately from CI logs
+✅ Regenerated package-lock.json from scratch: `rm package-lock.json && npm install --legacy-peer-deps`
+✅ Updated all GitHub Actions to latest versions (Dec 2025)
+✅ Documented prevention strategy as Core Principle #5: Dependency Integrity
+✅ Created actionable AI documentation in `.github/workflows/CLAUDE.md`
+
+**Actions Updated:**
+- actions/checkout: v4 → v5
+- actions/setup-node: v4 → v6 (verified runner v2.330.0 compatibility)
+- actions/github-script: v7 → v8 (Node 24 runtime)
+- Confirmed cache@v4, configure-pages@v5, deploy-pages@v4 already latest
+
+**Key Takeaways:**
+1. **Package-lock.json must be committed** - It's not optional for applications
+2. **Always use `npm install <package>`** - Auto-updates both package.json and lock file
+3. **CI/CD is the safety net** - `npm ci` fails immediately if files are out of sync
+4. **Validate before push** - `./scripts/smart-validate.sh` catches sync issues
+5. **GitHub Actions need version tracking** - Document current versions and update history
+6. **AI documentation must be actionable** - No time-based triggers AI can't perform (e.g., "quarterly updates")
+7. **Runner compatibility matters** - Check runner version requirements when updating actions (setup-node@v6 needs v2.327.1+)
+
+**Prevention:**
+- Core Principle #5 added with comprehensive guide
+- Version history tracking in `.github/workflows/CLAUDE.md`
+- Clear DO/DON'T lists for package management
+- Validation enforcement already in CI/CD
+
 ---
 
 ## Best Practices Summary
