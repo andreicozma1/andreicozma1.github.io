@@ -333,10 +333,14 @@ jobs:
             } >> "$GITHUB_STEP_SUMMARY"
             echo "status=failure" >> "$GITHUB_OUTPUT"
 
-            # Extract first 5 actual errors for PR comment (filter out npm run lines)
+            # Count total errors and extract first 5 for PR comment
+            error_count=$(grep -cE "error TS[0-9]+:" typecheck-output.txt || echo "0")
+            echo "error_count=${error_count}" >> "$GITHUB_OUTPUT"
+
+            # Extract first 5 errors, shortened paths (just filename)
             {
               echo "errors<<ERRORS_EOF"
-              grep -E "^src/.*error TS[0-9]+:" typecheck-output.txt | head -5
+              grep -E "^src/.*error TS[0-9]+:" typecheck-output.txt | head -5 | sed 's|src/[^(]*/||'
               echo "ERRORS_EOF"
             } >> "$GITHUB_OUTPUT"
 
@@ -358,16 +362,17 @@ jobs:
             const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
 
             const typecheckStatus = '${{ steps.typecheck.outputs.status }}';
+            const errorCount = '${{ steps.typecheck.outputs.error_count }}' || '0';
             const typeIcon = typecheckStatus === 'success' ? '✅' : (typecheckStatus === 'failure' ? '❌' : '⏳');
-            const typeStatus = typecheckStatus === 'success' ? 'Passed' : (typecheckStatus === 'failure' ? 'Failed' : 'Running...');
+            const typeStatus = typecheckStatus === 'success' ? 'Passed' : (typecheckStatus === 'failure' ? `Failed (${errorCount} errors)` : 'Running...');
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
 
-            // Get error snippets if typecheck failed
+            // Get error snippets if typecheck failed (collapsible)
             const errors = (process.env.TYPECHECK_ERRORS || '').trim();
-            const errorSection = errors ? `\n\n**Errors:**\n\`\`\`\n${errors}\n\`\`\`` : '';
-            const buildStatus = typecheckStatus === 'failure' ? 'Blocked by type errors' : 'Running...';
+            const errorSection = errors ? `\n  <details><summary>Show errors</summary>\n\n  \`\`\`\n  ${errors.split('\n').join('\n  ')}\n  \`\`\`\n  </details>` : '';
+            const buildStatus = typecheckStatus === 'failure' ? 'Blocked' : 'Running...';
 
             try {
               const { data: comments } = await github.rest.issues.listComments({
