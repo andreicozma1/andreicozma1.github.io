@@ -1,0 +1,104 @@
+{
+	"title": "Publications",
+	"variant": "timeline",
+	"items": [
+		{
+			"title": "KIPPO: Koopman-Inspired Proximal Policy Optimization",
+			"subtitle": "A. Cozma, L. Harris, H. Qi",
+			"chips": {
+				"date": [
+					"IJCAI 2025"
+				],
+				"contentChips": [
+					"First Author",
+					"Reinforcement Learning",
+					"Koopman Theory",
+					"Continuous Control"
+				]
+			},
+			"content": [
+				"Applied Koopman theory to reinforcement learning for 6-60% performance gains over PPO with up to 91% variance reduction across continuous control benchmarks."
+			],
+			"actions": [
+				{
+					"text": "ArXiv",
+					"href": "https://arxiv.org/abs/2505.14566",
+					"target": "_blank"
+				}
+			],
+			"avatar": "article"
+		},
+		{
+			"title": "OmniFed: A Modular Framework for Scalable Federated Learning",
+			"subtitle": "S. Tyagi, A. Cozma, O. Kotevska, F. Wang",
+			"chips": {
+				"date": [
+					"SC 2025"
+				],
+				"contentChips": [
+					"Collaborative",
+					"Federated Learning",
+					"Distributed Systems",
+					"HPC"
+				]
+			},
+			"content": [
+				"Modular federated learning framework supporting centralized, decentralized, and hierarchical topologies with plug-and-play algorithm integration scaling from edge to HPC."
+			],
+			"actions": [
+				{
+					"text": "ArXiv",
+					"href": "https://arxiv.org/abs/2509.19396",
+					"target": "_blank"
+				}
+			],
+			"avatar": "article"
+		},
+		{
+			"title": "Learning Latent Linear Dynamics from Surgical Videos via Koopman-based Visual Representations",
+			"subtitle": "L. Whatley, A. Cozma, J. Fan, H. Qi, F. Liu",
+			"chips": {
+				"date": [
+					"ICRA 2025 RAMI Workshop"
+				],
+				"contentChips": [
+					"Collaborative",
+					"Computer Vision",
+					"Koopman Theory",
+					"Surgical Robotics"
+				]
+			},
+			"content": [
+				"Applied Koopman-inspired latent dynamics to surgical video, enabling multi-step prediction for robotic control and tool-tissue interaction analysis."
+			],
+			"avatar": "article"
+		},
+		{
+			"title": "Cross-Scale MAE: A Tale of Multiscale Exploitation in Remote Sensing",
+			"subtitle": "M. Tang, A. Cozma, K. Georgiou, H. Qi",
+			"chips": {
+				"date": [
+					"NeurIPS 2023"
+				],
+				"contentChips": [
+					"Collaborative",
+					"Self-Supervised Learning",
+					"Computer Vision",
+					"Remote Sensing",
+					"54 Citations"
+				]
+			},
+			"content": [
+				"Self-supervised framework with scale augmentation and cross-scale consistency constraints eliminating need for aligned multi-scale satellite imagery; achieved state-of-the-art performance across remote sensing benchmarks."
+			],
+			"actions": [
+				{
+					"text": "NeurIPS Proceedings",
+					"href": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/40b39a7a9b3fda8d5a4aaa8105cf1b67-Abstract-Conference.html",
+					"target": "_blank"
+				}
+			],
+			"avatar": "article"
+		}
+	]
+}
