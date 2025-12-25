@@ -103,6 +103,71 @@ git commit -m "Regenerate package-lock.json to sync with package.json"
 - ❌ Using `npm install` in CI/CD instead of `npm ci`
 - ❌ Ignoring package-lock.json in .gitignore (should be committed!)
 
+### 6. **Avoid Unnecessary Filtering (AUF)**
+**When processing data, don't add filters that exclude valid cases.**
+
+**Why:** Overly specific patterns silently drop data. If you count 10 items but only extract 5 because of a filter mismatch, users see incomplete results without knowing why.
+
+**Common Mistakes:**
+- ❌ Using `^src/` anchor when errors can come from any directory
+- ❌ Grepping for specific patterns then counting with a different pattern
+- ❌ Hardcoding paths or prefixes that may not always apply
+
+**Pattern:**
+```bash
+# BAD: Count all errors but only extract from src/
+error_count=$(grep -c "error TS" file.txt)
+errors=$(grep "^src/.*error TS" file.txt | head -5)  # Misses root-level files!
+
+# GOOD: Use the same pattern for both
+error_count=$(grep -c "error TS" file.txt)
+errors=$(grep "error TS" file.txt | head -5)  # Matches all sources
+```
+
+**Applies To:**
+- CI/CD pipelines and log processing
+- Data extraction and transformation scripts
+- Search patterns and filters in code
+- Regular expressions with anchors (`^`, `$`)
+
+**Review Checklist:**
+- [ ] Does the extraction pattern match what was counted?
+- [ ] Are there anchors (`^src/`, `\.json$`) that might exclude valid cases?
+- [ ] Would a file in an unexpected location be missed?
+
+### 7. **Synthesize As You Go (SAYG)**
+**Continuously document insights, patterns, and lessons in this file.**
+
+**Why:** This file is living documentation that makes future work more efficient. Every session generates valuable context - patterns that work, mistakes to avoid, tool discoveries - that should be captured while fresh.
+
+**When to Update CLAUDE.md:**
+- ✅ After completing a significant task or fixing a non-trivial bug
+- ✅ When discovering a better way to do something (tool, command, pattern)
+- ✅ When making a mistake that should not repeat
+- ✅ When finding that existing documentation is incorrect or incomplete
+- ✅ Before ending a work session (retrospective synthesis)
+
+**What Belongs Here:**
+- **Principles**: Core rules that guide all work (like these numbered sections)
+- **Patterns**: Reusable solutions to recurring problems
+- **Workflows**: Step-by-step processes for common tasks
+- **Lessons Learned**: Specific incidents with what went wrong and how to prevent
+- **Tool Reference**: Commands, flags, and when to use each option
+- **Anti-patterns**: Things that seem right but cause problems
+
+**What Does NOT Belong Here:**
+- ❌ Temporary task lists (use TodoWrite instead)
+- ❌ Specific data content (belongs in code/data files)
+- ❌ Time-based reminders ("check monthly") - AI can't schedule
+- ❌ Highly project-specific details that won't generalize
+
+**How to Update:**
+1. Read existing relevant sections first
+2. Prefer refining existing content over adding new sections
+3. Keep entries actionable and pattern-focused
+4. Include concrete examples when helpful
+5. Maintain the character limit (~20,000)
+
 ---
 
 ## Repository Structure
@@ -540,6 +605,47 @@ Risk: Low (everything validated)
 # - Detect config → Full validation + ESLint + JSON
 ```
 
+### Local CI Validation (Mirror CI Exactly)
+
+**Principle:** Before pushing, run the exact same commands CI runs to catch errors locally.
+
+**Why:** Prevents wasted CI cycles and commit noise from fix-after-fix pattern.
+
+**Exact CI Commands:**
+```bash
+# 1. Install dependencies exactly as CI does
+npm ci --loglevel=error
+
+# 2. Run TypeScript check
+npm run typecheck
+
+# 3. (Optional) Full build to catch runtime issues
+npm run build
+```
+
+**When to Use Full CI Mirror:**
+- After TypeScript/component changes
+- When fixing type errors
+- Before any push (if uncertain)
+
+**Common Type Issues to Watch:**
+| Issue | Cause | Fix |
+|-------|-------|-----|
+| `Type 'string' not assignable to literal` | JSON imports lose literal types | Cast at boundary: `as "left" \| "right" \| "center"` |
+| `avatar?: "string"` | Typo (quoted type name) | Remove quotes: `avatar?: string` |
+| `any` in selectors | Missing RootState type | Import and use: `state: RootState` |
+
+**Workflow:**
+```bash
+# Before every push
+npm ci --loglevel=error && npm run typecheck && echo "Ready to push"
+
+# If errors found:
+# 1. Fix the error
+# 2. Re-run typecheck
+# 3. Only push when clean
+```
+
 ---
 
 ## Tools Reference
@@ -598,6 +704,66 @@ Write: file_path + content
 # Multiple edits - use Edit tool multiple times
 ```
 
+### GitHub CLI (gh)
+
+**Setup (one-time):**
+```bash
+# Install via direct binary (most reliable)
+curl -sL https://github.com/cli/cli/releases/latest/download/gh_*_linux_amd64.tar.gz | tar xz
+sudo mv gh_*/bin/gh /usr/local/bin/
+
+# Auth happens automatically via GH_TOKEN environment variable
+gh auth status
+```
+
+**Quick Reference (prefer built-in commands over `gh api`):**
+
+| Task | Best Command |
+|------|--------------|
+| **CI status** | `gh pr checks PR_NUM` |
+| **Watch CI live** | `gh pr checks PR_NUM --watch` |
+| **Run summary + steps** | `gh run view RUN_ID -v` |
+| **Failed step logs only** | `gh run view RUN_ID --log-failed` |
+| **Full run logs** | `gh run view RUN_ID --log` |
+| **PR comments** | `gh pr view PR_NUM --comments` |
+| **Re-run workflow** | `gh run rerun RUN_ID` |
+| **List failed runs** | `gh run list --status failure` |
+
+**Debugging CI Failures (recommended workflow):**
+```bash
+# 1. Quick CI status check
+gh pr checks PR_NUM -R OWNER/REPO
+
+# 2. If failed, view run with job steps + annotations
+gh run view RUN_ID -R OWNER/REPO -v
+
+# 3. Get only failed step logs (no grep needed!)
+gh run view RUN_ID -R OWNER/REPO --log-failed
+
+# 4. If needed, full logs for specific job
+gh run view RUN_ID -R OWNER/REPO --job JOB_ID --log
+```
+
+**Real-Time Monitoring Options:**
+```bash
+# Option 1: Watch CI checks (best for status)
+gh pr checks PR_NUM -R OWNER/REPO --watch
+
+# Option 2: Watch specific run
+gh run watch RUN_ID -R OWNER/REPO
+
+# Option 3: Poll bot comments via API (for detailed CI report)
+gh api repos/OWNER/REPO/issues/PR_NUM/comments \
+  --jq '.[] | select(.user.login == "github-actions[bot]") | .body'
+```
+
+**When to Use Each:**
+- **`gh pr checks`**: Quick CI status, watching builds
+- **`gh run view -v`**: Job steps with annotations (warnings/errors)
+- **`gh run view --log-failed`**: Only failed step output (no grepping)
+- **`gh api`**: Custom queries, bot comment content, programmatic access
+- **WebFetch**: Rendered markdown, human discussion context
+
 ---
 
 ## PR Review Workflow
@@ -605,7 +771,7 @@ Write: file_path + content
 ### Addressing PR Feedback
 
 **Process:**
-1. **Fetch PR comments** - Use WebFetch on PR URL
+1. **Fetch PR comments** - Use `gh api` for bot comments, WebFetch for human discussion
 2. **Categorize issues** - Critical, Medium, Low priority
 3. **Create implementation plan** - Phase 1 (quick), Phase 2 (config), Phase 3 (refactor)
 4. **Execute systematically** - One phase at a time
@@ -727,6 +893,53 @@ PR#19 Phase 3: Refactoring (if needed)
 - Clear DO/DON'T lists for package management
 - Validation enforcement already in CI/CD
 
+### Session: Type Safety & CI Tooling (Dec 2025)
+
+**What Went Wrong:**
+1. ❌ `avatar?: "string"` - Typo: quoted type name creates literal type instead of string type
+2. ❌ `contentAlign` type mismatch - JSON imports typed as `string`, component expects literal union
+3. ❌ Surge deployment "unverified" - Site deployed but CDN returned 503 (infrastructure issue)
+
+**What Went Right:**
+✅ Ran exact CI commands locally (`npm ci --loglevel=error && npm run typecheck`) before pushing
+✅ Installed gh CLI via direct binary (more reliable than apt)
+✅ Used `gh api` to poll PR comments in real-time for CI status
+✅ Identified Surge infrastructure issue from logs (not config problem)
+
+**Key Patterns Discovered:**
+
+1. **Type Boundary Pattern** (JSON → TypeScript):
+   - External interfaces (data from JSON): Use permissive types (`string`)
+   - Internal components: Use strict literal types (`"left" | "right" | "center"`)
+   - Cast at the boundary: `contentAlign={value as "left" | "right" | "center"}`
+   - Why: JSON imports lose literal type information
+
+2. **Common Type Typos:**
+   | Wrong | Correct | Issue |
+   |-------|---------|-------|
+   | `prop?: "string"` | `prop?: string` | Quoted creates literal type |
+   | `state: any` | `state: RootState` | Missing Redux type |
+
+3. **gh CLI Patterns:**
+   - Install: Direct binary download (`curl | tar`) more reliable than package managers
+   - Auth: Automatic via `GH_TOKEN` environment variable
+   - **Prefer built-in commands over `gh api`:**
+     - `gh pr checks` > `gh api .../check-runs` (cleaner output)
+     - `gh run view -v` > `gh run view --log | grep` (shows annotations!)
+     - `gh run view --log-failed` > manual grep (no filtering needed)
+   - Use `gh api` only for: bot comment content, custom queries
+
+4. **Surge Free Tier Reality:**
+   - Deployment can succeed (`Success! - Published`) but site may not be served
+   - Verification returning HTTP 000 = infrastructure issue, not config
+   - "Unverified" status is acceptable for PR previews
+
+**Key Takeaways:**
+1. **Mirror CI locally** - Run `npm ci && npm run typecheck` before every push
+2. **Type at boundaries** - Cast JSON data where it enters typed components
+3. **Use gh for debugging** - Faster than WebFetch for CI logs and API calls
+4. **Don't trust deployment success** - Verify the site actually loads
+
 ---
 
 ## Best Practices Summary
@@ -757,9 +970,14 @@ PR#19 Phase 3: Refactoring (if needed)
 
 ## Maintenance Notes
 
-**Last Updated:** 2025-12-24
+**Last Updated:** 2025-12-25
 
 **Recent Changes:**
+- **Added Core Principle #7: Synthesize As You Go (SAYG)** - Meta-principle for continuous documentation
+- **Added gh CLI Tools Reference** with command patterns, debugging workflow, monitoring options
+- **Added Session: Type Safety & CI Tooling** to Lessons Learned
+- **Documented Type Boundary Pattern** - External permissive, internal strict, cast at boundary
+- **Refined gh documentation** - Prefer built-in commands (`gh pr checks`, `gh run view -v`) over `gh api`
 - Completed TypeScript migration (100% - no JSON)
 - Updated repository structure to reflect consolidated main page
 - Added comprehensive lessons from academics reorganization session

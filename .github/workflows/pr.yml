@@ -35,7 +35,7 @@ jobs:
           elif [ -f "${{ github.workspace }}/package-lock.json" ]; then
             {
               echo "manager=npm"
-              echo "command=ci"
+              echo "command=ci --loglevel=error"
               echo "cache=npm"
             } >> "$GITHUB_OUTPUT"
           else
@@ -54,30 +54,24 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            // Helper to remove indentation from multiline strings (for YAML compatibility)
-            const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
-
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
-            const body = dedent(`
-              <!-- build-report -->
-              ## CI Report<!-- preview-marker -->
-
-              ### Status Summary
-              - ⏳ **Type Check**: Running...
-              - ⏳ **Build**: Waiting...
-              - ⏳ **Deploy**: Waiting...
-              - ⏱️ **Build Time**: -
-
-              _Starting CI checks..._
-
-              ---
-              **Commit** \`${commitSha}\`
-              **Workflow** ${runUrl}
-              **Built** ${timestamp}
-            `);
+            const body = [
+              '<!-- build-report -->',
+              `## 🔄 CI Report \`${commitSha}\`<!-- preview-marker -->`,
+              '',
+              '### 📋 Status',
+              '- ⏳ **Type Check**: Running...',
+              '- ⏳ **Build**: Waiting...',
+              '- ⏳ **Deploy**: Waiting...',
+              '',
+              '_Starting CI checks..._',
+              '',
+              '---',
+              `🔗 [View logs](${runUrl}) · ${timestamp}`
+            ].join('\n');
 
             try {
               const { data: comments } = await github.rest.issues.listComments({
@@ -332,6 +326,18 @@ jobs:
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
             echo "status=failure" >> "$GITHUB_OUTPUT"
+
+            # Count total errors and extract first 5 for PR comment
+            error_count=$(grep -cE "error TS[0-9]+:" typecheck-output.txt || echo "0")
+            echo "error_count=${error_count}" >> "$GITHUB_OUTPUT"
+
+            # Extract first 5 errors, shortened paths (just filename)
+            {
+              echo "errors<<ERRORS_EOF"
+              grep -E "error TS[0-9]+:" typecheck-output.txt | head -5 | sed 's|.*/||'
+              echo "ERRORS_EOF"
+            } >> "$GITHUB_OUTPUT"
+
             # Output errors again for the matcher to pick up
             cat typecheck-output.txt
             exit 1
@@ -342,17 +348,21 @@ jobs:
       - name: Update PR comment after typecheck
         if: github.event_name == 'pull_request' && always()
         uses: actions/github-script@v8
+        env:
+          TYPECHECK_ERRORS: ${{ steps.typecheck.outputs.errors }}
         with:
           script: |
-            // Helper to remove indentation from multiline strings (for YAML compatibility)
-            const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
-
             const typecheckStatus = '${{ steps.typecheck.outputs.status }}';
+            const errorCount = '${{ steps.typecheck.outputs.error_count }}' || '0';
             const typeIcon = typecheckStatus === 'success' ? '✅' : (typecheckStatus === 'failure' ? '❌' : '⏳');
-            const typeStatus = typecheckStatus === 'success' ? 'Passed' : (typecheckStatus === 'failure' ? 'Failed' : 'Running...');
+            const typeStatus = typecheckStatus === 'success' ? 'Passed' : (typecheckStatus === 'failure' ? `Failed (${errorCount} errors)` : 'Running...');
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
+
+            // Get error snippets if typecheck failed
+            const errors = (process.env.TYPECHECK_ERRORS || '').trim();
+            const buildStatus = typecheckStatus === 'failure' ? 'Blocked' : 'Running...';
 
             try {
               const { data: comments } = await github.rest.issues.listComments({
@@ -367,23 +377,30 @@ jobs:
               );
 
               if (botComment) {
-                const body = dedent(`
-                  <!-- build-report -->
-                  ## CI Report<!-- preview-marker -->
+                const lines = [
+                  '<!-- build-report -->',
+                  `## 🔄 CI Report \`${commitSha}\`<!-- preview-marker -->`,
+                  '',
+                  '### 📋 Status',
+                  `- ${typeIcon} **Type Check**: ${typeStatus}`,
+                  `- ⏳ **Build**: ${buildStatus}`,
+                  '- ⏳ **Deploy**: Waiting...',
+                ];
 
-                  ### Status Summary
-                  - ${typeIcon} **Type Check**: ${typeStatus}
-                  - ⏳ **Build**: Running...
-                  - ⏳ **Deploy**: Waiting...
-                  - ⏱️ **Build Time**: -
+                // Add error details as separate section if present
+                if (errors) {
+                  lines.push('', '<details><summary>View errors</summary>', '', '```', errors, '```', '</details>');
+                }
 
-                  _Building project..._
+                lines.push(
+                  '',
+                  `_${typecheckStatus === 'failure' ? 'Fix type errors to continue.' : 'Building project...'}_`,
+                  '',
+                  '---',
+                  `🔗 [View logs](${runUrl}) · ${timestamp}`
+                );
 
-                  ---
-                  **Commit** \`${commitSha}\`
-                  **Workflow** ${runUrl}
-                  **Built** ${timestamp}
-                `);
+                const body = lines.join('\n');
 
                 await github.rest.issues.updateComment({
                   owner: context.repo.owner,

@@ -1,22 +1,23 @@
 import { TemplateDataCardProps } from "../TemplatedDataProps"
 import { useDispatch, useSelector } from "react-redux"
-import { useMediaQuery } from "@mui/material"
+import { Breakpoint, useMediaQuery } from "@mui/material"
 import DataCard from "./DataCard"
 import { setCardData } from "../../reducers/selectedCard"
 import * as React from "react"
 import { ReactNode } from "react"
 import Theme from "../../config/Theme"
+import { RootState } from "../../config/Main"
 
 interface DataCardResponsiveProps {
 	itemProps?: TemplateDataCardProps,
-	overrideProps?: any,
-	maxWidth?: string,
+	overrideProps?: Record<string, unknown>,
+	maxWidth?: Breakpoint,
 	children?: ReactNode
 }
 
 const DataCardResponsive = (props: DataCardResponsiveProps) => {
 	const dispatch = useDispatch()
-	const backdropCard = useSelector((state: any) => state.backdropCard)
+	const backdropCard = useSelector((state: RootState) => state.backdropCard)
 
 	const matchesSm = useMediaQuery(Theme.breakpoints.down("sm"))
 	let headerChips = props.itemProps && props.itemProps.chips && [
@@ -33,14 +34,17 @@ const DataCardResponsive = (props: DataCardResponsiveProps) => {
 		headerChips = []
 	}
 
-	const cardProps = {
-		...props.itemProps,
-		headerChips : headerChips,
-		contentChips: contentChips, ...props.overrideProps
-	}
-
 	return <DataCard
-		{...cardProps}
+		title={props.itemProps?.title}
+		subtitle={props.itemProps?.subtitle}
+		avatar={props.itemProps?.avatar}
+		content={props.itemProps?.content}
+		actions={props.itemProps?.actions}
+		contentAlign={props.itemProps?.contentAlign as "left" | "right" | "center" | undefined}
+		tooltip={props.itemProps?.tooltip}
+		headerChips={headerChips}
+		contentChips={contentChips}
+		{...props.overrideProps}
 		onClick={() => {
 			if (backdropCard) {
 				dispatch(setCardData(null))

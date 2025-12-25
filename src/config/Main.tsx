@@ -8,6 +8,9 @@ export const store = configureStore({
 	}
 })
 
+// Infer the RootState type from the store for typed useSelector
+export type RootState = ReturnType<typeof store.getState>
+
 export interface MainConfigProps {
 	title: string,
 	avatarHeader: {

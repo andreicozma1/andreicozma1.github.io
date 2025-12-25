@@ -13,9 +13,9 @@ import { DataCardHeader } from "./DataCardHeader"
 import Theme from "../../config/Theme"
 
 interface DataCardProp {
-	title: string,
+	title?: string,
 	subtitle?: string,
-	avatar?: "string",
+	avatar?: string,
 	headerChips?: string[],
 	headerChipsAlign?: "left" | "right" | "center",
 	content?: string[],
@@ -24,7 +24,7 @@ interface DataCardProp {
 	actions?: Array<TemplateDataCardActionProps>,
 	tooltip?: string,
 	onClick?: () => void,
-	children?: ReactNode[]
+	children?: ReactNode
 }
 
 const DataCard = (props: DataCardProp) => {
