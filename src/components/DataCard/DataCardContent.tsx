@@ -9,7 +9,7 @@ interface DataCardContentProps {
 	contentChips?: string[]
 	textAlign?: "left" | "right" | "center"
 	containerSx?: {} | undefined
-	children?: ReactNode[]
+	children?: ReactNode
 }
 
 export function DataCardContent(props: DataCardContentProps) {

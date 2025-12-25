@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { ReactNode } from "react"
+import { Breakpoint } from "@mui/material"
 import { TemplateDataCardProps } from "../components/TemplatedDataProps"
 
 export interface SelectedCardState {
 	itemProps?: TemplateDataCardProps,
 	children?: ReactNode,
-	maxWidth?: string
+	maxWidth?: Breakpoint
 }
 
 export const selectedCard = createSlice({

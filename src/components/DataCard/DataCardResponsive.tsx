@@ -1,6 +1,6 @@
 import { TemplateDataCardProps } from "../TemplatedDataProps"
 import { useDispatch, useSelector } from "react-redux"
-import { useMediaQuery } from "@mui/material"
+import { Breakpoint, useMediaQuery } from "@mui/material"
 import DataCard from "./DataCard"
 import { setCardData } from "../../reducers/selectedCard"
 import * as React from "react"
@@ -11,7 +11,7 @@ import { RootState } from "../../config/Main"
 interface DataCardResponsiveProps {
 	itemProps?: TemplateDataCardProps,
 	overrideProps?: Record<string, unknown>,
-	maxWidth?: string,
+	maxWidth?: Breakpoint,
 	children?: ReactNode
 }
 
