@@ -34,14 +34,17 @@ const DataCardResponsive = (props: DataCardResponsiveProps) => {
 		headerChips = []
 	}
 
-	const cardProps = {
-		...props.itemProps,
-		headerChips : headerChips,
-		contentChips: contentChips, ...props.overrideProps
-	}
-
 	return <DataCard
-		{...cardProps}
+		title={props.itemProps?.title}
+		subtitle={props.itemProps?.subtitle}
+		avatar={props.itemProps?.avatar}
+		content={props.itemProps?.content}
+		actions={props.itemProps?.actions}
+		contentAlign={props.itemProps?.contentAlign}
+		tooltip={props.itemProps?.tooltip}
+		headerChips={headerChips}
+		contentChips={contentChips}
+		{...props.overrideProps}
 		onClick={() => {
 			if (backdropCard) {
 				dispatch(setCardData(null))

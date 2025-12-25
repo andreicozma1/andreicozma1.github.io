@@ -360,9 +360,8 @@ jobs:
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
 
-            // Get error snippets if typecheck failed (collapsible)
+            // Get error snippets if typecheck failed
             const errors = (process.env.TYPECHECK_ERRORS || '').trim();
-            const errorSection = errors ? `\n  <details><summary>Show errors</summary>\n\n  \`\`\`\n${errors}\n  \`\`\`\n  </details>` : '';
             const buildStatus = typecheckStatus === 'failure' ? 'Blocked' : 'Running...';
 
             try {
@@ -378,20 +377,30 @@ jobs:
               );
 
               if (botComment) {
-                const body = [
+                const lines = [
                   '<!-- build-report -->',
                   `## 🔄 CI Report \`${commitSha}\`<!-- preview-marker -->`,
                   '',
                   '### 📋 Status',
-                  `- ${typeIcon} **Type Check**: ${typeStatus}${errorSection}`,
+                  `- ${typeIcon} **Type Check**: ${typeStatus}`,
                   `- ⏳ **Build**: ${buildStatus}`,
                   '- ⏳ **Deploy**: Waiting...',
+                ];
+
+                // Add error details as separate section if present
+                if (errors) {
+                  lines.push('', '<details><summary>View errors</summary>', '', '```', errors, '```', '</details>');
+                }
+
+                lines.push(
                   '',
                   `_${typecheckStatus === 'failure' ? 'Fix type errors to continue.' : 'Building project...'}_`,
                   '',
                   '---',
                   `🔗 [View logs](${runUrl}) · ${timestamp}`
-                ].join('\n');
+                );
+
+                const body = lines.join('\n');
 
                 await github.rest.issues.updateComment({
                   owner: context.repo.owner,
