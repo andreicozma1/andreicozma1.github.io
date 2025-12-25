@@ -54,30 +54,24 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            // Helper to remove indentation from multiline strings (for YAML compatibility)
-            const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
-
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
-            const body = dedent(`
-              <!-- build-report -->
-              ## CI Report<!-- preview-marker -->
-
-              ### Status Summary
-              - ⏳ **Type Check**: Running...
-              - ⏳ **Build**: Waiting...
-              - ⏳ **Deploy**: Waiting...
-              - ⏱️ **Build Time**: -
-
-              _Starting CI checks..._
-
-              ---
-              **Commit** \`${commitSha}\`
-              **Workflow** ${runUrl}
-              **Built** ${timestamp}
-            `);
+            const body = [
+              '<!-- build-report -->',
+              `## 🔄 CI Report \`${commitSha}\`<!-- preview-marker -->`,
+              '',
+              '### 📋 Status',
+              '- ⏳ **Type Check**: Running...',
+              '- ⏳ **Build**: Waiting...',
+              '- ⏳ **Deploy**: Waiting...',
+              '',
+              '_Starting CI checks..._',
+              '',
+              '---',
+              `🔗 [View logs](${runUrl}) · ${timestamp}`
+            ].join('\n');
 
             try {
               const { data: comments } = await github.rest.issues.listComments({
@@ -358,9 +352,6 @@ jobs:
           TYPECHECK_ERRORS: ${{ steps.typecheck.outputs.errors }}
         with:
           script: |
-            // Helper to remove indentation from multiline strings (for YAML compatibility)
-            const dedent = (str) => str.replace(/^[ \t]+/gm, '').trim();
-
             const typecheckStatus = '${{ steps.typecheck.outputs.status }}';
             const errorCount = '${{ steps.typecheck.outputs.error_count }}' || '0';
             const typeIcon = typecheckStatus === 'success' ? '✅' : (typecheckStatus === 'failure' ? '❌' : '⏳');
@@ -371,7 +362,7 @@ jobs:
 
             // Get error snippets if typecheck failed (collapsible)
             const errors = (process.env.TYPECHECK_ERRORS || '').trim();
-            const errorSection = errors ? `\n  <details><summary>Show errors</summary>\n\n  \`\`\`\n  ${errors.split('\n').join('\n  ')}\n  \`\`\`\n  </details>` : '';
+            const errorSection = errors ? `\n  <details><summary>Show errors</summary>\n\n  \`\`\`\n${errors}\n  \`\`\`\n  </details>` : '';
             const buildStatus = typecheckStatus === 'failure' ? 'Blocked' : 'Running...';
 
             try {
@@ -387,23 +378,20 @@ jobs:
               );
 
               if (botComment) {
-                const body = dedent(`
-                  <!-- build-report -->
-                  ## CI Report<!-- preview-marker -->
-
-                  ### Status Summary
-                  - ${typeIcon} **Type Check**: ${typeStatus}${errorSection}
-                  - ⏳ **Build**: ${buildStatus}
-                  - ⏳ **Deploy**: Waiting...
-                  - ⏱️ **Build Time**: -
-
-                  _${typecheckStatus === 'failure' ? 'Fix type errors to continue.' : 'Building project...'}_
-
-                  ---
-                  **Commit** \`${commitSha}\`
-                  **Workflow** ${runUrl}
-                  **Built** ${timestamp}
-                `);
+                const body = [
+                  '<!-- build-report -->',
+                  `## 🔄 CI Report \`${commitSha}\`<!-- preview-marker -->`,
+                  '',
+                  '### 📋 Status',
+                  `- ${typeIcon} **Type Check**: ${typeStatus}${errorSection}`,
+                  `- ⏳ **Build**: ${buildStatus}`,
+                  '- ⏳ **Deploy**: Waiting...',
+                  '',
+                  `_${typecheckStatus === 'failure' ? 'Fix type errors to continue.' : 'Building project...'}_`,
+                  '',
+                  '---',
+                  `🔗 [View logs](${runUrl}) · ${timestamp}`
+                ].join('\n');
 
                 await github.rest.issues.updateComment({
                   owner: context.repo.owner,

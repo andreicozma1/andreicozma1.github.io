@@ -13,7 +13,7 @@ import { DataCardHeader } from "./DataCardHeader"
 import Theme from "../../config/Theme"
 
 interface DataCardProp {
-	title: string,
+	title?: string,
 	subtitle?: string,
 	avatar?: "string",
 	headerChips?: string[],
