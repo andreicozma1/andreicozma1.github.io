@@ -572,6 +572,47 @@ Risk: Low (everything validated)
 # - Detect config → Full validation + ESLint + JSON
 ```
 
+### Local CI Validation (Mirror CI Exactly)
+
+**Principle:** Before pushing, run the exact same commands CI runs to catch errors locally.
+
+**Why:** Prevents wasted CI cycles and commit noise from fix-after-fix pattern.
+
+**Exact CI Commands:**
+```bash
+# 1. Install dependencies exactly as CI does
+npm ci --loglevel=error
+
+# 2. Run TypeScript check
+npm run typecheck
+
+# 3. (Optional) Full build to catch runtime issues
+npm run build
+```
+
+**When to Use Full CI Mirror:**
+- After TypeScript/component changes
+- When fixing type errors
+- Before any push (if uncertain)
+
+**Common Type Issues to Watch:**
+| Issue | Cause | Fix |
+|-------|-------|-----|
+| `Type 'string' not assignable to literal` | JSON imports lose literal types | Cast at boundary: `as "left" \| "right" \| "center"` |
+| `avatar?: "string"` | Typo (quoted type name) | Remove quotes: `avatar?: string` |
+| `any` in selectors | Missing RootState type | Import and use: `state: RootState` |
+
+**Workflow:**
+```bash
+# Before every push
+npm ci --loglevel=error && npm run typecheck && echo "Ready to push"
+
+# If errors found:
+# 1. Fix the error
+# 2. Re-run typecheck
+# 3. Only push when clean
+```
+
 ---
 
 ## Tools Reference

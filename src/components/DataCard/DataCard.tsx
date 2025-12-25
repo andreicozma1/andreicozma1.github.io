@@ -15,7 +15,7 @@ import Theme from "../../config/Theme"
 interface DataCardProp {
 	title?: string,
 	subtitle?: string,
-	avatar?: "string",
+	avatar?: string,
 	headerChips?: string[],
 	headerChipsAlign?: "left" | "right" | "center",
 	content?: string[],

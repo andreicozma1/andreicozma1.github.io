@@ -40,7 +40,7 @@ const DataCardResponsive = (props: DataCardResponsiveProps) => {
 		avatar={props.itemProps?.avatar}
 		content={props.itemProps?.content}
 		actions={props.itemProps?.actions}
-		contentAlign={props.itemProps?.contentAlign}
+		contentAlign={props.itemProps?.contentAlign as "left" | "right" | "center" | undefined}
 		tooltip={props.itemProps?.tooltip}
 		headerChips={headerChips}
 		contentChips={contentChips}
