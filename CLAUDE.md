@@ -671,6 +671,46 @@ Write: file_path + content
 # Multiple edits - use Edit tool multiple times
 ```
 
+### GitHub CLI (gh)
+
+**Setup (one-time):**
+```bash
+# Install via direct binary (most reliable)
+curl -sL https://github.com/cli/cli/releases/latest/download/gh_*_linux_amd64.tar.gz | tar xz
+sudo mv gh_*/bin/gh /usr/local/bin/
+
+# Auth happens automatically via GH_TOKEN environment variable
+gh auth status
+```
+
+**Common Patterns:**
+
+| Task | Command Pattern |
+|------|-----------------|
+| List recent runs | `gh run list --limit N` |
+| View run logs | `gh run view RUN_ID --log` |
+| Filter logs | `gh run view RUN_ID --log \| grep -A N "step name"` |
+| PR status | `gh pr view PR_NUM --json state,statusCheckRollup` |
+| PR comments | `gh api repos/OWNER/REPO/pulls/NUM/comments` |
+| Re-run workflow | `gh run rerun RUN_ID` |
+| Watch run live | `gh run watch RUN_ID` |
+
+**Debugging CI Failures:**
+```bash
+# 1. Find the failed run
+gh run list --status failure --limit 5
+
+# 2. View full logs for a specific step
+gh run view RUN_ID --log | grep -A 100 "Step Name"
+
+# 3. Check specific job
+gh run view RUN_ID --job JOB_ID --log
+```
+
+**When to Use gh vs WebFetch:**
+- **gh**: CI logs, workflow status, API calls, rerunning workflows
+- **WebFetch**: PR descriptions, rendered markdown, visual content
+
 ---
 
 ## PR Review Workflow
