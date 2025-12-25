@@ -103,6 +103,38 @@ git commit -m "Regenerate package-lock.json to sync with package.json"
 - ❌ Using `npm install` in CI/CD instead of `npm ci`
 - ❌ Ignoring package-lock.json in .gitignore (should be committed!)
 
+### 6. **Avoid Unnecessary Filtering (AUF)**
+**When processing data, don't add filters that exclude valid cases.**
+
+**Why:** Overly specific patterns silently drop data. If you count 10 items but only extract 5 because of a filter mismatch, users see incomplete results without knowing why.
+
+**Common Mistakes:**
+- ❌ Using `^src/` anchor when errors can come from any directory
+- ❌ Grepping for specific patterns then counting with a different pattern
+- ❌ Hardcoding paths or prefixes that may not always apply
+
+**Pattern:**
+```bash
+# BAD: Count all errors but only extract from src/
+error_count=$(grep -c "error TS" file.txt)
+errors=$(grep "^src/.*error TS" file.txt | head -5)  # Misses root-level files!
+
+# GOOD: Use the same pattern for both
+error_count=$(grep -c "error TS" file.txt)
+errors=$(grep "error TS" file.txt | head -5)  # Matches all sources
+```
+
+**Applies To:**
+- CI/CD pipelines and log processing
+- Data extraction and transformation scripts
+- Search patterns and filters in code
+- Regular expressions with anchors (`^`, `$`)
+
+**Review Checklist:**
+- [ ] Does the extraction pattern match what was counted?
+- [ ] Are there anchors (`^src/`, `\.json$`) that might exclude valid cases?
+- [ ] Would a file in an unexpected location be missed?
+
 ---
 
 ## Repository Structure
