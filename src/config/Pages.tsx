@@ -7,6 +7,7 @@ Github Repository: https://github.com/andreicozma1/andreicozma1.github.io
 import React from "react"
 import About from "../data/resume/About.json"
 import Education from "../data/resume/Education.json"
+import Publications from "../data/resume/Publications.json"
 import WorkExperience from "../data/resume/WorkExperience.json"
 import AchievementsLicensesCertifications from "../data/resume/AchievementsLicensesCertifications.json"
 import ActivitiesSocieties from "../data/resume/ActivitiesSocieties.json"
@@ -32,7 +33,7 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 		href    : "/resume",
 		icon    : "ic_resume",
 		sections: [
-			About, Education, WorkExperience, AchievementsLicensesCertifications, ActivitiesSocieties
+			About, Education, Publications, WorkExperience, AchievementsLicensesCertifications, ActivitiesSocieties
 		]
 	},
 	"Projects" : {
