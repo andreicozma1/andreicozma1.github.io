@@ -334,7 +334,7 @@ jobs:
             # Extract first 5 errors, shortened paths (just filename)
             {
               echo "errors<<ERRORS_EOF"
-              grep -E "^src/.*error TS[0-9]+:" typecheck-output.txt | head -5 | sed 's|src/[^(]*/||'
+              grep -E "error TS[0-9]+:" typecheck-output.txt | head -5 | sed 's|.*/||'
               echo "ERRORS_EOF"
             } >> "$GITHUB_OUTPUT"
 
