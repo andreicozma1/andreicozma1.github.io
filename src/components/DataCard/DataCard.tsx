@@ -24,7 +24,7 @@ interface DataCardProp {
 	actions?: Array<TemplateDataCardActionProps>,
 	tooltip?: string,
 	onClick?: () => void,
-	children?: ReactNode[]
+	children?: ReactNode
 }
 
 const DataCard = (props: DataCardProp) => {
