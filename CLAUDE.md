@@ -135,6 +135,39 @@ errors=$(grep "error TS" file.txt | head -5)  # Matches all sources
 - [ ] Are there anchors (`^src/`, `\.json$`) that might exclude valid cases?
 - [ ] Would a file in an unexpected location be missed?
 
+### 7. **Synthesize As You Go (SAYG)**
+**Continuously document insights, patterns, and lessons in this file.**
+
+**Why:** This file is living documentation that makes future work more efficient. Every session generates valuable context - patterns that work, mistakes to avoid, tool discoveries - that should be captured while fresh.
+
+**When to Update CLAUDE.md:**
+- ✅ After completing a significant task or fixing a non-trivial bug
+- ✅ When discovering a better way to do something (tool, command, pattern)
+- ✅ When making a mistake that should not repeat
+- ✅ When finding that existing documentation is incorrect or incomplete
+- ✅ Before ending a work session (retrospective synthesis)
+
+**What Belongs Here:**
+- **Principles**: Core rules that guide all work (like these numbered sections)
+- **Patterns**: Reusable solutions to recurring problems
+- **Workflows**: Step-by-step processes for common tasks
+- **Lessons Learned**: Specific incidents with what went wrong and how to prevent
+- **Tool Reference**: Commands, flags, and when to use each option
+- **Anti-patterns**: Things that seem right but cause problems
+
+**What Does NOT Belong Here:**
+- ❌ Temporary task lists (use TodoWrite instead)
+- ❌ Specific data content (belongs in code/data files)
+- ❌ Time-based reminders ("check monthly") - AI can't schedule
+- ❌ Highly project-specific details that won't generalize
+
+**How to Update:**
+1. Read existing relevant sections first
+2. Prefer refining existing content over adding new sections
+3. Keep entries actionable and pattern-focused
+4. Include concrete examples when helpful
+5. Maintain the character limit (~20,000)
+
 ---
 
 ## Repository Structure
@@ -683,33 +716,53 @@ sudo mv gh_*/bin/gh /usr/local/bin/
 gh auth status
 ```
 
-**Common Patterns:**
+**Quick Reference (prefer built-in commands over `gh api`):**
 
-| Task | Command Pattern |
-|------|-----------------|
-| List recent runs | `gh run list --limit N` |
-| View run logs | `gh run view RUN_ID --log` |
-| Filter logs | `gh run view RUN_ID --log \| grep -A N "step name"` |
-| PR status | `gh pr view PR_NUM --json state,statusCheckRollup` |
-| PR comments | `gh api repos/OWNER/REPO/pulls/NUM/comments` |
-| Re-run workflow | `gh run rerun RUN_ID` |
-| Watch run live | `gh run watch RUN_ID` |
+| Task | Best Command |
+|------|--------------|
+| **CI status** | `gh pr checks PR_NUM` |
+| **Watch CI live** | `gh pr checks PR_NUM --watch` |
+| **Run summary + steps** | `gh run view RUN_ID -v` |
+| **Failed step logs only** | `gh run view RUN_ID --log-failed` |
+| **Full run logs** | `gh run view RUN_ID --log` |
+| **PR comments** | `gh pr view PR_NUM --comments` |
+| **Re-run workflow** | `gh run rerun RUN_ID` |
+| **List failed runs** | `gh run list --status failure` |
 
-**Debugging CI Failures:**
+**Debugging CI Failures (recommended workflow):**
 ```bash
-# 1. Find the failed run
-gh run list --status failure --limit 5
+# 1. Quick CI status check
+gh pr checks PR_NUM -R OWNER/REPO
 
-# 2. View full logs for a specific step
-gh run view RUN_ID --log | grep -A 100 "Step Name"
+# 2. If failed, view run with job steps + annotations
+gh run view RUN_ID -R OWNER/REPO -v
 
-# 3. Check specific job
-gh run view RUN_ID --job JOB_ID --log
+# 3. Get only failed step logs (no grep needed!)
+gh run view RUN_ID -R OWNER/REPO --log-failed
+
+# 4. If needed, full logs for specific job
+gh run view RUN_ID -R OWNER/REPO --job JOB_ID --log
 ```
 
-**When to Use gh vs WebFetch:**
-- **gh**: CI logs, workflow status, API calls, rerunning workflows
-- **WebFetch**: PR descriptions, rendered markdown, visual content
+**Real-Time Monitoring Options:**
+```bash
+# Option 1: Watch CI checks (best for status)
+gh pr checks PR_NUM -R OWNER/REPO --watch
+
+# Option 2: Watch specific run
+gh run watch RUN_ID -R OWNER/REPO
+
+# Option 3: Poll bot comments via API (for detailed CI report)
+gh api repos/OWNER/REPO/issues/PR_NUM/comments \
+  --jq '.[] | select(.user.login == "github-actions[bot]") | .body'
+```
+
+**When to Use Each:**
+- **`gh pr checks`**: Quick CI status, watching builds
+- **`gh run view -v`**: Job steps with annotations (warnings/errors)
+- **`gh run view --log-failed`**: Only failed step output (no grepping)
+- **`gh api`**: Custom queries, bot comment content, programmatic access
+- **WebFetch**: Rendered markdown, human discussion context
 
 ---
 
@@ -718,7 +771,7 @@ gh run view RUN_ID --job JOB_ID --log
 ### Addressing PR Feedback
 
 **Process:**
-1. **Fetch PR comments** - Use WebFetch on PR URL
+1. **Fetch PR comments** - Use `gh api` for bot comments, WebFetch for human discussion
 2. **Categorize issues** - Critical, Medium, Low priority
 3. **Create implementation plan** - Phase 1 (quick), Phase 2 (config), Phase 3 (refactor)
 4. **Execute systematically** - One phase at a time
@@ -840,6 +893,53 @@ PR#19 Phase 3: Refactoring (if needed)
 - Clear DO/DON'T lists for package management
 - Validation enforcement already in CI/CD
 
+### Session: Type Safety & CI Tooling (Dec 2025)
+
+**What Went Wrong:**
+1. ❌ `avatar?: "string"` - Typo: quoted type name creates literal type instead of string type
+2. ❌ `contentAlign` type mismatch - JSON imports typed as `string`, component expects literal union
+3. ❌ Surge deployment "unverified" - Site deployed but CDN returned 503 (infrastructure issue)
+
+**What Went Right:**
+✅ Ran exact CI commands locally (`npm ci --loglevel=error && npm run typecheck`) before pushing
+✅ Installed gh CLI via direct binary (more reliable than apt)
+✅ Used `gh api` to poll PR comments in real-time for CI status
+✅ Identified Surge infrastructure issue from logs (not config problem)
+
+**Key Patterns Discovered:**
+
+1. **Type Boundary Pattern** (JSON → TypeScript):
+   - External interfaces (data from JSON): Use permissive types (`string`)
+   - Internal components: Use strict literal types (`"left" | "right" | "center"`)
+   - Cast at the boundary: `contentAlign={value as "left" | "right" | "center"}`
+   - Why: JSON imports lose literal type information
+
+2. **Common Type Typos:**
+   | Wrong | Correct | Issue |
+   |-------|---------|-------|
+   | `prop?: "string"` | `prop?: string` | Quoted creates literal type |
+   | `state: any` | `state: RootState` | Missing Redux type |
+
+3. **gh CLI Patterns:**
+   - Install: Direct binary download (`curl | tar`) more reliable than package managers
+   - Auth: Automatic via `GH_TOKEN` environment variable
+   - **Prefer built-in commands over `gh api`:**
+     - `gh pr checks` > `gh api .../check-runs` (cleaner output)
+     - `gh run view -v` > `gh run view --log | grep` (shows annotations!)
+     - `gh run view --log-failed` > manual grep (no filtering needed)
+   - Use `gh api` only for: bot comment content, custom queries
+
+4. **Surge Free Tier Reality:**
+   - Deployment can succeed (`Success! - Published`) but site may not be served
+   - Verification returning HTTP 000 = infrastructure issue, not config
+   - "Unverified" status is acceptable for PR previews
+
+**Key Takeaways:**
+1. **Mirror CI locally** - Run `npm ci && npm run typecheck` before every push
+2. **Type at boundaries** - Cast JSON data where it enters typed components
+3. **Use gh for debugging** - Faster than WebFetch for CI logs and API calls
+4. **Don't trust deployment success** - Verify the site actually loads
+
 ---
 
 ## Best Practices Summary
@@ -870,9 +970,14 @@ PR#19 Phase 3: Refactoring (if needed)
 
 ## Maintenance Notes
 
-**Last Updated:** 2025-12-24
+**Last Updated:** 2025-12-25
 
 **Recent Changes:**
+- **Added Core Principle #7: Synthesize As You Go (SAYG)** - Meta-principle for continuous documentation
+- **Added gh CLI Tools Reference** with command patterns, debugging workflow, monitoring options
+- **Added Session: Type Safety & CI Tooling** to Lessons Learned
+- **Documented Type Boundary Pattern** - External permissive, internal strict, cast at boundary
+- **Refined gh documentation** - Prefer built-in commands (`gh pr checks`, `gh run view -v`) over `gh api`
 - Completed TypeScript migration (100% - no JSON)
 - Updated repository structure to reflect consolidated main page
 - Added comprehensive lessons from academics reorganization session
