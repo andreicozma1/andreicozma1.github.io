@@ -35,7 +35,7 @@ jobs:
           elif [ -f "${{ github.workspace }}/package-lock.json" ]; then
             {
               echo "manager=npm"
-              echo "command=ci"
+              echo "command=ci --loglevel=error"
               echo "cache=npm"
             } >> "$GITHUB_OUTPUT"
           else
@@ -332,6 +332,14 @@ jobs:
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
             echo "status=failure" >> "$GITHUB_OUTPUT"
+
+            # Extract first 5 actual errors for PR comment (filter out npm run lines)
+            {
+              echo "errors<<ERRORS_EOF"
+              grep -E "^src/.*error TS[0-9]+:" typecheck-output.txt | head -5
+              echo "ERRORS_EOF"
+            } >> "$GITHUB_OUTPUT"
+
             # Output errors again for the matcher to pick up
             cat typecheck-output.txt
             exit 1
@@ -342,6 +350,8 @@ jobs:
       - name: Update PR comment after typecheck
         if: github.event_name == 'pull_request' && always()
         uses: actions/github-script@v8
+        env:
+          TYPECHECK_ERRORS: ${{ steps.typecheck.outputs.errors }}
         with:
           script: |
             // Helper to remove indentation from multiline strings (for YAML compatibility)
@@ -353,6 +363,11 @@ jobs:
             const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
             const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const commitSha = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
+
+            // Get error snippets if typecheck failed
+            const errors = (process.env.TYPECHECK_ERRORS || '').trim();
+            const errorSection = errors ? `\n\n**Errors:**\n\`\`\`\n${errors}\n\`\`\`` : '';
+            const buildStatus = typecheckStatus === 'failure' ? 'Blocked by type errors' : 'Running...';
 
             try {
               const { data: comments } = await github.rest.issues.listComments({
@@ -372,12 +387,12 @@ jobs:
                   ## CI Report<!-- preview-marker -->
 
                   ### Status Summary
-                  - ${typeIcon} **Type Check**: ${typeStatus}
-                  - ⏳ **Build**: Running...
+                  - ${typeIcon} **Type Check**: ${typeStatus}${errorSection}
+                  - ⏳ **Build**: ${buildStatus}
                   - ⏳ **Deploy**: Waiting...
                   - ⏱️ **Build Time**: -
 
-                  _Building project..._
+                  _${typecheckStatus === 'failure' ? 'Fix type errors to continue.' : 'Building project...'}_
 
                   ---
                   **Commit** \`${commitSha}\`
