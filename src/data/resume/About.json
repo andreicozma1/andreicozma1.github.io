@@ -16,16 +16,21 @@
 					"Intelligent Systems",
 					"Deep Learning",
 					"Machine Learning",
+					"Reinforcement Learning",
 					"Computer Vision",
 					"Natural Language Processing",
 					"Cybersecurity",
-					"Web Development",
 					"Data Science",
-					"Data Analytics",
 					"Mobile & Embedded Systems"
 				]
 			},
 			"actions": [
+				{
+					"text": "CV PDF",
+					"href": "/AndreiCozmaCV_GeneralPurpose_v1-3-18.pdf",
+					"target": "_blank",
+					"hidden": false
+				},
 				{
 					"text": "Resume PDF",
 					"href": "/Resume-AndreiCozma.pdf",
