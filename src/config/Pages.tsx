@@ -29,10 +29,6 @@ export const Pages: { [key: string]: TemplatePageProps } = {
 		href: "/",
 		icon: "ic_home"
 	},
-	"CV"       : {
-		href: "/AndreiCozmaCV_GeneralPurpose_v1-3-18.pdf",
-		icon: "ic_resume"
-	},
 	"Resume"   : {
 		href    : "/resume",
 		icon    : "ic_resume",
