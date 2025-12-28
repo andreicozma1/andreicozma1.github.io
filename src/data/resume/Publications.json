@@ -21,6 +21,11 @@
 			],
 			"actions": [
 				{
+					"text": "IJCAI Proceedings",
+					"href": "https://www.ijcai.org/proceedings/2025/556",
+					"target": "_blank"
+				},
+				{
 					"text": "ArXiv",
 					"href": "https://arxiv.org/abs/2505.14566",
 					"target": "_blank"
@@ -46,6 +51,16 @@
 				"Modular federated learning framework supporting centralized, decentralized, and hierarchical topologies with plug-and-play algorithm integration scaling from edge to HPC."
 			],
 			"actions": [
+				{
+					"text": "ACM DL",
+					"href": "https://dl.acm.org/doi/10.1145/3731599.3767397",
+					"target": "_blank"
+				},
+				{
+					"text": "ORNL Impact",
+					"href": "https://impact.ornl.gov/en/publications/omnifed-a-modular-framework-for-configurable-federated-learning-f/",
+					"target": "_blank"
+				},
 				{
 					"text": "ArXiv",
 					"href": "https://arxiv.org/abs/2509.19396",
@@ -95,6 +110,11 @@
 				{
 					"text": "NeurIPS Proceedings",
 					"href": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/40b39a7a9b3fda8d5a4aaa8105cf1b67-Abstract-Conference.html",
+					"target": "_blank"
+				},
+				{
+					"text": "ArXiv",
+					"href": "https://arxiv.org/abs/2401.15855",
 					"target": "_blank"
 				}
 			],
