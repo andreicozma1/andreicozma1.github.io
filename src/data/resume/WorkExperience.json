@@ -104,7 +104,7 @@
 					"Electron.js",
 					"Quasar Framework",
 					"Atlassian Jira",
-					"Git & GitLab",
+					"Git",
 					"REST APIs"
 				]
 			},
@@ -133,7 +133,7 @@
 				],
 				"tools": [
 					"Linux",
-					"Git & GitHub"
+					"Git"
 				]
 			},
 			"content": [
@@ -147,13 +147,8 @@
 			"chips": {
 				"contentChips": [
 					"Cybersecurity",
-					"Security Goals",
 					"Threat Modeling",
-					"Software Security",
-					"Operating System Security",
-					"Cryptography",
-					"Network Security",
-					"Human Factors"
+					"Cryptography"
 				],
 				"date": [
 					"01/2022 - 05/2022"
@@ -178,11 +173,11 @@
 				"languages": [
 					"Python",
 					"JavaScript",
-					"Bash Scripting"
+					"Bash"
 				],
 				"tools": [
 					"Linux",
-					"Git & GitHub",
+					"Git",
 					"Docker",
 					"MongoDB",
 					"PostgreSQL"
@@ -209,7 +204,7 @@
 					"Kotlin",
 					"C/C++",
 					"Python",
-					"Bash Scripting"
+					"Bash"
 				],
 				"tools": [
 					"Linux",
