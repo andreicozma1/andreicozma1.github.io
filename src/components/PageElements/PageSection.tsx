@@ -1,5 +1,6 @@
 import * as React from "react"
-import { Stack, Typography } from "@mui/material"
+import { Stack, Typography, Box, Link } from "@mui/material"
+import LinkIcon from "@mui/icons-material/Link"
 import SlideNotes, { NoteProps } from "../UIElement/SlideNotes"
 import Theme from "../../config/Theme"
 import { OverridableStringUnion } from "@mui/types"
@@ -21,13 +22,40 @@ const PageSection = ({
 			   sx={{
 				   my: Theme.section.verticalMargin
 			   }}>
-			<Typography variant={typographyVariant}
-						fontWeight={Theme.section.titleFontWeight}
-						sx={{
-							textDecoration: "underline"
-						}}>
-				{title}
-			</Typography>
+			<Box sx={{
+				display: "flex",
+				alignItems: "center",
+				gap: 1,
+				"&:hover .anchor-link": {
+					opacity: 1
+				}
+			}}>
+				<Typography variant={typographyVariant}
+							fontWeight={Theme.section.titleFontWeight}
+							sx={{
+								textDecoration: "underline"
+							}}>
+					{title}
+				</Typography>
+				<Link
+					href={`#${id}`}
+					className="anchor-link"
+					sx={{
+						opacity: 0,
+						transition: "opacity 0.2s",
+						color: "text.secondary",
+						display: "flex",
+						alignItems: "center",
+						textDecoration: "none",
+						"&:hover": {
+							color: "primary.main"
+						}
+					}}
+					aria-label={`Link to ${title}`}
+				>
+					<LinkIcon fontSize="small" />
+				</Link>
+			</Box>
 			{notes && <SlideNotes notesArray={notes}/>}
 			{children}
 		</Stack>
